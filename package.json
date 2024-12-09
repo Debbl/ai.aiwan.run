@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.0.0",
   "private": true,
-  "packageManager": "pnpm@9.14.4",
+  "packageManager": "pnpm@9.15.0",
   "description": "starter next app",
   "author": "Brendan Dash <me@aiwna.run> (https://github.com/Debbl/)",
   "license": "MIT",
@@ -13,7 +13,7 @@
     "url": "https://github.com/Debbl/starter-next-app.git"
   },
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev",
     "build": "next build",
     "build:analyze": "ANALYZE=true next build",
     "ui": "shadcn add",
@@ -24,13 +24,19 @@
     "prepare": "simple-git-hooks"
   },
   "dependencies": {
-    "@debbl/ahooks": "^0.3.2",
+    "@debbl/ahooks": "^0.3.4",
+    "@huggingface/transformers": "^3.1.2",
+    "@nextui-org/button": "^2.2.4",
+    "@nextui-org/spinner": "^2.2.4",
+    "@nextui-org/system": "^2.4.4",
+    "@radix-ui/react-label": "^2.1.0",
     "@radix-ui/react-slot": "^1.1.0",
+    "@xenova/transformers": "^2.17.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "lucide-react": "^0.465.0",
+    "lucide-react": "^0.468.0",
     "motion": "12.0.0-alpha.2",
-    "next": "^15.0.3",
+    "next": "^15.0.4",
     "react": "19.0.0",
     "react-dom": "19.0.0",
     "tailwind-merge": "^2.5.5",
@@ -39,19 +45,23 @@
   },
   "devDependencies": {
     "@debbl/eslint-config": "^3.8.4",
-    "@next/bundle-analyzer": "^15.0.3",
+    "@next/bundle-analyzer": "^15.0.4",
     "@types/node": "^22.10.1",
-    "@types/react": "^19.0.0",
-    "@types/react-dom": "^19.0.0",
+    "@types/react": "^19.0.1",
+    "@types/react-dom": "^19.0.1",
     "autoprefixer": "^10.4.20",
     "babel-plugin-react-compiler": "19.0.0-beta-df7b47d-20241124",
-    "eslint": "^9.15.0",
+    "eslint": "^9.16.0",
     "lint-staged": "^15.2.10",
+    "nextui-cli": "^0.5.0",
     "postcss": "^8.4.49",
     "shadcn": "^2.1.6",
     "simple-git-hooks": "^2.11.1",
-    "tailwindcss": "^3.4.15",
+    "tailwindcss": "^3.4.16",
     "typescript": "^5.7.2"
+  },
+  "overrides": {
+    "protobufjs": "^7.2.4"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm lint-staged"
