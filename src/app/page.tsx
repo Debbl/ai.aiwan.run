@@ -124,13 +124,14 @@ export default function Home() {
             type="file"
             accept="image/*"
             className="items-center"
+            disabled={isLoading}
             onInput={handleInputFile}
           />
 
           <Button
             size="md"
             color="primary"
-            disabled={isLoading || !image.src}
+            isDisabled={isLoading || !image.src}
             onPress={handleAnalyze}
           >
             Analyze
