@@ -9,16 +9,18 @@ import { Label } from "~/components/ui/label";
 import { getImageSize } from "~/utils";
 import type { FormEventHandler } from "react";
 
-// interface Output {
-//   score: number;
-//   label: string;
-//   box: {
-//     xmin: number;
-//     ymin: number;
-//     xmax: number;
-//     ymax: number;
-//   };
-// }
+interface OutputItem {
+  score: number;
+  label: string;
+  box: {
+    xmin: number;
+    ymin: number;
+    xmax: number;
+    ymax: number;
+  };
+}
+
+type Output = OutputItem[];
 
 const randomColors = new Map<string, string>();
 
@@ -33,17 +35,18 @@ export default function Home() {
     height: 0,
   });
 
-  const {
-    data: output,
-    isLoading,
-    mutate,
-  } = useTransformers({
+  const { data, isLoading, mutate } = useTransformers({
     task: "object-detection",
     model: "Xenova/detr-resnet-50",
     options: {
       dtype: "q8",
     },
   });
+
+  const output = useMemo(
+    () => (data && (Array.isArray(data) ? data : [data])) as Output | undefined,
+    [data],
+  );
 
   const handleInputFile: FormEventHandler<HTMLInputElement> = async (e) => {
     const file = e.currentTarget.files?.[0];
@@ -65,7 +68,7 @@ export default function Home() {
   };
 
   const renderBoxes = useMemo(() => {
-    return output?.map((i: any) => {
+    return output?.map((i) => {
       if (!randomColors.has(i.label)) {
         randomColors.set(
           i.label,
@@ -128,7 +131,7 @@ export default function Home() {
             size="md"
             color="primary"
             disabled={isLoading || !image.src}
-            onClick={handleAnalyze}
+            onPress={handleAnalyze}
           >
             Analyze
           </Button>
@@ -161,7 +164,7 @@ export default function Home() {
               </div>
             )}
           </div>
-          {output?.length > 0 && (
+          {output && (
             <div>
               {objects.map((i) => (
                 <div key={i.label} className="flex items-center gap-x-2">

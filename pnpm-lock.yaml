@@ -15,8 +15,8 @@ importers:
         specifier: ^3.1.2
         version: 3.1.2
       '@nextui-org/button':
-        specifier: ^2.2.4
-        version: 2.2.4(@nextui-org/system@2.4.4(@nextui-org/theme@2.4.1(tailwindcss@3.4.16))(framer-motion@12.0.0-alpha.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(@nextui-org/theme@2.4.1(tailwindcss@3.4.16))(framer-motion@12.0.0-alpha.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+        specifier: ^2.2.7
+        version: 2.2.7(@nextui-org/system@2.4.4(@nextui-org/theme@2.4.1(tailwindcss@3.4.16))(framer-motion@12.0.0-alpha.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(@nextui-org/theme@2.4.1(tailwindcss@3.4.16))(framer-motion@12.0.0-alpha.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@nextui-org/spinner':
         specifier: ^2.2.4
         version: 2.2.4(@nextui-org/theme@2.4.1(tailwindcss@3.4.16))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -60,8 +60,8 @@ importers:
         specifier: 0.0.0-alpha.6
         version: 0.0.0-alpha.6
       use-transformers:
-        specifier: ^0.0.4
-        version: 0.0.4(@huggingface/transformers@3.1.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+        specifier: ^0.0.5
+        version: 0.0.5(@huggingface/transformers@3.1.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
     devDependencies:
       '@debbl/eslint-config':
         specifier: ^3.8.4
@@ -551,8 +551,8 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@nextui-org/button@2.2.4':
-    resolution: {integrity: sha512-aN61TCSwj4vL4812wB1BTRQulQAgYZLBLLfJ97kvV8PjhhT0Gz7Epz89fiYLSnoTWsjYHdxrLNv4To+8VplNCA==}
+  '@nextui-org/button@2.2.7':
+    resolution: {integrity: sha512-3o7uAD7nFAUKJkg2PZ5ktJR8qqMrjQgzewXBWfz62RWya/uTFXzqwljy0JYGwq3tfvbmBzA1GGsAZdj5wUEymw==}
     peerDependencies:
       '@nextui-org/system': '>=2.4.0'
       '@nextui-org/theme': '>=2.4.0'
@@ -575,8 +575,8 @@ packages:
     peerDependencies:
       react: '>=18 || >=19.0.0-rc.0'
 
-  '@nextui-org/ripple@2.2.3':
-    resolution: {integrity: sha512-MlW1A5WZLNmpTWt8DAlwu+8fJ+vPbvQHtam60htZPqL19mrua4K71ZFCfsO10WddtyYk22qeJBDpY+Pb1poioA==}
+  '@nextui-org/ripple@2.2.5':
+    resolution: {integrity: sha512-GNYcRbVrUtdkbHKyFGRb0W8dyudH6hYY6YxYtlE5I82YwN1FovLvTRajDBbd3Bh2qNIcyUoFlmbt4h/6mM8uOQ==}
     peerDependencies:
       '@nextui-org/system': '>=2.4.0'
       '@nextui-org/theme': '>=2.4.0'
@@ -612,8 +612,8 @@ packages:
     peerDependencies:
       tailwindcss: '>=3.4.0'
 
-  '@nextui-org/use-aria-button@2.2.2':
-    resolution: {integrity: sha512-Rn6AVfiw+QdzLaF7pnGb1AaTSZ3FgBkVhO2bDoq97q/sAGUW8V5UWD19rHZ8TD0Fepdi4HqXWIH+XyPxHIuogA==}
+  '@nextui-org/use-aria-button@2.2.3':
+    resolution: {integrity: sha512-KG5A3tgSxmwq07zYwAocnulIoyDQZ8qjmE+m0Gx0tkb438gyN4VMIv7wCWhtrmhlJCfiNLvXdxCS4MjCWv7YCQ==}
     peerDependencies:
       react: '>=18 || >=19.0.0-rc.0'
 
@@ -3728,8 +3728,8 @@ packages:
   uri-js@4.4.1:
     resolution: {integrity: sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==}
 
-  use-transformers@0.0.4:
-    resolution: {integrity: sha512-W7rCa1FGbkqS8AanBDmc2R8UI9vKywJksIXptOsxR5/uoBF6G/oaBRadKwWncFxlxyqgJ6ykBzMoHMkeSvw0vA==}
+  use-transformers@0.0.5:
+    resolution: {integrity: sha512-t/ZTahbMOIUFppK3VZZpFFOf73aTVsR/t8jvkUYqA2ReQ1yrC4oI5+i73WqagnxjMTWVWsHZqswTfp47aAs4QQ==}
     peerDependencies:
       '@huggingface/transformers': ^3.1.2
       react: '>= 18'
@@ -4414,15 +4414,15 @@ snapshots:
   '@next/swc-win32-x64-msvc@15.1.0':
     optional: true
 
-  '@nextui-org/button@2.2.4(@nextui-org/system@2.4.4(@nextui-org/theme@2.4.1(tailwindcss@3.4.16))(framer-motion@12.0.0-alpha.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(@nextui-org/theme@2.4.1(tailwindcss@3.4.16))(framer-motion@12.0.0-alpha.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
+  '@nextui-org/button@2.2.7(@nextui-org/system@2.4.4(@nextui-org/theme@2.4.1(tailwindcss@3.4.16))(framer-motion@12.0.0-alpha.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(@nextui-org/theme@2.4.1(tailwindcss@3.4.16))(framer-motion@12.0.0-alpha.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
     dependencies:
       '@nextui-org/react-utils': 2.1.1(react@19.0.0)
-      '@nextui-org/ripple': 2.2.3(@nextui-org/system@2.4.4(@nextui-org/theme@2.4.1(tailwindcss@3.4.16))(framer-motion@12.0.0-alpha.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(@nextui-org/theme@2.4.1(tailwindcss@3.4.16))(framer-motion@12.0.0-alpha.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      '@nextui-org/ripple': 2.2.5(@nextui-org/system@2.4.4(@nextui-org/theme@2.4.1(tailwindcss@3.4.16))(framer-motion@12.0.0-alpha.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(@nextui-org/theme@2.4.1(tailwindcss@3.4.16))(framer-motion@12.0.0-alpha.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@nextui-org/shared-utils': 2.1.1
       '@nextui-org/spinner': 2.2.4(@nextui-org/theme@2.4.1(tailwindcss@3.4.16))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@nextui-org/system': 2.4.4(@nextui-org/theme@2.4.1(tailwindcss@3.4.16))(framer-motion@12.0.0-alpha.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@nextui-org/theme': 2.4.1(tailwindcss@3.4.16)
-      '@nextui-org/use-aria-button': 2.2.2(react@19.0.0)
+      '@nextui-org/use-aria-button': 2.2.3(react@19.0.0)
       '@react-aria/button': 3.11.0(react@19.0.0)
       '@react-aria/focus': 3.19.0(react@19.0.0)
       '@react-aria/interactions': 3.22.5(react@19.0.0)
@@ -4447,7 +4447,7 @@ snapshots:
       '@nextui-org/shared-utils': 2.1.1
       react: 19.0.0
 
-  '@nextui-org/ripple@2.2.3(@nextui-org/system@2.4.4(@nextui-org/theme@2.4.1(tailwindcss@3.4.16))(framer-motion@12.0.0-alpha.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(@nextui-org/theme@2.4.1(tailwindcss@3.4.16))(framer-motion@12.0.0-alpha.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
+  '@nextui-org/ripple@2.2.5(@nextui-org/system@2.4.4(@nextui-org/theme@2.4.1(tailwindcss@3.4.16))(framer-motion@12.0.0-alpha.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(@nextui-org/theme@2.4.1(tailwindcss@3.4.16))(framer-motion@12.0.0-alpha.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
     dependencies:
       '@nextui-org/dom-animation': 2.1.1(framer-motion@12.0.0-alpha.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0))
       '@nextui-org/react-utils': 2.1.1(react@19.0.0)
@@ -4504,8 +4504,9 @@ snapshots:
       tailwind-variants: 0.1.20(tailwindcss@3.4.16)
       tailwindcss: 3.4.16
 
-  '@nextui-org/use-aria-button@2.2.2(react@19.0.0)':
+  '@nextui-org/use-aria-button@2.2.3(react@19.0.0)':
     dependencies:
+      '@nextui-org/shared-utils': 2.1.1
       '@react-aria/focus': 3.19.0(react@19.0.0)
       '@react-aria/interactions': 3.22.5(react@19.0.0)
       '@react-aria/utils': 3.26.0(react@19.0.0)
@@ -4647,7 +4648,7 @@ snapshots:
       '@react-stately/toggle': 3.8.0(react@19.0.0)
       '@react-types/button': 3.10.1(react@19.0.0)
       '@react-types/shared': 3.26.0(react@19.0.0)
-      '@swc/helpers': 0.5.13
+      '@swc/helpers': 0.5.15
       react: 19.0.0
 
   '@react-aria/focus@3.19.0(react@19.0.0)':
@@ -4655,7 +4656,7 @@ snapshots:
       '@react-aria/interactions': 3.22.5(react@19.0.0)
       '@react-aria/utils': 3.26.0(react@19.0.0)
       '@react-types/shared': 3.26.0(react@19.0.0)
-      '@swc/helpers': 0.5.13
+      '@swc/helpers': 0.5.15
       clsx: 2.1.1
       react: 19.0.0
 
@@ -4676,7 +4677,7 @@ snapshots:
       '@react-aria/ssr': 3.9.7(react@19.0.0)
       '@react-aria/utils': 3.26.0(react@19.0.0)
       '@react-types/shared': 3.26.0(react@19.0.0)
-      '@swc/helpers': 0.5.13
+      '@swc/helpers': 0.5.15
       react: 19.0.0
 
   '@react-aria/overlays@3.24.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
@@ -4706,7 +4707,7 @@ snapshots:
       '@react-aria/i18n': 3.12.4(react@19.0.0)
       '@react-aria/utils': 3.26.0(react@19.0.0)
       '@react-types/shared': 3.26.0(react@19.0.0)
-      '@swc/helpers': 0.5.13
+      '@swc/helpers': 0.5.15
       react: 19.0.0
 
   '@react-aria/utils@3.26.0(react@19.0.0)':
@@ -4714,7 +4715,7 @@ snapshots:
       '@react-aria/ssr': 3.9.7(react@19.0.0)
       '@react-stately/utils': 3.10.5(react@19.0.0)
       '@react-types/shared': 3.26.0(react@19.0.0)
-      '@swc/helpers': 0.5.13
+      '@swc/helpers': 0.5.15
       clsx: 2.1.1
       react: 19.0.0
 
@@ -4738,7 +4739,7 @@ snapshots:
       '@react-stately/utils': 3.10.5(react@19.0.0)
       '@react-types/checkbox': 3.9.0(react@19.0.0)
       '@react-types/shared': 3.26.0(react@19.0.0)
-      '@swc/helpers': 0.5.13
+      '@swc/helpers': 0.5.15
       react: 19.0.0
 
   '@react-stately/utils@3.10.5(react@19.0.0)':
@@ -8224,7 +8225,7 @@ snapshots:
     dependencies:
       punycode: 2.3.1
 
-  use-transformers@0.0.4(@huggingface/transformers@3.1.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
+  use-transformers@0.0.5(@huggingface/transformers@3.1.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
     dependencies:
       '@huggingface/transformers': 3.1.2
       birpc: 0.2.19

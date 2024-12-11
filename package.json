@@ -26,7 +26,7 @@
   "dependencies": {
     "@debbl/ahooks": "^0.3.4",
     "@huggingface/transformers": "^3.1.2",
-    "@nextui-org/button": "^2.2.4",
+    "@nextui-org/button": "^2.2.7",
     "@nextui-org/spinner": "^2.2.4",
     "@nextui-org/system": "^2.4.4",
     "@radix-ui/react-label": "^2.1.0",
@@ -41,7 +41,7 @@
     "tailwind-merge": "^2.5.5",
     "tailwindcss-animate": "^1.0.7",
     "twl": "0.0.0-alpha.6",
-    "use-transformers": "^0.0.4"
+    "use-transformers": "^0.0.5"
   },
   "devDependencies": {
     "@debbl/eslint-config": "^3.8.4",
