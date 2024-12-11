@@ -1,29 +1,28 @@
 "use client";
 import { Button } from "@nextui-org/button";
 import { Spinner } from "@nextui-org/spinner";
-import { pipeline } from "@xenova/transformers";
 import Image from "next/image";
 import { useMemo, useState } from "react";
+import { useTransformers } from "use-transformers";
 import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
 import { getImageSize } from "~/utils";
 import type { FormEventHandler } from "react";
 
-interface Output {
-  score: number;
-  label: string;
-  box: {
-    xmin: number;
-    ymin: number;
-    xmax: number;
-    ymax: number;
-  };
-}
+// interface Output {
+//   score: number;
+//   label: string;
+//   box: {
+//     xmin: number;
+//     ymin: number;
+//     xmax: number;
+//     ymax: number;
+//   };
+// }
 
 const randomColors = new Map<string, string>();
 
 export default function Home() {
-  const [isLoading, setIsLoading] = useState(false);
   const [image, setImage] = useState<{
     src: string;
     width: number;
@@ -33,37 +32,40 @@ export default function Home() {
     width: 0,
     height: 0,
   });
-  const [output, setOutput] = useState<Output[]>([]);
+
+  const {
+    data: output,
+    isLoading,
+    mutate,
+  } = useTransformers({
+    task: "object-detection",
+    model: "Xenova/detr-resnet-50",
+    options: {
+      dtype: "q8",
+    },
+  });
 
   const handleInputFile: FormEventHandler<HTMLInputElement> = async (e) => {
     const file = e.currentTarget.files?.[0];
     if (file) {
       const src = URL.createObjectURL(file);
       const size = await getImageSize(src);
+
       setImage({
         src,
         ...size,
       });
-      setOutput([]);
     }
   };
 
   const handleAnalyze = async () => {
     if (!image.src) return;
 
-    setIsLoading(true);
-
-    const detector = await pipeline(
-      "object-detection",
-      "Xenova/detr-resnet-50",
-    );
-    const output = await detector(image.src, { threshold: 0.9 });
-    setOutput((Array.isArray(output) ? output : [output]) as Output[]);
-    setIsLoading(false);
+    mutate(image.src);
   };
 
   const renderBoxes = useMemo(() => {
-    return output.map((i) => {
+    return output?.map((i: any) => {
       if (!randomColors.has(i.label)) {
         randomColors.set(
           i.label,
@@ -91,7 +93,8 @@ export default function Home() {
         color: string;
       };
     } = {};
-    output.forEach((i) => {
+
+    output?.forEach((i: any) => {
       if (map[i.label]) {
         map[i.label].count = map[i.label].count + 1;
       } else {
@@ -141,7 +144,7 @@ export default function Home() {
                   </div>
                 )}
                 <Image {...image} alt="" />
-                {renderBoxes.map((i, index) => (
+                {renderBoxes?.map((i: any, index: number) => (
                   <div
                     key={index}
                     className="absolute border"
@@ -158,7 +161,7 @@ export default function Home() {
               </div>
             )}
           </div>
-          {output.length > 0 && (
+          {output?.length > 0 && (
             <div>
               {objects.map((i) => (
                 <div key={i.label} className="flex items-center gap-x-2">

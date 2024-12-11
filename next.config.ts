@@ -17,15 +17,17 @@ const nextConfig: NextConfig = {
     unoptimized: true,
   },
   webpack: (config) => {
-    config.resolve.alias["@huggingface/transformers"] = path.resolve(
-      __dirname,
-      "node_modules/@huggingface/transformers",
-    );
+    // https://github.com/huggingface/transformers.js/issues/1026#issuecomment-2490410996
     config.resolve.alias = {
       ...config.resolve.alias,
       "sharp$": false,
       "onnxruntime-node$": false,
+      "@huggingface/transformers": path.resolve(
+        __dirname,
+        "node_modules/@huggingface/transformers",
+      ),
     };
+
     return config;
   },
 };
