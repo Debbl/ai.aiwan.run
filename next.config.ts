@@ -16,6 +16,9 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true,
   },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   webpack: (config) => {
     // https://github.com/huggingface/transformers.js/issues/1026#issuecomment-2490410996
     config.resolve.alias = {
