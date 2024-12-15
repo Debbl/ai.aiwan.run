@@ -1,9 +1,9 @@
 "use client";
-import { Button } from "@nextui-org/button";
-import { Spinner } from "@nextui-org/spinner";
+import { LoaderCircle } from "lucide-react";
 import Image from "next/image";
 import { useMemo, useState } from "react";
 import { useTransformers } from "use-transformers";
+import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
 import { getImageSize } from "~/utils";
@@ -35,7 +35,7 @@ export default function Home() {
     height: 0,
   });
 
-  const { data, isLoading, mutate } = useTransformers({
+  const { data, isLoading, mutate, transformer } = useTransformers({
     task: "object-detection",
     model: "Xenova/detr-resnet-50",
     options: {
@@ -43,10 +43,11 @@ export default function Home() {
     },
   });
 
-  const output = useMemo(
-    () => (data && (Array.isArray(data) ? data : [data])) as Output | undefined,
-    [data],
-  );
+  const output = useMemo(() => {
+    return (data && (Array.isArray(data) ? data : [data])) as
+      | Output
+      | undefined;
+  }, [data]);
 
   const handleInputFile: FormEventHandler<HTMLInputElement> = async (e) => {
     const file = e.currentTarget.files?.[0];
@@ -54,6 +55,7 @@ export default function Home() {
       const src = URL.createObjectURL(file);
       const size = await getImageSize(src);
 
+      mutate([]);
       setImage({
         src,
         ...size,
@@ -64,7 +66,7 @@ export default function Home() {
   const handleAnalyze = async () => {
     if (!image.src) return;
 
-    mutate(image.src);
+    transformer(image.src);
   };
 
   const renderBoxes = useMemo(() => {
@@ -129,10 +131,9 @@ export default function Home() {
           />
 
           <Button
-            size="md"
             color="primary"
-            isDisabled={isLoading || !image.src}
-            onPress={handleAnalyze}
+            disabled={isLoading || !image.src}
+            onClick={handleAnalyze}
           >
             Analyze
           </Button>
@@ -144,7 +145,7 @@ export default function Home() {
               <div className="relative w-64">
                 {isLoading && (
                   <div className="absolute inset-0 flex items-center justify-center bg-gray-300/35">
-                    <Spinner />
+                    <LoaderCircle className="animate-spin" />
                   </div>
                 )}
                 <Image {...image} alt="" />

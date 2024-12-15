@@ -26,11 +26,8 @@
   "dependencies": {
     "@debbl/ahooks": "^0.3.4",
     "@huggingface/transformers": "^3.1.2",
-    "@nextui-org/button": "^2.2.7",
-    "@nextui-org/spinner": "^2.2.4",
-    "@nextui-org/system": "^2.4.4",
-    "@radix-ui/react-label": "^2.1.0",
-    "@radix-ui/react-slot": "^1.1.0",
+    "@radix-ui/react-label": "^2.1.1",
+    "@radix-ui/react-slot": "^1.1.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.468.0",
@@ -41,27 +38,23 @@
     "tailwind-merge": "^2.5.5",
     "tailwindcss-animate": "^1.0.7",
     "twl": "0.0.0-alpha.6",
-    "use-transformers": "^0.0.5"
+    "use-transformers": "^0.0.9"
   },
   "devDependencies": {
-    "@debbl/eslint-config": "^3.8.4",
+    "@debbl/eslint-config": "^3.8.5",
     "@next/bundle-analyzer": "^15.1.0",
     "@types/node": "^22.10.2",
     "@types/react": "^19.0.1",
     "@types/react-dom": "^19.0.2",
     "autoprefixer": "^10.4.20",
     "babel-plugin-react-compiler": "19.0.0-beta-df7b47d-20241124",
-    "eslint": "^9.16.0",
+    "eslint": "^9.17.0",
     "lint-staged": "^15.2.11",
-    "nextui-cli": "^0.5.0",
     "postcss": "^8.4.49",
     "shadcn": "^2.1.7",
     "simple-git-hooks": "^2.11.1",
     "tailwindcss": "^3.4.16",
     "typescript": "^5.7.2"
-  },
-  "overrides": {
-    "protobufjs": "^7.4.0"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm lint-staged"
