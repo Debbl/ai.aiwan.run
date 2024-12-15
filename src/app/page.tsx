@@ -151,6 +151,7 @@ export default function Home() {
                 <Image {...image} alt="" />
                 {renderBoxes?.map((i: any, index: number) => (
                   <div
+                    // eslint-disable-next-line react/no-array-index-key
                     key={index}
                     className="absolute border"
                     style={{

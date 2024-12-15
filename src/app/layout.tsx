@@ -5,7 +5,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "The client first ai apps",
   description: "A collection of client first ai apps",
-  icons: ["favicon.ico"],
+  icons: ["favicon.svg"],
 };
 
 export default function RootLayout({
