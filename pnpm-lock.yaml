@@ -13,7 +13,7 @@ importers:
         version: 0.3.4(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@huggingface/transformers':
         specifier: ^3.1.2
-        version: 3.1.2
+        version: 3.2.0
       '@radix-ui/react-label':
         specifier: ^2.1.1
         version: 2.1.1(@types/react-dom@19.0.2(@types/react@19.0.1))(@types/react@19.0.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -52,7 +52,7 @@ importers:
         version: 0.0.0-alpha.6
       use-transformers:
         specifier: ^0.0.9
-        version: 0.0.9(@huggingface/transformers@3.1.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+        version: 0.0.9(@huggingface/transformers@3.2.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
     devDependencies:
       '@debbl/eslint-config':
         specifier: ^3.8.5
@@ -328,8 +328,8 @@ packages:
     resolution: {integrity: sha512-F2FvuIc+w1blGsaqJI/OErRbWH6bVJDCBI8Rm5D86yZ2wlwrGERsfIaru7XUv9eYC3DMP3ixDRRtF0h6d8AZcQ==}
     engines: {node: '>=18'}
 
-  '@huggingface/transformers@3.1.2':
-    resolution: {integrity: sha512-+YKHashFDkZbjqTKPyhfRHiIxe1fl5/KqOr3zIHzXmUKhDSH4pwQ2Q58iXT5CUL6iSaZd93x+ep4VmvW6dLAlw==}
+  '@huggingface/transformers@3.2.0':
+    resolution: {integrity: sha512-1LEvKB/Gyw1xrnLHOCN1lPZNpIHGdoG3PitneTLNlIYYJAnVX9/2Sjs+Jt+YnqSUOOqfwPJ39eMclUZ8P186xA==}
 
   '@humanfs/core@0.19.1':
     resolution: {integrity: sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA==}
@@ -2476,8 +2476,8 @@ packages:
   parse-entities@2.0.0:
     resolution: {integrity: sha512-kkywGpCcRYhqQIchaWqZ875wzpS/bMKhz5HnN3p7wveJTkTtyAB/AlnS0f8DFSqYW1T82t6yEAkEcB+A1I3MbQ==}
 
-  parse-entities@4.0.1:
-    resolution: {integrity: sha512-SWzvYcSJh4d/SGLIOQfZ/CoNv6BTlI6YEQ7Nj82oDVnRpwe/Z/F1EMx42x3JAOwGBlCjeCH0BRJQbQ/opHL17w==}
+  parse-entities@4.0.2:
+    resolution: {integrity: sha512-GG2AQYWoLgL877gQIKeRPGO1xF9+eG1ujIb5soS5gPvLQ1y2o8FL90w2QWNdf9I361Mpp7726c+lj3U0qK1uGw==}
 
   parse-imports@2.2.1:
     resolution: {integrity: sha512-OL/zLggRp8mFhKL0rNORUTR4yBYujK/uU+xZL+/0Rgm2QE4nLO9v8PzEweSJEbMGKmDRjJE4R3IMJlL2di4JeQ==}
@@ -3283,6 +3283,9 @@ packages:
   zod@3.23.8:
     resolution: {integrity: sha512-XBx9AXhXktjUqnepgTiE5flcKIYWi/rme0Eaj+5Y0lftuGBq+jyRu/md4WnuxqgP1ubdpNCsYEYPxrzVHD8d6g==}
 
+  zod@3.24.1:
+    resolution: {integrity: sha512-muH7gBL9sI1nciMZV67X5fTKKBLtwpZ5VBp1vsOQzj1MhrBZ4wlVCm3gedKZWLp0Oyel8sIGfeiz54Su+OVT+A==}
+
   zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
 
@@ -3710,7 +3713,7 @@ snapshots:
 
   '@huggingface/jinja@0.3.2': {}
 
-  '@huggingface/transformers@3.1.2':
+  '@huggingface/transformers@3.2.0':
     dependencies:
       '@huggingface/jinja': 0.3.2
       onnxruntime-node: 1.20.1
@@ -4756,8 +4759,8 @@ snapshots:
       '@babel/plugin-proposal-private-methods': 7.18.6(@babel/core@7.26.0)
       eslint: 9.17.0(jiti@1.21.6)
       hermes-parser: 0.25.1
-      zod: 3.23.8
-      zod-validation-error: 3.4.0(zod@3.23.8)
+      zod: 3.24.1
+      zod-validation-error: 3.4.0(zod@3.24.1)
     transitivePeerDependencies:
       - supports-color
 
@@ -5662,7 +5665,7 @@ snapshots:
       devlop: 1.1.0
       mdast-util-from-markdown: 2.0.2
       mdast-util-to-markdown: 2.1.2
-      parse-entities: 4.0.1
+      parse-entities: 4.0.2
       stringify-entities: 4.0.4
       unist-util-stringify-position: 4.0.0
       vfile-message: 4.0.2
@@ -6260,10 +6263,9 @@ snapshots:
       is-hexadecimal: 1.0.4
     optional: true
 
-  parse-entities@4.0.1:
+  parse-entities@4.0.2:
     dependencies:
       '@types/unist': 2.0.11
-      character-entities: 2.0.2
       character-entities-legacy: 3.0.0
       character-reference-invalid: 2.0.1
       decode-named-character-reference: 1.0.2
@@ -6993,9 +6995,9 @@ snapshots:
     dependencies:
       punycode: 2.3.1
 
-  use-transformers@0.0.9(@huggingface/transformers@3.1.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
+  use-transformers@0.0.9(@huggingface/transformers@3.2.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
     dependencies:
-      '@huggingface/transformers': 3.1.2
+      '@huggingface/transformers': 3.2.0
       birpc: 0.2.19
       react: 19.0.0
       react-dom: 19.0.0(react@19.0.0)
@@ -7142,10 +7144,12 @@ snapshots:
 
   yocto-queue@0.1.0: {}
 
-  zod-validation-error@3.4.0(zod@3.23.8):
+  zod-validation-error@3.4.0(zod@3.24.1):
     dependencies:
-      zod: 3.23.8
+      zod: 3.24.1
 
   zod@3.23.8: {}
+
+  zod@3.24.1: {}
 
   zwitch@2.0.4: {}
