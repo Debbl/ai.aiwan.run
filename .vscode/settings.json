@@ -6,5 +6,5 @@
     "!unused-imports/no-unused-imports",
     "*"
   ],
-  "cSpell.words": ["huggingface", "nextui", "Pretrained", "shadcn"]
+  "cSpell.words": ["birpc", "huggingface", "nextui", "pretrained", "shadcn"]
 }

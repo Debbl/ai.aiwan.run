@@ -12,14 +12,17 @@ importers:
         specifier: ^0.3.4
         version: 0.3.4(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@huggingface/transformers':
-        specifier: ^3.1.2
-        version: 3.1.2
+        specifier: ^3.2.0
+        version: 3.2.0
       '@radix-ui/react-label':
         specifier: ^2.1.1
         version: 2.1.1(@types/react-dom@19.0.2(@types/react@19.0.1))(@types/react@19.0.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@radix-ui/react-slot':
         specifier: ^1.1.1
         version: 1.1.1(@types/react@19.0.1)(react@19.0.0)
+      birpc:
+        specifier: ^0.2.19
+        version: 0.2.19
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
@@ -47,12 +50,18 @@ importers:
       tailwindcss-animate:
         specifier: ^1.0.7
         version: 1.0.7(tailwindcss@3.4.16)
+      ts-pattern:
+        specifier: ^5.6.0
+        version: 5.6.0
       twl:
         specifier: 0.0.0-alpha.6
         version: 0.0.0-alpha.6
+      use-rpc-worker:
+        specifier: ^0.0.3
+        version: 0.0.3(birpc@0.2.19)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       use-transformers:
         specifier: ^0.0.9
-        version: 0.0.9(@huggingface/transformers@3.1.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+        version: 0.0.9(@huggingface/transformers@3.2.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
     devDependencies:
       '@debbl/eslint-config':
         specifier: ^3.8.5
@@ -328,8 +337,8 @@ packages:
     resolution: {integrity: sha512-F2FvuIc+w1blGsaqJI/OErRbWH6bVJDCBI8Rm5D86yZ2wlwrGERsfIaru7XUv9eYC3DMP3ixDRRtF0h6d8AZcQ==}
     engines: {node: '>=18'}
 
-  '@huggingface/transformers@3.1.2':
-    resolution: {integrity: sha512-+YKHashFDkZbjqTKPyhfRHiIxe1fl5/KqOr3zIHzXmUKhDSH4pwQ2Q58iXT5CUL6iSaZd93x+ep4VmvW6dLAlw==}
+  '@huggingface/transformers@3.2.0':
+    resolution: {integrity: sha512-1LEvKB/Gyw1xrnLHOCN1lPZNpIHGdoG3PitneTLNlIYYJAnVX9/2Sjs+Jt+YnqSUOOqfwPJ39eMclUZ8P186xA==}
 
   '@humanfs/core@0.19.1':
     resolution: {integrity: sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA==}
@@ -1365,8 +1374,8 @@ packages:
       eslint-config-prettier:
         optional: true
 
-  eslint-plugin-react-compiler@19.0.0-beta-37ed2a7-20241206:
-    resolution: {integrity: sha512-5Pex1fUCJwLwwqEJe6NkgTn45kUjjj9TZP6IrW4IcpWM/YaEe+QvcOeF60huDjBq0kz1svGeW2nw8WdY+qszAw==}
+  eslint-plugin-react-compiler@19.0.0-beta-201e55d-20241215:
+    resolution: {integrity: sha512-KTOMW6Z4Eg2r5BPT/BncbwPswfuVH9KPPDVszOTQFXGNlxhExL8IZoSE3blYxk4e0wFDbCcAwe4UlTauQ8lIww==}
     engines: {node: ^14.17.0 || ^16.0.0 || >= 18.0.0}
     peerDependencies:
       eslint: '>=7'
@@ -3061,8 +3070,8 @@ packages:
   ts-morph@18.0.0:
     resolution: {integrity: sha512-Kg5u0mk19PIIe4islUI/HWRvm9bC1lHejK4S0oh1zaZ77TMZAEmQC0sHQYiu2RgCQFZKXz1fMVi/7nOOeirznA==}
 
-  ts-pattern@5.5.0:
-    resolution: {integrity: sha512-jqbIpTsa/KKTJYWgPNsFNbLVpwCgzXfFJ1ukNn4I8hMwyQzHMJnk/BqWzggB0xpkILuKzaO/aMYhS0SkaJyKXg==}
+  ts-pattern@5.6.0:
+    resolution: {integrity: sha512-SL8u60X5+LoEy9tmQHWCdPc2hhb2pKI6I1tU5Jue3v8+iRqZdcT3mWPwKKJy1fMfky6uha82c8ByHAE8PMhKHw==}
 
   tsconfig-paths@4.2.0:
     resolution: {integrity: sha512-NoZ4roiN7LnbKn9QqE1amc9DJfzvZXxF4xDavcOWt1BPkdx+m+0gJuPM+S0vCe7zTJMYUP0R8pO2XMr+Y8oLIg==}
@@ -3153,6 +3162,20 @@ packages:
 
   uri-js@4.4.1:
     resolution: {integrity: sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==}
+
+  use-rpc-worker@0.0.3:
+    resolution: {integrity: sha512-xh4nLOOl0xW1p9RpAlNL1Xn37YIMNJpno2R7lEwH2OVi1CKbrLftYWzkXR8tHIt2gdFTrEmqX4kPeSWD/5uRkg==}
+    peerDependencies:
+      birpc: '>=0.2.19'
+      react: '>=18'
+      react-dom: '>=18'
+
+  use-rpc@0.0.3:
+    resolution: {integrity: sha512-cFrbSRwkbvvBBwldp7+ueA656CSaEBScFxSW9idgvme5XbymRCOX01DbUhx5ATfJ83AmU7TbuWXYsQpyy/klnQ==}
+    peerDependencies:
+      birpc: '>=0.2.19'
+      react: '>=18'
+      react-dom: '>=18'
 
   use-transformers@0.0.9:
     resolution: {integrity: sha512-JojBtlMPhInqXN6nVgbMTjVzyZR28Vc3iXte7/8vwT5RLFDmA1SuiI09Rp90KJ2NkZZcw57NBGy5tNGxTVyPSA==}
@@ -3493,7 +3516,7 @@ snapshots:
       eslint-plugin-no-only-tests: 3.3.0
       eslint-plugin-perfectionist: 4.3.0(eslint@9.17.0(jiti@1.21.6))(typescript@5.7.2)
       eslint-plugin-prettier: 5.2.1(@types/eslint@8.56.10)(eslint-config-prettier@9.1.0(eslint@9.17.0(jiti@1.21.6)))(eslint@9.17.0(jiti@1.21.6))(prettier@3.4.2)
-      eslint-plugin-react-compiler: 19.0.0-beta-37ed2a7-20241206(eslint@9.17.0(jiti@1.21.6))
+      eslint-plugin-react-compiler: 19.0.0-beta-201e55d-20241215(eslint@9.17.0(jiti@1.21.6))
       eslint-plugin-react-hooks: 5.1.0(eslint@9.17.0(jiti@1.21.6))
       eslint-plugin-react-refresh: 0.4.16(eslint@9.17.0(jiti@1.21.6))
       eslint-plugin-solid: 0.14.5(eslint@9.17.0(jiti@1.21.6))(typescript@5.7.2)
@@ -3566,7 +3589,7 @@ snapshots:
       '@typescript-eslint/utils': 8.18.0(eslint@9.17.0(jiti@1.21.6))(typescript@5.7.2)
       birecord: 0.1.1
       string-ts: 2.2.0
-      ts-pattern: 5.5.0
+      ts-pattern: 5.6.0
     transitivePeerDependencies:
       - eslint
       - supports-color
@@ -3586,7 +3609,7 @@ snapshots:
       '@typescript-eslint/utils': 8.18.0(eslint@9.17.0(jiti@1.21.6))(typescript@5.7.2)
       birecord: 0.1.1
       short-unique-id: 5.2.0
-      ts-pattern: 5.5.0
+      ts-pattern: 5.6.0
     transitivePeerDependencies:
       - eslint
       - supports-color
@@ -3623,7 +3646,7 @@ snapshots:
       '@typescript-eslint/types': 8.18.0
       '@typescript-eslint/utils': 8.18.0(eslint@9.17.0(jiti@1.21.6))(typescript@5.7.2)
       birecord: 0.1.1
-      ts-pattern: 5.5.0
+      ts-pattern: 5.6.0
     transitivePeerDependencies:
       - eslint
       - supports-color
@@ -3635,7 +3658,7 @@ snapshots:
       '@typescript-eslint/utils': 8.18.0(eslint@9.17.0(jiti@1.21.6))(typescript@5.7.2)
       local-pkg: 0.5.1
       picomatch: 4.0.2
-      ts-pattern: 5.5.0
+      ts-pattern: 5.6.0
     transitivePeerDependencies:
       - eslint
       - supports-color
@@ -3661,7 +3684,7 @@ snapshots:
       '@typescript-eslint/scope-manager': 8.18.0
       '@typescript-eslint/types': 8.18.0
       '@typescript-eslint/utils': 8.18.0(eslint@9.17.0(jiti@1.21.6))(typescript@5.7.2)
-      ts-pattern: 5.5.0
+      ts-pattern: 5.6.0
     transitivePeerDependencies:
       - eslint
       - supports-color
@@ -3710,7 +3733,7 @@ snapshots:
 
   '@huggingface/jinja@0.3.2': {}
 
-  '@huggingface/transformers@3.1.2':
+  '@huggingface/transformers@3.2.0':
     dependencies:
       '@huggingface/jinja': 0.3.2
       onnxruntime-node: 1.20.1
@@ -4749,7 +4772,7 @@ snapshots:
       '@types/eslint': 8.56.10
       eslint-config-prettier: 9.1.0(eslint@9.17.0(jiti@1.21.6))
 
-  eslint-plugin-react-compiler@19.0.0-beta-37ed2a7-20241206(eslint@9.17.0(jiti@1.21.6)):
+  eslint-plugin-react-compiler@19.0.0-beta-201e55d-20241215(eslint@9.17.0(jiti@1.21.6)):
     dependencies:
       '@babel/core': 7.26.0
       '@babel/parser': 7.26.3
@@ -4776,7 +4799,7 @@ snapshots:
       '@typescript-eslint/utils': 8.18.0(eslint@9.17.0(jiti@1.21.6))(typescript@5.7.2)
       eslint: 9.17.0(jiti@1.21.6)
       string-ts: 2.2.0
-      ts-pattern: 5.5.0
+      ts-pattern: 5.6.0
     optionalDependencies:
       typescript: 5.7.2
     transitivePeerDependencies:
@@ -4796,7 +4819,7 @@ snapshots:
       '@typescript-eslint/utils': 8.18.0(eslint@9.17.0(jiti@1.21.6))(typescript@5.7.2)
       compare-versions: 6.1.1
       eslint: 9.17.0(jiti@1.21.6)
-      ts-pattern: 5.5.0
+      ts-pattern: 5.6.0
     optionalDependencies:
       typescript: 5.7.2
     transitivePeerDependencies:
@@ -4816,7 +4839,7 @@ snapshots:
       '@typescript-eslint/types': 8.18.0
       '@typescript-eslint/utils': 8.18.0(eslint@9.17.0(jiti@1.21.6))(typescript@5.7.2)
       eslint: 9.17.0(jiti@1.21.6)
-      ts-pattern: 5.5.0
+      ts-pattern: 5.6.0
     optionalDependencies:
       typescript: 5.7.2
     transitivePeerDependencies:
@@ -4839,7 +4862,7 @@ snapshots:
       '@typescript-eslint/types': 8.18.0
       '@typescript-eslint/utils': 8.18.0(eslint@9.17.0(jiti@1.21.6))(typescript@5.7.2)
       eslint: 9.17.0(jiti@1.21.6)
-      ts-pattern: 5.5.0
+      ts-pattern: 5.6.0
     optionalDependencies:
       typescript: 5.7.2
     transitivePeerDependencies:
@@ -4863,7 +4886,7 @@ snapshots:
       '@typescript-eslint/utils': 8.18.0(eslint@9.17.0(jiti@1.21.6))(typescript@5.7.2)
       birecord: 0.1.1
       eslint: 9.17.0(jiti@1.21.6)
-      ts-pattern: 5.5.0
+      ts-pattern: 5.6.0
     optionalDependencies:
       typescript: 5.7.2
     transitivePeerDependencies:
@@ -4885,7 +4908,7 @@ snapshots:
       compare-versions: 6.1.1
       eslint: 9.17.0(jiti@1.21.6)
       is-immutable-type: 5.0.0(eslint@9.17.0(jiti@1.21.6))(typescript@5.7.2)
-      ts-pattern: 5.5.0
+      ts-pattern: 5.6.0
     optionalDependencies:
       typescript: 5.7.2
     transitivePeerDependencies:
@@ -6865,7 +6888,7 @@ snapshots:
       '@ts-morph/common': 0.19.0
       code-block-writer: 12.0.0
 
-  ts-pattern@5.5.0: {}
+  ts-pattern@5.6.0: {}
 
   tsconfig-paths@4.2.0:
     dependencies:
@@ -6993,9 +7016,22 @@ snapshots:
     dependencies:
       punycode: 2.3.1
 
-  use-transformers@0.0.9(@huggingface/transformers@3.1.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
+  use-rpc-worker@0.0.3(birpc@0.2.19)(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
     dependencies:
-      '@huggingface/transformers': 3.1.2
+      birpc: 0.2.19
+      react: 19.0.0
+      react-dom: 19.0.0(react@19.0.0)
+      use-rpc: 0.0.3(birpc@0.2.19)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+
+  use-rpc@0.0.3(birpc@0.2.19)(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
+    dependencies:
+      birpc: 0.2.19
+      react: 19.0.0
+      react-dom: 19.0.0(react@19.0.0)
+
+  use-transformers@0.0.9(@huggingface/transformers@3.2.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
+    dependencies:
+      '@huggingface/transformers': 3.2.0
       birpc: 0.2.19
       react: 19.0.0
       react-dom: 19.0.0(react@19.0.0)

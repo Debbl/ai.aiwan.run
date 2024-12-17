@@ -25,9 +25,10 @@
   },
   "dependencies": {
     "@debbl/ahooks": "^0.3.4",
-    "@huggingface/transformers": "^3.1.2",
+    "@huggingface/transformers": "^3.2.0",
     "@radix-ui/react-label": "^2.1.1",
     "@radix-ui/react-slot": "^1.1.1",
+    "birpc": "^0.2.19",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.468.0",
@@ -37,7 +38,9 @@
     "react-dom": "19.0.0",
     "tailwind-merge": "^2.5.5",
     "tailwindcss-animate": "^1.0.7",
+    "ts-pattern": "^5.6.0",
     "twl": "0.0.0-alpha.6",
+    "use-rpc-worker": "^0.0.3",
     "use-transformers": "^0.0.9"
   },
   "devDependencies": {
