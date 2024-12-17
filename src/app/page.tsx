@@ -5,8 +5,13 @@ export default function Home() {
     <main className="flex min-h-screen flex-col items-center justify-center p-12">
       <h1 className="text-3xl font-bold">The client first AI apps</h1>
 
-      <div className="mt-12">
-        <Link href="/object-detector">Object Detector</Link>
+      <div className="mt-12 flex flex-col gap-y-2">
+        <Link className="hover:text-blue-400" href="/object-detector">
+          Object Detector
+        </Link>
+        <Link className="hover:text-blue-400" href="/segment-anything">
+          Segment Anything
+        </Link>
       </div>
     </main>
   );
