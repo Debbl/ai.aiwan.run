@@ -19,7 +19,11 @@ export default function Page() {
   );
 
   const { status, messages, setInput, handleSubmit } = useChat({
-    api: "/api/ai-fortune-teller",
+    api: "https://api.deepseek.com/v1/chat",
+    headers: {
+      "Authorization": `Bearer sk-2d1ddf1fb7eb45e7ba408e8eb743b184`,
+      "Sec-Fetch-Mode": "cors",
+    },
     experimental_prepareRequestBody: (options) => {
       return {
         ...options,
@@ -103,7 +107,7 @@ export default function Page() {
         <div className="flex w-full items-center justify-center gap-x-2 md:w-auto">
           <Button
             className="w-full md:w-auto"
-            isDisabled={status !== "ready"}
+            isDisabled={status === "streaming"}
             color="primary"
             onPress={() => handleSubmit()}
           >

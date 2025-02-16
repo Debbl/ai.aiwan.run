@@ -18,7 +18,7 @@ const CopyButtonIcon = ({
   return <CopyIcon {...props} />;
 };
 
-const MotionButton = motion(Button);
+const MotionButton = motion.create(Button);
 
 export default function CopyButton({
   code,
