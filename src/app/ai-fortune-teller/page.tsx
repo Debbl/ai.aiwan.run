@@ -46,13 +46,17 @@ export default function Page() {
 
   return (
     <div className="flex h-full flex-col items-center justify-center">
-      <Link href="/" className="fixed left-2 top-2">
-        ~
-      </Link>
-      <div className="fixed right-2 top-2">
-        <a href="https://aiwan.run/" target="_blank" rel="noopener noreferrer">
-          me
-        </a>
+      <div className="sticky top-0 flex w-full items-center justify-between border-b bg-white p-2 shadow-sm">
+        <Link href="/">~</Link>
+        <div>
+          <a
+            href="https://aiwan.run/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            me
+          </a>
+        </div>
       </div>
 
       <h1 className="mt-10 text-center text-2xl font-bold">DeepSeek AI 算命</h1>
@@ -99,14 +103,14 @@ export default function Page() {
         <div className="flex w-full items-center justify-center gap-x-2 md:w-auto">
           <Button
             className="w-full md:w-auto"
-            disabled={status !== "ready"}
+            isDisabled={status !== "ready"}
             color="primary"
             onPress={() => handleSubmit()}
           >
             提交
           </Button>
 
-          <CopyButton disabled={!message} code={message} />
+          <CopyButton isDisabled={!message} code={message} />
         </div>
       </div>
     </div>

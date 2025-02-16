@@ -23,7 +23,7 @@ const MotionButton = motion(Button);
 export default function CopyButton({
   code,
   className,
-  disabled,
+  isDisabled,
 }: {
   code: string;
 } & ClassName &
@@ -47,7 +47,7 @@ export default function CopyButton({
       isIconOnly
       size="md"
       color={isCopied ? "success" : "default"}
-      disabled={disabled}
+      isDisabled={isDisabled}
     >
       <CopyButtonIcon
         isCopied={isCopied}
