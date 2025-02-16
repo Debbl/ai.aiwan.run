@@ -12,6 +12,9 @@ export default function Home() {
         <Link className="hover:text-blue-400" href="/segment-anything">
           Segment Anything
         </Link>
+        <Link className="hover:text-blue-400" href="/ai-fortune-teller">
+          AI Fortune Teller
+        </Link>
       </div>
     </main>
   );
