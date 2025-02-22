@@ -19,17 +19,7 @@ export default function Page() {
   );
 
   const { status, messages, setInput, handleSubmit } = useChat({
-    api: "https://api.deepseek.com/v1/chat",
-    headers: {
-      "Authorization": `Bearer sk-2d1ddf1fb7eb45e7ba408e8eb743b184`,
-      "Sec-Fetch-Mode": "cors",
-    },
-    experimental_prepareRequestBody: (options) => {
-      return {
-        ...options,
-        messages: options.messages.slice(-1),
-      };
-    },
+    api: "/api/ai-fortune-teller",
   });
 
   const message = useMemo(() => {
