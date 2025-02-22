@@ -85,11 +85,7 @@ export default function Page() {
             Thinking
           </Button>
           {isShowThinking && (
-            <div
-              className={cn(
-                "prose bg-gray-100 rounded-md h-0 opacity-0 p-2 mt-2",
-              )}
-            >
+            <div className={cn("prose bg-gray-100 rounded-md p-2 mt-2")}>
               <Markdown>{reasoning}</Markdown>
             </div>
           )}
