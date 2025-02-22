@@ -138,7 +138,7 @@ export default function Page() {
         </div>
 
         <div className="flex w-full items-center justify-center gap-x-2 md:w-auto">
-          <div className="bg-white">
+          <div className="flex-1 bg-white">
             <Button
               isLoading={status === "submitted"}
               className="w-full md:w-auto"
