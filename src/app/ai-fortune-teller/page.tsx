@@ -4,12 +4,14 @@ import { useChat } from "@ai-sdk/react";
 import { Button } from "@heroui/button";
 import { DatePicker } from "@heroui/date-picker";
 import { Select, SelectItem } from "@heroui/select";
+import { Spinner } from "@heroui/spinner";
 import { getLocalTimeZone, now } from "@internationalized/date";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import Markdown from "react-markdown";
 import CopyButton from "~/components/CopyButton";
 import { MaterialSymbolsFemale, MaterialSymbolsMaleRounded } from "~/icons";
+import { cn } from "~/lib/utils";
 import type { ZonedDateTime } from "@internationalized/date";
 
 export default function Page() {
@@ -18,6 +20,8 @@ export default function Page() {
     now(getLocalTimeZone()),
   );
 
+  const [isShowThinking, setIsShowThinking] = useState(false);
+
   const { status, messages, setInput, handleSubmit } = useChat({
     api: "/api/ai-fortune-teller",
   });
@@ -25,9 +29,18 @@ export default function Page() {
   const message = useMemo(() => {
     const lastMessage = messages.at(-1);
     return lastMessage?.role === "assistant"
-      ? lastMessage.content
-      : "> 本站不会收集您的任何数据，所有内容直接调用 DeepSeek 的 API 接口。";
+      ? lastMessage
+      : {
+          content:
+            "> 本站不会收集您的任何数据，所有内容直接调用 DeepSeek 的 API 接口获取。",
+        };
   }, [messages]);
+
+  const reasoning = useMemo(() => {
+    return "parts" in message
+      ? message.parts.find((i) => i.type === "reasoning")?.reasoning
+      : null;
+  }, [message]);
 
   useEffect(() => {
     setInput(
@@ -40,9 +53,16 @@ export default function Page() {
 
   return (
     <div className="flex h-full flex-col items-center justify-center">
-      <div className="sticky top-0 flex w-full items-center justify-between border-b bg-white p-2 shadow-sm">
+      <div className="sticky top-0 z-10 flex w-full items-center justify-between border-b bg-white p-2 shadow-sm">
         <Link href="/">~</Link>
-        <div>
+        <div className="flex items-center gap-2">
+          <a
+            href="https://status.deepseek.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            status
+          </a>
           <a
             href="https://aiwan.run/"
             target="_blank"
@@ -55,11 +75,34 @@ export default function Page() {
 
       <h1 className="mt-10 text-center text-2xl font-bold">DeepSeek AI 算命</h1>
 
-      <article className="prose mx-auto max-w-[600px] flex-1 px-3 pb-24 pt-8">
-        <Markdown>{message}</Markdown>
-      </article>
+      {reasoning && (
+        <div className="mx-auto w-[600px] max-w-full px-3 pt-8">
+          <Button
+            size="sm"
+            startContent={!message.content ? <Spinner size="sm" /> : null}
+            onPress={() => setIsShowThinking(!isShowThinking)}
+          >
+            Thinking
+          </Button>
+          {isShowThinking && (
+            <div
+              className={cn(
+                "prose bg-gray-100 rounded-md h-0 opacity-0 p-2 mt-2",
+              )}
+            >
+              <Markdown>{reasoning}</Markdown>
+            </div>
+          )}
+        </div>
+      )}
 
-      <div className="fixed inset-x-0 bottom-4 mx-4 flex flex-col items-center justify-center gap-2 md:bottom-8 md:flex-row">
+      <div className="mx-auto w-[600px] max-w-full px-3 pb-24 pt-4">
+        <article className="prose">
+          <Markdown>{message.content}</Markdown>
+        </article>
+      </div>
+
+      <div className="fixed inset-x-0 bottom-4 mx-auto flex w-fit flex-col items-center justify-center gap-2 md:bottom-8 md:flex-row">
         <div className="flex w-full items-center justify-center gap-x-2 md:w-auto">
           <Select
             aria-label="Select your gender"
@@ -95,16 +138,24 @@ export default function Page() {
         </div>
 
         <div className="flex w-full items-center justify-center gap-x-2 md:w-auto">
-          <Button
-            className="w-full md:w-auto"
-            isDisabled={status === "streaming"}
-            color="primary"
-            onPress={() => handleSubmit()}
-          >
-            提交
-          </Button>
+          <div className="bg-white">
+            <Button
+              isLoading={status === "submitted"}
+              className="w-full md:w-auto"
+              isDisabled={status !== "ready"}
+              color="primary"
+              onPress={() => handleSubmit()}
+            >
+              提交
+            </Button>
+          </div>
 
-          <CopyButton isDisabled={!message} code={message} />
+          <div className="bg-white">
+            <CopyButton
+              isDisabled={!message || status !== "ready"}
+              code={message.content}
+            />
+          </div>
         </div>
       </div>
     </div>

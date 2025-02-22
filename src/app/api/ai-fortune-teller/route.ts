@@ -12,7 +12,7 @@ export async function POST(req: Request) {
   const genderText = gender === 0 ? "女性" : "男性";
 
   const result = streamText({
-    model: deepseek("deepseek-chat"),
+    model: deepseek("deepseek-reasoner"),
     messages: [
       {
         ...message,
