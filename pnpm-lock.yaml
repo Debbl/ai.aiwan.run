@@ -156,6 +156,9 @@ importers:
       typescript:
         specifier: ^5.7.3
         version: 5.7.3
+      wrangler:
+        specifier: ^3.109.2
+        version: 3.109.2
 
 packages:
 
