@@ -2,7 +2,6 @@ import { deepseek } from "@ai-sdk/deepseek";
 import { streamText } from "ai";
 import type { Info } from "~/app/type";
 
-export const runtime = "edge";
 export async function POST(req: Request) {
   const { messages } = await req.json();
 
