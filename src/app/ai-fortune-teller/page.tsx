@@ -1,30 +1,48 @@
 "use client";
 
 import { useChat } from "@ai-sdk/react";
+import { useEffectEvent, useHydrated } from "@debbl/ahooks";
 import { Button } from "@heroui/button";
 import { DatePicker } from "@heroui/date-picker";
 import { Select, SelectItem } from "@heroui/select";
+import { Skeleton } from "@heroui/skeleton";
 import { Spinner } from "@heroui/spinner";
-import { getLocalTimeZone, now } from "@internationalized/date";
+import { fromDate, getLocalTimeZone, today } from "@internationalized/date";
+import { format } from "date-fns";
+import { useAtom } from "jotai/react";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import Markdown from "react-markdown";
 import CopyButton from "~/components/CopyButton";
 import { MaterialSymbolsFemale, MaterialSymbolsMaleRounded } from "~/icons";
 import { cn } from "~/lib/utils";
+import { infoAtom } from "./atoms/info";
 import type { ZonedDateTime } from "@internationalized/date";
 
 export default function Page() {
-  const [gender, setGender] = useState<0 | 1>(0);
-  const [birthday, setBirthday] = useState<ZonedDateTime | null>(
-    now(getLocalTimeZone()),
+  const [info, setInfo] = useAtom(infoAtom);
+  const { gender, birthday } = useMemo(
+    () => ({
+      gender: info.gender,
+      birthday: info.birthday,
+    }),
+    [info],
   );
+  const setGender = useEffectEvent((gender: 0 | 1) => {
+    setInfo({ ...info, gender });
+  });
+
+  const setBirthday = useEffectEvent((birthday: ZonedDateTime) => {
+    setInfo({ ...info, birthday: birthday.toDate().toISOString() });
+  });
 
   const [isShowThinking, setIsShowThinking] = useState(false);
 
   const { status, messages, setInput, handleSubmit } = useChat({
     api: "/api/ai-fortune-teller",
   });
+
+  const { isHydrated } = useHydrated();
 
   const message = useMemo(() => {
     const lastMessage = messages.at(-1);
@@ -46,7 +64,7 @@ export default function Page() {
     setInput(
       JSON.stringify({
         gender,
-        birthday: `${birthday?.year}-${birthday?.month}-${birthday?.day} ${birthday?.hour}:${birthday?.minute.toString().padStart(2, "0")}`,
+        birthday: format(birthday, "yyyy-MM-dd HH:mm"),
       }),
     );
   }, [birthday, gender, setInput]);
@@ -98,61 +116,70 @@ export default function Page() {
         </article>
       </div>
 
-      <div className="fixed inset-x-0 bottom-4 mx-auto flex w-fit flex-col items-center justify-center gap-2 md:bottom-8 md:flex-row">
-        <div className="flex w-full items-center justify-center gap-x-2 md:w-auto">
-          <Select
-            aria-label="Select your gender"
-            className="w-24"
-            selectedKeys={[gender.toString()]}
-            startContent={
-              gender === 0 ? (
-                <MaterialSymbolsFemale className="size-4 shrink-0" />
-              ) : (
-                <MaterialSymbolsMaleRounded className="size-4 shrink-0" />
-              )
-            }
-            onChange={(e) => {
-              setGender(e.target.value === "0" ? 0 : 1);
-            }}
-          >
-            <SelectItem key={0}>女</SelectItem>
-            <SelectItem key={1}>男</SelectItem>
-          </Select>
-
-          <DatePicker<ZonedDateTime>
-            aria-label="Select your birthday"
-            hideTimeZone
-            showMonthAndYearPickers
-            className="flex-1"
-            defaultValue={birthday}
-            variant="flat"
-            maxValue={now(getLocalTimeZone()) as any}
-            onChange={(e) => {
-              setBirthday(e);
-            }}
-          />
-        </div>
-
-        <div className="flex w-full items-center justify-center gap-x-2 md:w-auto">
-          <div className="flex-1 bg-white">
-            <Button
-              isLoading={status === "submitted"}
-              className="w-full md:w-auto"
-              isDisabled={status !== "ready"}
-              color="primary"
-              onPress={() => handleSubmit()}
+      <div className="fixed inset-x-0 bottom-4">
+        <Skeleton
+          isLoaded={isHydrated}
+          classNames={{
+            base: "w-fit mx-auto rounded-md",
+            content:
+              "flex mx-auto flex-col items-center justify-center gap-2 rounded-md md:bottom-8 md:flex-row",
+          }}
+        >
+          <div className="flex w-full items-center justify-center gap-x-2 md:w-auto">
+            <Select
+              aria-label="Select your gender"
+              className="w-24"
+              selectedKeys={[gender.toString()]}
+              startContent={
+                gender === 0 ? (
+                  <MaterialSymbolsFemale className="size-4 shrink-0" />
+                ) : (
+                  <MaterialSymbolsMaleRounded className="size-4 shrink-0" />
+                )
+              }
+              onChange={(e) => {
+                setGender(e.target.value === "0" ? 0 : 1);
+              }}
             >
-              提交
-            </Button>
-          </div>
+              <SelectItem key={0}>女</SelectItem>
+              <SelectItem key={1}>男</SelectItem>
+            </Select>
 
-          <div className="bg-white">
-            <CopyButton
-              isDisabled={!message || status !== "ready"}
-              code={message.content}
+            <DatePicker
+              aria-label="Select your birthday"
+              hideTimeZone
+              showMonthAndYearPickers
+              className="flex-1"
+              value={fromDate(new Date(birthday), getLocalTimeZone())}
+              variant="flat"
+              maxValue={today(getLocalTimeZone())}
+              onChange={(e) => {
+                if (e) setBirthday(e);
+              }}
             />
           </div>
-        </div>
+
+          <div className="flex w-full items-center justify-center gap-x-2 md:w-auto">
+            <div className="flex-1 bg-white">
+              <Button
+                isLoading={status === "submitted"}
+                className="w-full md:w-auto"
+                isDisabled={status !== "ready"}
+                color="primary"
+                onPress={() => handleSubmit()}
+              >
+                提交
+              </Button>
+            </div>
+
+            <div className="bg-white">
+              <CopyButton
+                isDisabled={!message || status !== "ready"}
+                code={message.content}
+              />
+            </div>
+          </div>
+        </Skeleton>
       </div>
     </div>
   );
