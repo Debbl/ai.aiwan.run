@@ -10,7 +10,7 @@ importers:
     dependencies:
       '@ai-sdk/deepseek':
         specifier: ^0.1.5
-        version: 0.1.5(zod@3.24.2)
+        version: 0.1.12(zod@3.24.2)
       '@ai-sdk/react':
         specifier: ^1.1.17
         version: 1.1.17(react@19.0.0)(zod@3.24.2)
@@ -180,20 +180,20 @@ importers:
 
 packages:
 
-  '@ai-sdk/deepseek@0.1.5':
-    resolution: {integrity: sha512-m08IikN8e5aq3I+uvui3JIt7XfpK61hiKYTZHcsO8/13db5lHmEtIPV6ZG3Z7aN7VyqxYAiuOIYi81rFq5SS/Q==}
+  '@ai-sdk/deepseek@0.1.12':
+    resolution: {integrity: sha512-F6lbsHppRt8bdcGipts1Y+lqZ2YemRa6yFl9xVgb2Q7DuCn5HFVkWJb5CfZhF3/sABJFhQgwGgVe3YUYpNt5Uw==}
     engines: {node: '>=18'}
     peerDependencies:
       zod: ^3.0.0
 
-  '@ai-sdk/openai-compatible@0.1.5':
-    resolution: {integrity: sha512-Y2bq1N5xW/AVpcKXHzaM30sNt2SnAB4jeNUT3Aj5J0Z68RGn51qx8uvizpmgky88E5ojGGiB+Avu9dgt390HaQ==}
+  '@ai-sdk/openai-compatible@0.1.12':
+    resolution: {integrity: sha512-2bMhAEeiRz4lbW5ixjGjbPhwyqjtujkjLVpqqtqWvvUDvtUM3cw1go9pqWFgaNKSBDaXRUfi8mkAVrn1yRuY2A==}
     engines: {node: '>=18'}
     peerDependencies:
       zod: ^3.0.0
 
-  '@ai-sdk/provider-utils@2.1.4':
-    resolution: {integrity: sha512-KrGr76ebmN3onrb+bQihgXZyYgYu/kClB+YjFmR1uXQpJG067rCBDWuTHvpI7vwPdQQDvIIgZ+0U5G4V+dN74w==}
+  '@ai-sdk/provider-utils@2.1.10':
+    resolution: {integrity: sha512-4GZ8GHjOFxePFzkl3q42AU0DQOtTQ5w09vmaWUf/pKFXJPizlnzKSUkF0f+VkapIUfDugyMqPMT1ge8XQzVI7Q==}
     engines: {node: '>=18'}
     peerDependencies:
       zod: ^3.0.0
@@ -210,12 +210,12 @@ packages:
       zod:
         optional: true
 
-  '@ai-sdk/provider@1.0.6':
-    resolution: {integrity: sha512-hwj/gFNxpDgEfTaYzCYoslmw01IY9kWLKl/wf8xuPvHtQIzlfXWmmUwc8PnCwxyt8cKzIuV0dfUghCf68HQ0SA==}
-    engines: {node: '>=18'}
-
   '@ai-sdk/provider@1.0.8':
     resolution: {integrity: sha512-f9jSYwKMdXvm44Dmab1vUBnfCDSFfI5rOtvV1W9oKB7WYHR5dGvCC6x68Mk3NUfrdmNoMVHGoh6JT9HCVMlMow==}
+    engines: {node: '>=18'}
+
+  '@ai-sdk/provider@1.0.9':
+    resolution: {integrity: sha512-jie6ZJT2ZR0uVOVCDc9R2xCX5I/Dum/wEK28lx21PJx6ZnFAN9EzD2WsPhcDWfCgGx3OAZZ0GyM3CEobXpa9LA==}
     engines: {node: '>=18'}
 
   '@ai-sdk/react@1.1.17':
@@ -3261,8 +3261,8 @@ packages:
       eslint-config-prettier:
         optional: true
 
-  eslint-plugin-react-compiler@19.0.0-beta-21e868a-20250216:
-    resolution: {integrity: sha512-LstAv6tKgZylMmJniWxQL9TOY9kwRddLnvBsoTbRsgUDROL5bsg0k5XHMaNJLyX8cxh4iafQ/WxAw5shNUf3GQ==}
+  eslint-plugin-react-compiler@19.0.0-beta-e1e972c-20250221:
+    resolution: {integrity: sha512-qdkOo4TJqFfK5td7EVNxDG2zAY44qK+ew7GKZ+nybOS/ONHFVRnluMfC+yjqyBexlfDZJul5ZFzsANJDQa3WSw==}
     engines: {node: ^14.17.0 || ^16.0.0 || >= 18.0.0}
     peerDependencies:
       eslint: '>=7'
@@ -3634,8 +3634,8 @@ packages:
     resolution: {integrity: sha512-2nk+7SIVb14QrgXFHcm84tD4bKQz0RxPuMT8Ag5KPOq7J5fEmAg0UbXdTOSHqNuHSU28k55qnceesxXRZGzKWA==}
     engines: {node: '>=18'}
 
-  get-intrinsic@1.2.7:
-    resolution: {integrity: sha512-VW6Pxhsrk0KAOqs3WEd0klDiF/+V7gQOpAvY1jVU/LHmaD/kQO4523aiJuikX/QAKYiW6x8Jh+RJej1almdtCA==}
+  get-intrinsic@1.3.0:
+    resolution: {integrity: sha512-9fSjSaos/fRIVIp+xSJlE6lfwhES7LNtKaCBIamHsjr2na1BiABJPo0mOjjz8GJDURarmCPGqaiVg5mfjb98CQ==}
     engines: {node: '>= 0.4'}
 
   get-own-enumerable-keys@1.0.0:
@@ -3839,6 +3839,10 @@ packages:
 
   is-core-module@2.15.1:
     resolution: {integrity: sha512-z0vtXSwucUJtANQWldhbtbt7BnL0vxiFjIdDLAatwhDYty2bad6s+rijD6Ri4YuYJubLzIJLUidCh09e1djEVQ==}
+    engines: {node: '>= 0.4'}
+
+  is-core-module@2.16.1:
+    resolution: {integrity: sha512-UfoeMA6fIJ8wTYFEUjelnaGI67v6+N7qXJEvQuIGa99l4xsCruSYOVSQ0uPANn4dAzm8lkYPaKLrrijLq7x23w==}
     engines: {node: '>= 0.4'}
 
   is-decimal@2.0.1:
@@ -4894,6 +4898,11 @@ packages:
   resolve-pkg-maps@1.0.0:
     resolution: {integrity: sha512-seS2Tj26TBVOC2NIc2rOe2y2ZO7efxITtLZcGSOnHHNOQ7CkiUBfw0Iw2ck6xkIhPwLhKNLS8BO+hEpngQlqzw==}
 
+  resolve@1.22.10:
+    resolution: {integrity: sha512-NPRy+/ncIMeDlTAsuqwKIiferiawhefFJtkNSW0qZJEqMEb+qBt/77B/jGeeek+F0uOeN05CDa6HXbbIgtVX4w==}
+    engines: {node: '>= 0.4'}
+    hasBin: true
+
   resolve@1.22.8:
     resolution: {integrity: sha512-oKWePCxqpd6FlLvGV1VU0x7bkPmmCNolxzjMf4NczoDnQcIWrAF+cPtZn5i6n+RfD2d9i0tzpKnG6Yk168yIyw==}
     hasBin: true
@@ -5622,22 +5631,22 @@ packages:
 
 snapshots:
 
-  '@ai-sdk/deepseek@0.1.5(zod@3.24.2)':
+  '@ai-sdk/deepseek@0.1.12(zod@3.24.2)':
     dependencies:
-      '@ai-sdk/openai-compatible': 0.1.5(zod@3.24.2)
-      '@ai-sdk/provider': 1.0.6
-      '@ai-sdk/provider-utils': 2.1.4(zod@3.24.2)
+      '@ai-sdk/openai-compatible': 0.1.12(zod@3.24.2)
+      '@ai-sdk/provider': 1.0.9
+      '@ai-sdk/provider-utils': 2.1.10(zod@3.24.2)
       zod: 3.24.2
 
-  '@ai-sdk/openai-compatible@0.1.5(zod@3.24.2)':
+  '@ai-sdk/openai-compatible@0.1.12(zod@3.24.2)':
     dependencies:
-      '@ai-sdk/provider': 1.0.6
-      '@ai-sdk/provider-utils': 2.1.4(zod@3.24.2)
+      '@ai-sdk/provider': 1.0.9
+      '@ai-sdk/provider-utils': 2.1.10(zod@3.24.2)
       zod: 3.24.2
 
-  '@ai-sdk/provider-utils@2.1.4(zod@3.24.2)':
+  '@ai-sdk/provider-utils@2.1.10(zod@3.24.2)':
     dependencies:
-      '@ai-sdk/provider': 1.0.6
+      '@ai-sdk/provider': 1.0.9
       eventsource-parser: 3.0.0
       nanoid: 3.3.8
       secure-json-parse: 2.7.0
@@ -5653,11 +5662,11 @@ snapshots:
     optionalDependencies:
       zod: 3.24.2
 
-  '@ai-sdk/provider@1.0.6':
+  '@ai-sdk/provider@1.0.8':
     dependencies:
       json-schema: 0.4.0
 
-  '@ai-sdk/provider@1.0.8':
+  '@ai-sdk/provider@1.0.9':
     dependencies:
       json-schema: 0.4.0
 
@@ -5758,7 +5767,7 @@ snapshots:
       '@aws-crypto/sha256-js': 3.0.0
       '@aws-crypto/supports-web-crypto': 3.0.0
       '@aws-crypto/util': 3.0.0
-      '@aws-sdk/types': 3.734.0
+      '@aws-sdk/types': 3.398.0
       '@aws-sdk/util-locate-window': 3.723.0
       '@aws-sdk/util-utf8-browser': 3.259.0
       tslib: 1.14.1
@@ -5776,7 +5785,7 @@ snapshots:
   '@aws-crypto/sha256-js@3.0.0':
     dependencies:
       '@aws-crypto/util': 3.0.0
-      '@aws-sdk/types': 3.734.0
+      '@aws-sdk/types': 3.398.0
       tslib: 1.14.1
 
   '@aws-crypto/sha256-js@5.2.0':
@@ -5795,7 +5804,7 @@ snapshots:
 
   '@aws-crypto/util@3.0.0':
     dependencies:
-      '@aws-sdk/types': 3.734.0
+      '@aws-sdk/types': 3.398.0
       '@aws-sdk/util-utf8-browser': 3.259.0
       tslib: 1.14.1
 
@@ -6908,7 +6917,7 @@ snapshots:
       eslint-plugin-no-only-tests: 3.3.0
       eslint-plugin-perfectionist: 4.6.0(eslint@9.21.0(jiti@1.21.6))(typescript@5.7.3)
       eslint-plugin-prettier: 5.2.1(@types/eslint@8.56.10)(eslint-config-prettier@9.1.0(eslint@9.21.0(jiti@1.21.6)))(eslint@9.21.0(jiti@1.21.6))(prettier@3.4.2)
-      eslint-plugin-react-compiler: 19.0.0-beta-21e868a-20250216(eslint@9.21.0(jiti@1.21.6))
+      eslint-plugin-react-compiler: 19.0.0-beta-e1e972c-20250221(eslint@9.21.0(jiti@1.21.6))
       eslint-plugin-react-hooks: 5.1.0(eslint@9.21.0(jiti@1.21.6))
       eslint-plugin-react-refresh: 0.4.16(eslint@9.21.0(jiti@1.21.6))
       eslint-plugin-solid: 0.14.5(eslint@9.21.0(jiti@1.21.6))(typescript@5.7.3)
@@ -6996,7 +7005,7 @@ snapshots:
       debug: 4.4.0
       esbuild: 0.19.2
       escape-string-regexp: 4.0.0
-      resolve: 1.22.8
+      resolve: 1.22.10
     transitivePeerDependencies:
       - supports-color
 
@@ -9476,7 +9485,7 @@ snapshots:
   call-bound@1.0.3:
     dependencies:
       call-bind-apply-helpers: 1.0.2
-      get-intrinsic: 1.2.7
+      get-intrinsic: 1.3.0
 
   callsites@3.1.0: {}
 
@@ -9956,7 +9965,7 @@ snapshots:
       '@types/eslint': 8.56.10
       eslint-config-prettier: 9.1.0(eslint@9.21.0(jiti@1.21.6))
 
-  eslint-plugin-react-compiler@19.0.0-beta-21e868a-20250216(eslint@9.21.0(jiti@1.21.6)):
+  eslint-plugin-react-compiler@19.0.0-beta-e1e972c-20250221(eslint@9.21.0(jiti@1.21.6)):
     dependencies:
       '@babel/core': 7.26.9
       '@babel/parser': 7.26.9
@@ -10489,7 +10498,7 @@ snapshots:
 
   get-east-asian-width@1.2.0: {}
 
-  get-intrinsic@1.2.7:
+  get-intrinsic@1.3.0:
     dependencies:
       call-bind-apply-helpers: 1.0.2
       es-define-property: 1.0.1
@@ -10704,6 +10713,10 @@ snapshots:
       builtin-modules: 3.3.0
 
   is-core-module@2.15.1:
+    dependencies:
+      hasown: 2.0.2
+
+  is-core-module@2.16.1:
     dependencies:
       hasown: 2.0.2
 
@@ -11456,7 +11469,7 @@ snapshots:
   normalize-package-data@2.5.0:
     dependencies:
       hosted-git-info: 2.8.9
-      resolve: 1.22.8
+      resolve: 1.22.10
       semver: 5.7.2
       validate-npm-package-license: 3.0.4
 
@@ -11866,6 +11879,12 @@ snapshots:
 
   resolve-pkg-maps@1.0.0: {}
 
+  resolve@1.22.10:
+    dependencies:
+      is-core-module: 2.16.1
+      path-parse: 1.0.7
+      supports-preserve-symlinks-flag: 1.0.0
+
   resolve@1.22.8:
     dependencies:
       is-core-module: 2.15.1
@@ -11936,7 +11955,7 @@ snapshots:
 
   send@1.1.0:
     dependencies:
-      debug: 4.4.0
+      debug: 4.3.6
       destroy: 1.2.0
       encodeurl: 2.0.0
       escape-html: 1.0.3
@@ -12031,14 +12050,14 @@ snapshots:
     dependencies:
       call-bound: 1.0.3
       es-errors: 1.3.0
-      get-intrinsic: 1.2.7
+      get-intrinsic: 1.3.0
       object-inspect: 1.13.4
 
   side-channel-weakmap@1.0.2:
     dependencies:
       call-bound: 1.0.3
       es-errors: 1.3.0
-      get-intrinsic: 1.2.7
+      get-intrinsic: 1.3.0
       object-inspect: 1.13.4
       side-channel-map: 1.0.1
 
