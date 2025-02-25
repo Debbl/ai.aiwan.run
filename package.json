@@ -43,7 +43,7 @@
     "@internationalized/date": "^3.7.0",
     "@radix-ui/react-label": "^2.1.2",
     "@radix-ui/react-slot": "^1.1.2",
-    "@react-aria/i18n": "3.12.4",
+    "@react-aria/i18n": "3.12.5",
     "@tailwindcss/typography": "^0.5.16",
     "ai": "^4.1.45",
     "birpc": "^2.2.0",
