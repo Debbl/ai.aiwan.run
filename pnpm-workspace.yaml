@@ -1,0 +1,6 @@
+onlyBuiltDependencies:
+  - "@heroui/shared-utils"
+  - esbuild
+  - msw
+  - simple-git-hooks
+  - workerd
