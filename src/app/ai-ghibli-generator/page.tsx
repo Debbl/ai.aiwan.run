@@ -20,6 +20,19 @@ export default function Page() {
     handleSubmit();
   };
 
+  const handleDownload = async () => {
+    const response = await fetch(generatedImage);
+    const blob = await response.blob();
+
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "ai-ghibli-generator-image.png";
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-center gap-y-6">
       <h1 className="text-3xl font-bold">AI Ghibli Generator</h1>
@@ -46,6 +59,16 @@ export default function Page() {
           >
             Generate
           </Button>
+          {generatedImage && status === "ready" && (
+            <Button
+              color="primary"
+              size="sm"
+              onPress={handleDownload}
+              isDisabled={status !== "ready" || !originImage}
+            >
+              Download
+            </Button>
+          )}
         </div>
 
         <div className="flex items-center gap-x-2 empty:hidden">
