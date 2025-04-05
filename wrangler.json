@@ -7,12 +7,5 @@
   "assets": {
     "directory": ".open-next/assets",
     "binding": "ASSETS"
-  },
-  "services": [
-    {
-      "binding": "WORKER_SELF_REFERENCE",
-      "service": "ai-aiwan-run"
-    }
-  ],
-  "r2_buckets": []
+  }
 }
