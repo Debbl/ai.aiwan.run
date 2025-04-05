@@ -6,9 +6,16 @@
     "!unused-imports/no-unused-imports",
     "*"
   ],
+  "eslint.rules.customizations": [
+    {
+      "rule": "no-console",
+      "severity": "warn"
+    }
+  ],
   "cSpell.words": [
     "birpc",
     "deepseek",
+    "Ghibli",
     "heroui",
     "huggingface",
     "nextui",
