@@ -1,3 +1,4 @@
+import { Toaster } from "sonner";
 import { Providers } from "~/providers";
 import "./globals.css";
 import type { Metadata } from "next";
@@ -17,6 +18,7 @@ export default function RootLayout({
     <html lang="en">
       <body className="h-full">
         <Providers>{children}</Providers>
+        <Toaster />
       </body>
     </html>
   );

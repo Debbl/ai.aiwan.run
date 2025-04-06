@@ -2,6 +2,7 @@
 import { Button } from "@heroui/button";
 import { Spinner } from "@heroui/spinner";
 import Image from "next/image";
+import { toast } from "sonner";
 import { Input } from "~/components/ui/input";
 import { PajamasClear } from "~/icons";
 import { useAiGhibliGenerator } from "./hooks/useAiGhibliGenerator";
@@ -45,9 +46,18 @@ export default function Page() {
             className="h-full"
             onChange={(e) => {
               const file = e.target.files?.[0];
-              if (file) {
-                setOriginImage(URL.createObjectURL(file));
+              if (!file) return;
+
+              if (file.size > 2 * 1024 * 1024) {
+                toast.error("File size must be less than 2MB", {
+                  position: "top-left",
+                  richColors: true,
+                });
+                e.target.value = "";
+                return;
               }
+
+              setOriginImage(URL.createObjectURL(file));
             }}
           />
 
