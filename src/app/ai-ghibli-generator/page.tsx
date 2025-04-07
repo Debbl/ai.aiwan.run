@@ -44,6 +44,7 @@ export default function Page() {
             type="file"
             accept="image/*"
             className="h-full"
+            data-umami-event="change-ai-ghibli-generator-input"
             onChange={(e) => {
               const file = e.target.files?.[0];
               if (!file) return;
@@ -66,6 +67,7 @@ export default function Page() {
             size="sm"
             onPress={handleClick}
             isDisabled={status !== "ready" || !originImage}
+            data-umami-event="click-ai-ghibli-generator-generate"
           >
             Generate
           </Button>
@@ -75,6 +77,7 @@ export default function Page() {
               size="sm"
               onPress={handleDownload}
               isDisabled={status !== "ready" || !originImage}
+              data-umami-event="click-ai-ghibli-generator-download"
             >
               Download
             </Button>

@@ -40,6 +40,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <script
+          defer
+          src="https://umami.aiwan.run/script.js"
+          data-website-id="4cb87172-a3d4-4c22-8787-056e690d0b5a"
+          data-domains="ai.aiwan.run"
+        />
+      </head>
       <body className="h-full">
         <Providers>{children}</Providers>
         <Toaster />
