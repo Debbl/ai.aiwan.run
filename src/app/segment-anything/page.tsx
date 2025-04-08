@@ -3,8 +3,8 @@ import { Loader, Sparkle, X } from "lucide-react";
 import NextImage from "next/image";
 import { useRef, useState } from "react";
 import { match } from "ts-pattern";
-import { Button } from "~/components/ui/button";
-import { Input } from "~/components/ui/input";
+import { Button } from "~/components/ui/Button";
+import { Input } from "~/components/ui/Input";
 import { getImageSize } from "~/utils";
 import { useRPCWorker } from "./lib/useRPCWorker";
 import type { ChangeEventHandler } from "react";
@@ -182,7 +182,7 @@ export default function Page() {
   };
 
   return (
-    <main className="flex h-full items-center justify-center">
+    <main className="flex min-h-screen items-center justify-center">
       <div>
         <h1 className="text-center text-lg font-bold">Segment anything</h1>
 

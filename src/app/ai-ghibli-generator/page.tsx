@@ -3,7 +3,7 @@ import { Button } from "@heroui/button";
 import { Spinner } from "@heroui/spinner";
 import Image from "next/image";
 import { toast } from "sonner";
-import { Input } from "~/components/ui/input";
+import { Input } from "~/components/ui/Input";
 import { PajamasClear } from "~/icons";
 import { useAiGhibliGenerator } from "./hooks/useAiGhibliGenerator";
 
@@ -35,7 +35,7 @@ export default function Page() {
   };
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center gap-y-6">
+    <div className="flex min-h-screen flex-col items-center justify-center gap-y-6">
       <h1 className="text-3xl font-bold">AI Ghibli Generator</h1>
 
       <div className="flex max-w-[60%] flex-col gap-y-2">
@@ -109,7 +109,7 @@ export default function Page() {
           )}
           {generatedImage && (
             <div className="relative flex flex-1 items-center">
-              {status === "streaming" && (
+              {["streaming", "generating"].includes(status) && (
                 <Spinner
                   className="absolute inset-0 bg-white/50 text-white dark:bg-black/50"
                   label={`${progress}%`}
@@ -127,6 +127,6 @@ export default function Page() {
           )}
         </div>
       </div>
-    </main>
+    </div>
   );
 }
