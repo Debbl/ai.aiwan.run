@@ -70,7 +70,7 @@ export default function Page() {
   }, [birthday, gender, setInput]);
 
   return (
-    <div className="flex h-full flex-col items-center justify-center">
+    <div className="relative flex min-h-screen flex-col items-center">
       <div className="sticky top-0 z-10 flex w-full items-center justify-between border-b bg-white p-2 shadow-sm">
         <Link href="/">~</Link>
         <div className="flex items-center gap-2">

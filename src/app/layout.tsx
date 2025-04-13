@@ -1,5 +1,6 @@
 import { Toaster } from "sonner";
 import { Providers } from "~/providers";
+import Footer from "./_components/Footer";
 import "./globals.css";
 import type { Metadata } from "next";
 
@@ -48,9 +49,12 @@ export default function RootLayout({
           data-domains="ai.aiwan.run"
         />
       </head>
-      <body className="h-full">
-        <Providers>{children}</Providers>
+      <body>
         <Toaster />
+        <Providers>
+          <main className="relative min-h-screen">{children}</main>
+        </Providers>
+        <Footer />
       </body>
     </html>
   );
