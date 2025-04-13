@@ -3,7 +3,7 @@ import { Button } from "@heroui/button";
 import { Spinner } from "@heroui/spinner";
 import Image from "next/image";
 import { toast } from "sonner";
-import { Input } from "~/components/ui/input";
+import { Input } from "~/components/ui/Input";
 import { PajamasClear } from "~/icons";
 import { useAiGhibliGenerator } from "./hooks/useAiGhibliGenerator";
 
