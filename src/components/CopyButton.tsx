@@ -1,9 +1,7 @@
 "use client";
 import { Button } from "@heroui/button";
-import { motion } from "motion/react";
 import { useState } from "react";
 import { CheckIcon, CopyIcon } from "~/icons";
-import { cn } from "~/lib/utils";
 import type { ButtonProps } from "@heroui/button";
 import type { ClassName } from "~/app/type";
 

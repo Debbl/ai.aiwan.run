@@ -3,6 +3,7 @@ import { fileURLToPath } from "node:url";
 import bundleAnalyzer from "@next/bundle-analyzer";
 import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
 import withSerwistInit from "@serwist/next";
+import AutoImport from "unplugin-auto-import/webpack";
 import type { NextConfig } from "next";
 
 initOpenNextCloudflareForDev();
@@ -38,6 +39,25 @@ const nextConfig: NextConfig = {
         "node_modules/@huggingface/transformers",
       ),
     };
+
+    config.plugins.push(
+      AutoImport({
+        include: [
+          /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
+        ],
+        imports: [
+          "react",
+          {
+            twl: ["cn"],
+          },
+          {
+            from: "motion/react-m",
+            imports: [["*", "motion"]],
+          },
+        ],
+        dts: true,
+      }),
+    );
 
     return config;
   },

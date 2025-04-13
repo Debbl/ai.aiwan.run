@@ -17,7 +17,6 @@ import { useEffect, useMemo, useState } from "react";
 import Markdown from "react-markdown";
 import CopyButton from "~/components/CopyButton";
 import { MaterialSymbolsFemale, MaterialSymbolsMaleRounded } from "~/icons";
-import { cn } from "~/lib/utils";
 import { infoAtom } from "./atoms/info";
 import type { ZonedDateTime } from "@internationalized/date";
 

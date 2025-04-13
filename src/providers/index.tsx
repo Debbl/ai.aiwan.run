@@ -6,7 +6,9 @@ export function Providers({ children }: { children: React.ReactNode }) {
   return (
     <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
       <HeroUIProvider locale="zh-CN">
-        <LazyMotion features={domMax}>{children}</LazyMotion>
+        <LazyMotion features={domMax} strict>
+          {children}
+        </LazyMotion>
       </HeroUIProvider>
     </ThemeProvider>
   );

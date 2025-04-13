@@ -2,7 +2,6 @@
 import { useTheme } from "next-themes";
 import { flushSync } from "react-dom";
 import { MoonIcon, SunIcon } from "~/icons";
-import { cn } from "~/lib/utils";
 import type { MouseEventHandler } from "react";
 
 const ThemeIcon = ({ className }: { className?: string }) => {

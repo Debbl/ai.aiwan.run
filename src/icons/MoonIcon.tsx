@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useAnimation } from "motion/react";
+import { useAnimation } from "motion/react";
 import type { Transition, Variants } from "motion/react";
 
 const svgVariants: Variants = {

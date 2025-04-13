@@ -1,4 +1,4 @@
-import { motion, useAnimation } from "motion/react";
+import { useAnimation } from "motion/react";
 import type { Transition, Variants } from "motion/react";
 import type { SVGProps } from "react";
 import type { ClassName } from "~/app/type";

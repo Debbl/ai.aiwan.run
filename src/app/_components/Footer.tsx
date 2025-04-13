@@ -11,7 +11,7 @@ function ThemeSwitcher() {
   const { theme, setTheme } = useTheme();
   const { isHydrated } = useHydrated();
 
-  if (!isHydrated) return null;
+  if (!isHydrated) return <div />;
 
   return (
     <div>
