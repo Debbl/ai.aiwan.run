@@ -71,7 +71,7 @@ export default function Page() {
 
   return (
     <div className="relative flex min-h-screen flex-col items-center">
-      <div className="sticky top-0 z-10 flex w-full items-center justify-between border-b bg-white p-2 shadow-sm">
+      <div className="sticky top-0 z-10 flex w-full items-center justify-between border-b bg-background p-2 shadow-sm">
         <Link href="/">~</Link>
         <div className="flex items-center gap-2">
           <a
@@ -103,7 +103,11 @@ export default function Page() {
             Thinking
           </Button>
           {isShowThinking && (
-            <div className={cn("prose bg-gray-100 rounded-md p-2 mt-2")}>
+            <div
+              className={cn(
+                "prose dark:prose-invert bg-background rounded-md p-2 mt-2",
+              )}
+            >
               <Markdown>{reasoning}</Markdown>
             </div>
           )}
@@ -111,7 +115,7 @@ export default function Page() {
       )}
 
       <div className="mx-auto w-[600px] max-w-full px-3 pb-24 pt-4">
-        <article className="prose">
+        <article className="prose dark:prose-invert">
           <Markdown>{message.content}</Markdown>
         </article>
       </div>
@@ -160,7 +164,7 @@ export default function Page() {
           </div>
 
           <div className="flex w-full items-center justify-center gap-x-2 md:w-auto">
-            <div className="flex-1 bg-white">
+            <div className="flex-1 bg-background">
               <Button
                 isLoading={status === "submitted"}
                 className="w-full md:w-auto"
@@ -172,7 +176,7 @@ export default function Page() {
               </Button>
             </div>
 
-            <div className="bg-white">
+            <div className="bg-background">
               <CopyButton
                 isDisabled={!message || status !== "ready"}
                 code={message.content}

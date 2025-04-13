@@ -3,6 +3,10 @@ import type { Transition, Variants } from "motion/react";
 import type { SVGProps } from "react";
 import type { ClassName } from "~/app/type";
 
+export { MoonIcon } from "./MoonIcon";
+export { SettingsGearIcon } from "./SettingsGearIcon";
+export { SunIcon } from "./SunIcon";
+
 const defaultTransition: Transition = {
   type: "spring",
   stiffness: 160,

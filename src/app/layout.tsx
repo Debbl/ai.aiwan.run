@@ -40,7 +40,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <script
           defer
@@ -50,11 +50,11 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <Toaster />
         <Providers>
+          <Toaster />
           <main className="relative min-h-screen">{children}</main>
+          <Footer />
         </Providers>
-        <Footer />
       </body>
     </html>
   );
