@@ -1,3 +1,5 @@
+publicHoistPattern:
+  - "*@heroui/*"
 onlyBuiltDependencies:
   - "@heroui/shared-utils"
   - esbuild
