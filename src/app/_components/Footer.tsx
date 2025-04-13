@@ -58,7 +58,7 @@ function ThemeSwitcher() {
 
 export default function Footer() {
   return (
-    <footer className="flex items-center justify-between border-t border-border px-8 py-16 text-center text-sm">
+    <footer className="border-border flex items-center justify-between border-t px-8 py-16 text-center text-sm">
       <div className="flex h-5 items-center space-x-4 text-sm">
         <Link
           href="https://github.com/Debbl"

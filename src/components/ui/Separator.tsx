@@ -11,9 +11,7 @@ const Separator = ({
   decorative = true,
   ...props
 }: React.ComponentPropsWithoutRef<typeof SeparatorPrimitive.Root> & {
-  ref?: React.RefObject<React.ElementRef<
-    typeof SeparatorPrimitive.Root
-  > | null>;
+  ref?: React.RefObject<React.ComponentRef<typeof SeparatorPrimitive.Root>>;
 }) => (
   <SeparatorPrimitive.Root
     ref={ref}

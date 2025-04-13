@@ -2,5 +2,8 @@ onlyBuiltDependencies:
   - "@heroui/shared-utils"
   - esbuild
   - msw
+  - onnxruntime-node
+  - protobufjs
+  - sharp
   - simple-git-hooks
   - workerd

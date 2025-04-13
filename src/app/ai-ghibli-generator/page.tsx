@@ -1,6 +1,5 @@
 "use client";
-import { Button } from "@heroui/button";
-import { Spinner } from "@heroui/spinner";
+import { Button, Spinner } from "@heroui/react";
 import Image from "next/image";
 import { toast } from "sonner";
 import { Input } from "~/components/ui/Input";
@@ -92,7 +91,7 @@ export default function Page() {
                 aria-label="Clear"
                 isIconOnly
                 variant="flat"
-                className="absolute right-2 top-2 opacity-0 group-hover:opacity-100"
+                className="absolute top-2 right-2 opacity-0 group-hover:opacity-100"
                 onPress={() => setOriginImage("")}
               >
                 {<PajamasClear className="size-4" />}

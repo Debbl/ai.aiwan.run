@@ -1,12 +1,14 @@
 "use client";
-
 import { useChat } from "@ai-sdk/react";
 import { useEffectEvent, useHydrated } from "@debbl/ahooks";
-import { Button } from "@heroui/button";
-import { DatePicker } from "@heroui/date-picker";
-import { Select, SelectItem } from "@heroui/select";
-import { Skeleton } from "@heroui/skeleton";
-import { Spinner } from "@heroui/spinner";
+import {
+  Button,
+  DatePicker,
+  Select,
+  SelectItem,
+  Skeleton,
+  Spinner,
+} from "@heroui/react";
 import { fromDate, getLocalTimeZone, today } from "@internationalized/date";
 import { format } from "date-fns";
 import { useAtom } from "jotai/react";
@@ -71,7 +73,7 @@ export default function Page() {
 
   return (
     <div className="relative flex min-h-screen flex-col items-center">
-      <div className="sticky top-0 z-10 flex w-full items-center justify-between border-b bg-background p-2 shadow-sm">
+      <div className="bg-background sticky top-0 z-10 flex w-full items-center justify-between border-b p-2 shadow-xs">
         <Link href="/">~</Link>
         <div className="flex items-center gap-2">
           <a
@@ -105,7 +107,7 @@ export default function Page() {
           {isShowThinking && (
             <div
               className={cn(
-                "prose dark:prose-invert bg-background rounded-md p-2 mt-2",
+                "prose dark:prose-invert bg-background mt-2 rounded-md p-2",
               )}
             >
               <Markdown>{reasoning}</Markdown>
@@ -114,7 +116,7 @@ export default function Page() {
         </div>
       )}
 
-      <div className="mx-auto w-[600px] max-w-full px-3 pb-24 pt-4">
+      <div className="mx-auto w-[600px] max-w-full px-3 pt-4 pb-24">
         <article className="prose dark:prose-invert">
           <Markdown>{message.content}</Markdown>
         </article>
@@ -164,7 +166,7 @@ export default function Page() {
           </div>
 
           <div className="flex w-full items-center justify-center gap-x-2 md:w-auto">
-            <div className="flex-1 bg-background">
+            <div className="bg-background flex-1">
               <Button
                 isLoading={status === "submitted"}
                 className="w-full md:w-auto"
