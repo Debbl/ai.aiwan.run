@@ -19,7 +19,7 @@ export async function POST(req: Request) {
     return new Response("No image or ratio provided", { status: 400 });
 
   const result = streamText({
-    model: openai("gpt-4o-all"),
+    model: openai("gpt-4o-image-vip"),
     messages: [
       {
         role: "user",
