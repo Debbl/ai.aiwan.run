@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+@import "./base.css" layer(base);
+@import "./theme.css" layer(theme);
+@import "./utilities.css" layer(utilities);
+
+@plugin "@tailwindcss/typography";
+
+@config "../../../tailwind.config.ts";
+
+@custom-variant dark (&:where(.dark, .dark *));
