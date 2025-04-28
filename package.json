@@ -31,7 +31,7 @@
     "@ai-sdk/react": "^1.2.9",
     "@ai-sdk/ui-utils": "^1.2.8",
     "@debbl/ahooks": "^0.4.1",
-    "@heroui/react": "2.8.0-beta.0",
+    "@heroui/react": "2.8.0-beta.2",
     "@huggingface/transformers": "^3.5.0",
     "@internationalized/date": "3.7.0",
     "@react-aria/i18n": "3.12.4",
