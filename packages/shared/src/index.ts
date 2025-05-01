@@ -1,5 +1,5 @@
-/* eslint-disable n/prefer-global/process */
 import { Temporal } from "@js-temporal/polyfill";
+import { PORT, VERCEL_URL } from "@workspace/env";
 import superjson from "superjson";
 
 superjson.registerCustom(
@@ -26,8 +26,9 @@ export const transformer = superjson;
 
 function getBaseUrl() {
   if (typeof window !== "undefined") return "";
-  if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`;
-  return "http://localhost:3000";
+  if (VERCEL_URL) return `https://${VERCEL_URL}`;
+  const port = PORT ?? 3000;
+  return `http://localhost:${port}`;
 }
 
 export function getUrl() {

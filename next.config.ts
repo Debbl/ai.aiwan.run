@@ -3,6 +3,7 @@ import { fileURLToPath } from "node:url";
 import bundleAnalyzer from "@next/bundle-analyzer";
 import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
 import withSerwistInit from "@serwist/next";
+import { ANALYZE } from "@workspace/env";
 import AutoImport from "unplugin-auto-import/webpack";
 import type { NextConfig } from "next";
 
@@ -12,8 +13,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const withBundleAnalyzer = bundleAnalyzer({
-  // eslint-disable-next-line n/prefer-global/process
-  enabled: process.env.ANALYZE === "true",
+  enabled: ANALYZE === "true",
 });
 
 const withSerwist = withSerwistInit({
@@ -28,6 +28,7 @@ const nextConfig: NextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+  transpilePackages: ["@workspace/*"],
   webpack: (config) => {
     // https://github.com/huggingface/transformers.js/issues/1026#issuecomment-2490410996
     config.resolve.alias = {

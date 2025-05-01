@@ -10,7 +10,8 @@ import {
   httpBatchStreamLink,
   loggerLink,
 } from "@trpc/client";
-import { getUrl, transformer } from "@workspace/server";
+import { NODE_ENV } from "@workspace/env";
+import { getUrl, transformer } from "@workspace/shared";
 import { useState } from "react";
 import { TRPCProvider } from "./context";
 import type { AppRouter } from "@workspace/server/routers";
@@ -50,8 +51,7 @@ export function TRPCReactProvider(props: { children: React.ReactNode }) {
       links: [
         loggerLink({
           enabled: (op) =>
-            // eslint-disable-next-line n/prefer-global/process
-            process.env.NODE_ENV === "development" ||
+            NODE_ENV === "development" ||
             (op.direction === "down" && op.result instanceof Error),
         }),
         httpBatchStreamLink({

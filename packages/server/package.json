@@ -3,8 +3,6 @@
   "exports": {
     ".": "./src/index.ts",
     "./handler": "./src/handler.ts",
-    "./routers": "./src/routers/index.ts",
-    "./context": "./src/context.ts",
-    "./trpc": "./src/trpc.ts"
+    "./routers": "./src/routers/index.ts"
   }
 }

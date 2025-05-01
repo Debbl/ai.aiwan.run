@@ -1,6 +1,6 @@
 import { createOpenAI } from "@ai-sdk/openai";
+import { TU_ZI_API_KEY, TU_ZI_BASE_URL } from "@workspace/env";
 import { streamText } from "ai";
-import { TU_ZI_API_KEY, TU_ZI_BASE_URL } from "~/constants";
 
 const openai = createOpenAI({
   apiKey: TU_ZI_API_KEY,

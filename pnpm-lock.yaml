@@ -59,6 +59,9 @@ importers:
       '@trpc/tanstack-react-query':
         specifier: ^11.1.2
         version: 11.1.2(@tanstack/react-query@5.74.11(react@19.1.0))(@trpc/client@11.1.2(@trpc/server@11.1.2(typescript@5.8.3))(typescript@5.8.3))(@trpc/server@11.1.2(typescript@5.8.3))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.8.3)
+      '@workspace/env':
+        specifier: workspace:*
+        version: link:packages/env
       '@workspace/server':
         specifier: workspace:*
         version: link:packages/server
@@ -195,6 +198,8 @@ importers:
       wrangler:
         specifier: ^4.10.0
         version: 4.10.0
+
+  packages/env: {}
 
   packages/server: {}
 
