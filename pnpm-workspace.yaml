@@ -2,9 +2,6 @@ packages:
   - "apps/*"
   - "packages/*"
 
-publicHoistPattern:
-  - "*@heroui/*"
-
 onlyBuiltDependencies:
   - "@heroui/shared-utils"
   - esbuild
