@@ -1,0 +1,12 @@
+{
+  "name": "@workspace/server",
+  "exports": {
+    ".": "./src/index.ts",
+    "./handler": "./src/handler.ts",
+    "./routers": "./src/routers/index.ts"
+  },
+  "dependencies": {
+    "@trpc/next": "^11.1.2",
+    "@trpc/server": "^11.1.2"
+  }
+}

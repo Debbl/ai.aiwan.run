@@ -1,8 +1,12 @@
 {
   "compilerOptions": {
     "incremental": true,
+    "target": "ESNext",
     "module": "ESNext",
     "moduleResolution": "bundler",
+    "paths": {
+      "~/*": ["./src/*"]
+    },
     "resolveJsonModule": true,
     "allowJs": true,
     "strict": true,

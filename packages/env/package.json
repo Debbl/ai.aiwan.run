@@ -1,0 +1,6 @@
+{
+  "name": "@workspace/env",
+  "exports": {
+    ".": "./src/index.ts"
+  }
+}
