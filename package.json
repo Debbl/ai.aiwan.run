@@ -14,16 +14,10 @@
   },
   "scripts": {
     "dev": "turbo dev",
-    "build": "turbo build",
-    "build:analyze": "ANALYZE=true next build",
-    "start": "next start",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "turbo typecheck",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
-    "prepare": "simple-git-hooks",
-    "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
-    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
-    "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts"
+    "prepare": "simple-git-hooks"
   },
   "dependencies": {
     "@workspace/env": "workspace:*",
