@@ -2,7 +2,7 @@
 import { Button } from "@heroui/react";
 import { useState } from "react";
 import { CheckIcon, CopyIcon } from "../icons";
-import type { ButtonProps } from "@heroui/button";
+import type { ButtonProps } from "@heroui/react";
 import type { ClassName } from "../app/type";
 
 const CopyButtonIcon = ({
