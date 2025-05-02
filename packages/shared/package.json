@@ -2,5 +2,9 @@
   "name": "@workspace/shared",
   "exports": {
     ".": "./src/index.ts"
+  },
+  "dependencies": {
+    "@js-temporal/polyfill": "^0.5.1",
+    "superjson": "^2.2.2"
   }
 }

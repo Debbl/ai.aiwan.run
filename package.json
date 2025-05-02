@@ -26,25 +26,9 @@
     "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts"
   },
   "dependencies": {
-    "@ai-sdk/deepseek": "^0.2.13",
-    "@ai-sdk/openai": "^1.3.20",
-    "@ai-sdk/react": "^1.2.9",
-    "@ai-sdk/ui-utils": "^1.2.8",
-    "@debbl/ahooks": "^0.4.1",
-    "@heroui/react": "2.8.0-beta.0",
-    "@huggingface/transformers": "^3.5.0",
-    "@internationalized/date": "3.7.0",
-    "@js-temporal/polyfill": "^0.5.1",
-    "@react-aria/i18n": "3.12.4",
-    "@serwist/next": "^9.0.14",
-    "@tanstack/react-query": "^5.74.11",
-    "@tanstack/react-query-devtools": "^5.74.11",
-    "@trpc/next": "^11.1.2",
-    "@trpc/tanstack-react-query": "^11.1.2",
     "@workspace/env": "workspace:*",
     "@workspace/server": "workspace:*",
     "@workspace/shared": "workspace:*",
-    "class-variance-authority": "^0.7.1",
     "zod": "^3.24.3"
   },
   "devDependencies": {

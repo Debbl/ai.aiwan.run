@@ -22,6 +22,7 @@ const withSerwist = withSerwistInit({
 });
 
 const nextConfig: NextConfig = {
+  output: "standalone",
   images: {
     unoptimized: true,
   },
