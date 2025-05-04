@@ -1,14 +1,14 @@
 {
   "compilerOptions": {
     "incremental": true,
-    "target": "ES6",
+    "target": "ESNext",
     "jsx": "preserve",
     "lib": ["DOM", "DOM.Iterable", "ESNext", "webworker"],
     "baseUrl": ".",
     "module": "ESNext",
     "moduleResolution": "bundler",
     "paths": {
-      "~/*": ["apps/web/src/*"]
+      "~/*": ["/*"]
     },
     "resolveJsonModule": true,
     "types": ["@serwist/next/typings"],
