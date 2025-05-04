@@ -10,6 +10,7 @@ import {
   Spinner,
 } from "@heroui/react";
 import { fromDate, getLocalTimeZone, today } from "@internationalized/date";
+import { router } from "@workspace/server/router";
 import { format } from "date-fns";
 import { useAtom } from "jotai/react";
 import Link from "next/link";
@@ -17,6 +18,7 @@ import { useEffect, useMemo, useState } from "react";
 import Markdown from "react-markdown";
 import CopyButton from "../../components/CopyButton";
 import { MaterialSymbolsFemale, MaterialSymbolsMaleRounded } from "../../icons";
+import { getApiUrl } from "../api";
 import { infoAtom } from "./atoms/info";
 import type { ZonedDateTime } from "@internationalized/date";
 
@@ -40,7 +42,7 @@ export default function Page() {
   const [isShowThinking, setIsShowThinking] = useState(false);
 
   const { status, messages, setInput, handleSubmit } = useChat({
-    api: "/api/ai-fortune-teller",
+    api: getApiUrl(router.aiFortuneTeller),
   });
 
   const { isHydrated } = useHydrated();

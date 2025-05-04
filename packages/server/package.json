@@ -2,11 +2,12 @@
   "name": "@workspace/server",
   "exports": {
     ".": "./src/index.ts",
-    "./handler": "./src/handler.ts",
-    "./routers": "./src/routers/index.ts"
+    "./router": "./src/router.ts",
+    "./handler": "./src/handler.ts"
   },
   "dependencies": {
-    "@trpc/next": "^11.1.2",
-    "@trpc/server": "^11.1.2"
+    "@ai-sdk/deepseek": "^0.2.13",
+    "@ai-sdk/openai": "^1.3.20",
+    "ai": "^4.3.10"
   }
 }

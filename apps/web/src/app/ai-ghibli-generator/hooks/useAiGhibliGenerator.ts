@@ -1,13 +1,15 @@
 import { callChatApi, generateId } from "@ai-sdk/ui-utils";
 import { useEffectEvent } from "@debbl/ahooks";
+import { router } from "@workspace/server/router";
 import { useMemo, useState } from "react";
+import { getApiUrl } from "src/app/api";
 import useSWR from "swr";
 import { getImageSize } from "../../../utils";
 import { objectURLToBase64 } from "../utils";
 
 export function useAiGhibliGenerator() {
   const [chatId] = useState(generateId);
-  const [api] = useState("/api/ai-ghibli-generator");
+  const [api] = useState(getApiUrl(router.aiGhibliGenerator));
   const chatKey = useMemo(() => [api, chatId], [api, chatId]);
 
   const [originImage, setOriginImage] = useState("");

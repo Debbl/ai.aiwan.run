@@ -1,19 +1,86 @@
-import { fetchRequestHandler } from "@trpc/server/adapters/fetch";
-import { appRouter } from "./routers";
-import type { FetchCreateContextFnOptions } from "@trpc/server/adapters/fetch";
+import { deepseek } from "@ai-sdk/deepseek";
+import { createOpenAI } from "@ai-sdk/openai";
+import { createNextHandler } from "@ts-rest/serverless/next";
+import { TU_ZI_API_KEY, TU_ZI_BASE_URL } from "@workspace/env";
+import { streamText } from "ai";
+import { router } from "./router";
 
-async function createContext(opts?: FetchCreateContextFnOptions) {
-  return {
-    headers: opts && Object.fromEntries(opts.req.headers),
-  };
-}
+const openai = createOpenAI({
+  apiKey: TU_ZI_API_KEY,
+  baseURL: TU_ZI_BASE_URL,
+});
 
-export type Context = Awaited<ReturnType<typeof createContext>>;
+export const handler = createNextHandler(
+  router,
+  {
+    aiFortuneTeller: async ({ body }, { responseHeaders }) => {
+      const { messages } = body;
 
-export const handler = async (req: Request) =>
-  fetchRequestHandler({
-    endpoint: "/api/trpc",
-    req,
-    router: appRouter,
-    createContext,
-  });
+      const message = messages.at(-1);
+
+      const { gender, birthday } = JSON.parse(message.content);
+
+      const genderText = gender === 0 ? "女性" : "男性";
+
+      const content = `我是${genderText}，我的公历出生日期是${birthday}。请用盲派技巧逐步分析八字，请分析我的一生运势，以及体貌特征，时间节点，事件，涵盖各方面，尽可能详细具体。着重分析大运能赚多少钱，包括学业和婚姻，判断出准确的关系模型后输出最终结果，诚实一点评价，用语不用太温和。`;
+      const result = streamText({
+        model: deepseek("deepseek-reasoner"),
+        messages: [
+          {
+            role: "user",
+            content,
+            parts: [
+              {
+                type: "text",
+                text: content,
+              },
+            ],
+          },
+        ],
+      });
+
+      const response = result.toDataStreamResponse({
+        sendReasoning: true,
+      });
+
+      for (const [key, value] of response.headers) {
+        responseHeaders.set(key, value);
+      }
+
+      return response as any;
+    },
+    aiGhibliGenerator: async ({ body }, { responseHeaders }) => {
+      const { image, ratio } = body;
+
+      const result = streamText({
+        model: openai("gpt-4o-image-vip"),
+        messages: [
+          {
+            role: "user",
+            content: [
+              {
+                type: "image",
+                image,
+              },
+              {
+                type: "text",
+                text: `convert this photo to studio ghibli style anime, ratio is ${ratio}`,
+              },
+            ],
+          },
+        ],
+      });
+
+      const response = result.toDataStreamResponse();
+
+      for (const [key, value] of response.headers) {
+        responseHeaders.set(key, value);
+      }
+      return response as any;
+    },
+  },
+  {
+    basePath: "/api",
+    handlerType: "app-router",
+  },
+);
