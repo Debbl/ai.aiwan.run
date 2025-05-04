@@ -2,7 +2,7 @@
   "name": "@workspace/server",
   "exports": {
     ".": "./src/index.ts",
-    "./router": "./src/router.ts",
+    "./contract": "./src/contract.ts",
     "./handler": "./src/handler.ts"
   },
   "dependencies": {

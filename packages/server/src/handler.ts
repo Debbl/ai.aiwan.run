@@ -3,7 +3,7 @@ import { createOpenAI } from "@ai-sdk/openai";
 import { createNextHandler } from "@ts-rest/serverless/next";
 import { TU_ZI_API_KEY, TU_ZI_BASE_URL } from "@workspace/env";
 import { streamText } from "ai";
-import { router } from "./router";
+import { contract } from "./contract";
 
 const openai = createOpenAI({
   apiKey: TU_ZI_API_KEY,
@@ -11,7 +11,7 @@ const openai = createOpenAI({
 });
 
 export const handler = createNextHandler(
-  router,
+  contract,
   {
     aiFortuneTeller: async ({ body }, { responseHeaders }) => {
       const { messages } = body;

@@ -1,11 +1,9 @@
-// contract.ts
-
 import { initContract } from "@ts-rest/core";
 import { z } from "zod";
 
 const c = initContract();
 
-export const router = c.router({
+export const contract = c.router({
   aiFortuneTeller: {
     method: "POST",
     path: `/ai-fortune-teller`,

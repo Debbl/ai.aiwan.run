@@ -10,7 +10,7 @@ import {
   Spinner,
 } from "@heroui/react";
 import { fromDate, getLocalTimeZone, today } from "@internationalized/date";
-import { router } from "@workspace/server/router";
+import { contract } from "@workspace/server/contract";
 import { format } from "date-fns";
 import { useAtom } from "jotai/react";
 import Link from "next/link";
@@ -42,7 +42,7 @@ export default function Page() {
   const [isShowThinking, setIsShowThinking] = useState(false);
 
   const { status, messages, setInput, handleSubmit } = useChat({
-    api: getApiUrl(router.aiFortuneTeller),
+    api: getApiUrl(contract.aiFortuneTeller),
   });
 
   const { isHydrated } = useHydrated();
