@@ -20,5 +20,11 @@
       "binding": "D1",
       "migrations_dir": "packages/server/drizzle"
     }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "R2",
+      "bucket_name": "ai-aiwan-run"
+    }
   ]
 }
