@@ -50,20 +50,19 @@ export function useAiGhibliGenerator() {
 
           for (const line of message.content.split("\n")) {
             if (line.startsWith(">")) {
-              // > 进度 **67%**
-              const match = line.match(/\*\*(\d+)%\*\*/);
+              // >🏃‍ Progress 10....22....34....45....57....68..
+              const match = line.match(/Progress.*?(\d+)(?:\.+)?$/);
               if (match) {
                 progress = Number(match[1]);
               }
             }
+
             // "![file_0000000036f4522fb60124573acbd550](https://filesystem.site/cdn/20250405/bkfKr10hti0gOMbQY4DqG40RBoQLAD.png)"
-            if (line.startsWith("![")) {
-              const match = line.match(/!\[.*?\]\((https:\/\/[^)]+)\)/);
-              if (match) {
-                mutateProgress(100);
-                setGeneratedImage(match[1]);
-                return;
-              }
+            const match = line.match(/!\[.*?\]\((https:\/\/[^)]+)\)/);
+            if (match) {
+              mutateProgress(100);
+              setGeneratedImage(match[1]);
+              return;
             }
           }
 
