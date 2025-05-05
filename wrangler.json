@@ -10,14 +10,14 @@
   },
   "kv_namespaces": [
     {
-      "binding": "NEXT_INC_CACHE_KV",
+      "binding": "KV",
       "id": "6f1b6856403348309e456dc35fd2382b"
     }
   ],
   "d1_databases": [
     {
       "database_id": "91b6ff7c-acbe-44aa-bad3-b9680486979b",
-      "binding": "AI_AIWAN_RUN",
+      "binding": "D1",
       "migrations_dir": "packages/server/drizzle"
     }
   ]

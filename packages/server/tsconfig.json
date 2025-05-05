@@ -5,6 +5,7 @@
     "module": "ESNext",
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
+    "types": ["../../cloudflare-env.d.ts"],
     "allowJs": true,
     "strict": true,
     "noEmit": true,

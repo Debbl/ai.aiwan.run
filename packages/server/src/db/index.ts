@@ -1,8 +1,19 @@
+import { getCloudflareContext } from "@opennextjs/cloudflare";
 import { eq } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/d1";
-import { imageGenerationsTable } from "./schema";
+import { cache } from "react";
+import * as schema from "./schema";
 
-export const db = drizzle("AI_AIWAN_RUN");
+export const getDb = cache(() => {
+  const { env } = getCloudflareContext();
+  return drizzle(env.D1, { schema });
+});
+
+// This is the one to use for static routes (i.e. ISR/SSG)
+export const getDbAsync = cache(async () => {
+  const { env } = await getCloudflareContext({ async: true });
+  return drizzle(env.D1, { schema });
+});
 
 export function insertImageGeneration(
   prompt: string,
@@ -10,7 +21,9 @@ export function insertImageGeneration(
   generatedImageUrl: string,
   status: string,
 ) {
-  return db.insert(imageGenerationsTable).values({
+  const db = getDb();
+
+  return db.insert(schema.imageGenerationsTable).values({
     prompt,
     status,
     originalImageUrl,
@@ -25,13 +38,15 @@ export function updateImageGeneration(
   originalImageUrl?: string,
   generatedImageUrl?: string,
 ) {
+  const db = getDb();
+
   return db
-    .update(imageGenerationsTable)
+    .update(schema.imageGenerationsTable)
     .set({
       prompt,
       status,
       originalImageUrl,
       generatedImageUrl,
     })
-    .where(eq(imageGenerationsTable.id, id));
+    .where(eq(schema.imageGenerationsTable.id, id));
 }
