@@ -55,6 +55,10 @@ const nextConfig: NextConfig = {
             from: "motion/react-m",
             imports: [["*", "motion"]],
           },
+          {
+            from: "~/api",
+            imports: ["api"],
+          },
         ],
         dts: true,
       }),

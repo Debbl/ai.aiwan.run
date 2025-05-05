@@ -1,2 +1,2 @@
-export * from "./createWorker";
-export * from "./useRPCWorker";
+export * from "./create-worker";
+export * from "./use-rpc-worker";

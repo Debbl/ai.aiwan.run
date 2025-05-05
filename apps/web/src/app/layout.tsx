@@ -1,6 +1,6 @@
 import { Toaster } from "sonner";
 import { Providers } from "../providers";
-import Footer from "./_components/Footer";
+import { Footer } from "./_components/footer";
 import "./styles/index.css";
 import type { Metadata } from "next";
 

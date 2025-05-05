@@ -2,8 +2,8 @@ import { callChatApi, generateId } from "@ai-sdk/ui-utils";
 import { useEffectEvent } from "@debbl/ahooks";
 import { contract } from "@workspace/server/contract";
 import { useMemo, useState } from "react";
-import { getApiUrl } from "src/app/api";
 import useSWR from "swr";
+import { getApiUrl } from "~/api";
 import { getImageSize } from "../../../utils";
 import { objectURLToBase64 } from "../utils";
 

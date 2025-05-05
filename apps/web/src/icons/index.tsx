@@ -3,9 +3,9 @@ import type { Transition, Variants } from "motion/react";
 import type { SVGProps } from "react";
 import type { ClassName } from "../app/type";
 
-export { MoonIcon } from "./MoonIcon";
-export { SettingsGearIcon } from "./SettingsGearIcon";
-export { SunIcon } from "./SunIcon";
+export { MoonIcon } from "./moon-icon";
+export { SettingsGearIcon } from "./settings-gear-icon";
+export { SunIcon } from "./sun-icon";
 
 const defaultTransition: Transition = {
   type: "spring",

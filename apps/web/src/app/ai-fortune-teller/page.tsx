@@ -16,9 +16,9 @@ import { useAtom } from "jotai/react";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import Markdown from "react-markdown";
-import CopyButton from "../../components/CopyButton";
-import { MaterialSymbolsFemale, MaterialSymbolsMaleRounded } from "../../icons";
-import { getApiUrl } from "../api";
+import { getApiUrl } from "~/api";
+import CopyButton from "~/components/copy-button";
+import { MaterialSymbolsFemale, MaterialSymbolsMaleRounded } from "~/icons";
 import { infoAtom } from "./atoms/info";
 import type { ZonedDateTime } from "@internationalized/date";
 

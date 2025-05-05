@@ -3,10 +3,10 @@ import { Loader, Sparkle, X } from "lucide-react";
 import NextImage from "next/image";
 import { useRef, useState } from "react";
 import { match } from "ts-pattern";
-import { Button } from "../../components/ui/Button";
-import { Input } from "../../components/ui/Input";
-import { getImageSize } from "../../utils";
-import { useRPCWorker } from "./lib/useRPCWorker";
+import { Button } from "~/components/ui/button";
+import { Input } from "~/components/ui/input";
+import { getImageSize } from "~/utils";
+import { useRPCWorker } from "./lib/use-rpc-worker";
 import type { ChangeEventHandler } from "react";
 import type { LocalFunctions, Point, WorkerFunctions } from "./types";
 

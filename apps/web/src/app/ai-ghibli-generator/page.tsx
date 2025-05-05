@@ -2,9 +2,9 @@
 import { Button, Spinner } from "@heroui/react";
 import Image from "next/image";
 import { toast } from "sonner";
-import { Input } from "../../components/ui/Input";
+import { Input } from "../../components/ui/input";
 import { PajamasClear } from "../../icons";
-import { useAiGhibliGenerator } from "./hooks/useAiGhibliGenerator";
+import { useAiGhibliGenerator } from "./hooks/use-ai-ghibli-generator";
 
 export default function Page() {
   const {
