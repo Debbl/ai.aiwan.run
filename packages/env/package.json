@@ -1,7 +1,7 @@
 {
   "name": "@workspace/env",
   "exports": {
-    ".": "./src/index.js"
+    ".": "./src/index.ts"
   },
   "dependencies": {
     "dotenv": "^16.5.0"

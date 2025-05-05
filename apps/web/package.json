@@ -19,10 +19,7 @@
     "start": "next start",
     "typecheck": "tsc --noEmit",
     "lint": "eslint",
-    "lint:fix": "eslint --fix",
-    "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
-    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
-    "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts"
+    "lint:fix": "eslint --fix"
   },
   "dependencies": {
     "@ai-sdk/react": "^1.2.9",
@@ -58,7 +55,6 @@
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^15.3.0",
-    "@opennextjs/cloudflare": "^1.0.0-beta.3",
     "@tailwindcss/postcss": "^4.1.4",
     "@tailwindcss/typography": "^0.5.16",
     "@types/react": "^19.1.2",
@@ -68,7 +64,6 @@
     "prettier-plugin-tailwindcss": "^0.6.11",
     "serwist": "^9.0.14",
     "tailwindcss": "^4.1.4",
-    "unplugin-auto-import": "^19.1.2",
-    "wrangler": "^4.10.0"
+    "unplugin-auto-import": "^19.1.2"
   }
 }

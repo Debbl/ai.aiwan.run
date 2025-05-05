@@ -3,8 +3,7 @@ import { createOpenAI } from "@ai-sdk/openai";
 import { tsr } from "@ts-rest/serverless/next";
 import { TU_ZI_API_KEY, TU_ZI_BASE_URL } from "@workspace/env";
 import { streamText } from "ai";
-import { contract } from "~/contract";
-import { insertImageGeneration } from "~/db";
+import { contract } from "../contract";
 
 const openai = createOpenAI({
   apiKey: TU_ZI_API_KEY,
@@ -70,8 +69,6 @@ export const router = tsr.router(contract, {
         },
       ],
     });
-
-    await insertImageGeneration(prompt, image, "", "pending");
 
     const response = result.toDataStreamResponse();
 

@@ -1,9 +1,8 @@
 /* eslint-disable n/prefer-global/process */
-const { join } = require("node:path");
-const dotenv = require("dotenv");
+import dotenv from "dotenv";
 
 dotenv.config({
-  path: join(__dirname, "../.env.local"),
+  path: ["../../apps/web/.env.local"],
 });
 
 export const NODE_ENV = process.env.NODE_ENV;
