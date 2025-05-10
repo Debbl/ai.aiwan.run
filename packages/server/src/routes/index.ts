@@ -5,6 +5,7 @@ import { TU_ZI_API_KEY, TU_ZI_BASE_URL } from '@workspace/env'
 import { streamText } from 'ai'
 import { blobToBase64 } from '..'
 import { contract } from '../contract'
+import { insertImageGeneration } from '../db'
 import { services } from '../services'
 
 const openai = createOpenAI({
@@ -64,7 +65,11 @@ export const router = tsr.router(contract, {
     const ratio = formData.get('ratio') as string
     const imageBase64 = await blobToBase64(image)
 
-    await services.updateFile(image)
+    const r2Obj = await services.updateFile(image)
+
+    if (!r2Obj) {
+      return { status: 500, body: { error: 'Failed to upload image' } }
+    }
 
     const prompt = `convert this photo to studio ghibli style anime, ratio is ${ratio}`
     const result = streamText({
@@ -85,6 +90,8 @@ export const router = tsr.router(contract, {
         },
       ],
     })
+
+    insertImageGeneration(prompt, imageBase64, r2Obj.key, 'pending')
 
     const response = result.toDataStreamResponse()
 
