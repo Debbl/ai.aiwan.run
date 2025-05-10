@@ -1,11 +1,7 @@
 import { getCloudflareContext } from '@opennextjs/cloudflare'
 import { drizzle } from 'drizzle-orm/d1'
 import { cache } from 'react'
-import { imageGenerationsTable } from './image-generations/schema'
-
-const schema = {
-  imageGenerationsTable,
-}
+import { schema } from './schema'
 
 export const getDB = cache(() => {
   const { env } = getCloudflareContext()

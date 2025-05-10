@@ -10,6 +10,18 @@
     "dev": {
       "persistent": true,
       "cache": false
+    },
+    "db:push": {
+      "cache": false,
+      "outputs": ["drizzle/**"]
+    },
+    "db:gen": {
+      "cache": false,
+      "outputs": ["drizzle/**"]
+    },
+    "db:migrate": {
+      "cache": false,
+      "outputs": ["drizzle/**"]
     }
   }
 }

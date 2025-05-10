@@ -7,7 +7,7 @@
   },
   "scripts": {
     "db:push": "drizzle-kit push",
-    "db:generate": "drizzle-kit generate",
+    "db:gen": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate"
   },
   "dependencies": {

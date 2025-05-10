@@ -1,6 +1,6 @@
 import { eq } from 'drizzle-orm'
 import { getDBAsync } from '../getDB'
-import * as schema from './schema'
+import { schema } from '../schema'
 
 export async function insertImageGeneration(values: {
   prompt: string

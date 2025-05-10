@@ -1,7 +1,7 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "0c69cd8a-e6e2-46c1-a4e3-ba341d1441f8",
+  "id": "f0ed631c-299b-4043-9709-332c4f2e01d7",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "image_generations_table": {

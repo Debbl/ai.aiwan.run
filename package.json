@@ -15,6 +15,9 @@
   "scripts": {
     "dev": "turbo dev",
     "build": "turbo build",
+    "db:push": "turbo db:push",
+    "db:gen": "turbo db:gen",
+    "db:migrate": "turbo db:migrate",
     "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
     "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
     "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts",
