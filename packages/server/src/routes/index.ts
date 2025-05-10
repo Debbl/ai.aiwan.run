@@ -92,12 +92,16 @@ export const router = tsr.router(contract, {
       ],
     })
 
-    await db.insertImageGeneration({
+    const res = await db.insertImageGeneration({
       prompt,
-      originalImageUrl: imageBase64,
-      generatedImageUrl: r2Obj.key,
+      originalImageUrl: r2Obj.key,
+      generatedImageUrl: '',
       status: 'pending',
     })
+
+    if (!res.success) {
+      return NextResponse.json({ error: res.error }, { status: 500 })
+    }
 
     const response = result.toDataStreamResponse()
 
