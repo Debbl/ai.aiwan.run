@@ -3,6 +3,7 @@ import { createOpenAI } from '@ai-sdk/openai'
 import { tsr } from '@ts-rest/serverless/next'
 import { TU_ZI_API_KEY, TU_ZI_BASE_URL } from '@workspace/env'
 import { streamText } from 'ai'
+import { NextResponse } from 'next/server'
 import { blobToBase64 } from '..'
 import { contract } from '../contract'
 import { db } from '../db'
@@ -68,9 +69,7 @@ export const router = tsr.router(contract, {
     const r2Obj = await services.updateFile(image)
 
     if (!r2Obj) {
-      return new Response(JSON.stringify({ error: 'Failed to upload image' }), {
-        status: 500,
-      })
+      return NextResponse.json({ error: 'Failed to upload image' }, { status: 500 })
     }
 
     const prompt = `convert this photo to studio ghibli style anime, ratio is ${ratio}`
@@ -93,7 +92,12 @@ export const router = tsr.router(contract, {
       ],
     })
 
-    db.insertImageGeneration(prompt, imageBase64, r2Obj.key, 'pending')
+    db.insertImageGeneration({
+      prompt,
+      originalImageUrl: imageBase64,
+      generatedImageUrl: r2Obj.key,
+      status: 'pending',
+    })
 
     const response = result.toDataStreamResponse()
 

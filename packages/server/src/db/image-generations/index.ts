@@ -2,20 +2,15 @@ import { eq } from 'drizzle-orm'
 import { getDB } from '../getDB'
 import * as schema from './schema'
 
-export function insertImageGeneration(
-  prompt: string,
-  originalImageUrl: string,
-  generatedImageUrl: string,
-  status: string,
-) {
+export function insertImageGeneration(values: {
+  prompt: string
+  originalImageUrl: string
+  generatedImageUrl: string
+  status: string
+}) {
   const db = getDB()
 
-  return db.insert(schema.imageGenerationsTable).values({
-    prompt,
-    status,
-    originalImageUrl,
-    generatedImageUrl,
-  })
+  return db.insert(schema.imageGenerationsTable).values(values)
 }
 
 export function updateImageGeneration(
