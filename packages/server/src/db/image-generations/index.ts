@@ -1,28 +1,28 @@
 import { eq } from 'drizzle-orm'
-import { getDB } from '../getDB'
+import { getDBAsync } from '../getDB'
 import * as schema from './schema'
 
-export function insertImageGeneration(values: {
+export async function insertImageGeneration(values: {
   prompt: string
   originalImageUrl: string
   generatedImageUrl: string
   status: string
 }) {
-  const db = getDB()
+  const db = await getDBAsync()
 
-  return db.insert(schema.imageGenerationsTable).values(values)
+  return await db.insert(schema.imageGenerationsTable).values(values)
 }
 
-export function updateImageGeneration(
+export async function updateImageGeneration(
   id: number,
   status?: string,
   prompt?: string,
   originalImageUrl?: string,
   generatedImageUrl?: string,
 ) {
-  const db = getDB()
+  const db = await getDBAsync()
 
-  return db
+  return await db
     .update(schema.imageGenerationsTable)
     .set({
       prompt,

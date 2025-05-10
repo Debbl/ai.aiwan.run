@@ -92,7 +92,7 @@ export const router = tsr.router(contract, {
       ],
     })
 
-    db.insertImageGeneration({
+    await db.insertImageGeneration({
       prompt,
       originalImageUrl: imageBase64,
       generatedImageUrl: r2Obj.key,
