@@ -12,8 +12,9 @@ const openai = createOpenAI({
 })
 
 export const router = tsr.router(contract, {
-  uploadFile: async ({ body }) => {
-    const { file } = body
+  uploadFile: async (_, { nextRequest }) => {
+    const formData = await nextRequest.formData()
+    const file = formData.get('file') as File
 
     const r2Obj = await services.updateFile(file)
 

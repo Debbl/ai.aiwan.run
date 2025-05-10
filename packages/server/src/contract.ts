@@ -7,6 +7,7 @@ export const contract = c.router({
   uploadFile: {
     method: 'POST',
     path: '/upload-file',
+    contentType: 'multipart/form-data',
     body: c.type<{
       file: File
     }>(),
