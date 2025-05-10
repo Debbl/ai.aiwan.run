@@ -4,6 +4,7 @@ import { tsr } from "@ts-rest/serverless/next";
 import { TU_ZI_API_KEY, TU_ZI_BASE_URL } from "@workspace/env";
 import { streamText } from "ai";
 import { contract } from "../contract";
+import { services } from "../services";
 
 const openai = createOpenAI({
   apiKey: TU_ZI_API_KEY,
@@ -11,6 +12,13 @@ const openai = createOpenAI({
 });
 
 export const router = tsr.router(contract, {
+  uploadFile: async ({ body }) => {
+    const { file } = body;
+
+    const r2Obj = await services.updateFile(file);
+
+    return { status: 200, body: { url: r2Obj?.key || "" } };
+  },
   aiFortuneTeller: async ({ body }, { responseHeaders }) => {
     const { messages } = body;
 
@@ -47,8 +55,14 @@ export const router = tsr.router(contract, {
 
     return response as any;
   },
-  aiGhibliGenerator: async ({ body }, { responseHeaders }) => {
-    const { image, ratio } = body;
+  aiGhibliGenerator: async (_, { responseHeaders, nextRequest }) => {
+    const formData = await nextRequest.formData();
+
+    const image = formData.get("image") as File;
+    const ratio = formData.get("ratio") as string;
+    const imageBase64 = await image.text();
+
+    await services.updateFile(image);
 
     const prompt = `convert this photo to studio ghibli style anime, ratio is ${ratio}`;
     const result = streamText({
@@ -59,7 +73,7 @@ export const router = tsr.router(contract, {
           content: [
             {
               type: "image",
-              image,
+              image: imageBase64,
             },
             {
               type: "text",

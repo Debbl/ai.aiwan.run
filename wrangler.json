@@ -10,20 +10,20 @@
   },
   "kv_namespaces": [
     {
-      "binding": "KV",
+      "binding": "NEXT_INC_CACHE_KV",
       "id": "6f1b6856403348309e456dc35fd2382b"
     }
   ],
   "d1_databases": [
     {
       "database_id": "91b6ff7c-acbe-44aa-bad3-b9680486979b",
-      "binding": "D1",
+      "binding": "NEXT_TAG_CACHE_D1",
       "migrations_dir": "packages/server/drizzle"
     }
   ],
   "r2_buckets": [
     {
-      "binding": "R2",
+      "binding": "NEXT_INC_CACHE_R2_BUCKET",
       "bucket_name": "ai-aiwan-run"
     }
   ]

@@ -5,7 +5,6 @@ import { useMemo, useState } from "react";
 import useSWR from "swr";
 import { getApiUrl } from "~/api";
 import { getImageSize } from "../../../utils";
-import { objectURLToBase64 } from "../utils";
 
 export function useAiGhibliGenerator() {
   const [chatId] = useState(generateId);
@@ -30,17 +29,22 @@ export function useAiGhibliGenerator() {
     mutateStatus("submitted");
     setGeneratedImage(originImage);
 
-    const image = await objectURLToBase64(originImage);
     const imageSize = await getImageSize(originImage);
+    const response = await fetch(originImage);
+    const blob = await response.blob();
+    const file = new File([blob], "originImage.png", {
+      type: "image/png",
+    });
+
+    const formData = new FormData();
+    formData.append("image", file);
+    formData.append("ratio", `${imageSize.width}:${imageSize.height}`);
 
     try {
       await callChatApi({
         api,
         streamProtocol: "data",
-        body: {
-          image,
-          ratio: `${imageSize.width}:${imageSize.height}`,
-        },
+        body: {},
         credentials: undefined,
         headers: undefined,
         abortController: undefined,
@@ -73,7 +77,12 @@ export function useAiGhibliGenerator() {
         onResponse: undefined,
         onFinish: undefined,
         onToolCall: undefined,
-        fetch: undefined,
+        fetch: () => {
+          return fetch(api, {
+            method: "POST",
+            body: formData,
+          });
+        },
         lastMessage: undefined,
       });
 

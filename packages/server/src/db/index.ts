@@ -6,13 +6,13 @@ import * as schema from "./schema";
 
 export const getDb = cache(() => {
   const { env } = getCloudflareContext();
-  return drizzle(env.D1, { schema });
+  return drizzle(env.NEXT_TAG_CACHE_D1!, { schema });
 });
 
 // This is the one to use for static routes (i.e. ISR/SSG)
 export const getDbAsync = cache(async () => {
   const { env } = await getCloudflareContext({ async: true });
-  return drizzle(env.D1, { schema });
+  return drizzle(env.NEXT_TAG_CACHE_D1!, { schema });
 });
 
 export function insertImageGeneration(

@@ -40,3 +40,5 @@ public/swe-worker*
 
 # turbo
 .turbo
+
+.dev.vars
