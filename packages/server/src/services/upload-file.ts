@@ -10,7 +10,9 @@ export async function updateFile(file: File) {
     throw new Error('NEXT_INC_CACHE_R2_BUCKET is not defined')
   }
 
-  const r2Obj = await NEXT_INC_CACHE_R2_BUCKET.put(uuid, file)
+  const ext = file.name.split('.').pop()
+  const key = `${uuid}.${ext}`
+  const r2Obj = await NEXT_INC_CACHE_R2_BUCKET.put(key, file)
 
   return r2Obj
 }

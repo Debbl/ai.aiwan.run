@@ -3,6 +3,7 @@ import { createOpenAI } from '@ai-sdk/openai'
 import { tsr } from '@ts-rest/serverless/next'
 import { TU_ZI_API_KEY, TU_ZI_BASE_URL } from '@workspace/env'
 import { streamText } from 'ai'
+import { blobToBase64 } from '..'
 import { contract } from '../contract'
 import { services } from '../services'
 
@@ -61,7 +62,7 @@ export const router = tsr.router(contract, {
 
     const image = formData.get('image') as File
     const ratio = formData.get('ratio') as string
-    const imageBase64 = await image.text()
+    const imageBase64 = await blobToBase64(image)
 
     await services.updateFile(image)
 
