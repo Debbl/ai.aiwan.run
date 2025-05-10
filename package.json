@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.0.0",
   "private": true,
-  "packageManager": "pnpm@10.8.1",
+  "packageManager": "pnpm@10.10.0",
   "description": "starter next app",
   "author": "Brendan Dash <me@aiwna.run> (https://github.com/Debbl/)",
   "license": "MIT",
@@ -24,26 +24,26 @@
     "prepare": "simple-git-hooks"
   },
   "dependencies": {
+    "@debbl/utils": "^0.2.2",
     "@ts-rest/core": "^3.52.1",
     "@ts-rest/serverless": "^3.52.1",
     "@workspace/env": "workspace:*",
     "@workspace/server": "workspace:*",
-    "es-toolkit": "^1.37.2",
-    "zod": "^3.24.3"
+    "zod": "^3.24.4"
   },
   "devDependencies": {
-    "@debbl/eslint-config": "^3.10.2",
-    "@opennextjs/aws": "3.5.7",
-    "@opennextjs/cloudflare": "^1.0.0-beta.4",
-    "@types/node": "^22.15.2",
-    "eslint": "^9.25.1",
-    "lint-staged": "^15.5.1",
+    "@debbl/eslint-config": "^3.11.0",
+    "@opennextjs/aws": "^3.6.1",
+    "@opennextjs/cloudflare": "^1.0.2",
+    "@types/node": "^22.15.17",
+    "eslint": "^9.26.0",
+    "lint-staged": "^15.5.2",
     "prettier-plugin-tailwindcss": "^0.6.11",
     "simple-git-hooks": "^2.13.0",
-    "turbo": "^2.5.2",
-    "type-fest": "^4.40.1",
+    "turbo": "^2.5.3",
+    "type-fest": "^4.41.0",
     "typescript": "^5.8.3",
-    "wrangler": "^4.10.0"
+    "wrangler": "^4.14.4"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm lint-staged"

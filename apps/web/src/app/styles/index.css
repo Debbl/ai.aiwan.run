@@ -1,8 +1,8 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
-@import "./preflight.css" layer(base);
-@import "./theme.css" layer(theme);
-@import "./utilities.css" layer(utilities);
+@import './preflight.css' layer(base);
+@import './theme.css' layer(theme);
+@import './utilities.css' layer(utilities);
 
 @plugin "@tailwindcss/typography";
 

@@ -2,10 +2,10 @@
 // Runtime types generated with workerd@1.20250409.0 2024-12-30 nodejs_compat
 declare namespace Cloudflare {
   interface Env {
-    NEXT_INC_CACHE_KV: KVNamespace;
-    NEXT_INC_CACHE_R2_BUCKET: R2Bucket;
-    NEXT_TAG_CACHE_D1: D1Database;
-    ASSETS: Fetcher;
+    NEXT_INC_CACHE_KV: KVNamespace
+    NEXT_INC_CACHE_R2_BUCKET: R2Bucket
+    NEXT_TAG_CACHE_D1: D1Database
+    ASSETS: Fetcher
   }
 }
 interface CloudflareEnv extends Cloudflare.Env {}
