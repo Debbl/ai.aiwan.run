@@ -1,7 +1,7 @@
 import { deepseek } from '@ai-sdk/deepseek'
 import { createOpenAI } from '@ai-sdk/openai'
 import { tsr } from '@ts-rest/serverless/next'
-import { TU_ZI_API_KEY, TU_ZI_BASE_URL } from '@workspace/env'
+import { OPENAI_API_KEY, OPENAI_BASE_URL } from '@workspace/env'
 import { streamText } from 'ai'
 import { NextResponse } from 'next/server'
 import { blobToBase64 } from '..'
@@ -10,8 +10,8 @@ import { db } from '../db'
 import { services } from '../services'
 
 const openai = createOpenAI({
-  apiKey: TU_ZI_API_KEY,
-  baseURL: TU_ZI_BASE_URL,
+  apiKey: OPENAI_API_KEY,
+  baseURL: OPENAI_BASE_URL,
 })
 
 export const router = tsr.router(contract, {
