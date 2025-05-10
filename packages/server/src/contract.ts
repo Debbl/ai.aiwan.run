@@ -26,6 +26,9 @@ export const contract = c.router({
         contentType: 'text/plain; charset=utf-8',
         body: z.any(),
       }),
+      500: z.object({
+        error: z.string(),
+      }),
     },
   },
   aiGhibliGenerator: {

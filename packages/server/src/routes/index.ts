@@ -68,7 +68,9 @@ export const router = tsr.router(contract, {
     const r2Obj = await services.updateFile(image)
 
     if (!r2Obj) {
-      return { status: 500, body: { error: 'Failed to upload image' } }
+      return new Response(JSON.stringify({ error: 'Failed to upload image' }), {
+        status: 500,
+      })
     }
 
     const prompt = `convert this photo to studio ghibli style anime, ratio is ${ratio}`
