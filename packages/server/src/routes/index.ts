@@ -5,7 +5,7 @@ import { TU_ZI_API_KEY, TU_ZI_BASE_URL } from '@workspace/env'
 import { streamText } from 'ai'
 import { blobToBase64 } from '..'
 import { contract } from '../contract'
-import { insertImageGeneration } from '../db'
+import { db } from '../db'
 import { services } from '../services'
 
 const openai = createOpenAI({
@@ -91,7 +91,7 @@ export const router = tsr.router(contract, {
       ],
     })
 
-    insertImageGeneration(prompt, imageBase64, r2Obj.key, 'pending')
+    db.insertImageGeneration(prompt, imageBase64, r2Obj.key, 'pending')
 
     const response = result.toDataStreamResponse()
 
