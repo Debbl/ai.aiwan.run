@@ -4,10 +4,8 @@
     "target": "ESNext",
     "module": "ESNext",
     "moduleResolution": "bundler",
-    "paths": {
-      "~/*": ["./src/*"]
-    },
     "resolveJsonModule": true,
+    "types": ["../../cloudflare-env.d.ts"],
     "allowJs": true,
     "strict": true,
     "noEmit": true,

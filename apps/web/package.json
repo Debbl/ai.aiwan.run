@@ -19,10 +19,7 @@
     "start": "next start",
     "typecheck": "tsc --noEmit",
     "lint": "eslint",
-    "lint:fix": "eslint --fix",
-    "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
-    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
-    "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts"
+    "lint:fix": "eslint --fix"
   },
   "dependencies": {
     "@ai-sdk/react": "^1.2.9",
@@ -45,8 +42,8 @@
     "next": "^15.3.1",
     "next-themes": "^0.4.6",
     "radix-ui": "^1.3.4",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0",
+    "react": "catalog:",
+    "react-dom": "catalog:",
     "react-icons": "^5.5.0",
     "react-markdown": "^10.1.0",
     "sonner": "^2.0.3",
@@ -58,17 +55,15 @@
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^15.3.0",
-    "@opennextjs/cloudflare": "^1.0.0-beta.3",
     "@tailwindcss/postcss": "^4.1.4",
     "@tailwindcss/typography": "^0.5.16",
-    "@types/react": "^19.1.2",
-    "@types/react-dom": "^19.1.2",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
     "babel-plugin-react-compiler": "latest",
     "postcss": "^8.5.3",
     "prettier-plugin-tailwindcss": "^0.6.11",
     "serwist": "^9.0.14",
     "tailwindcss": "^4.1.4",
-    "unplugin-auto-import": "^19.1.2",
-    "wrangler": "^4.10.0"
+    "unplugin-auto-import": "^19.1.2"
   }
 }

@@ -5,9 +5,22 @@
     "./contract": "./src/contract.ts",
     "./handler": "./src/handler.ts"
   },
+  "scripts": {
+    "db:push": "drizzle-kit push",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate"
+  },
   "dependencies": {
     "@ai-sdk/deepseek": "^0.2.13",
     "@ai-sdk/openai": "^1.3.20",
-    "ai": "^4.3.10"
+    "ai": "^4.3.10",
+    "dotenv": "^16.5.0",
+    "drizzle-orm": "^0.43.1",
+    "react": "catalog:"
+  },
+  "devDependencies": {
+    "@types/react": "catalog:",
+    "drizzle-kit": "^0.31.1",
+    "tsx": "^4.19.4"
   }
 }
