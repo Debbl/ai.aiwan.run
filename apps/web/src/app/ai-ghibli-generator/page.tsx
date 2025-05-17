@@ -1,7 +1,8 @@
 'use client'
-import { Button, Spinner } from '@heroui/react'
 import Image from 'next/image'
 import { toast } from 'sonner'
+import { Spinner } from '~/components/spinner'
+import { Button } from '~/components/ui/button'
 import { Input } from '../../components/ui/input'
 import { PajamasClear } from '../../icons'
 import { useAiGhibliGenerator } from './hooks/use-ai-ghibli-generator'
@@ -56,9 +57,8 @@ export default function Page() {
 
           <Button
             color='primary'
-            size='sm'
-            onPress={handleClick}
-            isDisabled={status !== 'ready' || !originImage}
+            onClick={handleClick}
+            disabled={status !== 'ready' || !originImage}
             data-umami-event='click-ai-ghibli-generator-generate'
           >
             Generate
@@ -67,8 +67,8 @@ export default function Page() {
             <Button
               color='primary'
               size='sm'
-              onPress={handleDownload}
-              isDisabled={status !== 'ready' || !originImage}
+              onClick={handleDownload}
+              disabled={status !== 'ready' || !originImage}
               data-umami-event='click-ai-ghibli-generator-download'
             >
               Download
@@ -82,10 +82,8 @@ export default function Page() {
               <Button
                 size='sm'
                 aria-label='Clear'
-                isIconOnly
-                variant='flat'
                 className='absolute top-2 right-2 opacity-0 group-hover:opacity-100'
-                onPress={() => setOriginImage('')}
+                onClick={() => setOriginImage('')}
               >
                 {<PajamasClear className='size-4' />}
               </Button>
@@ -96,7 +94,10 @@ export default function Page() {
           {generatedImage && (
             <div className='relative flex flex-1 items-center'>
               {['streaming', 'generating'].includes(status) && (
-                <Spinner className='absolute inset-0 bg-white/50 text-white dark:bg-black/50' label={`${progress}%`} />
+                <div className='absolute inset-0 flex items-center justify-center bg-white/50 text-white dark:bg-black/50'>
+                  <Spinner className='size-4' />
+                  <span className='text-sm'>{progress}%</span>
+                </div>
               )}
 
               <Image src={generatedImage} alt='generated image' width={100} height={100} className='size-full' />
