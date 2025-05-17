@@ -1,1 +1,1 @@
-export * as schema from './exports'
+export * as schema from './internal'

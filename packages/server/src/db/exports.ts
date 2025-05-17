@@ -1,1 +1,1 @@
-export { insertImageGeneration, updateImageGeneration } from './image-generations'
+export { insertImageGeneration, updateImageGeneration } from '../dao/image-generations'

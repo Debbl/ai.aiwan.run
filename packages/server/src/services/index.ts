@@ -1,1 +1,1 @@
-export * as services from './exports'
+export * as services from './internal'

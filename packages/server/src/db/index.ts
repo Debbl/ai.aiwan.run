@@ -1,1 +1,1 @@
-export * as db from './image-generations'
+export * as db from '../dao/image-generations'
