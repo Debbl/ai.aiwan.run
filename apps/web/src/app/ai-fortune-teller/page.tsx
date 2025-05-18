@@ -5,7 +5,6 @@ import { contract } from '@workspace/server/contract'
 import { format } from 'date-fns'
 import { useAtom } from 'jotai/react'
 import { Loader2Icon, LoaderCircleIcon } from 'lucide-react'
-import Link from 'next/link'
 import { useEffect, useMemo, useState } from 'react'
 import Markdown from 'react-markdown'
 import { getApiUrl } from '~/api'
@@ -71,18 +70,6 @@ export default function Page() {
   return (
     <>
       <div className='relative flex min-h-screen flex-col items-center'>
-        <div className='bg-background sticky top-0 z-10 flex w-full items-center justify-between border-b p-2 shadow-xs'>
-          <Link href='/'>~</Link>
-          <div className='flex items-center gap-2'>
-            <a href='https://status.deepseek.com/' target='_blank' rel='noopener noreferrer'>
-              status
-            </a>
-            <a href='https://aiwan.run/' target='_blank' rel='noopener noreferrer'>
-              me
-            </a>
-          </div>
-        </div>
-
         <h1 className='mt-10 text-center text-2xl font-bold'>DeepSeek AI 算命</h1>
 
         {reasoning && (

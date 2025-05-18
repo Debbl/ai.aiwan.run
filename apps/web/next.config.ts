@@ -56,6 +56,10 @@ const nextConfig: NextConfig = {
             from: '~/api',
             imports: ['api'],
           },
+          {
+            from: 'next-view-transitions',
+            imports: ['Link'],
+          },
         ],
         dts: true,
       }),

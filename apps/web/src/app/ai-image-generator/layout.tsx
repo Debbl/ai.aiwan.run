@@ -2,8 +2,8 @@ import { DefaultLayout } from '../_components/default-layout'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'AI Ghibli Generator',
-  description: 'AI Ghibli Generator',
+  title: 'AI Image Generator',
+  description: 'AI Image Generator',
 }
 
 export default function Layout({ children }: { children: React.ReactNode }) {

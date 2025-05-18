@@ -1,6 +1,6 @@
+import { ViewTransitions } from 'next-view-transitions'
 import { Toaster } from 'sonner'
 import { Providers } from '../providers'
-import { Footer } from './_components/footer'
 import './styles/index.css'
 import type { Metadata } from 'next'
 
@@ -36,22 +36,23 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang='en' suppressHydrationWarning>
-      <head>
-        <script
-          defer
-          src='https://umami.aiwan.run/script.js'
-          data-website-id='4cb87172-a3d4-4c22-8787-056e690d0b5a'
-          data-domains='ai.aiwan.run'
-        />
-      </head>
-      <body>
-        <Providers>
-          <Toaster />
-          <main className='relative min-h-screen'>{children}</main>
-          <Footer />
-        </Providers>
-      </body>
-    </html>
+    <ViewTransitions>
+      <html lang='en' suppressHydrationWarning>
+        <head>
+          <script
+            defer
+            src='https://umami.aiwan.run/script.js'
+            data-website-id='4cb87172-a3d4-4c22-8787-056e690d0b5a'
+            data-domains='ai.aiwan.run'
+          />
+        </head>
+        <body>
+          <Providers>
+            <Toaster />
+            {children}
+          </Providers>
+        </body>
+      </html>
+    </ViewTransitions>
   )
 }
