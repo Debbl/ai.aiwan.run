@@ -2,7 +2,7 @@ import { createOpenAI } from '@ai-sdk/openai'
 import { logger, task } from '@trigger.dev/sdk/v3'
 import { generateText } from 'ai'
 import { OPENAI_API_KEY, OPENAI_BASE_URL } from '~/env'
-import { api } from './api'
+import { api, baseUrl } from './api'
 
 const openai = createOpenAI({
   apiKey: OPENAI_API_KEY,
@@ -32,7 +32,7 @@ export const generationImageTask = task({
           content: [
             {
               type: 'image',
-              image: 'https://r2.aiwan.run/46ed85f8-cc51-4c78-a0b3-5b5b0cb5ba12.png',
+              image: `${baseUrl}/${payload.originalImageUrl}`,
             },
             {
               type: 'text',
