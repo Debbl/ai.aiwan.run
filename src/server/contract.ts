@@ -24,6 +24,7 @@ export const contract = c.router({
       id: z.number(),
       status: z.enum(['loading', 'processing', 'completed', 'failed']).optional(),
       prompt: z.string().optional(),
+      generationText: z.string().optional(),
       originalImageUrl: z.string().optional(),
       generatedImageUrl: z.string().optional(),
     }),
@@ -55,7 +56,7 @@ export const contract = c.router({
       ratio: string
     }>(),
     responses: {
-      200: z.string(),
+      200: z.any(),
       500: z.string(),
     },
   },

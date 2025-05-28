@@ -17,13 +17,14 @@ export const router = tsr.router(contract, {
     return { status: 200, body: { url: r2Obj?.key || '' } }
   },
   updateImageGeneration: async ({ body }) => {
-    const { id, status, prompt, originalImageUrl, generatedImageUrl } = body
+    const { id, status, prompt, originalImageUrl, generatedImageUrl, generationText } = body
 
     try {
       await db.updateImageGeneration({
         id,
         status,
         prompt,
+        generationText,
         originalImageUrl,
         generatedImageUrl,
       })
@@ -100,7 +101,7 @@ export const router = tsr.router(contract, {
       }
     }
 
-    tasks.trigger<typeof generationImageTask>('generate-image', {
+    const handle = await tasks.trigger<typeof generationImageTask>('generate-image', {
       id: 1,
       prompt,
       originalImageUrl: r2Obj.key,
@@ -108,7 +109,7 @@ export const router = tsr.router(contract, {
 
     return {
       status: 200,
-      body: 'ok',
+      body: handle,
     }
   },
 })

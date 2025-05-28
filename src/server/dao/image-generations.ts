@@ -19,6 +19,7 @@ export async function updateImageGeneration(values: {
   prompt?: string
   originalImageUrl?: string
   generatedImageUrl?: string
+  generationText?: string
 }) {
   const db = await getDBAsync()
 

@@ -1,9 +1,8 @@
 import { createOpenAI } from '@ai-sdk/openai'
 import { logger, task } from '@trigger.dev/sdk/v3'
-import { streamText } from 'ai'
-import { api } from '~/api'
+import { generateText } from 'ai'
 import { OPENAI_API_KEY, OPENAI_BASE_URL } from '~/env'
-import { blobToBase64 } from '../server'
+import { api } from './api'
 
 const openai = createOpenAI({
   apiKey: OPENAI_API_KEY,
@@ -14,16 +13,18 @@ export const generationImageTask = task({
   id: 'generate-image',
   maxDuration: 10 * 60,
   run: async (payload: { id: number; prompt: string; originalImageUrl: string }) => {
-    await api.updateImageGeneration({
+    logger.log(JSON.stringify(payload, null, 2))
+
+    const updateStatus = await api.updateImageGeneration({
       body: {
         id: payload.id,
+        status: 'processing',
       },
     })
 
-    const blob = await fetch(payload.originalImageUrl).then((res) => res.blob())
-    const imageBase64 = await blobToBase64(blob)
+    logger.log(JSON.stringify(updateStatus, null, 2))
 
-    const result = streamText({
+    const result = await generateText({
       model: openai('gpt-4o-image-vip'),
       messages: [
         {
@@ -31,7 +32,7 @@ export const generationImageTask = task({
           content: [
             {
               type: 'image',
-              image: imageBase64,
+              image: 'https://r2.aiwan.run/46ed85f8-cc51-4c78-a0b3-5b5b0cb5ba12.png',
             },
             {
               type: 'text',
@@ -42,8 +43,16 @@ export const generationImageTask = task({
       ],
     })
 
-    for await (const chunk of result.textStream) {
-      logger.log(chunk)
-    }
+    logger.log(result.text)
+
+    const updateGenerationText = await api.updateImageGeneration({
+      body: {
+        id: payload.id,
+        status: 'completed',
+        generationText: result.text,
+      },
+    })
+
+    logger.log(JSON.stringify(updateGenerationText, null, 2))
   },
 })
