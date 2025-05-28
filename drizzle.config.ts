@@ -5,7 +5,7 @@ import { defineConfig } from 'drizzle-kit'
 const getLocalD1 = () => {
   try {
     const basePath = path.resolve(
-      '../../.wrangler/state/v3/d1/miniflare-D1DatabaseObject/8288b704ef1aa1ad30abc1b56baccf178a3b0940566cc07f373946ab2a4c0e30.sqlite',
+      '.wrangler/state/v3/d1/miniflare-D1DatabaseObject/8288b704ef1aa1ad30abc1b56baccf178a3b0940566cc07f373946ab2a4c0e30.sqlite',
     )
     console.log('🚀 ~ getLocalD1 ~ basePath:', basePath)
 
@@ -17,7 +17,7 @@ const getLocalD1 = () => {
 
 export default defineConfig({
   out: './drizzle',
-  schema: './src/db/schema/internal.ts',
+  schema: './src/server/db/schema/internal.ts',
   dialect: 'sqlite',
   dbCredentials: {
     url: getLocalD1() || '',
