@@ -19,7 +19,7 @@
     "db:gen": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
     "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
-    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy && pnpm db:migrate",
+    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy && wrangler d1 migrations apply",
     "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts",
     "trigger:dev": "trigger dev",
     "trigger:deploy": "trigger deploy",
