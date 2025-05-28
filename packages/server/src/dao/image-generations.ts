@@ -13,22 +13,14 @@ export async function insertImageGeneration(values: {
   return await db.insert(schema.imageGenerationsTable).values(values)
 }
 
-export async function updateImageGeneration(
-  id: number,
-  status?: string,
-  prompt?: string,
-  originalImageUrl?: string,
-  generatedImageUrl?: string,
-) {
+export async function updateImageGeneration(values: {
+  id: number
+  status?: string
+  prompt?: string
+  originalImageUrl?: string
+  generatedImageUrl?: string
+}) {
   const db = await getDBAsync()
 
-  return await db
-    .update(schema.imageGenerationsTable)
-    .set({
-      prompt,
-      status,
-      originalImageUrl,
-      generatedImageUrl,
-    })
-    .where(eq(schema.imageGenerationsTable.id, id))
+  return await db.update(schema.imageGenerationsTable).set(values).where(eq(schema.imageGenerationsTable.id, values.id))
 }

@@ -17,6 +17,21 @@ export const contract = c.router({
       }),
     },
   },
+  updateImageGeneration: {
+    method: 'POST',
+    path: '/update-image-generation',
+    body: z.object({
+      id: z.number(),
+      status: z.enum(['loading', 'processing', 'completed', 'failed']).optional(),
+      prompt: z.string().optional(),
+      originalImageUrl: z.string().optional(),
+      generatedImageUrl: z.string().optional(),
+    }),
+    responses: {
+      200: z.string(),
+      500: z.string(),
+    },
+  },
   aiFortuneTeller: {
     method: 'POST',
     path: '/ai-fortune-teller',
@@ -40,10 +55,8 @@ export const contract = c.router({
       ratio: string
     }>(),
     responses: {
-      200: c.otherResponse({
-        contentType: 'text/plain; charset=utf-8',
-        body: z.any(),
-      }),
+      200: z.string(),
+      500: z.string(),
     },
   },
 })

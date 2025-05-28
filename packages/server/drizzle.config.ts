@@ -1,14 +1,25 @@
-import { CLOUDFLARE_ACCOUNT_ID, CLOUDFLARE_D1_TOKEN, CLOUDFLARE_DATABASE_ID } from '@workspace/env'
+/* eslint-disable no-console */
+import path from 'node:path'
 import { defineConfig } from 'drizzle-kit'
+
+const getLocalD1 = () => {
+  try {
+    const basePath = path.resolve(
+      '../../.wrangler/state/v3/d1/miniflare-D1DatabaseObject/8288b704ef1aa1ad30abc1b56baccf178a3b0940566cc07f373946ab2a4c0e30.sqlite',
+    )
+    console.log('🚀 ~ getLocalD1 ~ basePath:', basePath)
+
+    return basePath
+  } catch (err) {
+    console.log(`Error  ${err}`)
+  }
+}
 
 export default defineConfig({
   out: './drizzle',
-  schema: './src/db/schema/exports.ts',
+  schema: './src/db/schema/internal.ts',
   dialect: 'sqlite',
-  driver: 'd1-http',
   dbCredentials: {
-    accountId: CLOUDFLARE_ACCOUNT_ID,
-    databaseId: CLOUDFLARE_DATABASE_ID,
-    token: CLOUDFLARE_D1_TOKEN,
+    url: getLocalD1() || '',
   },
 })

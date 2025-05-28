@@ -1,18 +1,11 @@
 import { deepseek } from '@ai-sdk/deepseek'
-import { createOpenAI } from '@ai-sdk/openai'
+import { tasks } from '@trigger.dev/sdk/v3'
 import { tsr } from '@ts-rest/serverless/next'
-import { OPENAI_API_KEY, OPENAI_BASE_URL } from '@workspace/env'
 import { streamText } from 'ai'
-import { NextResponse } from 'next/server'
-import { blobToBase64 } from '..'
 import { contract } from '../contract'
 import { db } from '../db'
 import { services } from '../services'
-
-const openai = createOpenAI({
-  apiKey: OPENAI_API_KEY,
-  baseURL: OPENAI_BASE_URL,
-})
+import type { generationImageTask } from '../trigger/image-genration'
 
 export const router = tsr.router(contract, {
   uploadFile: async (_, { nextRequest }) => {
@@ -22,6 +15,23 @@ export const router = tsr.router(contract, {
     const r2Obj = await services.updateFile(file)
 
     return { status: 200, body: { url: r2Obj?.key || '' } }
+  },
+  updateImageGeneration: async ({ body }) => {
+    const { id, status, prompt, originalImageUrl, generatedImageUrl } = body
+
+    try {
+      await db.updateImageGeneration({
+        id,
+        status,
+        prompt,
+        originalImageUrl,
+        generatedImageUrl,
+      })
+    } catch {
+      return { status: 500, body: 'Failed to update image generation' }
+    }
+
+    return { status: 200, body: 'ok' }
   },
   aiFortuneTeller: async ({ body }, { responseHeaders }) => {
     const { messages } = body
@@ -59,38 +69,22 @@ export const router = tsr.router(contract, {
 
     return response as any
   },
-  aiGhibliGenerator: async (_, { responseHeaders, nextRequest }) => {
+  aiGhibliGenerator: async (_, { nextRequest }) => {
     const formData = await nextRequest.formData()
 
     const image = formData.get('image') as File
     const ratio = formData.get('ratio') as string
-    const imageBase64 = await blobToBase64(image)
 
     const r2Obj = await services.updateFile(image)
 
     if (!r2Obj) {
-      return NextResponse.json({ error: 'Failed to upload image' }, { status: 500 })
+      return {
+        status: 500,
+        body: 'Failed to upload image',
+      }
     }
 
     const prompt = `convert this photo to studio ghibli style anime, ratio is ${ratio}`
-    const result = streamText({
-      model: openai('gpt-4o-image-vip'),
-      messages: [
-        {
-          role: 'user',
-          content: [
-            {
-              type: 'image',
-              image: imageBase64,
-            },
-            {
-              type: 'text',
-              text: prompt,
-            },
-          ],
-        },
-      ],
-    })
 
     const res = await db.insertImageGeneration({
       prompt,
@@ -100,14 +94,21 @@ export const router = tsr.router(contract, {
     })
 
     if (!res.success) {
-      return NextResponse.json({ error: res.error }, { status: 500 })
+      return {
+        status: 500,
+        body: 'Failed to insert image generation',
+      }
     }
 
-    const response = result.toDataStreamResponse()
+    tasks.trigger<typeof generationImageTask>('generate-image', {
+      id: 1,
+      prompt,
+      originalImageUrl: r2Obj.key,
+    })
 
-    for (const [key, value] of response.headers) {
-      responseHeaders.set(key, value)
+    return {
+      status: 200,
+      body: 'ok',
     }
-    return response as any
   },
 })
