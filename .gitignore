@@ -1,7 +1,10 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-#next
+# next
 .next
+
+# trigger
+.trigger
 
 # dependencies
 node_modules

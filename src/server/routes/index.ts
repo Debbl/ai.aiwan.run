@@ -5,7 +5,7 @@ import { streamText } from 'ai'
 import { contract } from '../contract'
 import { db } from '../db'
 import { services } from '../services'
-import type { generationImageTask } from '../trigger/image-genration'
+import type { generationImageTask } from '../../trigger/image-genration'
 
 export const router = tsr.router(contract, {
   uploadFile: async (_, { nextRequest }) => {

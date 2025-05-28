@@ -6,10 +6,6 @@ const config: OpenNextConfig = {
   ...defineCloudflareConfig({
     incrementalCache: kvIncrementalCache,
   }),
-  appPath: 'apps/web',
-  buildOutputPath: 'apps/web',
-  packageJsonPath: 'apps/web',
-  buildCommand: 'turbo build',
 }
 
 export default config

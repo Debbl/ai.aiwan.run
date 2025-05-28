@@ -1,9 +1,9 @@
 import { createOpenAI } from '@ai-sdk/openai'
 import { logger, task } from '@trigger.dev/sdk/v3'
 import { streamText } from 'ai'
+import { api } from '~/api'
 import { OPENAI_API_KEY, OPENAI_BASE_URL } from '~/env'
-import { blobToBase64 } from '..'
-import { api } from '../api'
+import { blobToBase64 } from '../server'
 
 const openai = createOpenAI({
   apiKey: OPENAI_API_KEY,
