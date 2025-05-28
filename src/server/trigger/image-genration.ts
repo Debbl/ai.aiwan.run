@@ -1,7 +1,7 @@
 import { createOpenAI } from '@ai-sdk/openai'
 import { logger, task } from '@trigger.dev/sdk/v3'
-import { OPENAI_API_KEY, OPENAI_BASE_URL } from '@workspace/env'
 import { streamText } from 'ai'
+import { OPENAI_API_KEY, OPENAI_BASE_URL } from '~/env'
 import { blobToBase64 } from '..'
 import { api } from '../api'
 

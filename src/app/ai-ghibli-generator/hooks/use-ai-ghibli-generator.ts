@@ -1,9 +1,9 @@
 import { callChatApi, generateId } from '@ai-sdk/ui-utils'
 import { useEffectEvent } from '@debbl/ahooks'
-import { contract } from '@workspace/server/contract'
 import { useMemo, useState } from 'react'
 import useSWR from 'swr'
 import { getApiUrl } from '~/api'
+import { contract } from '~/server/contract'
 import { getImageSize } from '../../../utils'
 
 export function useAiGhibliGenerator() {

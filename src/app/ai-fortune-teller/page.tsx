@@ -1,7 +1,6 @@
 'use client'
 import { useChat } from '@ai-sdk/react'
 import { useEffectEvent, useHydrated } from '@debbl/ahooks'
-import { contract } from '@workspace/server/contract'
 import { format } from 'date-fns'
 import { useAtom } from 'jotai/react'
 import { Loader2Icon, LoaderCircleIcon } from 'lucide-react'
@@ -12,8 +11,9 @@ import { CopyButton } from '~/components/animate-ui/buttons/copy'
 import { RippleButton } from '~/components/animate-ui/buttons/ripple'
 import { DateTimePicker } from '~/components/datetime-picker'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~/components/ui/select'
-import { Skeleton } from '~/components/ui/skeloton'
+import { Skeleton } from '~/components/ui/skeleton'
 import { MaterialSymbolsFemale, MaterialSymbolsMaleRounded } from '~/icons'
+import { contract } from '~/server/contract'
 import { infoAtom } from './atoms/info'
 
 export default function Page() {

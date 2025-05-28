@@ -1,11 +1,11 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "main": "apps/web/.open-next/worker.js",
+  "main": ".open-next/worker.js",
   "name": "ai-aiwan-run",
   "compatibility_date": "2024-12-30",
   "compatibility_flags": ["nodejs_compat"],
   "assets": {
-    "directory": "apps/web/.open-next/assets",
+    "directory": ".open-next/assets",
     "binding": "ASSETS"
   },
   "kv_namespaces": [

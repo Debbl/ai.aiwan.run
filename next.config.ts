@@ -3,8 +3,8 @@ import { fileURLToPath } from 'node:url'
 import bundleAnalyzer from '@next/bundle-analyzer'
 import { initOpenNextCloudflareForDev } from '@opennextjs/cloudflare'
 import withSerwistInit from '@serwist/next'
-import { ANALYZE } from '@workspace/env'
 import AutoImport from 'unplugin-auto-import/webpack'
+import { ANALYZE } from './src/env'
 import type { NextConfig } from 'next'
 
 initOpenNextCloudflareForDev()
