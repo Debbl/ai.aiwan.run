@@ -1,1 +1,0 @@
-ALTER TABLE `image_generations_table` ADD `generationText` text DEFAULT '';

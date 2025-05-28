@@ -17,6 +17,7 @@
   "d1_databases": [
     {
       "database_id": "91b6ff7c-acbe-44aa-bad3-b9680486979b",
+      "database_name": "ai-aiwan-run",
       "binding": "NEXT_TAG_CACHE_D1",
       "migrations_dir": "./drizzle"
     }

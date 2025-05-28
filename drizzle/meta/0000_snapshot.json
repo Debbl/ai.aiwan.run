@@ -1,7 +1,7 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "f0ed631c-299b-4043-9709-332c4f2e01d7",
+  "id": "15f27550-bd68-4c55-baf1-c4a334aa0659",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "image_generations_table": {
@@ -20,6 +20,14 @@
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
+        },
+        "generationText": {
+          "name": "generationText",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false,
+          "default": "''"
         },
         "status": {
           "name": "status",
