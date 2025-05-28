@@ -69,7 +69,7 @@
     "@debbl/eslint-config": "^3.11.0",
     "@next/bundle-analyzer": "^15.3.2",
     "@opennextjs/aws": "^3.6.4",
-    "@opennextjs/cloudflare": "^1.0.4",
+    "@opennextjs/cloudflare": "^1.1.0",
     "@serwist/next": "^9.0.14",
     "@tailwindcss/typography": "^0.5.16",
     "@types/node": "^22.15.23",

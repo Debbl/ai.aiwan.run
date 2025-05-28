@@ -130,8 +130,8 @@ importers:
         specifier: ^3.6.4
         version: 3.6.4
       '@opennextjs/cloudflare':
-        specifier: ^1.0.4
-        version: 1.0.4(wrangler@4.17.0)
+        specifier: ^1.1.0
+        version: 1.1.0(wrangler@4.17.0)
       '@serwist/next':
         specifier: ^9.0.14
         version: 9.0.14(next@15.3.2(@babel/core@7.27.1)(@opentelemetry/api@1.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(typescript@5.8.3)
@@ -1590,8 +1590,8 @@ packages:
     resolution: {integrity: sha512-/bn9N/6dVu9+sC7AptaGJylKUzyDDgqe3yKfvUxXOpy7whIq/+3Bw+q2/bilyQg6FcskbCWUt9nLvNf1hAVmfA==}
     hasBin: true
 
-  '@opennextjs/cloudflare@1.0.4':
-    resolution: {integrity: sha512-DVudGpOSJ91ruPiBJ0kuFmPhEQbXIXLTbvUjAx1OlbwFskG2gvdNIAmF3ZXV6z1VGDO7Q/u2W2ybMZLf7avlrA==}
+  '@opennextjs/cloudflare@1.1.0':
+    resolution: {integrity: sha512-8DOzpLiewivA1pwRNGVPDXbrF79bzJiHscY+M1tekwvKqEqM26CRYafhrA5IDCeyteNaL9AZD6X4DLuCn/eeYQ==}
     hasBin: true
     peerDependencies:
       wrangler: ^4.14.0
@@ -8469,7 +8469,7 @@ snapshots:
       - aws-crt
       - supports-color
 
-  '@opennextjs/cloudflare@1.0.4(wrangler@4.17.0)':
+  '@opennextjs/cloudflare@1.1.0(wrangler@4.17.0)':
     dependencies:
       '@dotenvx/dotenvx': 1.31.0
       '@opennextjs/aws': 3.6.4
