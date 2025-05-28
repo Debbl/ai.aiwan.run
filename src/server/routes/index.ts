@@ -3,6 +3,7 @@ import { tasks } from '@trigger.dev/sdk/v3'
 import { tsr } from '@ts-rest/serverless/next'
 import { streamText } from 'ai'
 import { TRIGGER_SECRET_KEY } from '~/env'
+import { getR2Url } from '..'
 import { contract } from '../contract'
 import { db } from '../db'
 import { services } from '../services'
@@ -106,7 +107,7 @@ export const router = tsr.router(contract, {
       secretKey: TRIGGER_SECRET_KEY,
       id: res.meta.last_row_id,
       prompt,
-      originalImageUrl: r2Obj.key,
+      originalImageUrl: getR2Url(r2Obj.key),
     })
 
     return {

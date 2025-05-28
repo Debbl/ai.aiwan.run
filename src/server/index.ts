@@ -2,7 +2,7 @@ import { Buffer } from 'node:buffer'
 import { R2_BASE_URL } from '~/env'
 
 export function getR2Url(key: string) {
-  return `${R2_BASE_URL}${key}`
+  return `${R2_BASE_URL}/${key}`
 }
 
 export async function blobToBase64(blob: Blob) {
