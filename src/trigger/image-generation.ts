@@ -1,7 +1,7 @@
 import { createOpenAI } from '@ai-sdk/openai'
 import { logger, task } from '@trigger.dev/sdk/v3'
 import { generateText } from 'ai'
-import { OPENAI_API_KEY, OPENAI_BASE_URL } from '~/env'
+import { OPENAI_API_KEY, OPENAI_BASE_URL, TRIGGER_SECRET_KEY } from '~/env'
 import { api, baseUrl } from './api'
 
 const openai = createOpenAI({
@@ -12,7 +12,12 @@ const openai = createOpenAI({
 export const generationImageTask = task({
   id: 'generate-image',
   maxDuration: 10 * 60,
-  run: async (payload: { id: number; prompt: string; originalImageUrl: string }) => {
+  run: async (payload: { secretKey: string; id: number; prompt: string; originalImageUrl: string }) => {
+    if (payload.secretKey !== TRIGGER_SECRET_KEY) {
+      logger.error('Invalid secret key')
+      return
+    }
+
     logger.log(JSON.stringify(payload, null, 2))
 
     const updateStatus = await api.updateImageGeneration({
