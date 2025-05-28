@@ -23,6 +23,7 @@ export const contract = c.router({
     body: z.object({
       id: z.number(),
       status: z.enum(['loading', 'processing', 'completed', 'failed']).optional(),
+      secretKey: z.string(),
       prompt: z.string().optional(),
       generationText: z.string().optional(),
       originalImageUrl: z.string().optional(),

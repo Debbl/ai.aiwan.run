@@ -21,6 +21,13 @@ export const router = tsr.router(contract, {
   updateImageGeneration: async ({ body }) => {
     const { id, status, prompt, originalImageUrl, generatedImageUrl, generationText } = body
 
+    if (body.secretKey !== TRIGGER_SECRET_KEY) {
+      return {
+        status: 400,
+        body: 'Invalid secret key',
+      }
+    }
+
     try {
       await db.updateImageGeneration({
         id,
@@ -104,7 +111,6 @@ export const router = tsr.router(contract, {
     }
 
     const handle = await tasks.trigger<typeof generationImageTask>('generate-image', {
-      secretKey: TRIGGER_SECRET_KEY,
       id: res.meta.last_row_id,
       prompt,
       originalImageUrl: getR2Url(r2Obj.key),

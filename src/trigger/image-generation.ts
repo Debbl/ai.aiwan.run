@@ -12,22 +12,21 @@ const openai = createOpenAI({
 export const generationImageTask = task({
   id: 'generate-image',
   maxDuration: 10 * 60,
-  run: async (payload: { secretKey: string; id: number; prompt: string; originalImageUrl: string }) => {
-    if (payload.secretKey !== TRIGGER_SECRET_KEY) {
-      logger.error('Invalid secret key')
-      return
-    }
-
+  run: async (payload: { id: number; prompt: string; originalImageUrl: string }) => {
     logger.log(JSON.stringify(payload, null, 2))
 
     const updateStatus = await api.updateImageGeneration({
       body: {
+        secretKey: TRIGGER_SECRET_KEY,
         id: payload.id,
         status: 'processing',
       },
     })
 
     logger.log(JSON.stringify(updateStatus, null, 2))
+    if (updateStatus.status !== 200) {
+      throw new Error('Failed to update image generation status')
+    }
 
     const result = await generateText({
       model: openai('gpt-4o-image-vip'),
@@ -53,11 +52,15 @@ export const generationImageTask = task({
     const updateGenerationText = await api.updateImageGeneration({
       body: {
         id: payload.id,
+        secretKey: TRIGGER_SECRET_KEY,
         status: 'completed',
         generationText: result.text,
       },
     })
 
     logger.log(JSON.stringify(updateGenerationText, null, 2))
+    if (updateGenerationText.status !== 200) {
+      throw new Error('Failed to update image generation text')
+    }
   },
 })
