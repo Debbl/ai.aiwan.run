@@ -1,11 +1,11 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "main": "apps/web/.open-next/worker.js",
+  "main": ".open-next/worker.js",
   "name": "ai-aiwan-run",
   "compatibility_date": "2024-12-30",
   "compatibility_flags": ["nodejs_compat"],
   "assets": {
-    "directory": "apps/web/.open-next/assets",
+    "directory": ".open-next/assets",
     "binding": "ASSETS"
   },
   "kv_namespaces": [
@@ -18,7 +18,7 @@
     {
       "database_id": "91b6ff7c-acbe-44aa-bad3-b9680486979b",
       "binding": "NEXT_TAG_CACHE_D1",
-      "migrations_dir": "packages/server/drizzle"
+      "migrations_dir": "drizzle"
     }
   ],
   "r2_buckets": [
