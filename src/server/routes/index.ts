@@ -3,7 +3,6 @@ import { tasks } from '@trigger.dev/sdk/v3'
 import { tsr } from '@ts-rest/serverless/next'
 import { streamText } from 'ai'
 import { TRIGGER_SECRET_KEY } from '~/env'
-import { getR2Url } from '..'
 import { contract } from '../contract'
 import { db } from '../db'
 import { services } from '../services'
@@ -113,7 +112,7 @@ export const router = tsr.router(contract, {
     const handle = await tasks.trigger<typeof generationImageTask>('generate-image', {
       id: res.meta.last_row_id,
       prompt,
-      originalImageUrl: getR2Url(r2Obj.key),
+      image,
     })
 
     return {
