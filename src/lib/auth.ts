@@ -11,7 +11,7 @@ export const createAuth = (db: DB) =>
     trustedOrigins: ['http://localhost:8787'],
     advanced: {
       ipAddress: {
-        ipAddressHeaders: ['x-client-ip', 'x-forwarded-for'],
+        ipAddressHeaders: ['x-client-ip', 'x-forwarded-for', 'x-real-ip', 'cf-connecting-ip'],
         disableIpTracking: false,
       },
     },
