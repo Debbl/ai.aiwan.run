@@ -3,12 +3,15 @@ import { tasks } from '@trigger.dev/sdk/v3'
 import { tsr } from '@ts-rest/serverless/next'
 import { streamText } from 'ai'
 import { TRIGGER_SECRET_KEY } from '~/env'
+import { dao } from '~/server/dao'
 import { contract } from '../contract'
-import { db } from '../db'
 import { services } from '../services'
 import type { generationImageTask } from '~/trigger/image-generation'
 
 export const router = tsr.router(contract, {
+  test: async () => {
+    return { status: 200, body: 'ok' }
+  },
   uploadFile: async (_, { nextRequest }) => {
     const formData = await nextRequest.formData()
     const file = formData.get('file') as File
@@ -28,7 +31,7 @@ export const router = tsr.router(contract, {
     }
 
     try {
-      await db.updateImageGeneration({
+      await dao.imageGenerations.update({
         id,
         status,
         prompt,
@@ -95,7 +98,7 @@ export const router = tsr.router(contract, {
 
     const prompt = `convert this photo to studio ghibli style anime, ratio is ${ratio}`
 
-    const res = await db.insertImageGeneration({
+    const res = await dao.imageGenerations.insert({
       prompt,
       originalImageUrl: r2Obj.key,
       generatedImageUrl: '',

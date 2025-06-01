@@ -4,6 +4,16 @@ import { z } from 'zod'
 const c = initContract()
 
 export const contract = c.router({
+  test: {
+    method: 'POST',
+    path: '/test',
+    body: z.object({
+      name: z.string(),
+    }),
+    responses: {
+      200: z.string(),
+    },
+  },
   uploadFile: {
     method: 'POST',
     path: '/upload-file',

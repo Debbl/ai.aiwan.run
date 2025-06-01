@@ -12,6 +12,7 @@ import { RippleButton } from '~/components/animate-ui/buttons/ripple'
 import { DateTimePicker } from '~/components/datetime-picker'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~/components/ui/select'
 import { Skeleton } from '~/components/ui/skeleton'
+import { useAuthGuard } from '~/hooks/useAuth'
 import { MaterialSymbolsFemale, MaterialSymbolsMaleRounded } from '~/icons'
 import { contract } from '~/server/contract'
 import { infoAtom } from './atoms/info'
@@ -35,9 +36,20 @@ export default function Page() {
 
   const [isShowThinking, setIsShowThinking] = useState(false)
 
-  const { status, messages, setInput, handleSubmit } = useChat({
+  const {
+    status,
+    messages,
+    setInput,
+    handleSubmit: _handleSubmit,
+  } = useChat({
     api: getApiUrl(contract.aiFortuneTeller),
   })
+
+  const { handleAuthGuard } = useAuthGuard()
+  const handleSubmit = () => {
+    handleAuthGuard()
+    _handleSubmit()
+  }
 
   const { isHydrated } = useHydrated()
 

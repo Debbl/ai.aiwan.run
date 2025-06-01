@@ -8,6 +8,13 @@
       "when": 1748446145890,
       "tag": "0000_quick_nehzno",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1748669612179,
+      "tag": "0001_big_human_torch",
+      "breakpoints": true
     }
   ]
 }

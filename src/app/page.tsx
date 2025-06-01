@@ -1,6 +1,16 @@
+'use client'
 import { DefaultLayout } from './_components/default-layout'
 
 export default function Home() {
+  // const handleTest = async () => {
+  //   const res = await api.test({
+  //     body: {
+  //       name: 'test',
+  //     },
+  //   })
+  //   console.log('🚀 ~ handleTest ~ res:', res)
+  // }
+
   return (
     <DefaultLayout>
       <main className='flex min-h-screen flex-col items-center justify-center md:p-12'>
@@ -16,6 +26,8 @@ export default function Home() {
           <Link className='hover:text-blue-400' href='/ai-image-generator'>
             AI Image Generator
           </Link>
+
+          {/* <Button onClick={handleTest}>Test</Button> */}
         </div>
       </main>
     </DefaultLayout>

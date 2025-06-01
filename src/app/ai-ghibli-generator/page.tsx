@@ -3,14 +3,17 @@ import Image from 'next/image'
 import { toast } from 'sonner'
 import { Spinner } from '~/components/spinner'
 import { Button } from '~/components/ui/button'
+import { useAuthGuard } from '~/hooks/useAuth'
 import { Input } from '../../components/ui/input'
 import { PajamasClear } from '../../icons'
 import { useAiGhibliGenerator } from './hooks/use-ai-ghibli-generator'
 
 export default function Page() {
   const { status, originImage, progress, generatedImage, setOriginImage, handleSubmit } = useAiGhibliGenerator()
+  const { handleAuthGuard } = useAuthGuard()
 
   const handleClick = async () => {
+    handleAuthGuard()
     handleSubmit()
   }
 
