@@ -9,6 +9,12 @@ export const createAuth = (db: DB) =>
       enabled: true,
     },
     trustedOrigins: ['http://localhost:8787'],
+    advanced: {
+      ipAddress: {
+        ipAddressHeaders: ['x-client-ip', 'x-forwarded-for'],
+        disableIpTracking: false,
+      },
+    },
   })
 
 export type Auth = ReturnType<typeof createAuth>
