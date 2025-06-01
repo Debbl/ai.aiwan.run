@@ -1,4 +1,5 @@
 import { ViewTransitions } from 'next-view-transitions'
+import { Suspense } from 'react'
 import { Toaster } from 'sonner'
 import { Providers } from '../providers'
 import './styles/index.css'
@@ -48,8 +49,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </head>
         <body>
           <Providers>
-            <Toaster />
-            {children}
+            <Toaster richColors />
+            <Suspense>{children}</Suspense>
           </Providers>
         </body>
       </html>

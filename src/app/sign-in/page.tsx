@@ -1,6 +1,7 @@
 'use client'
 import { redirect } from 'next/navigation'
 import { parseAsString, useQueryState } from 'nuqs'
+import { toast } from 'sonner'
 import { Button } from '~/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '~/components/ui/card'
 import { Input } from '~/components/ui/input'
@@ -24,11 +25,18 @@ export default function Page() {
 
     if (!email || !password) return
 
-    await authClient.signIn.email({
-      email,
-      password,
-      callbackURL,
-    })
+    await authClient.signIn.email(
+      {
+        email,
+        password,
+        callbackURL,
+      },
+      {
+        onError: (ctx) => {
+          toast.error(ctx.error.message)
+        },
+      },
+    )
   }
 
   return (
