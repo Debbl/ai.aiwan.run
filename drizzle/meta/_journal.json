@@ -15,6 +15,13 @@
       "when": 1748669612179,
       "tag": "0001_big_human_torch",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1748773765961,
+      "tag": "0002_bent_snowbird",
+      "breakpoints": true
     }
   ]
 }

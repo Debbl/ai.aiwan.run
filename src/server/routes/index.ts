@@ -8,8 +8,10 @@ import { contract } from '../contract'
 import { services } from '../services'
 import type { generationImageTask } from '~/trigger/image-generation'
 
-export const router = tsr.router(contract, {
-  test: async () => {
+export const router = tsr.routerWithMiddleware(contract)<{ userId: string }>({
+  test: async (...args) => {
+    // eslint-disable-next-line no-console
+    console.log('🚀 ~ test: ~ args:', args)
     return { status: 200, body: 'ok' }
   },
   uploadFile: async (_, { nextRequest }) => {
@@ -81,7 +83,7 @@ export const router = tsr.router(contract, {
 
     return response as any
   },
-  aiGhibliGenerator: async (_, { nextRequest }) => {
+  aiGhibliGenerator: async (_, { request: { userId }, nextRequest }) => {
     const formData = await nextRequest.formData()
 
     const image = formData.get('image') as File
@@ -99,6 +101,7 @@ export const router = tsr.router(contract, {
     const prompt = `convert this photo to studio ghibli style anime, ratio is ${ratio}`
 
     const res = await dao.imageGenerations.insert({
+      userId,
       prompt,
       originalImageUrl: r2Obj.key,
       generatedImageUrl: '',

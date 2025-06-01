@@ -3,6 +3,7 @@ import { getDBAsync } from '~/server/db'
 import { schema } from '~/server/db/schema'
 
 export async function insert(values: {
+  userId: string
   prompt: string
   originalImageUrl: string
   generatedImageUrl: string

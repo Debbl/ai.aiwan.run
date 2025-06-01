@@ -8,7 +8,7 @@ const handler = createNextHandler(contract, router, {
   basePath: '/api',
   handlerType: 'app-router',
   requestMiddleware: [
-    tsr.middleware(async (request) => {
+    tsr.middleware<{ userId: string }>(async (request) => {
       const auth = createAuth(getDB())
       const headers = request.headers
       const session = await auth.api.getSession({
@@ -18,6 +18,7 @@ const handler = createNextHandler(contract, router, {
       if (!session) {
         return TsRestResponse.fromJson({ message: 'Unauthorized' }, { status: 401 })
       }
+      request.userId = session.user.id
     }),
   ],
 })

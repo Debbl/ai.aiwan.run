@@ -1,15 +1,17 @@
 'use client'
+import { Button } from '~/components/ui/button'
 import { DefaultLayout } from './_components/default-layout'
 
+const DEV = false
+
 export default function Home() {
-  // const handleTest = async () => {
-  //   const res = await api.test({
-  //     body: {
-  //       name: 'test',
-  //     },
-  //   })
-  //   console.log('🚀 ~ handleTest ~ res:', res)
-  // }
+  const handleTest = async () => {
+    await api.test({
+      body: {
+        name: 'test',
+      },
+    })
+  }
 
   return (
     <DefaultLayout>
@@ -27,7 +29,7 @@ export default function Home() {
             AI Image Generator
           </Link>
 
-          {/* <Button onClick={handleTest}>Test</Button> */}
+          {DEV && <Button onClick={handleTest}>Test</Button>}
         </div>
       </main>
     </DefaultLayout>
