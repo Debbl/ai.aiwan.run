@@ -36,7 +36,7 @@ export function Header() {
   const apps = [
     {
       label: 'AI Fortune teller',
-      href: '/ai-fortune-taller',
+      href: '/ai-fortune-teller',
       description: 'Tell your future',
     },
     {
@@ -44,11 +44,11 @@ export function Header() {
       href: '/ai-ghibli-generator',
       description: 'Generate Ghibli-style images',
     },
-    {
-      label: 'AI Image Generator',
-      href: '/ai-image-generator',
-      description: 'Generate images with AI',
-    },
+    // {
+    //   label: 'AI Image Generator',
+    //   href: '/ai-image-generator',
+    //   description: 'Generate images with AI',
+    // },
   ]
 
   const browserList = [

@@ -1,6 +1,6 @@
 export default function Page() {
   return (
-    <main className='flex min-h-screen flex-col items-center justify-center md:p-12'>
+    <main className='relative flex flex-1 flex-col items-center justify-center md:p-12'>
       <h1>The AI application running in your browser</h1>
 
       <div className='mt-12 flex flex-col gap-y-2'>

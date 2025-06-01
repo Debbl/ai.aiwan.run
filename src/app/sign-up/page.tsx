@@ -31,6 +31,7 @@ export default function Page() {
         name: email,
         email,
         password,
+        callbackURL: '/',
       },
       {
         onError: (ctx) => {

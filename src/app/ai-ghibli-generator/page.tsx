@@ -31,7 +31,7 @@ export default function Page() {
   }
 
   return (
-    <div className='flex min-h-screen flex-col items-center justify-center gap-y-6'>
+    <main className='relative flex flex-1 flex-col items-center justify-center gap-y-6'>
       <h1 className='text-3xl font-bold'>AI Ghibli Generator</h1>
 
       <div className='flex max-w-[60%] flex-col gap-y-2'>
@@ -108,6 +108,6 @@ export default function Page() {
           )}
         </div>
       </div>
-    </div>
+    </main>
   )
 }

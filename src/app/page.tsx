@@ -15,7 +15,7 @@ export default function Home() {
 
   return (
     <DefaultLayout>
-      <main className='flex min-h-screen flex-col items-center justify-center md:p-12'>
+      <main className='flex flex-1 flex-col items-center justify-center md:p-12'>
         <h1 className='text-3xl font-bold'>AI Apps</h1>
 
         <div className='mt-12 flex flex-col gap-y-2'>
@@ -25,9 +25,9 @@ export default function Home() {
           <Link className='hover:text-blue-400' href='/ai-ghibli-generator'>
             AI Ghibli Generator
           </Link>
-          <Link className='hover:text-blue-400' href='/ai-image-generator'>
+          {/* <Link className='hover:text-blue-400' href='/ai-image-generator'>
             AI Image Generator
-          </Link>
+          </Link> */}
 
           {DEV && <Button onClick={handleTest}>Test</Button>}
         </div>

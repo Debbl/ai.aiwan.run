@@ -11,7 +11,7 @@ export const contract = c.router({
       name: z.string(),
     }),
     responses: {
-      200: z.string(),
+      200: z.any(),
     },
   },
   uploadFile: {

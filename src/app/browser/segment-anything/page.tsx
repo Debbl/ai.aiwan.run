@@ -174,7 +174,7 @@ export default function Page() {
   }
 
   return (
-    <main className='flex min-h-screen items-center justify-center'>
+    <main className='relative flex flex-1 flex-col items-center justify-center'>
       <div>
         <h1 className='text-center text-lg font-bold'>Segment anything</h1>
 

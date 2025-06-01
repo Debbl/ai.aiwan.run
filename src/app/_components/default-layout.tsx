@@ -4,8 +4,10 @@ import { Header } from './header'
 export function DefaultLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <Header />
-      <div className='relative min-h-screen'>{children}</div>
+      <div className='flex min-h-screen flex-col'>
+        <Header />
+        <div className='relative flex flex-1'>{children}</div>
+      </div>
       <Footer />
     </>
   )

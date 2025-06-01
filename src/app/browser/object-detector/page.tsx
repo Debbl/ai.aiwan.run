@@ -112,7 +112,7 @@ export default function Page() {
   }, [output])
 
   return (
-    <div className='flex min-h-screen flex-col items-center justify-center p-12'>
+    <div className='relative flex flex-1 flex-col items-center justify-center p-12'>
       <h1 className='mb-2 text-center text-5xl font-bold'>Object Detector</h1>
       <div className='mt-12'>
         <div className='flex items-center gap-x-2'>

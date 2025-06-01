@@ -80,8 +80,8 @@ export default function Page() {
   }, [birthday, gender, setInput])
 
   return (
-    <>
-      <div className='relative flex min-h-screen flex-col items-center'>
+    <main className='relative flex flex-1 flex-col'>
+      <div className='relative flex flex-1 flex-col items-center'>
         <h1 className='mt-10 text-center text-2xl font-bold'>DeepSeek AI 算命</h1>
 
         {reasoning && (
@@ -151,6 +151,6 @@ export default function Page() {
           {!isHydrated && <div className='absolute inset-0 bg-gray-200' />}
         </Skeleton>
       </div>
-    </>
+    </main>
   )
 }

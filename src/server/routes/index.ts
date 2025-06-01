@@ -12,7 +12,8 @@ export const router = tsr.routerWithMiddleware(contract)<{ userId: string }>({
   test: async (...args) => {
     // eslint-disable-next-line no-console
     console.log('🚀 ~ test: ~ args:', args)
-    return { status: 200, body: 'ok' }
+    const request = args[0]
+    return { status: 200, body: JSON.stringify(request) }
   },
   uploadFile: async (_, { nextRequest }) => {
     const formData = await nextRequest.formData()
