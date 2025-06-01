@@ -21,7 +21,7 @@ export function Header() {
           {data?.user.name ? (
             <Avatar size={32} rounded={16} username={data.user.name} />
           ) : (
-            <Link href='/login'>
+            <Link href='/sign-in'>
               <Button variant='link'>Sign In</Button>
             </Link>
           )}
