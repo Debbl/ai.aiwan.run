@@ -1,4 +1,7 @@
 /* eslint-disable n/prefer-global/process */
+import { loadEnvConfig } from '@next/env'
+
+loadEnvConfig(process.cwd())
 
 export const NODE_ENV = process.env.NODE_ENV
 export const PORT = process.env.PORT

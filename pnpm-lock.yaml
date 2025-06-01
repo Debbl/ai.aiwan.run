@@ -138,6 +138,9 @@ importers:
       '@next/bundle-analyzer':
         specifier: ^15.3.3
         version: 15.3.3
+      '@next/env':
+        specifier: ^15.3.3
+        version: 15.3.3
       '@opennextjs/cloudflare':
         specifier: ^1.1.0
         version: 1.1.0(wrangler@4.17.0)
