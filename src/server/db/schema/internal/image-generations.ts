@@ -1,7 +1,7 @@
 import { int, integer, sqliteTable, text } from 'drizzle-orm/sqlite-core'
 import { user } from './auth'
 
-export const imageGenerationsTable = sqliteTable('image_generations_table', {
+export const imageGenerations = sqliteTable('image_generations_table', {
   id: int().primaryKey({ autoIncrement: true }),
   userId: text()
     .references(() => user.id)

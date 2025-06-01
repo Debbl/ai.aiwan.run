@@ -2,7 +2,7 @@
 import { Button } from '~/components/ui/button'
 import { DefaultLayout } from './_components/default-layout'
 
-const DEV = true
+const DEV = false
 
 export default function Home() {
   const handleTest = async () => {
@@ -25,9 +25,9 @@ export default function Home() {
           <Link className='hover:text-blue-400' href='/ai-ghibli-generator'>
             AI Ghibli Generator
           </Link>
-          {/* <Link className='hover:text-blue-400' href='/ai-image-generator'>
+          <Link className='hover:text-blue-400' href='/ai-image-generator'>
             AI Image Generator
-          </Link> */}
+          </Link>
 
           {DEV && <Button onClick={handleTest}>Test</Button>}
         </div>

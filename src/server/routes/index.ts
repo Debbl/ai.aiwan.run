@@ -101,30 +101,41 @@ export const router = tsr.routerWithMiddleware(contract)<{ userId: string }>({
 
     const prompt = `convert this photo to studio ghibli style anime, ratio is ${ratio}`
 
-    const res = await dao.imageGenerations.insert({
+    const amount = -1
+    const imageGenerationsInsert = await dao.imageGenerations.insert({
       userId,
       prompt,
       originalImageUrl: r2Obj.key,
       generatedImageUrl: '',
       status: 'pending',
     })
-
-    if (!res.success) {
+    if (imageGenerationsInsert.error) {
       return {
         status: 500,
         body: 'Failed to insert image generation',
       }
     }
 
-    const handle = await tasks.trigger<typeof generationImageTask>('generate-image', {
-      id: res.meta.last_row_id,
+    const userUpdate = await dao.user.updateCredits({
+      userId,
+      amount,
+    })
+    if (userUpdate.error) {
+      return {
+        status: 500,
+        body: 'Failed to update credits',
+      }
+    }
+
+    await tasks.trigger<typeof generationImageTask>('generate-image', {
+      id: imageGenerationsInsert.meta.last_row_id,
       prompt,
       image,
     })
 
     return {
       status: 200,
-      body: handle,
+      body: 'ok',
     }
   },
 })

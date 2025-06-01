@@ -1,4 +1,5 @@
 'use client'
+import { LucideDatabase } from 'lucide-react'
 import { Avatar } from '~/components/avatar'
 import { Button } from '~/components/ui/button'
 import {
@@ -10,7 +11,7 @@ import {
   NavigationMenuTrigger,
 } from '~/components/ui/navigation-menu'
 import { Favicon } from '~/icons'
-import { authClient } from '~/lib/auth-client'
+import { useSession } from '~/lib/auth-client'
 
 function ListItem({
   title,
@@ -31,8 +32,9 @@ function ListItem({
 }
 
 export function Header() {
-  const { data } = authClient.useSession()
+  const { data } = useSession()
 
+  const credits = data?.user.credits ?? 100
   const apps = [
     {
       label: 'AI Fortune teller',
@@ -44,11 +46,11 @@ export function Header() {
       href: '/ai-ghibli-generator',
       description: 'Generate Ghibli-style images',
     },
-    // {
-    //   label: 'AI Image Generator',
-    //   href: '/ai-image-generator',
-    //   description: 'Generate images with AI',
-    // },
+    {
+      label: 'AI Image Generator',
+      href: '/ai-image-generator',
+      description: 'Generate images with AI',
+    },
   ]
 
   const browserList = [
@@ -70,6 +72,10 @@ export function Header() {
         <Favicon />
       </Link>
       <div className='flex items-center gap-2'>
+        <div className='flex items-center gap-1'>
+          <span className='text-sm'>{credits}</span>
+          <LucideDatabase className='size-3' />
+        </div>
         <NavigationMenu>
           <NavigationMenuList>
             <NavigationMenuItem>

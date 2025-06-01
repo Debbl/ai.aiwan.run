@@ -11,7 +11,7 @@ export async function insert(values: {
 }) {
   const db = await getDBAsync()
 
-  return await db.insert(schema.imageGenerationsTable).values(values)
+  return await db.insert(schema.imageGenerations).values(values)
 }
 
 export async function update(values: {
@@ -24,5 +24,5 @@ export async function update(values: {
 }) {
   const db = await getDBAsync()
 
-  return await db.update(schema.imageGenerationsTable).set(values).where(eq(schema.imageGenerationsTable.id, values.id))
+  return await db.update(schema.imageGenerations).set(values).where(eq(schema.imageGenerations.id, values.id))
 }

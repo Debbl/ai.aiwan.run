@@ -8,6 +8,7 @@ export const user = sqliteTable('user', {
     .$defaultFn(() => false)
     .notNull(),
   image: text('image'),
+  credits: integer('credits').notNull().default(100),
   createdAt: integer('created_at', { mode: 'timestamp' })
     .$defaultFn(() => /* @__PURE__ */ new Date())
     .notNull(),

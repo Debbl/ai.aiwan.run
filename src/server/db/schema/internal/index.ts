@@ -1,2 +1,2 @@
 export { account, session, user, verification } from './auth'
-export { imageGenerationsTable } from './image-generations'
+export { imageGenerations } from './image-generations'
