@@ -1,5 +1,4 @@
 'use client'
-import Image from 'next/image'
 import { Avatar } from '~/components/avatar'
 import { Button } from '~/components/ui/button'
 import {
@@ -10,6 +9,7 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from '~/components/ui/navigation-menu'
+import { Favicon } from '~/icons'
 import { authClient } from '~/lib/auth-client'
 
 function ListItem({
@@ -67,7 +67,7 @@ export function Header() {
   return (
     <div className='bg-background sticky top-0 z-10 flex w-full items-center justify-between border-b px-4 py-1'>
       <Link href='/'>
-        <Image src='/favicon.svg' alt='logo' width={24} height={24} />
+        <Favicon />
       </Link>
       <div className='flex items-center gap-2'>
         <NavigationMenu>
