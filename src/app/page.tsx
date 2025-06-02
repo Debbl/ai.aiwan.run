@@ -3,7 +3,7 @@ import { Button } from '~/components/ui/button'
 import { useSession } from '~/lib/auth-client'
 import { DefaultLayout } from './_components/default-layout'
 
-const DEV = false
+const DEV = true
 
 export default function Home() {
   const { refetch } = useSession()

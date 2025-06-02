@@ -6,7 +6,6 @@ import { router } from '~/server/routes'
 import { contract } from '~/shared/contract'
 
 const handler = createNextHandler(contract, router, {
-  basePath: '/api',
   handlerType: 'app-router',
   requestMiddleware: [
     tsr.middleware<{ userId: string }>(async (request) => {

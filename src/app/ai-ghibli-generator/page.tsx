@@ -1,34 +1,56 @@
 'use client'
 import Image from 'next/image'
 import { toast } from 'sonner'
-import { Spinner } from '~/components/spinner'
+import useSWRMutation from 'swr/mutation'
 import { Button } from '~/components/ui/button'
 import { useAuthGuard } from '~/hooks/useAuth'
+import { contract } from '~/shared/contract'
 import { Input } from '../../components/ui/input'
 import { PajamasClear } from '../../icons'
-import { useAiGhibliGenerator } from './hooks/use-ai-ghibli-generator'
 
 export default function Page() {
-  const { status, originImage, progress, generatedImage, setOriginImage, handleSubmit } = useAiGhibliGenerator()
+  // const { status, originImage, progress, generatedImage, setOriginImage } = useAiGhibliGenerator()
   const { handleAuthGuard } = useAuthGuard()
+  const [image, setImage] = useState<File | null>(null)
+  const originImageUrl = useMemo(() => {
+    if (!image) return null
+    return URL.createObjectURL(image)
+  }, [image])
+
+  const { trigger, isMutating } = useSWRMutation(
+    contract.aiGhibliGenerator.path,
+    (_, { arg }: { arg: { image: File; ratio: string } }) => {
+      return api.aiGhibliGenerator({
+        body: {
+          image: arg.image,
+          ratio: arg.ratio,
+        },
+      })
+    },
+  )
 
   const handleClick = async () => {
     handleAuthGuard()
-    handleSubmit()
+    if (!image) return
+
+    trigger({
+      image,
+      ratio: '1:1',
+    })
   }
 
-  const handleDownload = async () => {
-    const response = await fetch(generatedImage)
-    const blob = await response.blob()
+  // const handleDownload = async () => {
+  //   const response = await fetch(generatedImage)
+  //   const blob = await response.blob()
 
-    const url = URL.createObjectURL(blob)
+  //   const url = URL.createObjectURL(blob)
 
-    const a = document.createElement('a')
-    a.href = url
-    a.download = 'ai-ghibli-generator-image.png'
-    a.click()
-    URL.revokeObjectURL(url)
-  }
+  //   const a = document.createElement('a')
+  //   a.href = url
+  //   a.download = 'ai-ghibli-generator-image.png'
+  //   a.click()
+  //   URL.revokeObjectURL(url)
+  // }
 
   return (
     <main className='relative flex flex-1 flex-col items-center justify-center gap-y-6'>
@@ -54,19 +76,19 @@ export default function Page() {
                 return
               }
 
-              setOriginImage(URL.createObjectURL(file))
+              setImage(file)
             }}
           />
 
           <Button
             color='primary'
             onClick={handleClick}
-            disabled={status !== 'ready' || !originImage}
+            disabled={isMutating || !image}
             data-umami-event='click-ai-ghibli-generator-generate'
           >
             Generate
           </Button>
-          {generatedImage && status === 'ready' && (
+          {/* {generatedImage && status === 'ready' && (
             <Button
               color='primary'
               size='sm'
@@ -76,25 +98,25 @@ export default function Page() {
             >
               Download
             </Button>
-          )}
+          )} */}
         </div>
 
         <div className='flex items-center gap-x-2 empty:hidden'>
-          {originImage && (
+          {originImageUrl && (
             <div className='group relative flex flex-1 items-center'>
               <Button
                 size='sm'
                 aria-label='Clear'
                 className='absolute top-2 right-2 opacity-0 group-hover:opacity-100'
-                onClick={() => setOriginImage('')}
+                onClick={() => setImage(null)}
               >
                 {<PajamasClear className='size-4' />}
               </Button>
 
-              <Image src={originImage} alt='origin image' width={100} height={100} className='size-full' />
+              <Image src={originImageUrl} alt='origin image' width={100} height={100} className='size-full' />
             </div>
           )}
-          {generatedImage && (
+          {/* {generatedImage && (
             <div className='relative flex flex-1 items-center'>
               {['streaming', 'generating'].includes(status) && (
                 <div className='absolute inset-0 flex items-center justify-center bg-white/50 text-white dark:bg-black/50'>
@@ -105,7 +127,7 @@ export default function Page() {
 
               <Image src={generatedImage} alt='generated image' width={100} height={100} className='size-full' />
             </div>
-          )}
+          )} */}
         </div>
       </div>
     </main>

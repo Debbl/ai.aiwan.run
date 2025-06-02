@@ -5,7 +5,7 @@ import { contract } from '~/shared/contract'
 export const baseUrl = 'https://ai.aiwan.run'
 
 export const api = initClient(contract, {
-  baseUrl: `${baseUrl}/api`,
+  baseUrl,
   baseHeaders: {
     'x-trigger-secret': TRIGGER_SECRET_KEY,
   },
