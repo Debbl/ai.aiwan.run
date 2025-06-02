@@ -86,15 +86,16 @@ export const contract = c.router({
     },
   },
   getImageList: {
-    method: 'POST',
+    method: 'GET',
     path: '/get-image-list',
-    body: z.object({
+    query: z.object({
       userId: z.string(),
     }),
     responses: {
       200: z.object({
         list: z.array(
           z.object({
+            id: z.number(),
             imageUrl: z.string().nullable(),
             status: imageGenerationStatus,
           }),
@@ -103,13 +104,14 @@ export const contract = c.router({
     },
   },
   getImageById: {
-    method: 'POST',
+    method: 'GET',
     path: '/get-image-by-id',
-    body: z.object({
+    query: z.object({
       id: z.number(),
     }),
     responses: {
       200: z.object({
+        id: z.number(),
         imageUrl: z.string().nullable(),
         status: imageGenerationStatus,
       }),
