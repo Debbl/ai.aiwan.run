@@ -1,4 +1,5 @@
 import { createNextHandler, tsr, TsRestResponse } from '@ts-rest/serverless/next'
+import { TRIGGER_SECRET_KEY } from '~/env'
 import { createAuth } from '~/lib/auth'
 import { contract } from '~/server/contract'
 import { getDB } from '~/server/db'
@@ -11,14 +12,18 @@ const handler = createNextHandler(contract, router, {
     tsr.middleware<{ userId: string }>(async (request) => {
       const auth = createAuth(getDB())
       const headers = request.headers
+
       const session = await auth.api.getSession({
         headers,
       })
 
-      if (!session) {
+      const triggerSecret = headers.get('x-trigger-secret')
+      const isFromTrigger = triggerSecret === TRIGGER_SECRET_KEY
+
+      if (!session && !isFromTrigger) {
         return TsRestResponse.fromJson({ message: 'Unauthorized' }, { status: 401 })
       }
-      request.userId = session.user.id
+      request.userId = session?.user.id || ''
     }),
   ],
 })

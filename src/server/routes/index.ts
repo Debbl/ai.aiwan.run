@@ -48,6 +48,16 @@ export const router = tsr.routerWithMiddleware(contract)<{ userId: string }>({
 
     return { status: 200, body: 'ok' }
   },
+  updateUserCredits: async ({ body }) => {
+    const { userId, amount } = body
+
+    await dao.user.updateCredits({
+      userId,
+      amount,
+    })
+
+    return { status: 200, body: 'ok' }
+  },
   aiFortuneTeller: async ({ body }, { responseHeaders }) => {
     const { messages } = body
 
@@ -128,14 +138,43 @@ export const router = tsr.routerWithMiddleware(contract)<{ userId: string }>({
     }
 
     await tasks.trigger<typeof generationImageTask>('generate-image', {
+      userId,
       id: imageGenerationsInsert.meta.last_row_id,
       prompt,
       image,
+      amount,
     })
 
     return {
       status: 200,
       body: 'ok',
+    }
+  },
+  getImageList: async ({ body }) => {
+    const { userId } = body
+
+    const res = await dao.imageGenerations.getList({
+      userId,
+    })
+
+    const imageList = res.map((item) => ({
+      imageUrl: item.generatedImageUrl,
+      status: item.status as 'loading' | 'processing' | 'completed' | 'failed',
+    }))
+
+    return { status: 200, body: { list: imageList } }
+  },
+  getImageById: async ({ body }) => {
+    const { id } = body
+
+    const res = await dao.imageGenerations.getById({ id })
+
+    return {
+      status: 200,
+      body: {
+        imageUrl: res.generatedImageUrl,
+        status: res.status as 'loading' | 'processing' | 'completed' | 'failed',
+      },
     }
   },
 })

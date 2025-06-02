@@ -10,10 +10,26 @@ const openai = createOpenAI({
   baseURL: OPENAI_BASE_URL,
 })
 
+function parseText(str: string) {
+  if (str.includes('Generation failed')) {
+    return {
+      success: false,
+      url: '',
+    }
+  }
+
+  const url = str.match(/!\[.*?\]\((.*?)\)/)?.[1]
+
+  return {
+    success: !!url,
+    url,
+  }
+}
+
 export const generationImageTask = task({
   id: 'generate-image',
   maxDuration: 10 * 60,
-  run: async (payload: { id: number; prompt: string; image: File }) => {
+  run: async (payload: { userId: string; id: number; prompt: string; image: File; amount: number }) => {
     try {
       logger.log(JSON.stringify(payload, null, 2))
 
@@ -50,17 +66,28 @@ export const generationImageTask = task({
           },
         ],
       })
+      const generationText = result.text
 
-      logger.log(result.text)
+      logger.log(generationText)
 
+      const { success, url } = parseText(generationText)
       const updateGenerationText = await api.updateImageGeneration({
         body: {
           id: payload.id,
           secretKey: TRIGGER_SECRET_KEY,
-          status: 'completed',
-          generationText: result.text,
+          status: success ? 'completed' : 'failed',
+          generationText,
+          generatedImageUrl: url,
         },
       })
+      if (!success) {
+        await api.updateUserCredits({
+          body: {
+            userId: payload.userId,
+            amount: payload.amount,
+          },
+        })
+      }
 
       logger.log(JSON.stringify(updateGenerationText, null, 2))
       if (updateGenerationText.status !== 200) {
