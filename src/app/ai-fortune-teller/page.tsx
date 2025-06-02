@@ -14,7 +14,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~
 import { Skeleton } from '~/components/ui/skeleton'
 import { useAuthGuard } from '~/hooks/useAuth'
 import { MaterialSymbolsFemale, MaterialSymbolsMaleRounded } from '~/icons'
-import { contract } from '~/server/contract'
+import { useSession } from '~/lib/auth-client'
+import { contract } from '~/shared/contract'
 import { infoAtom } from './atoms/info'
 
 export default function Page() {
@@ -36,6 +37,7 @@ export default function Page() {
 
   const [isShowThinking, setIsShowThinking] = useState(false)
 
+  const { refetch } = useSession()
   const {
     status,
     messages,
@@ -43,6 +45,15 @@ export default function Page() {
     handleSubmit: _handleSubmit,
   } = useChat({
     api: getApiUrl(contract.aiFortuneTeller),
+    onResponse: () => {
+      refetch()
+    },
+    onError: () => {
+      refetch()
+    },
+    onFinish: () => {
+      refetch()
+    },
   })
 
   const { handleAuthGuard } = useAuthGuard()

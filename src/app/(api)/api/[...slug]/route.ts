@@ -1,9 +1,9 @@
 import { createNextHandler, tsr, TsRestResponse } from '@ts-rest/serverless/next'
 import { TRIGGER_SECRET_KEY } from '~/env'
 import { createAuth } from '~/lib/auth'
-import { contract } from '~/server/contract'
 import { getDB } from '~/server/db'
 import { router } from '~/server/routes'
+import { contract } from '~/shared/contract'
 
 const handler = createNextHandler(contract, router, {
   basePath: '/api',

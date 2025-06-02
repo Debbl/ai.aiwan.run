@@ -1,6 +1,6 @@
 import { initClient } from '@ts-rest/core'
 import { TRIGGER_SECRET_KEY } from '~/env'
-import { contract } from '~/server/contract'
+import { contract } from '~/shared/contract'
 
 export const baseUrl = 'https://ai.aiwan.run'
 

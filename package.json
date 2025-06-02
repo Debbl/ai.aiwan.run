@@ -69,7 +69,8 @@
     "twl": "^0.0.0",
     "unplugin-auto-import": "^19.3.0",
     "use-transformers": "^0.0.10",
-    "zod": "^3.25.42"
+    "zod": "^3.25.42",
+    "zustand": "^5.0.5"
   },
   "devDependencies": {
     "@debbl/eslint-config": "^3.11.0",

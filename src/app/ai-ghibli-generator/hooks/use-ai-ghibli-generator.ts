@@ -3,7 +3,7 @@ import { useEffectEvent } from '@debbl/ahooks'
 import { useMemo, useState } from 'react'
 import useSWR from 'swr'
 import { getApiUrl } from '~/api'
-import { contract } from '~/server/contract'
+import { contract } from '~/shared/contract'
 import { getImageSize } from '../../../utils'
 
 export function useAiGhibliGenerator() {

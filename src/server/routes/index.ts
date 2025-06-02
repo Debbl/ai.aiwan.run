@@ -4,16 +4,25 @@ import { tsr } from '@ts-rest/serverless/next'
 import { streamText } from 'ai'
 import { TRIGGER_SECRET_KEY } from '~/env'
 import { dao } from '~/server/dao'
-import { contract } from '../contract'
+import { contract } from '../../shared/contract'
 import { services } from '../services'
 import type { generationImageTask } from '~/trigger/image-generation'
 
 export const router = tsr.routerWithMiddleware(contract)<{ userId: string }>({
-  test: async (...args) => {
-    // eslint-disable-next-line no-console
-    console.log('🚀 ~ test: ~ args:', args)
-    const request = args[0]
-    return { status: 200, body: JSON.stringify(request) }
+  test: async (_, { request: { userId } }) => {
+    const amount = -2
+    const userUpdate = await dao.user.updateCredits({
+      userId,
+      amount,
+    })
+    if (userUpdate.error) {
+      return {
+        status: 500,
+        body: 'Credits not enough',
+      }
+    }
+
+    return { status: 200, body: JSON.stringify({ userId }) }
   },
   uploadFile: async (_, { nextRequest }) => {
     const formData = await nextRequest.formData()

@@ -1,5 +1,5 @@
 import { initClient } from '@ts-rest/core'
-import { contract } from './server/contract'
+import { contract } from './shared/contract'
 import type { ValueOf } from 'type-fest'
 
 export const baseUrl = '/api'
