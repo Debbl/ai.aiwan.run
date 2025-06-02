@@ -60,13 +60,19 @@ export default function Page() {
                   <div className='flex items-center'>
                     <Label htmlFor='password'>Password</Label>
                   </div>
-                  <Input name='password' id='password' type='password' required />
+                  <Input name='password' id='password' type='password' placeholder='Enter your password' required />
                 </div>
                 <div className='grid gap-3'>
                   <div className='flex items-center'>
                     <Label htmlFor='confirmPassword'>Confirm Password</Label>
                   </div>
-                  <Input name='confirmPassword' id='confirmPassword' type='password' required />
+                  <Input
+                    name='confirmPassword'
+                    id='confirmPassword'
+                    type='password'
+                    placeholder='Enter your password again'
+                    required
+                  />
                 </div>
                 <div className='flex flex-col gap-3'>
                   <Button type='submit' className='w-full'>

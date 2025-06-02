@@ -3,6 +3,8 @@ import { z } from 'zod'
 
 const c = initContract()
 
+const imageGenerationStatus = z.enum(['loading', 'processing', 'completed', 'failed'])
+
 export const contract = c.router({
   test: {
     method: 'POST',
@@ -32,12 +34,24 @@ export const contract = c.router({
     path: '/update-image-generation',
     body: z.object({
       id: z.number(),
-      status: z.enum(['loading', 'processing', 'completed', 'failed']).optional(),
+      status: imageGenerationStatus.optional(),
       secretKey: z.string(),
       prompt: z.string().optional(),
       generationText: z.string().optional(),
       originalImageUrl: z.string().optional(),
       generatedImageUrl: z.string().optional(),
+    }),
+    responses: {
+      200: z.string(),
+      500: z.string(),
+    },
+  },
+  updateUserCredits: {
+    method: 'POST',
+    path: '/update-user-credits',
+    body: z.object({
+      userId: z.string(),
+      amount: z.number(),
     }),
     responses: {
       200: z.string(),
@@ -69,6 +83,38 @@ export const contract = c.router({
     responses: {
       200: z.any(),
       500: z.string(),
+    },
+  },
+  getImageList: {
+    method: 'GET',
+    path: '/get-image-list',
+    query: z.object({
+      userId: z.string(),
+    }),
+    responses: {
+      200: z.object({
+        list: z.array(
+          z.object({
+            id: z.number(),
+            imageUrl: z.string().nullable(),
+            status: imageGenerationStatus,
+          }),
+        ),
+      }),
+    },
+  },
+  getImageById: {
+    method: 'GET',
+    path: '/get-image-by-id',
+    query: z.object({
+      id: z.number(),
+    }),
+    responses: {
+      200: z.object({
+        id: z.number(),
+        imageUrl: z.string().nullable(),
+        status: imageGenerationStatus,
+      }),
     },
   },
 })

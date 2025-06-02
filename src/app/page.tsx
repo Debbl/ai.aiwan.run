@@ -25,9 +25,9 @@ export default function Home() {
           <Link className='hover:text-blue-400' href='/ai-ghibli-generator'>
             AI Ghibli Generator
           </Link>
-          {/* <Link className='hover:text-blue-400' href='/ai-image-generator'>
+          <Link className='hover:text-blue-400' href='/ai-image-generator'>
             AI Image Generator
-          </Link> */}
+          </Link>
 
           {DEV && <Button onClick={handleTest}>Test</Button>}
         </div>

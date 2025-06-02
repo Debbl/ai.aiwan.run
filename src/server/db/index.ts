@@ -15,3 +15,5 @@ export const getDBAsync = cache(async () => {
 })
 
 export { schema }
+
+export type DB = ReturnType<typeof getDB>
