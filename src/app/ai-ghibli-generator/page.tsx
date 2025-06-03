@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { parseAsString, useQueryState } from 'nuqs'
 import useSWR from 'swr'
 import useSWRMutation from 'swr/mutation'
+import { useIsMatchMedia } from 'use-is-match-media'
 import { LoaderPinwheel } from '~/components/animate-ui/icons/loader-pinwheel'
 import { PlusIcon } from '~/components/icons/plus-icon'
 import { RocketIcon } from '~/components/icons/rocket-icon'
@@ -22,7 +23,6 @@ import { contract } from '~/shared/contract'
 import { getImageSize } from '~/utils'
 
 export default function Page() {
-  // const { status, originImage, progress, generatedImage, setOriginImage } = useAiGhibliGenerator()
   const { handleAuthGuard } = useAuthGuard()
   const [image, setImage] = useState<File | null>(null)
   const [recordId, setRecordId] = useQueryState('recordId', parseAsString)
@@ -31,6 +31,7 @@ export default function Page() {
   const [prompt, setPrompt] = useState(
     'convert this photo to studio ghibli style anime',
   )
+  const isMobile = useIsMatchMedia('(max-width: 768px)')
 
   const { data: recordImageData } = useSWR(
     recordId ? [contract.getImageById.path, recordId] : null,
@@ -104,12 +105,15 @@ export default function Page() {
 
   return (
     <main className='relative flex flex-1 flex-col items-center justify-center gap-y-6'>
-      <ResizablePanelGroup direction='horizontal' className='size-full flex-1'>
+      <ResizablePanelGroup
+        direction={isMobile ? 'vertical' : 'horizontal'}
+        className='size-full flex-1'
+      >
         <ResizablePanel
           defaultSize={30}
           minSize={20}
           maxSize={40}
-          style={{ minWidth: 400 }}
+          style={{ minWidth: 400, minHeight: 400 }}
         >
           <div className='flex h-full flex-col items-center justify-between'>
             <h1 className='mt-4 text-center text-3xl font-bold'>

@@ -125,6 +125,9 @@ importers:
       unplugin-auto-import:
         specifier: ^19.3.0
         version: 19.3.0
+      use-is-match-media:
+        specifier: ^0.0.2
+        version: 0.0.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       use-transformers:
         specifier: ^0.0.10
         version: 0.0.10(@huggingface/transformers@3.5.2)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -6881,6 +6884,12 @@ packages:
     peerDependenciesMeta:
       '@types/react':
         optional: true
+
+  use-is-match-media@0.0.2:
+    resolution: {integrity: sha512-2HqufFUWXntqTpghl7XDwbukkOHZgL6LUqxz9rsCnN25JpnAUmduWQ4VhqMyUQvjIm4xkezbopD8TT7FfCtkUA==}
+    peerDependencies:
+      react: '>= 16.8.0'
+      react-dom: '>= 16.8.0'
 
   use-rpc-worker@0.0.3:
     resolution: {integrity: sha512-xh4nLOOl0xW1p9RpAlNL1Xn37YIMNJpno2R7lEwH2OVi1CKbrLftYWzkXR8tHIt2gdFTrEmqX4kPeSWD/5uRkg==}
@@ -15119,6 +15128,11 @@ snapshots:
       tslib: 2.8.1
     optionalDependencies:
       '@types/react': 19.1.6
+
+  use-is-match-media@0.0.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
+    dependencies:
+      react: 19.1.0
+      react-dom: 19.1.0(react@19.1.0)
 
   use-rpc-worker@0.0.3(birpc@0.2.19)(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
