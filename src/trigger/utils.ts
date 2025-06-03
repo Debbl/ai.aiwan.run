@@ -6,3 +6,9 @@ export async function blobToBase64(blob: Blob) {
 
   return `data:${blob.type};base64,${base64}`
 }
+
+export async function srcToBase64String(src: string) {
+  const blob = await fetch(src).then((res) => res.blob())
+
+  return await blobToBase64(blob)
+}

@@ -136,12 +136,13 @@ export const router = tsr.routerWithMiddleware(contract)<{ userId: string }>({
       }
     }
 
+    const originalImageUrlKey = r2Obj.key
     const amount = 2
     const imageGenerationsInsert = await dao.imageGenerations.insert({
       userId,
       prompt,
       credits: Math.abs(amount),
-      originalImageUrl: r2Obj.key,
+      originalImageUrl: originalImageUrlKey,
       generatedImageUrl: '',
       status: 'pending',
     })
@@ -167,7 +168,7 @@ export const router = tsr.routerWithMiddleware(contract)<{ userId: string }>({
       userId,
       id: imageGenerationsInsert.meta.last_row_id,
       prompt,
-      image,
+      image: getR2Url(originalImageUrlKey),
       amount,
     })
 

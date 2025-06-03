@@ -3,7 +3,7 @@ import { logger, task } from '@trigger.dev/sdk/v3'
 import { generateText } from 'ai'
 import { OPENAI_API_KEY, OPENAI_BASE_URL } from '~/env'
 import { api } from './api'
-import { blobToBase64 } from './utils'
+import { srcToBase64String } from './utils'
 
 const openai = createOpenAI({
   apiKey: OPENAI_API_KEY,
@@ -33,7 +33,7 @@ export const generationImageTask = task({
     userId: string
     id: number
     prompt: string
-    image: File
+    image: string
     amount: number
   }) => {
     try {
@@ -51,7 +51,7 @@ export const generationImageTask = task({
         throw new Error('Failed to update image generation status')
       }
 
-      const base64Image = await blobToBase64(payload.image)
+      const base64Image = await srcToBase64String(payload.image)
 
       const result = await generateText({
         model: openai('gpt-4o-image-vip'),
