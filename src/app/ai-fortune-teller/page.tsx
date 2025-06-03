@@ -10,10 +10,19 @@ import { getApiUrl } from '~/api'
 import { CopyButton } from '~/components/animate-ui/buttons/copy'
 import { RippleButton } from '~/components/animate-ui/buttons/ripple'
 import { DateTimePicker } from '~/components/datetime-picker'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~/components/ui/select'
+import {
+  MaterialSymbolsFemale,
+  MaterialSymbolsMaleRounded,
+} from '~/components/icons'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '~/components/ui/select'
 import { Skeleton } from '~/components/ui/skeleton'
 import { useAuthGuard } from '~/hooks/useAuth'
-import { MaterialSymbolsFemale, MaterialSymbolsMaleRounded } from '~/icons'
 import { useSession } from '~/lib/auth-client'
 import { contract } from '~/shared/contract'
 import { infoAtom } from './atoms/info'
@@ -73,12 +82,15 @@ export default function Page() {
     return lastMessage?.role === 'assistant'
       ? lastMessage
       : {
-          content: '> 本站不会收集您的任何数据，所有内容直接调用 DeepSeek 的 API 接口获取。',
+          content:
+            '> 本站不会收集您的任何数据，所有内容直接调用 DeepSeek 的 API 接口获取。',
         }
   }, [messages])
 
   const reasoning = useMemo(() => {
-    return 'parts' in message ? message.parts.find((i) => i.type === 'reasoning')?.reasoning : null
+    return 'parts' in message
+      ? message.parts.find((i) => i.type === 'reasoning')?.reasoning
+      : null
   }, [message])
 
   useEffect(() => {
@@ -93,16 +105,27 @@ export default function Page() {
   return (
     <main className='relative flex flex-1 flex-col'>
       <div className='relative flex flex-1 flex-col items-center'>
-        <h1 className='mt-10 text-center text-2xl font-bold'>DeepSeek AI 算命</h1>
+        <h1 className='mt-10 text-center text-2xl font-bold'>
+          DeepSeek AI 算命
+        </h1>
 
         {reasoning && (
           <div className='mx-auto w-[600px] max-w-full px-3 pt-8'>
-            <RippleButton size='sm' onClick={() => setIsShowThinking(!isShowThinking)}>
-              {!message.content && <LoaderCircleIcon className='animate-spin' />}
+            <RippleButton
+              size='sm'
+              onClick={() => setIsShowThinking(!isShowThinking)}
+            >
+              {!message.content && (
+                <LoaderCircleIcon className='animate-spin' />
+              )}
               Thinking
             </RippleButton>
             {isShowThinking && (
-              <div className={cn('prose bg-muted dark:prose-invert mt-2 rounded-md p-2')}>
+              <div
+                className={cn(
+                  'prose bg-muted dark:prose-invert mt-2 rounded-md p-2',
+                )}
+              >
                 <Markdown>{reasoning}</Markdown>
               </div>
             )}
@@ -117,9 +140,15 @@ export default function Page() {
       </div>
 
       <div className='sticky bottom-12 mb-8'>
-        <Skeleton isLoaded={isHydrated} className='relative mx-auto flex w-fit gap-1'>
+        <Skeleton
+          isLoaded={isHydrated}
+          className='relative mx-auto flex w-fit gap-1'
+        >
           <div className='flex w-full items-center justify-center gap-x-2 md:w-auto'>
-            <Select value={gender} onValueChange={(value) => setGender(value as '0' | '1')}>
+            <Select
+              value={gender}
+              onValueChange={(value) => setGender(value as '0' | '1')}
+            >
               <SelectTrigger className='bg-background'>
                 <SelectValue placeholder='Select your gender'>
                   {gender === '0' ? (
@@ -152,12 +181,18 @@ export default function Page() {
                 color='primary'
                 onClick={() => handleSubmit()}
               >
-                {status === 'submitted' && <Loader2Icon className='animate-spin' />}
+                {status === 'submitted' && (
+                  <Loader2Icon className='animate-spin' />
+                )}
                 提交
               </RippleButton>
             </div>
 
-            <CopyButton className='size-9' disabled={!message || status !== 'ready'} content={message.content} />
+            <CopyButton
+              className='size-9'
+              disabled={!message || status !== 'ready'}
+              content={message.content}
+            />
           </div>
           {!isHydrated && <div className='absolute inset-0 bg-gray-200' />}
         </Skeleton>

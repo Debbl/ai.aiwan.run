@@ -67,7 +67,9 @@ export default function Page() {
     })
   }
 
-  const handleImageMouseDown = async (e: React.MouseEvent<HTMLImageElement>) => {
+  const handleImageMouseDown = async (
+    e: React.MouseEvent<HTMLImageElement>,
+  ) => {
     if (isLoading) return
 
     setIsLoading(true)
@@ -91,14 +93,20 @@ export default function Page() {
       const { mask, scores } = data
       const maskCanvas = maskCanvasRef.current!
       // Update canvas dimensions (if different)
-      if (maskCanvas.width !== mask.width || maskCanvas.height !== mask.height) {
+      if (
+        maskCanvas.width !== mask.width ||
+        maskCanvas.height !== mask.height
+      ) {
         maskCanvas.width = mask.width
         maskCanvas.height = mask.height
       }
 
       // Create context and allocate buffer for pixel data
       const context = maskCanvas.getContext('2d')!
-      const imageData = context.createImageData(maskCanvas.width, maskCanvas.height)
+      const imageData = context.createImageData(
+        maskCanvas.width,
+        maskCanvas.height,
+      )
 
       // Select best mask
       const numMasks = scores.length // 3
@@ -194,7 +202,9 @@ export default function Page() {
             ))}
         </div>
 
-        <p className='mt-2 text-sm text-gray-600'>Left click = positive points, right click = negative points.</p>
+        <p className='mt-2 text-sm text-gray-600'>
+          Left click = positive points, right click = negative points.
+        </p>
 
         {image.src && (
           <>
@@ -206,7 +216,10 @@ export default function Page() {
                 {...image}
                 alt='image'
               />
-              <canvas ref={maskCanvasRef} className='pointer-events-none absolute inset-0 size-full' />
+              <canvas
+                ref={maskCanvasRef}
+                className='pointer-events-none absolute inset-0 size-full'
+              />
 
               {points.map((p) => {
                 const Icon = p.label === 0 ? X : Sparkle

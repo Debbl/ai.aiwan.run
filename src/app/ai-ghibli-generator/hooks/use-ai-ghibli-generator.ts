@@ -14,12 +14,14 @@ export function useAiGhibliGenerator() {
   const [originImage, setOriginImage] = useState('')
   const [generatedImage, setGeneratedImage] = useState('')
 
-  const { data: status = 'ready', mutate: mutateStatus } = useSWR<'submitted' | 'streaming' | 'ready' | 'error'>(
-    [chatKey, 'status'],
+  const { data: status = 'ready', mutate: mutateStatus } = useSWR<
+    'submitted' | 'streaming' | 'ready' | 'error'
+  >([chatKey, 'status'], null)
+
+  const { data: progress = 0, mutate: mutateProgress } = useSWR<number>(
+    [chatKey, 'progress'],
     null,
   )
-
-  const { data: progress = 0, mutate: mutateProgress } = useSWR<number>([chatKey, 'progress'], null)
 
   const handleSubmit = useEffectEvent(async () => {
     if (!originImage) return

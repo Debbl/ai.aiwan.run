@@ -7,7 +7,10 @@ export function createWorker<
   WorkerFunctions extends object = Record<string, never>,
 >(
   functions: WorkerFunctions,
-  options?: Omit<BirpcOptions<LocalFunctions>, 'post' | 'on' | 'serialize' | 'deserialize'>,
+  options?: Omit<
+    BirpcOptions<LocalFunctions>,
+    'post' | 'on' | 'serialize' | 'deserialize'
+  >,
 ) {
   const rpc = createBirpc<LocalFunctions, WorkerFunctions>(functions, {
     ...options,

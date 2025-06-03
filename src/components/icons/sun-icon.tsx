@@ -40,7 +40,13 @@ const SunIcon = ({ className }: { className?: string }) => {
         'M2 12h2',
         'm4.93 4.93 1.41 1.41',
       ].map((d, index) => (
-        <motion.path key={d} d={d} animate={controls} variants={pathVariants} custom={index + 1} />
+        <motion.path
+          key={d}
+          d={d}
+          animate={controls}
+          variants={pathVariants}
+          custom={index + 1}
+        />
       ))}
     </svg>
   )

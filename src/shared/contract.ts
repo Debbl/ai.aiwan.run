@@ -3,7 +3,12 @@ import { z } from 'zod'
 
 const c = initContract()
 
-const imageGenerationStatus = z.enum(['loading', 'processing', 'completed', 'failed'])
+const imageGenerationStatus = z.enum([
+  'loading',
+  'processing',
+  'completed',
+  'failed',
+])
 
 export const contract = c.router(
   {
@@ -80,9 +85,12 @@ export const contract = c.router(
       body: c.type<{
         image: File
         ratio: string
+        prompt?: string
       }>(),
       responses: {
-        200: z.string(),
+        200: z.object({
+          recordId: z.string(),
+        }),
         500: z.string(),
       },
     },
@@ -97,7 +105,8 @@ export const contract = c.router(
           list: z.array(
             z.object({
               id: z.number(),
-              imageUrl: z.string().nullable(),
+              originalImageUrl: z.string().nullable(),
+              generatedImageUrl: z.string().nullable(),
               status: imageGenerationStatus,
             }),
           ),
@@ -108,12 +117,13 @@ export const contract = c.router(
       method: 'GET',
       path: '/get-image-by-id',
       query: z.object({
-        id: z.number(),
+        id: z.string(),
       }),
       responses: {
         200: z.object({
           id: z.number(),
-          imageUrl: z.string().nullable(),
+          originalImageUrl: z.string().nullable(),
+          generatedImageUrl: z.string().nullable(),
           status: imageGenerationStatus,
         }),
       },

@@ -29,7 +29,13 @@ function parseText(str: string) {
 export const generationImageTask = task({
   id: 'generate-image',
   maxDuration: 10 * 60,
-  run: async (payload: { userId: string; id: number; prompt: string; image: File; amount: number }) => {
+  run: async (payload: {
+    userId: string
+    id: number
+    prompt: string
+    image: File
+    amount: number
+  }) => {
     try {
       logger.log(JSON.stringify(payload, null, 2))
 

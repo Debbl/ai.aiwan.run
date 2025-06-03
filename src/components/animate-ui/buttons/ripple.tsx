@@ -15,8 +15,10 @@ const buttonVariants = cva(
           'bg-destructive text-white hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60',
         outline:
           'border bg-background hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50',
-        secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary/80',
-        ghost: 'hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50',
+        secondary:
+          'bg-secondary text-secondary-foreground hover:bg-secondary/80',
+        ghost:
+          'hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50',
       },
       size: {
         default: 'h-10 px-4 py-2 has-[>svg]:px-3',
@@ -53,7 +55,9 @@ interface Ripple {
   y: number
 }
 
-interface RippleButtonProps extends React.ComponentProps<typeof motion.button>, VariantProps<typeof buttonVariants> {
+interface RippleButtonProps
+  extends React.ComponentProps<typeof motion.button>,
+    VariantProps<typeof buttonVariants> {
   children: React.ReactNode
   rippleClassName?: string
   scale?: number
@@ -78,26 +82,29 @@ function RippleButton({
   const buttonRef = React.useRef<HTMLButtonElement>(null)
   React.useImperativeHandle(ref, () => buttonRef.current as HTMLButtonElement)
 
-  const createRipple = React.useCallback((event: React.MouseEvent<HTMLButtonElement>) => {
-    const button = buttonRef.current
-    if (!button) return
+  const createRipple = React.useCallback(
+    (event: React.MouseEvent<HTMLButtonElement>) => {
+      const button = buttonRef.current
+      if (!button) return
 
-    const rect = button.getBoundingClientRect()
-    const x = event.clientX - rect.left
-    const y = event.clientY - rect.top
+      const rect = button.getBoundingClientRect()
+      const x = event.clientX - rect.left
+      const y = event.clientY - rect.top
 
-    const newRipple: Ripple = {
-      id: Date.now(),
-      x,
-      y,
-    }
+      const newRipple: Ripple = {
+        id: Date.now(),
+        x,
+        y,
+      }
 
-    setRipples((prev) => [...prev, newRipple])
+      setRipples((prev) => [...prev, newRipple])
 
-    setTimeout(() => {
-      setRipples((prev) => prev.filter((r) => r.id !== newRipple.id))
-    }, 600)
-  }, [])
+      setTimeout(() => {
+        setRipples((prev) => prev.filter((r) => r.id !== newRipple.id))
+      }, 600)
+    },
+    [],
+  )
 
   const handleClick = React.useCallback(
     (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -126,7 +133,9 @@ function RippleButton({
           initial={{ scale: 0, opacity: 0.5 }}
           animate={{ scale, opacity: 0 }}
           transition={transition}
-          className={cn(rippleVariants({ variant, className: rippleClassName }))}
+          className={cn(
+            rippleVariants({ variant, className: rippleClassName }),
+          )}
           style={{
             top: ripple.y - 10,
             left: ripple.x - 10,

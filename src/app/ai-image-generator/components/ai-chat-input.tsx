@@ -41,7 +41,10 @@ const AIChatInput = () => {
   // Close input when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (wrapperRef.current && !wrapperRef.current.contains(event.target as Node)) {
+      if (
+        wrapperRef.current &&
+        !wrapperRef.current.contains(event.target as Node)
+      ) {
         if (!inputValue) setIsActive(false)
       }
     }
@@ -140,12 +143,18 @@ const AIChatInput = () => {
                       animate='animate'
                       exit='exit'
                     >
-                      {PLACEHOLDERS[placeholderIndex].split('').map((char, i) => (
-                        // eslint-disable-next-line react/no-array-index-key
-                        <motion.span key={i} variants={letterVariants} style={{ display: 'inline-block' }}>
-                          {char === ' ' ? '\u00A0' : char}
-                        </motion.span>
-                      ))}
+                      {PLACEHOLDERS[placeholderIndex]
+                        .split('')
+                        .map((char, i) => (
+                          <motion.span
+                            // eslint-disable-next-line react/no-array-index-key
+                            key={i}
+                            variants={letterVariants}
+                            style={{ display: 'inline-block' }}
+                          >
+                            {char === ' ' ? '\u00A0' : char}
+                          </motion.span>
+                        ))}
                     </motion.span>
                   )}
                 </AnimatePresence>

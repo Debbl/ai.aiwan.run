@@ -4,6 +4,7 @@ import { tsr } from '@ts-rest/serverless/next'
 import { streamText } from 'ai'
 import { TRIGGER_SECRET_KEY } from '~/env'
 import { dao } from '~/server/dao'
+import { getR2Url } from '~/shared'
 import { contract } from '../../shared/contract'
 import { services } from '../services'
 import type { generationImageTask } from '~/trigger/image-generation'
@@ -33,7 +34,14 @@ export const router = tsr.routerWithMiddleware(contract)<{ userId: string }>({
     return { status: 200, body: { url: r2Obj?.key || '' } }
   },
   updateImageGeneration: async ({ body }) => {
-    const { id, status, prompt, originalImageUrl, generatedImageUrl, generationText } = body
+    const {
+      id,
+      status,
+      prompt,
+      originalImageUrl,
+      generatedImageUrl,
+      generationText,
+    } = body
 
     if (body.secretKey !== TRIGGER_SECRET_KEY) {
       return {
@@ -67,7 +75,10 @@ export const router = tsr.routerWithMiddleware(contract)<{ userId: string }>({
 
     return { status: 200, body: 'ok' }
   },
-  aiFortuneTeller: async ({ body }, { request: { userId }, responseHeaders }) => {
+  aiFortuneTeller: async (
+    { body },
+    { request: { userId }, responseHeaders },
+  ) => {
     const { messages } = body
 
     const message = messages.at(-1)
@@ -120,6 +131,9 @@ export const router = tsr.routerWithMiddleware(contract)<{ userId: string }>({
 
     const image = formData.get('image') as File
     const ratio = formData.get('ratio') as string
+    const prompt =
+      (formData.get('prompt') as string) ||
+      `convert this photo to studio ghibli style anime, ratio is ${ratio}`
 
     const r2Obj = await services.updateFile(image)
 
@@ -129,8 +143,6 @@ export const router = tsr.routerWithMiddleware(contract)<{ userId: string }>({
         body: 'Failed to upload image',
       }
     }
-
-    const prompt = `convert this photo to studio ghibli style anime, ratio is ${ratio}`
 
     const amount = -1
     const imageGenerationsInsert = await dao.imageGenerations.insert({
@@ -168,7 +180,9 @@ export const router = tsr.routerWithMiddleware(contract)<{ userId: string }>({
 
     return {
       status: 200,
-      body: 'ok',
+      body: {
+        recordId: imageGenerationsInsert.meta.last_row_id.toString(),
+      },
     }
   },
   getImageList: async ({ query }) => {
@@ -180,7 +194,8 @@ export const router = tsr.routerWithMiddleware(contract)<{ userId: string }>({
 
     const imageList = res.map((item) => ({
       id: item.id,
-      imageUrl: item.generatedImageUrl,
+      originalImageUrl: getR2Url(item.originalImageUrl),
+      generatedImageUrl: getR2Url(item.generatedImageUrl),
       status: item.status as 'loading' | 'processing' | 'completed' | 'failed',
     }))
 
@@ -189,13 +204,14 @@ export const router = tsr.routerWithMiddleware(contract)<{ userId: string }>({
   getImageById: async ({ query }) => {
     const { id } = query
 
-    const res = await dao.imageGenerations.getById({ id })
+    const res = await dao.imageGenerations.getById({ id: Number(id) })
 
     return {
       status: 200,
       body: {
         id: res.id,
-        imageUrl: res.generatedImageUrl,
+        originalImageUrl: getR2Url(res.originalImageUrl),
+        generatedImageUrl: getR2Url(res.generatedImageUrl),
         status: res.status as 'loading' | 'processing' | 'completed' | 'failed',
       },
     }

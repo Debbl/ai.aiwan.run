@@ -1,12 +1,24 @@
 'use client'
+import { parseAsString, useQueryState } from 'nuqs'
 import { toast } from 'sonner'
 import { Button } from '~/components/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '~/components/ui/card'
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '~/components/ui/card'
 import { Input } from '~/components/ui/input'
 import { Label } from '~/components/ui/label'
 import { authClient } from '~/lib/auth-client'
 
 export default function Page() {
+  const [callbackURL] = useQueryState(
+    'redirect',
+    parseAsString.withDefault('/'),
+  )
+
   const handleSubmit = async (formData: FormData) => {
     const email = formData.get('email') as string
     const password = formData.get('password') as string
@@ -14,7 +26,8 @@ export default function Page() {
 
     if (!email || !password) {
       toast.warning('Please enter your email and password', {
-        description: 'Please enter your email and password to create your account',
+        description:
+          'Please enter your email and password to create your account',
       })
       return
     }
@@ -31,7 +44,7 @@ export default function Page() {
         name: email,
         email,
         password,
-        callbackURL: '/',
+        callbackURL,
       },
       {
         onError: (ctx) => {
@@ -47,20 +60,34 @@ export default function Page() {
         <Card>
           <CardHeader>
             <CardTitle>Create to your account</CardTitle>
-            <CardDescription>Enter your email below to create your account</CardDescription>
+            <CardDescription>
+              Enter your email below to create your account
+            </CardDescription>
           </CardHeader>
           <CardContent>
             <form action={handleSubmit}>
               <div className='flex flex-col gap-6'>
                 <div className='grid gap-3'>
                   <Label htmlFor='email'>Email</Label>
-                  <Input name='email' id='email' type='email' placeholder='Enter you email' required />
+                  <Input
+                    name='email'
+                    id='email'
+                    type='email'
+                    placeholder='Enter you email'
+                    required
+                  />
                 </div>
                 <div className='grid gap-3'>
                   <div className='flex items-center'>
                     <Label htmlFor='password'>Password</Label>
                   </div>
-                  <Input name='password' id='password' type='password' placeholder='Enter your password' required />
+                  <Input
+                    name='password'
+                    id='password'
+                    type='password'
+                    placeholder='Enter your password'
+                    required
+                  />
                 </div>
                 <div className='grid gap-3'>
                   <div className='flex items-center'>

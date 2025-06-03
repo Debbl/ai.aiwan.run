@@ -1,4 +1,8 @@
-import { createNextHandler, tsr, TsRestResponse } from '@ts-rest/serverless/next'
+import {
+  createNextHandler,
+  tsr,
+  TsRestResponse,
+} from '@ts-rest/serverless/next'
 import { TRIGGER_SECRET_KEY } from '~/env'
 import { createAuth } from '~/lib/auth'
 import { getDB } from '~/server/db'
@@ -20,11 +24,21 @@ const handler = createNextHandler(contract, router, {
       const isFromTrigger = triggerSecret === TRIGGER_SECRET_KEY
 
       if (!session && !isFromTrigger) {
-        return TsRestResponse.fromJson({ message: 'Unauthorized' }, { status: 401 })
+        return TsRestResponse.fromJson(
+          { message: 'Unauthorized' },
+          { status: 401 },
+        )
       }
       request.userId = session?.user.id || ''
     }),
   ],
 })
 
-export { handler as DELETE, handler as GET, handler as OPTIONS, handler as PATCH, handler as POST, handler as PUT }
+export {
+  handler as DELETE,
+  handler as GET,
+  handler as OPTIONS,
+  handler as PATCH,
+  handler as POST,
+  handler as PUT,
+}

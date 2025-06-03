@@ -1,18 +1,57 @@
 'use client'
 import Image from 'next/image'
-import { toast } from 'sonner'
+import { parseAsString, useQueryState } from 'nuqs'
+import useSWR from 'swr'
 import useSWRMutation from 'swr/mutation'
+import { LoaderPinwheel } from '~/components/animate-ui/icons/loader-pinwheel'
+import { PlusIcon } from '~/components/icons/plus-icon'
+import { RocketIcon } from '~/components/icons/rocket-icon'
+import { XIcon } from '~/components/icons/x-icon'
 import { Button } from '~/components/ui/button'
+import { Card, CardFooter } from '~/components/ui/card'
+import {
+  ResizableHandle,
+  ResizablePanel,
+  ResizablePanelGroup,
+} from '~/components/ui/resizable'
+import { Textarea } from '~/components/ui/textarea'
 import { useAuthGuard } from '~/hooks/useAuth'
 import { contract } from '~/shared/contract'
-import { Input } from '../../components/ui/input'
-import { PajamasClear } from '../../icons'
+import { getImageSize } from '~/utils'
 
 export default function Page() {
   // const { status, originImage, progress, generatedImage, setOriginImage } = useAiGhibliGenerator()
   const { handleAuthGuard } = useAuthGuard()
   const [image, setImage] = useState<File | null>(null)
-  const originImageUrl = useMemo(() => {
+  const [recordId, setRecordId] = useQueryState('recordId', parseAsString)
+  const inputRef = useRef<HTMLInputElement>(null)
+  const [isDragging, setIsDragging] = useState(false)
+  const [prompt, setPrompt] = useState(
+    'convert this photo to studio ghibli style anime',
+  )
+
+  // eslint-disable-next-line unused-imports/no-unused-vars
+  const { data: recordImageData } = useSWR(
+    recordId ? [contract.getImageById.path, recordId] : null,
+    async ([_, id]) => {
+      const res = await api.getImageById({
+        query: {
+          id,
+        },
+      })
+
+      if (res.status === 200) {
+        return res.body
+      }
+      return null
+    },
+    {
+      refreshInterval: 5000,
+      // isPaused: () => recordImageData?.status === 'completed',
+    },
+  )
+
+  const uploadImageUrl = useMemo(() => {
     if (!image) return null
     return URL.createObjectURL(image)
   }, [image])
@@ -33,103 +72,145 @@ export default function Page() {
     handleAuthGuard()
     if (!image) return
 
-    trigger({
+    const res = await trigger({
       image,
       ratio: '1:1',
     })
+    if (res.status === 200) {
+      setRecordId(res.body.recordId)
+    }
   }
 
-  // const handleDownload = async () => {
-  //   const response = await fetch(generatedImage)
-  //   const blob = await response.blob()
+  const handleFileChange = async (file: File) => {
+    setImage(file)
+    const url = URL.createObjectURL(file)
 
-  //   const url = URL.createObjectURL(blob)
-
-  //   const a = document.createElement('a')
-  //   a.href = url
-  //   a.download = 'ai-ghibli-generator-image.png'
-  //   a.click()
-  //   URL.revokeObjectURL(url)
-  // }
+    const imageSize = await getImageSize(url)
+    setPrompt(
+      `convert this photo to studio ghibli style anime, ratio is ${imageSize.width}:${imageSize.height}`,
+    )
+  }
 
   return (
     <main className='relative flex flex-1 flex-col items-center justify-center gap-y-6'>
-      <h1 className='text-3xl font-bold'>AI Ghibli Generator</h1>
+      <ResizablePanelGroup direction='horizontal' className='size-full flex-1'>
+        <ResizablePanel
+          defaultSize={30}
+          minSize={20}
+          maxSize={40}
+          style={{ minWidth: 400 }}
+        >
+          <div className='flex h-full flex-col items-center justify-between'>
+            <h1 className='mt-4 text-center text-3xl font-bold'>
+              AI Ghibli Generator
+            </h1>
 
-      <div className='flex max-w-[60%] flex-col gap-y-2'>
-        <div className='flex items-center gap-x-2'>
-          <Input
-            type='file'
-            accept='image/*'
-            className='h-full'
-            data-umami-event='change-ai-ghibli-generator-input'
-            onChange={(e) => {
-              const file = e.target.files?.[0]
-              if (!file) return
-
-              if (file.size > 2 * 1024 * 1024) {
-                toast.error('File size must be less than 2MB', {
-                  position: 'top-left',
-                  richColors: true,
-                })
-                e.target.value = ''
-                return
-              }
-
-              setImage(file)
-            }}
-          />
-
-          <Button
-            color='primary'
-            onClick={handleClick}
-            disabled={isMutating || !image}
-            data-umami-event='click-ai-ghibli-generator-generate'
-          >
-            Generate
-          </Button>
-          {/* {generatedImage && status === 'ready' && (
-            <Button
-              color='primary'
-              size='sm'
-              onClick={handleDownload}
-              disabled={status !== 'ready' || !originImage}
-              data-umami-event='click-ai-ghibli-generator-download'
+            <Card
+              className={cn(
+                'relative flex h-[30%] max-h-[600px] w-[80%] max-w-[600px] items-center justify-center border-dashed',
+                isDragging && 'border-muted-foreground',
+              )}
+              onDragOver={(e) => {
+                e.preventDefault()
+                setIsDragging(true)
+              }}
+              onDragLeave={(e) => {
+                e.preventDefault()
+                setIsDragging(false)
+              }}
+              onDrop={(e) => {
+                e.preventDefault()
+                setIsDragging(false)
+                const file = e.dataTransfer.files[0]
+                if (!file) return
+                handleFileChange(file)
+              }}
+              onClick={() => {
+                inputRef.current?.click()
+              }}
             >
-              Download
-            </Button>
-          )} */}
-        </div>
-
-        <div className='flex items-center gap-x-2 empty:hidden'>
-          {originImageUrl && (
-            <div className='group relative flex flex-1 items-center'>
-              <Button
-                size='sm'
-                aria-label='Clear'
-                className='absolute top-2 right-2 opacity-0 group-hover:opacity-100'
-                onClick={() => setImage(null)}
-              >
-                {<PajamasClear className='size-4' />}
-              </Button>
-
-              <Image src={originImageUrl} alt='origin image' width={100} height={100} className='size-full' />
-            </div>
-          )}
-          {/* {generatedImage && (
-            <div className='relative flex flex-1 items-center'>
-              {['streaming', 'generating'].includes(status) && (
-                <div className='absolute inset-0 flex items-center justify-center bg-white/50 text-white dark:bg-black/50'>
-                  <Spinner className='size-4' />
-                  <span className='text-sm'>{progress}%</span>
+              <PlusIcon
+                size={100}
+                className={cn(
+                  'text-muted',
+                  isDragging && 'text-muted-foreground',
+                )}
+              />
+              {uploadImageUrl && (
+                <div className='group absolute inset-0 flex items-center justify-center'>
+                  <Image
+                    src={uploadImageUrl}
+                    alt='origin image'
+                    width={100}
+                    height={100}
+                    className='size-full object-contain'
+                  />
+                  <div className='absolute top-2 right-2 hidden group-hover:block'>
+                    <Button
+                      variant='ghost'
+                      size='icon'
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        setImage(null)
+                      }}
+                    >
+                      <XIcon size={24} />
+                    </Button>
+                  </div>
                 </div>
               )}
+              <input
+                type='file'
+                className='hidden'
+                ref={inputRef}
+                onChange={(e) => {
+                  const file = e.target.files?.[0]
+                  if (!file) return
+                  handleFileChange(file)
+                }}
+              />
+            </Card>
 
-              <Image src={generatedImage} alt='generated image' width={100} height={100} className='size-full' />
+            <Textarea
+              disabled={!image}
+              value={prompt}
+              onChange={(e) => setPrompt(e.target.value)}
+              placeholder='Enter your prompt'
+              className='w-[80%] max-w-[600px]'
+              rows={3}
+            />
+
+            <div className='my-4'>
+              <Button onClick={handleClick}>Generate</Button>
             </div>
-          )} */}
-        </div>
-      </div>
+          </div>
+        </ResizablePanel>
+        <ResizableHandle />
+        <ResizablePanel defaultSize={70}>
+          <div className='flex size-full items-center justify-center'>
+            <Card
+              className={cn(
+                'relative flex h-[70%] max-h-[600px] w-[80%] max-w-[600px] items-center justify-center',
+              )}
+            >
+              <RocketIcon />
+              <CardFooter>
+                <div className='flex flex-col items-center justify-center'>
+                  <p>Your Ghibli Image will be here</p>
+                  <p className='text-muted-foreground'>
+                    Please upload an image to generate a Ghibli image
+                  </p>
+                </div>
+              </CardFooter>
+              {isMutating && (
+                <div className='absolute inset-0 flex items-center justify-center'>
+                  <LoaderPinwheel size={100} />
+                </div>
+              )}
+            </Card>
+          </div>
+        </ResizablePanel>
+      </ResizablePanelGroup>
     </main>
   )
 }

@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.0.0",
   "private": true,
-  "packageManager": "pnpm@10.11.0",
+  "packageManager": "pnpm@10.11.1",
   "description": "starter next app",
   "author": "Brendan Dash <me@aiwna.run> (https://github.com/Debbl/)",
   "license": "MIT",
@@ -50,7 +50,7 @@
     "drizzle-orm": "^0.44.1",
     "jotai": "^2.12.5",
     "lucide-react": "^0.511.0",
-    "motion": "^12.15.0",
+    "motion": "^12.16.0",
     "next": "^15.3.3",
     "next-themes": "^0.4.6",
     "next-view-transitions": "^0.3.4",
@@ -61,19 +61,20 @@
     "react-dom": "^19.1.0",
     "react-icons": "^5.5.0",
     "react-markdown": "^10.1.0",
+    "react-resizable-panels": "^3.0.2",
     "serwist": "^9.0.14",
-    "sonner": "^2.0.4",
+    "sonner": "^2.0.5",
     "swr": "^2.3.3",
     "tinycolor2": "^1.6.0",
     "ts-pattern": "^5.7.1",
     "twl": "^0.0.0",
     "unplugin-auto-import": "^19.3.0",
     "use-transformers": "^0.0.10",
-    "zod": "^3.25.42",
+    "zod": "^3.25.49",
     "zustand": "^5.0.5"
   },
   "devDependencies": {
-    "@debbl/eslint-config": "^3.11.0",
+    "@debbl/eslint-config": "^3.12.0",
     "@libsql/client": "^0.15.8",
     "@next/bundle-analyzer": "^15.3.3",
     "@next/env": "^15.3.3",
@@ -94,7 +95,7 @@
     "turbo": "^2.5.4",
     "type-fest": "^4.41.0",
     "typescript": "^5.8.3",
-    "wrangler": "^4.17.0"
+    "wrangler": "^4.19.0"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm lint-staged"
