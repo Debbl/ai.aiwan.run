@@ -144,10 +144,11 @@ export const router = tsr.routerWithMiddleware(contract)<{ userId: string }>({
       }
     }
 
-    const amount = -1
+    const amount = 2
     const imageGenerationsInsert = await dao.imageGenerations.insert({
       userId,
       prompt,
+      credits: Math.abs(amount),
       originalImageUrl: r2Obj.key,
       generatedImageUrl: '',
       status: 'pending',
@@ -161,7 +162,7 @@ export const router = tsr.routerWithMiddleware(contract)<{ userId: string }>({
 
     const userUpdate = await dao.user.updateCredits({
       userId,
-      amount,
+      amount: -amount,
     })
     if (userUpdate.error) {
       return {

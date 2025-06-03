@@ -1,4 +1,5 @@
 'use client'
+import { LucideDatabase } from 'lucide-react'
 import Image from 'next/image'
 import { parseAsString, useQueryState } from 'nuqs'
 import useSWR from 'swr'
@@ -16,6 +17,7 @@ import {
 } from '~/components/ui/resizable'
 import { Textarea } from '~/components/ui/textarea'
 import { useAuthGuard } from '~/hooks/useAuth'
+import { useSession } from '~/lib/auth-client'
 import { contract } from '~/shared/contract'
 import { getImageSize } from '~/utils'
 
@@ -30,7 +32,6 @@ export default function Page() {
     'convert this photo to studio ghibli style anime',
   )
 
-  // eslint-disable-next-line unused-imports/no-unused-vars
   const { data: recordImageData } = useSWR(
     recordId ? [contract.getImageById.path, recordId] : null,
     async ([_, id]) => {
@@ -46,8 +47,12 @@ export default function Page() {
       return null
     },
     {
-      refreshInterval: 5000,
-      // isPaused: () => recordImageData?.status === 'completed',
+      refreshInterval: (latestData) => {
+        if (latestData?.status === 'completed') {
+          return 0
+        }
+        return 5000
+      },
     },
   )
 
@@ -56,6 +61,7 @@ export default function Page() {
     return URL.createObjectURL(image)
   }, [image])
 
+  const { refetch } = useSession()
   const { trigger, isMutating } = useSWRMutation(
     contract.aiGhibliGenerator.path,
     (_, { arg }: { arg: { image: File; ratio: string } }) => {
@@ -65,6 +71,11 @@ export default function Page() {
           ratio: arg.ratio,
         },
       })
+    },
+    {
+      onSuccess: () => {
+        refetch()
+      },
     },
   )
 
@@ -181,7 +192,12 @@ export default function Page() {
             />
 
             <div className='my-4'>
-              <Button onClick={handleClick}>Generate</Button>
+              <Button onClick={handleClick}>
+                <span>Generate</span>
+                <div className='flex items-center gap-1'>
+                  <span>2</span> <LucideDatabase />
+                </div>
+              </Button>
             </div>
           </div>
         </ResizablePanel>
@@ -202,9 +218,12 @@ export default function Page() {
                   </p>
                 </div>
               </CardFooter>
-              {isMutating && (
-                <div className='absolute inset-0 flex items-center justify-center'>
-                  <LoaderPinwheel size={100} />
+              {(isMutating ||
+                ['pending', 'processing'].includes(
+                  recordImageData?.status ?? '',
+                )) && (
+                <div className='bg-accent absolute inset-0 flex items-center justify-center'>
+                  <LoaderPinwheel size={100} animate />
                 </div>
               )}
             </Card>

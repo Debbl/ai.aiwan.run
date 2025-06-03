@@ -7,6 +7,7 @@ export async function insert(values: {
   prompt: string
   originalImageUrl: string
   generatedImageUrl: string
+  credits: number
   status: string
 }) {
   const db = await getDBAsync()
