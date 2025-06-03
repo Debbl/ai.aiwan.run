@@ -46,7 +46,7 @@ export const generationImageTask = task({
         },
       })
 
-      logger.log(JSON.stringify(updateStatus, null, 2))
+      logger.log(`updateStatus: ${JSON.stringify(updateStatus, null, 2)}`)
       if (updateStatus.status !== 200) {
         throw new Error('Failed to update image generation status')
       }
@@ -73,7 +73,7 @@ export const generationImageTask = task({
       })
       const generationText = result.text
 
-      logger.log(generationText)
+      logger.log(`generationText: ${generationText}`)
 
       const { success, url } = parseText(generationText)
       const updateGenerationText = await api.updateImageGeneration({
@@ -93,12 +93,14 @@ export const generationImageTask = task({
         })
       }
 
-      logger.log(JSON.stringify(updateGenerationText, null, 2))
+      logger.log(
+        `updateGenerationText: ${JSON.stringify(updateGenerationText, null, 2)}`,
+      )
       if (updateGenerationText.status !== 200) {
         throw new Error('Failed to update image generation text')
       }
     } catch (error) {
-      logger.error(JSON.stringify(error, null, 2))
+      logger.error(`error: ${JSON.stringify(error, null, 2)}`)
 
       await api.updateImageGeneration({
         body: {
