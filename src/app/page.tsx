@@ -1,10 +1,9 @@
 'use client'
 import { Button } from '~/components/ui/button'
-import { NODE_ENV } from '~/env'
 import { useSession } from '~/lib/auth-client'
 import { DefaultLayout } from './_components/default-layout'
 
-const DEV = NODE_ENV === 'development'
+const DEV = false
 
 export default function Home() {
   const { refetch } = useSession()

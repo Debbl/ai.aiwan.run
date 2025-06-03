@@ -1,7 +1,7 @@
 import { createOpenAI } from '@ai-sdk/openai'
 import { logger, task } from '@trigger.dev/sdk/v3'
 import { generateText } from 'ai'
-import { OPENAI_API_KEY, OPENAI_BASE_URL, TRIGGER_SECRET_KEY } from '~/env'
+import { OPENAI_API_KEY, OPENAI_BASE_URL } from '~/env'
 import { api } from './api'
 import { blobToBase64 } from './utils'
 
@@ -41,7 +41,6 @@ export const generationImageTask = task({
 
       const updateStatus = await api.updateImageGeneration({
         body: {
-          secretKey: TRIGGER_SECRET_KEY,
           id: payload.id,
           status: 'processing',
         },
@@ -80,7 +79,6 @@ export const generationImageTask = task({
       const updateGenerationText = await api.updateImageGeneration({
         body: {
           id: payload.id,
-          secretKey: TRIGGER_SECRET_KEY,
           status: success ? 'completed' : 'failed',
           generationText,
           generatedImageUrl: url,
@@ -105,7 +103,6 @@ export const generationImageTask = task({
       await api.updateImageGeneration({
         body: {
           id: payload.id,
-          secretKey: TRIGGER_SECRET_KEY,
           status: 'failed',
         },
       })

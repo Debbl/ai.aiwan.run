@@ -2,7 +2,6 @@ import { deepseek } from '@ai-sdk/deepseek'
 import { tasks } from '@trigger.dev/sdk/v3'
 import { tsr } from '@ts-rest/serverless/next'
 import { streamText } from 'ai'
-import { TRIGGER_SECRET_KEY } from '~/env'
 import { dao } from '~/server/dao'
 import { getR2Url } from '~/shared'
 import { contract } from '../../shared/contract'
@@ -42,13 +41,6 @@ export const router = tsr.routerWithMiddleware(contract)<{ userId: string }>({
       generatedImageUrl,
       generationText,
     } = body
-
-    if (body.secretKey !== TRIGGER_SECRET_KEY) {
-      return {
-        status: 400,
-        body: 'Invalid secret key',
-      }
-    }
 
     try {
       await dao.imageGenerations.update({

@@ -17,4 +17,4 @@ export const CLOUDFLARE_ACCOUNT_ID = process.env.CLOUDFLARE_ACCOUNT_ID || ''
 export const CLOUDFLARE_D1_TOKEN = process.env.CLOUDFLARE_D1_TOKEN || ''
 export const CLOUDFLARE_DATABASE_ID = process.env.CLOUDFLARE_DATABASE_ID || ''
 
-export const TRIGGER_SECRET_KEY = process.env.TRIGGER_SECRET_KEY || ''
+export const TRIGGER_AUTH_KEY = process.env.TRIGGER_AUTH_KEY || ''
