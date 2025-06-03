@@ -1,10 +1,18 @@
 {
   "eslint.useFlatConfig": true,
   // do not want to autofix some rules on save
-  "eslint.codeActionsOnSave.rules": ["!prefer-const", "!unused-imports/no-unused-imports", "*"],
+  "eslint.codeActionsOnSave.rules": [
+    "!prefer-const",
+    "!unused-imports/no-unused-imports",
+    "*"
+  ],
   "eslint.rules.customizations": [
     {
       "rule": "no-console",
+      "severity": "warn"
+    },
+    {
+      "rule": "unused-imports/no-unused-vars",
       "severity": "warn"
     }
   ],

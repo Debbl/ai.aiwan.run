@@ -21,7 +21,10 @@ export function useRPCWorker<
   scriptURL: WorkerOption,
   localFunctions: LocalFunctions,
   options?: {
-    rpc?: Omit<BirpcOptions<WorkerFunctions>, 'post' | 'on' | 'serialize' | 'deserialize'>
+    rpc?: Omit<
+      BirpcOptions<WorkerFunctions>,
+      'post' | 'on' | 'serialize' | 'deserialize'
+    >
     worker?: WorkerOptions
   },
 ) {
@@ -29,7 +32,9 @@ export function useRPCWorker<
 
   useEffect(() => {
     const script = isWorkerFn(scriptURL) ? scriptURL() : scriptURL
-    const worker: Worker = isWorker(script) ? script : new Worker(script, options?.worker)
+    const worker: Worker = isWorker(script)
+      ? script
+      : new Worker(script, options?.worker)
 
     rpc.current = createBirpc<WorkerFunctions, LocalFunctions>(localFunctions, {
       ...options?.rpc,

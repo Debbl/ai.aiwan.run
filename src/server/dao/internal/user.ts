@@ -5,12 +5,21 @@ import { schema } from '~/server/db/schema'
 export async function update(values: { userId: string; credits: number }) {
   const db = await getDBAsync()
 
-  return await db.update(schema.user).set(values).where(eq(schema.user.id, values.userId))
+  return await db
+    .update(schema.user)
+    .set(values)
+    .where(eq(schema.user.id, values.userId))
 }
 
-export async function updateCredits(values: { userId: string; amount: number }) {
+export async function updateCredits(values: {
+  userId: string
+  amount: number
+}) {
   const db = await getDBAsync()
-  const credits = await db.select().from(schema.user).where(eq(schema.user.id, values.userId))
+  const credits = await db
+    .select()
+    .from(schema.user)
+    .where(eq(schema.user.id, values.userId))
 
   const newCredits = credits[0].credits + values.amount
 
@@ -21,5 +30,8 @@ export async function updateCredits(values: { userId: string; amount: number }) 
     }
   }
 
-  return await db.update(schema.user).set({ credits: newCredits }).where(eq(schema.user.id, values.userId))
+  return await db
+    .update(schema.user)
+    .set({ credits: newCredits })
+    .where(eq(schema.user.id, values.userId))
 }

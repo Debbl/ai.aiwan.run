@@ -70,7 +70,10 @@ export default function Page() {
   const renderBoxes = useMemo(() => {
     return output?.map((i) => {
       if (!randomColors.has(i.label)) {
-        randomColors.set(i.label, `#${Math.floor(Math.random() * 16777215).toString(16)}CC`)
+        randomColors.set(
+          i.label,
+          `#${Math.floor(Math.random() * 16777215).toString(16)}CC`,
+        )
       }
 
       return {
@@ -125,7 +128,11 @@ export default function Page() {
             onInput={handleInputFile}
           />
 
-          <Button color='primary' disabled={isLoading || !image.src} onClick={handleAnalyze}>
+          <Button
+            color='primary'
+            disabled={isLoading || !image.src}
+            onClick={handleAnalyze}
+          >
             Analyze
           </Button>
         </div>

@@ -3,13 +3,22 @@ import { redirect } from 'next/navigation'
 import { parseAsString, useQueryState } from 'nuqs'
 import { toast } from 'sonner'
 import { Button } from '~/components/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '~/components/ui/card'
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '~/components/ui/card'
 import { Input } from '~/components/ui/input'
 import { Label } from '~/components/ui/label'
 import { authClient, useSession } from '~/lib/auth-client'
 
 export default function Page() {
-  const [callbackURL] = useQueryState('redirect', parseAsString.withDefault('/'))
+  const [callbackURL] = useQueryState(
+    'redirect',
+    parseAsString.withDefault('/'),
+  )
 
   const session = useSession()
 
@@ -45,20 +54,34 @@ export default function Page() {
         <Card>
           <CardHeader>
             <CardTitle>Login to your account</CardTitle>
-            <CardDescription>Enter your email below to login to your account</CardDescription>
+            <CardDescription>
+              Enter your email below to login to your account
+            </CardDescription>
           </CardHeader>
           <CardContent>
             <form action={handleSubmit}>
               <div className='flex flex-col gap-6'>
                 <div className='grid gap-3'>
                   <Label htmlFor='email'>Email</Label>
-                  <Input name='email' id='email' type='email' placeholder='Enter your email' required />
+                  <Input
+                    name='email'
+                    id='email'
+                    type='email'
+                    placeholder='Enter your email'
+                    required
+                  />
                 </div>
                 <div className='grid gap-3'>
                   <div className='flex items-center'>
                     <Label htmlFor='password'>Password</Label>
                   </div>
-                  <Input name='password' id='password' type='password' placeholder='Enter your password' required />
+                  <Input
+                    name='password'
+                    id='password'
+                    type='password'
+                    placeholder='Enter your password'
+                    required
+                  />
                 </div>
                 <div className='flex flex-col gap-3'>
                   <Button type='submit' className='w-full'>

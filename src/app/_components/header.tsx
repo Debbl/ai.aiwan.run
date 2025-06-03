@@ -1,6 +1,7 @@
 'use client'
 import { LucideDatabase } from 'lucide-react'
 import { Avatar } from '~/components/avatar'
+import { Favicon } from '~/components/icons'
 import { Button } from '~/components/ui/button'
 import {
   NavigationMenu,
@@ -10,7 +11,6 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from '~/components/ui/navigation-menu'
-import { Favicon } from '~/icons'
 import { useSession } from '~/lib/auth-client'
 
 function ListItem({
@@ -18,13 +18,20 @@ function ListItem({
   href,
   description,
   ...props
-}: React.ComponentPropsWithoutRef<'li'> & { href: string; description: string }) {
+}: React.ComponentPropsWithoutRef<'li'> & {
+  href: string
+  description: string
+}) {
   return (
     <li className='w-[200px] max-w-[80vw]' {...props}>
       <NavigationMenuLink asChild>
         <Link href={href}>
-          <div className='text-sm leading-none font-medium text-nowrap'>{title}</div>
-          <p className='text-muted-foreground line-clamp-2 text-sm leading-snug'>{description}</p>
+          <div className='text-sm leading-none font-medium text-nowrap'>
+            {title}
+          </div>
+          <p className='text-muted-foreground line-clamp-2 text-sm leading-snug'>
+            {description}
+          </p>
         </Link>
       </NavigationMenuLink>
     </li>
@@ -85,7 +92,12 @@ export function Header() {
               <NavigationMenuContent>
                 <ul className='grid w-fit gap-1'>
                   {apps.map((item) => (
-                    <ListItem key={item.href} title={item.label} href={item.href} description={item.description} />
+                    <ListItem
+                      key={item.href}
+                      title={item.label}
+                      href={item.href}
+                      description={item.description}
+                    />
                   ))}
                 </ul>
               </NavigationMenuContent>
@@ -97,7 +109,12 @@ export function Header() {
               <NavigationMenuContent>
                 <ul className='grid w-fit gap-1'>
                   {browserList.map((item) => (
-                    <ListItem key={item.href} title={item.label} href={item.href} description={item.description} />
+                    <ListItem
+                      key={item.href}
+                      title={item.label}
+                      href={item.href}
+                      description={item.description}
+                    />
                   ))}
                 </ul>
               </NavigationMenuContent>

@@ -7,6 +7,7 @@ export async function insert(values: {
   prompt: string
   originalImageUrl: string
   generatedImageUrl: string
+  credits: number
   status: string
 }) {
   const db = await getDBAsync()
@@ -24,7 +25,10 @@ export async function update(values: {
 }) {
   const db = await getDBAsync()
 
-  return await db.update(schema.imageGenerations).set(values).where(eq(schema.imageGenerations.id, values.id))
+  return await db
+    .update(schema.imageGenerations)
+    .set(values)
+    .where(eq(schema.imageGenerations.id, values.id))
 }
 
 export async function getList(values: { userId: string }) {
@@ -40,7 +44,11 @@ export async function getList(values: { userId: string }) {
 export async function getById(values: { id: number }) {
   const db = await getDBAsync()
 
-  const res = await db.select().from(schema.imageGenerations).where(eq(schema.imageGenerations.id, values.id)).limit(1)
+  const res = await db
+    .select()
+    .from(schema.imageGenerations)
+    .where(eq(schema.imageGenerations.id, values.id))
+    .limit(1)
 
   return res[0]
 }
