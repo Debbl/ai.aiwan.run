@@ -34,6 +34,10 @@ export default function Page() {
   const [recordId, setRecordId] = useQueryState('recordId', parseAsString)
   const inputRef = useRef<HTMLInputElement>(null)
   const [isDragging, setIsDragging] = useState(false)
+  const [imageSize, setImageSize] = useState({
+    width: 0,
+    height: 0,
+  })
   const [prompt, setPrompt] = useState(
     'convert this photo to studio ghibli style anime',
   )
@@ -94,7 +98,7 @@ export default function Page() {
 
     const res = await trigger({
       image,
-      ratio: '1:1',
+      ratio: `${imageSize.width}:${imageSize.height}`,
     })
     if (res.status === 200) {
       setRecordId(res.body.recordId)
@@ -106,6 +110,7 @@ export default function Page() {
     const url = URL.createObjectURL(file)
 
     const imageSize = await getImageSize(url)
+    setImageSize(imageSize)
     setPrompt(
       `convert this photo to studio ghibli style anime, ratio is ${imageSize.width}:${imageSize.height}`,
     )
