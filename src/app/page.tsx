@@ -1,20 +1,16 @@
 'use client'
 import { Button } from '~/components/ui/button'
-import { useSession } from '~/lib/auth-client'
 import { DefaultLayout } from './_components/default-layout'
 
 const DEV = false
 
 export default function Home() {
-  const { refetch } = useSession()
-
   const handleTest = async () => {
     await api.test({
       body: {
         name: 'test',
       },
     })
-    refetch()
   }
 
   return (

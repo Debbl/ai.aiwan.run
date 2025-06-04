@@ -11,7 +11,7 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from '~/components/ui/navigation-menu'
-import { useSession } from '~/lib/auth-client'
+import { useUser } from '~/hooks/useUser'
 
 function ListItem({
   title,
@@ -39,9 +39,10 @@ function ListItem({
 }
 
 export function Header() {
-  const { data } = useSession()
+  const { data } = useUser()
 
-  const credits = data?.user.credits ?? 100
+  const credits = data?.credits ?? 100
+
   const apps = [
     {
       label: 'AI Fortune teller',
@@ -122,8 +123,8 @@ export function Header() {
           </NavigationMenuList>
         </NavigationMenu>
         <div className='flex items-center gap-2'>
-          {data?.user.name ? (
-            <Avatar size={32} rounded={16} username={data.user.name} />
+          {data?.name ? (
+            <Avatar size={32} rounded={16} username={data.name} />
           ) : (
             <Link href='/sign-in'>
               <Button variant='link'>Sign In</Button>

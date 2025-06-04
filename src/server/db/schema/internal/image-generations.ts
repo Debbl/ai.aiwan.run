@@ -1,4 +1,5 @@
 import { int, integer, sqliteTable, text } from 'drizzle-orm/sqlite-core'
+import { createSelectSchema } from 'drizzle-zod'
 import { user } from './auth'
 
 export const imageGenerations = sqliteTable('image_generations_table', {
@@ -9,7 +10,9 @@ export const imageGenerations = sqliteTable('image_generations_table', {
   prompt: text().notNull(),
   generationText: text().default(''),
   credits: int().default(0),
-  status: text().notNull().default('pending'),
+  status: text({ enum: ['pending', 'processing', 'completed', 'failed'] })
+    .notNull()
+    .default('pending'),
   originalImageUrl: text().notNull().default(''),
   generatedImageUrl: text().notNull().default(''),
   createdAt: integer('created_at', { mode: 'timestamp' })
@@ -19,3 +22,8 @@ export const imageGenerations = sqliteTable('image_generations_table', {
     .$defaultFn(() => /* @__PURE__ */ new Date())
     .notNull(),
 })
+
+export type ImageGenerationsInferSelect = typeof imageGenerations.$inferSelect
+export type ImageGenerationsInferInsert = typeof imageGenerations.$inferInsert
+
+export const imageGenerationsSchema = createSelectSchema(imageGenerations)

@@ -35,3 +35,18 @@ export async function updateCredits(values: {
     .set({ credits: newCredits })
     .where(eq(schema.user.id, values.userId))
 }
+
+export async function getByUserId({ userId }: { userId: string }) {
+  const db = await getDBAsync()
+
+  const user = await db
+    .select()
+    .from(schema.user)
+    .where(eq(schema.user.id, userId))
+
+  if (!user) {
+    return null
+  }
+
+  return user[0]
+}

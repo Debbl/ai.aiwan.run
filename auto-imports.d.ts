@@ -7,9 +7,9 @@
 export {}
 declare global {
   const Link: typeof import('next-view-transitions')['Link']
-  const ViewTransitions: typeof import('next-view-transitions')['ViewTransitions']
   const api: typeof import('~/api')['api']
   const cn: typeof import('twl')['cn']
+  const contract: typeof import('~/shared/contract')['contract']
   const createRef: typeof import('react')['createRef']
   const forwardRef: typeof import('react')['forwardRef']
   const lazy: typeof import('react')['lazy']
@@ -28,6 +28,8 @@ declare global {
   const useMemo: typeof import('react')['useMemo']
   const useReducer: typeof import('react')['useReducer']
   const useRef: typeof import('react')['useRef']
+  const useSWR: typeof import('swr')['default']
+  const useSWRMutation: typeof import('swr/mutation')
   const useState: typeof import('react')['useState']
   const useSyncExternalStore: typeof import('react')['useSyncExternalStore']
   const useTransition: typeof import('react')['useTransition']

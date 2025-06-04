@@ -7,6 +7,7 @@ import { getR2Url } from '~/shared'
 import { contract } from '../../shared/contract'
 import { services } from '../services'
 import type { generationImageTask } from '~/trigger/image-generation'
+import type { ImageGenerationStatus } from '../dao/internal/image-generations'
 
 export const router = tsr.routerWithMiddleware(contract)<{ userId: string }>({
   test: async (_, { request: { userId } }) => {
@@ -56,6 +57,33 @@ export const router = tsr.routerWithMiddleware(contract)<{ userId: string }>({
     }
 
     return { status: 200, body: 'ok' }
+  },
+  getUser: async (_, { request: { userId } }) => {
+    if (!userId) {
+      return {
+        status: 400,
+        body: 'User ID is required',
+      }
+    }
+
+    const user = await dao.user.getByUserId({ userId })
+
+    if (!user) {
+      return {
+        status: 404,
+        body: 'User not found',
+      }
+    }
+
+    return {
+      status: 200,
+      body: {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        credits: user.credits,
+      },
+    }
   },
   updateUserCredits: async ({ body }) => {
     const { userId, amount } = body
@@ -190,7 +218,7 @@ export const router = tsr.routerWithMiddleware(contract)<{ userId: string }>({
       id: item.id,
       originalImageUrl: getR2Url(item.originalImageUrl),
       generatedImageUrl: getR2Url(item.generatedImageUrl),
-      status: item.status as 'loading' | 'processing' | 'completed' | 'failed',
+      status: item.status as ImageGenerationStatus,
     }))
 
     return { status: 200, body: { list: imageList } }
@@ -206,7 +234,7 @@ export const router = tsr.routerWithMiddleware(contract)<{ userId: string }>({
         id: res.id,
         originalImageUrl: getR2Url(res.originalImageUrl),
         generatedImageUrl: getR2Url(res.generatedImageUrl),
-        status: res.status as 'loading' | 'processing' | 'completed' | 'failed',
+        status: res.status as ImageGenerationStatus,
       },
     }
   },
