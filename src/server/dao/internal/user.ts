@@ -36,7 +36,7 @@ export async function updateCredits(values: {
     .where(eq(schema.user.id, values.userId))
 }
 
-export async function getByUserId({ userId }: { userId: string }) {
+export async function getCreditsByUserId({ userId }: { userId: string }) {
   const db = await getDBAsync()
 
   const user = await db

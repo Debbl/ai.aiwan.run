@@ -1,5 +1,4 @@
 import { int, integer, sqliteTable, text } from 'drizzle-orm/sqlite-core'
-import { createSelectSchema } from 'drizzle-zod'
 import { user } from './auth'
 
 export const imageGenerations = sqliteTable('image_generations_table', {
@@ -25,5 +24,3 @@ export const imageGenerations = sqliteTable('image_generations_table', {
 
 export type ImageGenerationsInferSelect = typeof imageGenerations.$inferSelect
 export type ImageGenerationsInferInsert = typeof imageGenerations.$inferInsert
-
-export const imageGenerationsSchema = createSelectSchema(imageGenerations)

@@ -1,8 +1,14 @@
 import { initContract } from '@ts-rest/core'
 import { z } from 'zod'
-import { imageGenerationStatus } from '~/server/dao/internal/image-generations'
 
 const c = initContract()
+
+export const imageGenerationStatus = z.enum([
+  'pending',
+  'processing',
+  'completed',
+  'failed',
+])
 
 export const contract = c.router(
   {
@@ -16,9 +22,12 @@ export const contract = c.router(
         200: z.any(),
       },
     },
-    getUser: {
+    getCredits: {
       method: 'GET',
       path: '/get-user',
+      query: z.object({
+        userId: z.string(),
+      }),
       responses: {
         200: z.object({
           id: z.string(),
@@ -26,7 +35,6 @@ export const contract = c.router(
           email: z.string(),
           credits: z.number(),
         }),
-        500: z.string(),
       },
     },
     uploadFile: {
@@ -55,7 +63,6 @@ export const contract = c.router(
       }),
       responses: {
         200: z.string(),
-        500: z.string(),
       },
     },
     updateUserCredits: {
@@ -67,7 +74,6 @@ export const contract = c.router(
       }),
       responses: {
         200: z.string(),
-        500: z.string(),
       },
     },
     aiFortuneTeller: {

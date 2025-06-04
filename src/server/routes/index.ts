@@ -7,7 +7,6 @@ import { getR2Url } from '~/shared'
 import { contract } from '../../shared/contract'
 import { services } from '../services'
 import type { generationImageTask } from '~/trigger/image-generation'
-import type { ImageGenerationStatus } from '../dao/internal/image-generations'
 
 export const router = tsr.routerWithMiddleware(contract)<{ userId: string }>({
   test: async (_, { request: { userId } }) => {
@@ -43,30 +42,21 @@ export const router = tsr.routerWithMiddleware(contract)<{ userId: string }>({
       generationText,
     } = body
 
-    try {
-      await dao.imageGenerations.update({
-        id,
-        status,
-        prompt,
-        generationText,
-        originalImageUrl,
-        generatedImageUrl,
-      })
-    } catch {
-      return { status: 500, body: 'Failed to update image generation' }
-    }
+    await dao.imageGenerations.update({
+      id,
+      status,
+      prompt,
+      generationText,
+      originalImageUrl,
+      generatedImageUrl,
+    })
 
     return { status: 200, body: 'ok' }
   },
-  getUser: async (_, { request: { userId } }) => {
-    if (!userId) {
-      return {
-        status: 400,
-        body: 'User ID is required',
-      }
-    }
+  getCredits: async ({ query }) => {
+    const { userId } = query
 
-    const user = await dao.user.getByUserId({ userId })
+    const user = await dao.user.getCreditsByUserId({ userId })
 
     if (!user) {
       return {
@@ -218,7 +208,7 @@ export const router = tsr.routerWithMiddleware(contract)<{ userId: string }>({
       id: item.id,
       originalImageUrl: getR2Url(item.originalImageUrl),
       generatedImageUrl: getR2Url(item.generatedImageUrl),
-      status: item.status as ImageGenerationStatus,
+      status: item.status,
     }))
 
     return { status: 200, body: { list: imageList } }
@@ -234,7 +224,7 @@ export const router = tsr.routerWithMiddleware(contract)<{ userId: string }>({
         id: res.id,
         originalImageUrl: getR2Url(res.originalImageUrl),
         generatedImageUrl: getR2Url(res.generatedImageUrl),
-        status: res.status as ImageGenerationStatus,
+        status: res.status,
       },
     }
   },

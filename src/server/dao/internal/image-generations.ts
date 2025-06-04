@@ -1,17 +1,7 @@
 import { desc, eq } from 'drizzle-orm'
-import z from 'zod'
 import { getDBAsync } from '~/server/db'
 import { schema } from '~/server/db/schema'
 import type { ImageGenerationsInferInsert } from '~/server/db/schema/internal/image-generations'
-
-export const imageGenerationStatus = z.enum([
-  'pending',
-  'processing',
-  'completed',
-  'failed',
-])
-
-export type ImageGenerationStatus = z.infer<typeof imageGenerationStatus>
 
 export async function insert(values: ImageGenerationsInferInsert) {
   const db = await getDBAsync()

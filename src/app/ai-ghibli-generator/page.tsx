@@ -10,6 +10,11 @@ import { LoaderPinwheel } from '~/components/animate-ui/icons/loader-pinwheel'
 import { PlusIcon } from '~/components/icons/plus-icon'
 import { RocketIcon } from '~/components/icons/rocket-icon'
 import { XIcon } from '~/components/icons/x-icon'
+import {
+  ImageComparison,
+  ImageComparisonImage,
+  ImageComparisonSlider,
+} from '~/components/motion-primitives/image-comparison'
 import { Button } from '~/components/ui/button'
 import { Card, CardFooter } from '~/components/ui/card'
 import {
@@ -56,6 +61,7 @@ export default function Page() {
     if (imageResult?.status === 200) {
       return imageResult.body
     }
+
     return null
   }, [imageResult])
 
@@ -103,6 +109,21 @@ export default function Page() {
     setPrompt(
       `convert this photo to studio ghibli style anime, ratio is ${imageSize.width}:${imageSize.height}`,
     )
+  }
+
+  const handleDownload = async () => {
+    if (!imageList?.originalImageUrl) return
+
+    const response = await fetch(imageList.generatedImageUrl)
+    const blob = await response.blob()
+
+    const url = URL.createObjectURL(blob)
+
+    const a = document.createElement('a')
+    a.href = url
+    a.download = 'ai-ghibli-generator-image.png'
+    a.click()
+    URL.revokeObjectURL(url)
   }
 
   return (
@@ -198,7 +219,7 @@ export default function Page() {
             />
 
             <div className='my-4'>
-              <Button onClick={handleClick}>
+              <Button onClick={handleClick} disabled={isMutating}>
                 <span>Generate</span>
                 <div className='flex items-center gap-1'>
                   <span>2</span> <LucideDatabase />
@@ -209,21 +230,37 @@ export default function Page() {
         </ResizablePanel>
         <ResizableHandle />
         <ResizablePanel defaultSize={70}>
-          <div className='flex size-full items-center justify-center'>
+          <div className='flex size-full flex-col items-center justify-center gap-2'>
             <Card
               className={cn(
                 'relative flex h-[70%] max-h-[600px] w-[80%] max-w-[600px] items-center justify-center',
               )}
             >
               {match(imageList?.status)
-                .with(P.union('processing', 'loading'), () => {
+                .with(P.union('pending', 'processing'), () => {
                   return (
                     <div className='bg-accent absolute inset-0 flex items-center justify-center'>
                       <LoaderPinwheel size={100} animate />
                     </div>
                   )
                 })
-                .with('completed', () => <div>completed</div>)
+                .with('completed', () => (
+                  <div className='size-full'>
+                    <ImageComparison className='size-full'>
+                      <ImageComparisonImage
+                        src={imageList?.originalImageUrl || ''}
+                        alt='original-image'
+                        position='left'
+                      />
+                      <ImageComparisonImage
+                        src={imageList?.generatedImageUrl || ''}
+                        alt='generated-image'
+                        position='right'
+                      />
+                      <ImageComparisonSlider className='bg-accent' />
+                    </ImageComparison>
+                  </div>
+                ))
                 .with('failed', () => <div>failed</div>)
                 .otherwise(() => (
                   <>
@@ -239,6 +276,12 @@ export default function Page() {
                   </>
                 ))}
             </Card>
+
+            {imageList?.status === 'completed' && (
+              <div>
+                <Button onClick={handleDownload}>download</Button>
+              </div>
+            )}
           </div>
         </ResizablePanel>
       </ResizablePanelGroup>
