@@ -35,7 +35,10 @@ const nextConfig: NextConfig = {
       ...config.resolve.alias,
       'sharp$': false,
       'onnxruntime-node$': false,
-      '@huggingface/transformers': path.resolve(__dirname, 'node_modules/@huggingface/transformers'),
+      '@huggingface/transformers': path.resolve(
+        __dirname,
+        'node_modules/@huggingface/transformers',
+      ),
     }
 
     config.plugins.push(
@@ -60,6 +63,18 @@ const nextConfig: NextConfig = {
             from: 'next-view-transitions',
             imports: ['Link'],
           },
+          {
+            from: '~/shared/contract',
+            imports: ['contract'],
+          },
+          {
+            from: 'swr',
+            imports: [['default', 'useSWR']],
+          },
+          {
+            from: 'swr/mutation',
+            imports: [['*', 'useSWRMutation']],
+          },
         ],
         dts: true,
       }),
@@ -69,4 +84,7 @@ const nextConfig: NextConfig = {
   },
 }
 
-export default [withBundleAnalyzer, withSerwist].reduce((acc, fn) => fn(acc), nextConfig)
+export default [withBundleAnalyzer, withSerwist].reduce(
+  (acc, fn) => fn(acc),
+  nextConfig,
+)

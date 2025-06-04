@@ -3,8 +3,8 @@ import { z } from 'zod'
 
 const c = initContract()
 
-const imageGenerationStatus = z.enum([
-  'loading',
+export const imageGenerationStatus = z.enum([
+  'pending',
   'processing',
   'completed',
   'failed',
@@ -20,6 +20,21 @@ export const contract = c.router(
       }),
       responses: {
         200: z.any(),
+      },
+    },
+    getCredits: {
+      method: 'GET',
+      path: '/get-user',
+      query: z.object({
+        userId: z.string(),
+      }),
+      responses: {
+        200: z.object({
+          id: z.string(),
+          name: z.string(),
+          email: z.string(),
+          credits: z.number(),
+        }),
       },
     },
     uploadFile: {
@@ -40,7 +55,7 @@ export const contract = c.router(
       path: '/update-image-generation',
       body: z.object({
         id: z.number(),
-        status: imageGenerationStatus.optional(),
+        status: imageGenerationStatus,
         prompt: z.string().optional(),
         generationText: z.string().optional(),
         originalImageUrl: z.string().optional(),
@@ -48,7 +63,6 @@ export const contract = c.router(
       }),
       responses: {
         200: z.string(),
-        500: z.string(),
       },
     },
     updateUserCredits: {
@@ -60,7 +74,6 @@ export const contract = c.router(
       }),
       responses: {
         200: z.string(),
-        500: z.string(),
       },
     },
     aiFortuneTeller: {
@@ -125,10 +138,16 @@ export const contract = c.router(
           generatedImageUrl: z.string().nullable(),
           status: imageGenerationStatus,
         }),
+        500: z.string(),
       },
     },
   },
   {
     pathPrefix: '/api',
+    commonResponses: {
+      401: z.object({
+        message: z.string(),
+      }),
+    },
   },
 )

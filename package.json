@@ -47,9 +47,9 @@
     "class-variance-authority": "^0.7.1",
     "date-fns": "^4.1.0",
     "drizzle-kit": "^0.31.1",
-    "drizzle-orm": "^0.44.1",
+    "drizzle-orm": "^0.44.2",
     "jotai": "^2.12.5",
-    "lucide-react": "^0.511.0",
+    "lucide-react": "^0.513.0",
     "motion": "^12.16.0",
     "next": "^15.3.3",
     "next-themes": "^0.4.6",
@@ -71,7 +71,7 @@
     "unplugin-auto-import": "^19.3.0",
     "use-is-match-media": "^0.0.2",
     "use-transformers": "^0.0.10",
-    "zod": "^3.25.49",
+    "zod": "^3.25.51",
     "zustand": "^5.0.5"
   },
   "devDependencies": {
@@ -96,7 +96,7 @@
     "turbo": "^2.5.4",
     "type-fest": "^4.41.0",
     "typescript": "^5.8.3",
-    "wrangler": "^4.19.0"
+    "wrangler": "^4.19.1"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm lint-staged"

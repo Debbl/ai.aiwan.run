@@ -1,28 +1,17 @@
 import { desc, eq } from 'drizzle-orm'
 import { getDBAsync } from '~/server/db'
 import { schema } from '~/server/db/schema'
+import type { ImageGenerationsInferInsert } from '~/server/db/schema/internal/image-generations'
 
-export async function insert(values: {
-  userId: string
-  prompt: string
-  originalImageUrl: string
-  generatedImageUrl: string
-  credits: number
-  status: string
-}) {
+export async function insert(values: ImageGenerationsInferInsert) {
   const db = await getDBAsync()
 
   return await db.insert(schema.imageGenerations).values(values)
 }
 
-export async function update(values: {
-  id: number
-  status?: string
-  prompt?: string
-  originalImageUrl?: string
-  generatedImageUrl?: string
-  generationText?: string
-}) {
+export async function update(
+  values: Partial<ImageGenerationsInferInsert> & { id: number },
+) {
   const db = await getDBAsync()
 
   return await db

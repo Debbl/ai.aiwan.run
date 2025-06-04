@@ -1,4 +1,6 @@
 'use client'
+import { SWRConfig } from 'swr'
+
 export function ProvidersClient({ children }: { children: React.ReactNode }) {
-  return <>{children}</>
+  return <SWRConfig>{children}</SWRConfig>
 }

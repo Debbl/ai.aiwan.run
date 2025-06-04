@@ -23,8 +23,7 @@ import {
 } from '~/components/ui/select'
 import { Skeleton } from '~/components/ui/skeleton'
 import { useAuthGuard } from '~/hooks/useAuth'
-import { useSession } from '~/lib/auth-client'
-import { contract } from '~/shared/contract'
+import { useRefreshCredits } from '~/hooks/useRefreshCredits'
 import { infoAtom } from './atoms/info'
 
 export default function Page() {
@@ -46,7 +45,7 @@ export default function Page() {
 
   const [isShowThinking, setIsShowThinking] = useState(false)
 
-  const { refetch } = useSession()
+  const { refreshCredits } = useRefreshCredits()
   const {
     status,
     messages,
@@ -55,13 +54,10 @@ export default function Page() {
   } = useChat({
     api: getApiUrl(contract.aiFortuneTeller),
     onResponse: () => {
-      refetch()
+      refreshCredits()
     },
     onError: () => {
-      refetch()
-    },
-    onFinish: () => {
-      refetch()
+      refreshCredits()
     },
   })
 

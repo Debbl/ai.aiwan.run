@@ -4,11 +4,17 @@ import Image from 'next/image'
 import { parseAsString, useQueryState } from 'nuqs'
 import useSWR from 'swr'
 import useSWRMutation from 'swr/mutation'
+import { match, P } from 'ts-pattern'
 import { useIsMatchMedia } from 'use-is-match-media'
 import { LoaderPinwheel } from '~/components/animate-ui/icons/loader-pinwheel'
 import { PlusIcon } from '~/components/icons/plus-icon'
 import { RocketIcon } from '~/components/icons/rocket-icon'
 import { XIcon } from '~/components/icons/x-icon'
+import {
+  ImageComparison,
+  ImageComparisonImage,
+  ImageComparisonSlider,
+} from '~/components/motion-primitives/image-comparison'
 import { Button } from '~/components/ui/button'
 import { Card, CardFooter } from '~/components/ui/card'
 import {
@@ -18,7 +24,7 @@ import {
 } from '~/components/ui/resizable'
 import { Textarea } from '~/components/ui/textarea'
 import { useAuthGuard } from '~/hooks/useAuth'
-import { useSession } from '~/lib/auth-client'
+import { useRefreshCredits } from '~/hooks/useRefreshCredits'
 import { contract } from '~/shared/contract'
 import { getImageSize } from '~/utils'
 
@@ -33,36 +39,38 @@ export default function Page() {
   )
   const isMobile = useIsMatchMedia('(max-width: 768px)')
 
-  const { data: recordImageData } = useSWR(
+  const { data: imageResult } = useSWR(
     recordId ? [contract.getImageById.path, recordId] : null,
     async ([_, id]) => {
-      const res = await api.getImageById({
+      return await api.getImageById({
         query: {
           id,
         },
       })
-
-      if (res.status === 200) {
-        return res.body
-      }
-      return null
     },
     {
       refreshInterval: (latestData) => {
-        if (latestData?.status === 'completed') {
-          return 0
-        }
+        if (latestData?.status !== 200) return 0
+        if (latestData?.body?.status === 'completed') return 0
+
         return 5000
       },
     },
   )
+  const imageList = useMemo(() => {
+    if (imageResult?.status === 200) {
+      return imageResult.body
+    }
+
+    return null
+  }, [imageResult])
 
   const uploadImageUrl = useMemo(() => {
     if (!image) return null
     return URL.createObjectURL(image)
   }, [image])
 
-  const { refetch } = useSession()
+  const { refreshCredits } = useRefreshCredits()
   const { trigger, isMutating } = useSWRMutation(
     contract.aiGhibliGenerator.path,
     (_, { arg }: { arg: { image: File; ratio: string } }) => {
@@ -75,7 +83,7 @@ export default function Page() {
     },
     {
       onSuccess: () => {
-        refetch()
+        refreshCredits()
       },
     },
   )
@@ -101,6 +109,21 @@ export default function Page() {
     setPrompt(
       `convert this photo to studio ghibli style anime, ratio is ${imageSize.width}:${imageSize.height}`,
     )
+  }
+
+  const handleDownload = async () => {
+    if (!imageList?.originalImageUrl) return
+
+    const response = await fetch(imageList.generatedImageUrl)
+    const blob = await response.blob()
+
+    const url = URL.createObjectURL(blob)
+
+    const a = document.createElement('a')
+    a.href = url
+    a.download = 'ai-ghibli-generator-image.png'
+    a.click()
+    URL.revokeObjectURL(url)
   }
 
   return (
@@ -196,7 +219,7 @@ export default function Page() {
             />
 
             <div className='my-4'>
-              <Button onClick={handleClick}>
+              <Button onClick={handleClick} disabled={isMutating}>
                 <span>Generate</span>
                 <div className='flex items-center gap-1'>
                   <span>2</span> <LucideDatabase />
@@ -207,30 +230,58 @@ export default function Page() {
         </ResizablePanel>
         <ResizableHandle />
         <ResizablePanel defaultSize={70}>
-          <div className='flex size-full items-center justify-center'>
+          <div className='flex size-full flex-col items-center justify-center gap-2'>
             <Card
               className={cn(
                 'relative flex h-[70%] max-h-[600px] w-[80%] max-w-[600px] items-center justify-center',
               )}
             >
-              <RocketIcon />
-              <CardFooter>
-                <div className='flex flex-col items-center justify-center'>
-                  <p>Your Ghibli Image will be here</p>
-                  <p className='text-muted-foreground'>
-                    Please upload an image to generate a Ghibli image
-                  </p>
-                </div>
-              </CardFooter>
-              {(isMutating ||
-                ['pending', 'processing'].includes(
-                  recordImageData?.status ?? '',
-                )) && (
-                <div className='bg-accent absolute inset-0 flex items-center justify-center'>
-                  <LoaderPinwheel size={100} animate />
-                </div>
-              )}
+              {match(imageList?.status)
+                .with(P.union('pending', 'processing'), () => {
+                  return (
+                    <div className='bg-accent absolute inset-0 flex items-center justify-center'>
+                      <LoaderPinwheel size={100} animate />
+                    </div>
+                  )
+                })
+                .with('completed', () => (
+                  <div className='size-full'>
+                    <ImageComparison className='size-full'>
+                      <ImageComparisonImage
+                        src={imageList?.originalImageUrl || ''}
+                        alt='original-image'
+                        position='left'
+                      />
+                      <ImageComparisonImage
+                        src={imageList?.generatedImageUrl || ''}
+                        alt='generated-image'
+                        position='right'
+                      />
+                      <ImageComparisonSlider className='bg-accent' />
+                    </ImageComparison>
+                  </div>
+                ))
+                .with('failed', () => <div>failed</div>)
+                .otherwise(() => (
+                  <>
+                    <RocketIcon />
+                    <CardFooter>
+                      <div className='flex flex-col items-center justify-center'>
+                        <p>Your Ghibli Image will be here</p>
+                        <p className='text-muted-foreground'>
+                          Please upload an image to generate a Ghibli image
+                        </p>
+                      </div>
+                    </CardFooter>
+                  </>
+                ))}
             </Card>
+
+            {imageList?.status === 'completed' && (
+              <div>
+                <Button onClick={handleDownload}>download</Button>
+              </div>
+            )}
           </div>
         </ResizablePanel>
       </ResizablePanelGroup>
