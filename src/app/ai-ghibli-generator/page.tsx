@@ -112,7 +112,7 @@ export default function Page() {
   }
 
   const handleDownload = async () => {
-    if (!imageList?.originalImageUrl) return
+    if (!imageList?.generatedImageUrl) return
 
     const response = await fetch(imageList.generatedImageUrl)
     const blob = await response.blob()
