@@ -3,7 +3,7 @@ import { contract } from './shared/contract'
 import type { ValueOf } from 'type-fest'
 
 export const api = initClient(contract, {
-  baseUrl: 'http://localhost:3000',
+  baseUrl: '.',
   baseHeaders: {},
   throwOnUnknownStatus: true,
 })
