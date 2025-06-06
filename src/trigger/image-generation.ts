@@ -3,8 +3,8 @@ import { logger, task } from '@trigger.dev/sdk/v3'
 import { generateText } from 'ai'
 import { match } from 'ts-pattern'
 import { OPENAI_API_KEY, OPENAI_BASE_URL } from '~/env'
-import { api } from './api'
-import { srcToBase64String } from './utils'
+import { api } from './internal/api'
+import { srcToBase64String } from './internal/utils'
 import type { Model } from '~/shared/schema'
 
 const openai = createOpenAI({
