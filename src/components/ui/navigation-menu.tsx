@@ -80,6 +80,22 @@ function NavigationMenuTrigger({
   )
 }
 
+function NavigationMenuTriggerWithoutChevron({
+  className,
+  children,
+  ...props
+}: React.ComponentProps<typeof NavigationMenuPrimitive.Trigger>) {
+  return (
+    <NavigationMenuPrimitive.Trigger
+      data-slot='navigation-menu-trigger'
+      className={cn(navigationMenuTriggerStyle(), 'group', className)}
+      {...props}
+    >
+      {children}
+    </NavigationMenuPrimitive.Trigger>
+  )
+}
+
 function NavigationMenuContent({
   className,
   ...props
@@ -163,5 +179,6 @@ export {
   NavigationMenuTrigger,
   // eslint-disable-next-line react-refresh/only-export-components
   navigationMenuTriggerStyle,
+  NavigationMenuTriggerWithoutChevron,
   NavigationMenuViewport,
 }

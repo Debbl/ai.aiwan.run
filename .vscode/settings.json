@@ -16,6 +16,9 @@
       "severity": "warn"
     }
   ],
+  "tailwindCSS.experimental.classRegex": [
+    ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
+  ],
   "cSpell.words": [
     "birpc",
     "deepseek",
