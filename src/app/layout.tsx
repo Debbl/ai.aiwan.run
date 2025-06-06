@@ -11,6 +11,12 @@ export const metadata: Metadata = {
   appleWebApp: {
     title: 'The client first ai apps',
   },
+  keywords: [
+    'ai',
+    'ai apps collection',
+    'studio ghibli style anime generator',
+    'browser ai apps',
+  ],
   icons: [
     {
       rel: 'icon',
