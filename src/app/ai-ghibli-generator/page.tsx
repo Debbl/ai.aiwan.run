@@ -43,31 +43,30 @@ export default function Page() {
   )
   const isMobile = useIsMatchMedia('(max-width: 768px)')
 
-  const { data: imageResult } = useSWR(
+  const { data: imageList } = useSWR(
     recordId ? [contract.getImageById.path, recordId] : null,
     async ([_, id]) => {
-      return await api.getImageById({
+      const res = await api.getImageById({
         query: {
           id,
         },
       })
+
+      if (res.status !== 200) {
+        const msg = (res?.body as { message: string })?.message
+        throw new Error(msg || 'Unknown error')
+      }
+
+      return res.body
     },
     {
       refreshInterval: (latestData) => {
-        if (latestData?.status !== 200) return 0
-        if (latestData?.body?.status === 'completed') return 0
+        if (latestData?.status === 'completed') return 0
 
         return 5000
       },
     },
   )
-  const imageList = useMemo(() => {
-    if (imageResult?.status === 200) {
-      return imageResult.body
-    }
-
-    return null
-  }, [imageResult])
 
   const uploadImageUrl = useMemo(() => {
     if (!image) return null
