@@ -1,14 +1,9 @@
 import { initContract } from '@ts-rest/core'
-import { z } from 'zod'
+import { z } from 'zod/v4'
+import { imageGenerationStatusSchema } from './schema'
+import type { Model } from './schema'
 
 const c = initContract()
-
-export const imageGenerationStatus = z.enum([
-  'pending',
-  'processing',
-  'completed',
-  'failed',
-])
 
 export const contract = c.router(
   {
@@ -55,7 +50,7 @@ export const contract = c.router(
       path: '/update-image-generation',
       body: z.object({
         id: z.number(),
-        status: imageGenerationStatus,
+        status: imageGenerationStatusSchema,
         prompt: z.string().optional(),
         generationText: z.string().optional(),
         originalImageUrl: z.string().optional(),
@@ -98,6 +93,7 @@ export const contract = c.router(
         image: File
         ratio: string
         prompt?: string
+        model?: Model
       }>(),
       responses: {
         200: z.object({
@@ -119,7 +115,7 @@ export const contract = c.router(
               id: z.number(),
               originalImageUrl: z.string().nullable(),
               generatedImageUrl: z.string().nullable(),
-              status: imageGenerationStatus,
+              status: imageGenerationStatusSchema,
             }),
           ),
         }),
@@ -136,7 +132,7 @@ export const contract = c.router(
           id: z.number(),
           originalImageUrl: z.string().nullable(),
           generatedImageUrl: z.string().nullable(),
-          status: imageGenerationStatus,
+          status: imageGenerationStatusSchema,
         }),
         500: z.string(),
       },

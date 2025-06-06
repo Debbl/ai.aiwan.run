@@ -7,6 +7,9 @@ export const imageGenerations = sqliteTable('image_generations_table', {
     .references(() => user.id)
     .notNull(),
   prompt: text().notNull(),
+  type: text({ enum: ['text2image', 'image2image'] })
+    .notNull()
+    .default('text2image'),
   generationText: text().default(''),
   credits: int().default(0),
   status: text({ enum: ['pending', 'processing', 'completed', 'failed'] })

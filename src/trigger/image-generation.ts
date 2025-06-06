@@ -1,9 +1,11 @@
 import { createOpenAI } from '@ai-sdk/openai'
 import { logger, task } from '@trigger.dev/sdk/v3'
 import { generateText } from 'ai'
+import { match } from 'ts-pattern'
 import { OPENAI_API_KEY, OPENAI_BASE_URL } from '~/env'
 import { api } from './api'
 import { srcToBase64String } from './utils'
+import type { Model } from '~/shared/schema'
 
 const openai = createOpenAI({
   apiKey: OPENAI_API_KEY,
@@ -30,6 +32,7 @@ export const generationImageTask = task({
   id: 'generate-image',
   maxDuration: 10 * 60,
   run: async (payload: {
+    model: Model
     userId: string
     id: number
     prompt: string
@@ -53,8 +56,14 @@ export const generationImageTask = task({
 
       const base64Image = await srcToBase64String(payload.image)
 
+      const runModel = match(payload.model)
+        .with('gpt-4o-image-vip', () => openai('gpt-4o-image-vip'))
+        .with('gpt-image-1', () => openai('gpt-image-1'))
+        .with('gpt-image-1-vip', () => openai('gpt-image-1-vip'))
+        .exhaustive()
+
       const result = await generateText({
-        model: openai('gpt-4o-image-vip'),
+        model: runModel,
         messages: [
           {
             role: 'user',

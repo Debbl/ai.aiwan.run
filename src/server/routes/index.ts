@@ -136,13 +136,13 @@ export const router = tsr.routerWithMiddleware(contract)<{ userId: string }>({
 
     return response as any
   },
-  aiGhibliGenerator: async (_, { request: { userId }, nextRequest }) => {
+  aiGhibliGenerator: async ({ body }, { request: { userId }, nextRequest }) => {
+    const { model = 'gpt-image-1-vip', ratio = '1:1', prompt: _prompt } = body
     const formData = await nextRequest.formData()
-
     const image = formData.get('image') as File
-    const ratio = formData.get('ratio') as string
+
     const prompt =
-      (formData.get('prompt') as string) ||
+      _prompt ||
       `convert this photo to studio ghibli style anime, ratio is ${ratio}`
 
     const r2Obj = await services.updateFile(image)
@@ -185,6 +185,7 @@ export const router = tsr.routerWithMiddleware(contract)<{ userId: string }>({
     await tasks.trigger<typeof generationImageTask>('generate-image', {
       userId,
       id: imageGenerationsInsert.meta.last_row_id,
+      model,
       prompt,
       image: getR2Url(originalImageUrlKey),
       amount,

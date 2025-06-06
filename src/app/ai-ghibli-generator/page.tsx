@@ -77,12 +77,12 @@ export default function Page() {
   const { refreshCredits } = useRefreshCredits()
   const { trigger, isMutating } = useSWRMutation(
     contract.aiGhibliGenerator.path,
-    (_, { arg }: { arg: { image: File; ratio: string } }) => {
+    (
+      _,
+      { arg }: { arg: Parameters<typeof api.aiGhibliGenerator>[0]['body'] },
+    ) => {
       return api.aiGhibliGenerator({
-        body: {
-          image: arg.image,
-          ratio: arg.ratio,
-        },
+        body: arg,
       })
     },
     {
@@ -99,6 +99,7 @@ export default function Page() {
     const res = await trigger({
       image,
       ratio: `${imageSize.width}:${imageSize.height}`,
+      model: 'gpt-image-1-vip',
     })
     if (res.status === 200) {
       setRecordId(res.body.recordId)

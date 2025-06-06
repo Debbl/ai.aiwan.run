@@ -36,11 +36,11 @@ importers:
         specifier: ^3.3.17
         version: 3.3.17(zod@3.25.55)
       '@ts-rest/core':
-        specifier: ^3.52.1
-        version: 3.52.1(@types/node@22.15.30)(zod@3.25.55)
+        specifier: ^3.53.0-rc.1
+        version: 3.53.0-rc.1(@types/node@22.15.30)
       '@ts-rest/serverless':
-        specifier: ^3.52.1
-        version: 3.52.1(@ts-rest/core@3.52.1(@types/node@22.15.30)(zod@3.25.55))(next@15.3.3(@babel/core@7.27.1)(@opentelemetry/api@1.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(zod@3.25.55)
+        specifier: ^3.53.0-rc.1
+        version: 3.53.0-rc.1(@ts-rest/core@3.53.0-rc.1(@types/node@22.15.30))(next@15.3.3(@babel/core@7.27.1)(@opentelemetry/api@1.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))
       ai:
         specifier: ^4.3.16
         version: 4.3.16(react@19.1.0)(zod@3.25.55)
@@ -3309,33 +3309,27 @@ packages:
     peerDependencies:
       zod: ^3.0.0
 
-  '@ts-rest/core@3.52.1':
-    resolution: {integrity: sha512-tAjz7Kxq/grJodcTA1Anop4AVRDlD40fkksEV5Mmal88VoZeRKAG8oMHsDwdwPZz+B/zgnz0q2sF+cm5M7Bc7g==}
+  '@ts-rest/core@3.53.0-rc.1':
+    resolution: {integrity: sha512-hDMXqKHSys6w+kXFW1Q6EvN8QgRvtXKXJ2TpYByKI4TquaPjiTOv99aLD26X4LNRzdna8Ci1PVyzr0jYZv0oNQ==}
     peerDependencies:
       '@types/node': ^18.18.7 || >=20.8.4
-      zod: ^3.22.3
     peerDependenciesMeta:
       '@types/node':
         optional: true
-      zod:
-        optional: true
 
-  '@ts-rest/serverless@3.52.1':
-    resolution: {integrity: sha512-9lz6SVC/zOjR7Q70Uige1i4fgSLS5cPpei/ocBgdwhc/TJhKWTMQog2IQX3pT2nIA4B4QvZ54YyrBkSiwbrGPw==}
+  '@ts-rest/serverless@3.53.0-rc.1':
+    resolution: {integrity: sha512-MtwjH3GqGXx4r4Tyqb381JNN5W7tKZt491Yp0OSAxU2cdduJ3s9lNZV4+AFbDTdY+ZyInlQntCIr94+VBSr+TA==}
     peerDependencies:
       '@azure/functions': ^4.0.0
-      '@ts-rest/core': ~3.52.0
+      '@ts-rest/core': 3.53.0-rc.1
       '@types/aws-lambda': ^8.10.115
       next: ^12.0.0 || ^13.0.0 || ^14.0.0
-      zod: ^3.22.3
     peerDependenciesMeta:
       '@azure/functions':
         optional: true
       '@types/aws-lambda':
         optional: true
       next:
-        optional: true
-      zod:
         optional: true
 
   '@tsconfig/node18@1.0.3':
@@ -11177,18 +11171,16 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@ts-rest/core@3.52.1(@types/node@22.15.30)(zod@3.25.55)':
+  '@ts-rest/core@3.53.0-rc.1(@types/node@22.15.30)':
     optionalDependencies:
       '@types/node': 22.15.30
-      zod: 3.25.55
 
-  '@ts-rest/serverless@3.52.1(@ts-rest/core@3.52.1(@types/node@22.15.30)(zod@3.25.55))(next@15.3.3(@babel/core@7.27.1)(@opentelemetry/api@1.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(zod@3.25.55)':
+  '@ts-rest/serverless@3.53.0-rc.1(@ts-rest/core@3.53.0-rc.1(@types/node@22.15.30))(next@15.3.3(@babel/core@7.27.1)(@opentelemetry/api@1.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))':
     dependencies:
-      '@ts-rest/core': 3.52.1(@types/node@22.15.30)(zod@3.25.55)
+      '@ts-rest/core': 3.53.0-rc.1(@types/node@22.15.30)
       itty-router: 5.0.18
     optionalDependencies:
       next: 15.3.3(@babel/core@7.27.1)(@opentelemetry/api@1.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      zod: 3.25.55
 
   '@tsconfig/node18@1.0.3': {}
 
