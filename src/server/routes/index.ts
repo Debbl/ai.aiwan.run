@@ -183,6 +183,7 @@ export const router = tsr.routerWithMiddleware(contract)<{ userId: string }>({
     }
 
     await tasks.trigger<typeof generationImageTask>('generate-image', {
+      type: 'image2image',
       userId,
       id: imageGenerationsInsert.meta.last_row_id,
       model,

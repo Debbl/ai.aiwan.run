@@ -31,14 +31,29 @@ function parseText(str: string) {
 export const generationImageTask = task({
   id: 'generate-image',
   maxDuration: 10 * 60,
-  run: async (payload: {
-    model: Model
-    userId: string
-    id: number
-    prompt: string
-    image: string
-    amount: number
-  }) => {
+  run: async (
+    payload:
+      | {
+          type: 'text2image'
+          model: Model
+          userId: string
+          id: number
+          prompt: string
+          amount: number
+        }
+      | {
+          type: 'image2image'
+          model: Model
+          userId: string
+          id: number
+          prompt: string
+          image: string
+          amount: number
+        },
+  ) => {
+    // TODO: add image2image
+    if (payload.type === 'text2image') return
+
     try {
       logger.log(JSON.stringify(payload, null, 2))
 
@@ -84,7 +99,12 @@ export const generationImageTask = task({
 
       logger.log(`generationText: ${generationText}`)
 
-      const { success, url } = parseText(generationText)
+      const { success, url } = match(payload.model)
+        .with('gpt-image-1-vip', () => parseText(generationText))
+        .with('gpt-4o-image-vip', () => parseText(generationText))
+        .with('gpt-image-1', () => parseText(generationText))
+        .exhaustive()
+
       const updateGenerationText = await api.updateImageGeneration({
         body: {
           id: payload.id,

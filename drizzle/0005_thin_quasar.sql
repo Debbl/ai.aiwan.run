@@ -1,0 +1,2 @@
+ALTER TABLE `image_generations_table` ADD `model` text DEFAULT 'gpt-image-1-vip' NOT NULL;--> statement-breakpoint
+ALTER TABLE `image_generations_table` ADD `type` text DEFAULT 'ai-ghibli-generator' NOT NULL;

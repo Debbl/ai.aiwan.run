@@ -1,4 +1,5 @@
 import { int, integer, sqliteTable, text } from 'drizzle-orm/sqlite-core'
+import { model } from '~/shared/schema'
 import { user } from './auth'
 
 export const imageGenerations = sqliteTable('image_generations_table', {
@@ -7,9 +8,10 @@ export const imageGenerations = sqliteTable('image_generations_table', {
     .references(() => user.id)
     .notNull(),
   prompt: text().notNull(),
-  type: text({ enum: ['text2image', 'image2image'] })
+  model: text({ enum: model }).notNull().default('gpt-image-1-vip'),
+  type: text({ enum: ['ai-ghibli-generator'] })
     .notNull()
-    .default('text2image'),
+    .default('ai-ghibli-generator'),
   generationText: text().default(''),
   credits: int().default(0),
   status: text({ enum: ['pending', 'processing', 'completed', 'failed'] })

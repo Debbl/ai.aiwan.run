@@ -36,6 +36,13 @@
       "when": 1748964870532,
       "tag": "0004_organic_master_chief",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "6",
+      "when": 1749215121282,
+      "tag": "0005_thin_quasar",
+      "breakpoints": true
     }
   ]
 }
