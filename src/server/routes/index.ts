@@ -6,6 +6,7 @@ import { dao } from '~/server/dao'
 import { getR2Url } from '~/shared'
 import { contract } from '../../shared/contract'
 import { services } from '../services'
+import type { Model } from '~/shared/schema'
 import type { generationImageTask } from '~/trigger/image-generation'
 import type { imageGeneratorTask } from '~/trigger/image-generator'
 
@@ -137,14 +138,15 @@ export const router = tsr.routerWithMiddleware(contract)<{ userId: string }>({
 
     return response as any
   },
-  aiGhibliGenerator: async ({ body }, { request: { userId }, nextRequest }) => {
-    const { model = 'gpt-image-1-vip', ratio = '1:1', prompt: _prompt } = body
+  aiGhibliGenerator: async (_, { request: { userId }, nextRequest }) => {
     const formData = await nextRequest.formData()
-    const image = formData.get('image') as File
-
+    const model = (formData.get('model') as Model) || 'gpt-image-1-vip'
+    const ratio = (formData.get('ratio') as string) || '1:1'
     const prompt =
-      _prompt ||
+      (formData.get('prompt') as string) ||
       `convert this photo to studio ghibli style anime, ratio is ${ratio}`
+
+    const image = formData.get('image') as File
 
     const r2Obj = await services.updateFile(image)
 

@@ -4,6 +4,9 @@
   "name": "ai-aiwan-run",
   "compatibility_date": "2024-12-30",
   "compatibility_flags": ["nodejs_compat"],
+  "observability": {
+    "enabled": true
+  },
   "assets": {
     "directory": ".open-next/assets",
     "binding": "ASSETS"
