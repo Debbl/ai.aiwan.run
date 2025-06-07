@@ -31,29 +31,30 @@ export const imageGeneratorTask = task({
 
       logger.log(`ok images length: ${result.images.length}`)
 
-      await Promise.all(
-        result.images.map(async (image) => {
-          const base64 = image.base64
-          const imageFile = await base64ToFile(base64)
-          const uploadFile = await api.uploadFile({
-            body: {
-              file: imageFile,
-            },
-          })
-          logger.log(`uploadFile: ${JSON.stringify(uploadFile, null, 2)}`)
-          if (uploadFile.status !== 200) {
-            throw new Error('Failed to upload file')
-          }
+      for (const image of result.images) {
+        const base64 = image.base64
+        const imageFile = await base64ToFile(base64)
+        const uploadFile = await api.uploadFile({
+          body: {
+            file: imageFile,
+          },
+        })
+        logger.log(`uploadFile: ${JSON.stringify(uploadFile, null, 2)}`)
+        if (uploadFile.status !== 200) {
+          throw new Error('Failed to upload file')
+        }
 
-          await api.updateImageGeneration({
-            body: {
-              id: payload.id,
-              status: 'completed',
-              generatedImageUrl: uploadFile.body.url,
-            },
-          })
-        }),
-      )
+        const updateImageGeneration = await api.updateImageGeneration({
+          body: {
+            id: payload.id,
+            status: 'completed',
+            generatedImageUrl: uploadFile.body.url,
+          },
+        })
+        if (updateImageGeneration.status !== 200) {
+          throw new Error('Failed to update image generation')
+        }
+      }
     } catch (error) {
       logger.error(`error: ${JSON.stringify(error, null, 2)}`)
 

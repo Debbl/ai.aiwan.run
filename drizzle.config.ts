@@ -1,5 +1,10 @@
 import { defineConfig } from 'drizzle-kit'
-import { CLOUDFLARE_ACCOUNT_ID, CLOUDFLARE_D1_TOKEN, CLOUDFLARE_DATABASE_ID, NODE_ENV } from '~/env'
+import {
+  CLOUDFLARE_ACCOUNT_ID,
+  CLOUDFLARE_D1_TOKEN,
+  CLOUDFLARE_DATABASE_ID,
+  NODE_ENV,
+} from '~/env'
 
 const isDev = NODE_ENV === 'development'
 
