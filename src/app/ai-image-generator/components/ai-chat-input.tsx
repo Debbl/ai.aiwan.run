@@ -16,7 +16,11 @@ const PLACEHOLDERS = [
   'Generate a minimalist image',
 ]
 
-const AIChatInput = () => {
+const AIChatInput = ({
+  handleSubmit,
+}: {
+  handleSubmit: (prompt: string) => void
+}) => {
   const [placeholderIndex, setPlaceholderIndex] = useState(0)
   const [showPlaceholder, setShowPlaceholder] = useState(true)
   const [isActive, setIsActive] = useState(false)
@@ -166,6 +170,10 @@ const AIChatInput = () => {
               title='Send'
               type='button'
               tabIndex={-1}
+              onClick={() => {
+                handleSubmit(inputValue)
+                setInputValue('')
+              }}
             >
               <Send size={18} />
             </button>

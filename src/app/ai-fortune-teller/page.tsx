@@ -63,7 +63,8 @@ export default function Page() {
 
   const { handleAuthGuard } = useAuthGuard()
   const handleSubmit = () => {
-    handleAuthGuard()
+    if (!handleAuthGuard()) return
+
     _handleSubmit()
   }
 

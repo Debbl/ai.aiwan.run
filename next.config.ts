@@ -73,7 +73,7 @@ const nextConfig: NextConfig = {
           },
           {
             from: 'swr/mutation',
-            imports: [['*', 'useSWRMutation']],
+            imports: [['default', 'useSWRMutation']],
           },
         ],
         dts: true,

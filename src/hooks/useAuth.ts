@@ -9,6 +9,7 @@ export function useAuthGuard() {
     if (!session.data) {
       redirect(`/sign-in?redirect=${pathname}`)
     }
+    return !!session.data
   }, [session])
 
   return {

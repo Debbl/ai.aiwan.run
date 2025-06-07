@@ -12,3 +12,12 @@ export async function srcToBase64String(src: string) {
 
   return await blobToBase64(blob)
 }
+
+export async function base64ToFile(base64: string) {
+  const blob = await fetch(`data:image/png;base64,${base64}`).then((res) =>
+    res.blob(),
+  )
+  const file = new File([blob], 'image.png', { type: blob.type })
+
+  return file
+}

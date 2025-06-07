@@ -7,6 +7,7 @@ import { getR2Url } from '~/shared'
 import { contract } from '../../shared/contract'
 import { services } from '../services'
 import type { generationImageTask } from '~/trigger/image-generation'
+import type { imageGeneratorTask } from '~/trigger/image-generator'
 
 export const router = tsr.routerWithMiddleware(contract)<{ userId: string }>({
   test: async (_, { request: { userId } }) => {
@@ -190,6 +191,51 @@ export const router = tsr.routerWithMiddleware(contract)<{ userId: string }>({
       prompt,
       image: getR2Url(originalImageUrlKey),
       amount,
+    })
+
+    return {
+      status: 200,
+      body: {
+        recordId: imageGenerationsInsert.meta.last_row_id.toString(),
+      },
+    }
+  },
+  aiImageGenerator: async ({ body }, { request: { userId } }) => {
+    const { model = 'gpt-image-1-vip', prompt } = body
+
+    const amount = 2
+    const userUpdate = await dao.user.updateCredits({
+      userId,
+      amount: -amount,
+    })
+    if (userUpdate.error) {
+      return {
+        status: 500,
+        body: 'Failed to update credits',
+      }
+    }
+
+    const imageGenerationsInsert = await dao.imageGenerations.insert({
+      userId,
+      prompt,
+      type: 'text-to-image',
+      credits: Math.abs(amount),
+      originalImageUrl: '',
+      generatedImageUrl: '',
+      status: 'pending',
+    })
+    if (imageGenerationsInsert.error) {
+      return {
+        status: 500,
+        body: 'Failed to insert image generation',
+      }
+    }
+
+    await tasks.trigger<typeof imageGeneratorTask>('image-generator', {
+      userId,
+      id: imageGenerationsInsert.meta.last_row_id,
+      model,
+      prompt,
     })
 
     return {

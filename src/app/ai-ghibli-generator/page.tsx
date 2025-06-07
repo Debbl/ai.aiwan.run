@@ -92,7 +92,7 @@ export default function Page() {
   )
 
   const handleClick = async () => {
-    handleAuthGuard()
+    if (!handleAuthGuard()) return
     if (!image) return
 
     const res = await trigger({

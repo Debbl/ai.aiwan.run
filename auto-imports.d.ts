@@ -29,7 +29,7 @@ declare global {
   const useReducer: typeof import('react')['useReducer']
   const useRef: typeof import('react')['useRef']
   const useSWR: typeof import('swr')['default']
-  const useSWRMutation: typeof import('swr/mutation')
+  const useSWRMutation: typeof import('swr/mutation')['default']
   const useState: typeof import('react')['useState']
   const useSyncExternalStore: typeof import('react')['useSyncExternalStore']
   const useTransition: typeof import('react')['useTransition']

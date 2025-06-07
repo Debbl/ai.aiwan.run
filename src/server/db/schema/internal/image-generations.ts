@@ -9,7 +9,7 @@ export const imageGenerations = sqliteTable('image_generations_table', {
     .notNull(),
   prompt: text().notNull(),
   model: text({ enum: model }).notNull().default('gpt-image-1-vip'),
-  type: text({ enum: ['ai-ghibli-generator'] })
+  type: text({ enum: ['ai-ghibli-generator', 'text-to-image'] })
     .notNull()
     .default('ai-ghibli-generator'),
   generationText: text().default(''),

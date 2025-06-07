@@ -1,6 +1,6 @@
 import { initContract } from '@ts-rest/core'
 import { z } from 'zod/v4'
-import { imageGenerationStatusSchema } from './schema'
+import { imageGenerationStatusSchema, modelSchema } from './schema'
 import type { Model } from './schema'
 
 const c = initContract()
@@ -95,6 +95,20 @@ export const contract = c.router(
         prompt?: string
         model?: Model
       }>(),
+      responses: {
+        200: z.object({
+          recordId: z.string(),
+        }),
+        500: z.string(),
+      },
+    },
+    aiImageGenerator: {
+      method: 'POST',
+      path: '/ai-image-generator',
+      body: z.object({
+        model: modelSchema.optional(),
+        prompt: z.string(),
+      }),
       responses: {
         200: z.object({
           recordId: z.string(),
