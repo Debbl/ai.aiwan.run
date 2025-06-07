@@ -1,8 +1,10 @@
 'use client'
+import { DownloadIcon } from 'lucide-react'
 import Image from 'next/image'
 import { parseAsString, useQueryState } from 'nuqs'
 import { match } from 'ts-pattern'
 import { LoaderPinwheel } from '~/components/animate-ui/icons/loader-pinwheel'
+import { Button } from '~/components/ui/button'
 import { useAuthGuard } from '~/hooks/useAuth'
 import { useRefreshCredits } from '~/hooks/useRefreshCredits'
 import { contract } from '~/shared/contract'
@@ -31,8 +33,10 @@ export default function Page() {
 
   const { data } = useSWR(
     recordId ? [contract.getImageById.path, recordId] : null,
-    ([_, id]) => {
-      return api.getImageById({ query: { id } })
+    async ([_, id]) => {
+      const res = await api.getImageById({ query: { id } })
+
+      return res
     },
     {
       refreshInterval(latestData) {
@@ -60,20 +64,39 @@ export default function Page() {
     setRecordId(res.recordId)
   }
 
+  const handleDownload = async () => {
+    if (data?.status !== 200) return
+    if (!data?.body.generatedImageUrl) return
+
+    const res = await fetch(data.body.generatedImageUrl)
+    const blob = await res.blob()
+    const url = URL.createObjectURL(blob)
+    window.open(url, '_blank')
+  }
+
   return (
     <div className='relative flex flex-1 flex-col'>
       <div className='size-full'>
         {match(data)
           .with({ status: 200, body: { status: 'completed' } }, ({ body }) => {
             return (
-              <div>
+              <div className='mt-2 flex h-full flex-col items-center justify-start'>
                 <Image
                   src={body.generatedImageUrl ?? ''}
                   alt='AI Image'
                   width={100}
                   height={100}
-                  className='size-auto'
+                  className='size-auto max-h-[70%] max-w-[70%]'
                 />
+                <div className='mt-2 flex items-center gap-2'>
+                  <Button
+                    variant='outline'
+                    size='default'
+                    onClick={handleDownload}
+                  >
+                    <DownloadIcon className='size-4' /> Download
+                  </Button>
+                </div>
               </div>
             )
           })
