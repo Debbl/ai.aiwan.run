@@ -272,7 +272,7 @@ export default function Page() {
                     <RocketIcon />
                     <CardFooter>
                       <div className='flex flex-col items-center justify-center'>
-                        <p>Your Ghibli Image will be here</p>
+                        <p>Generate Your Ghibli Art Now!</p>
                         <p className='text-muted-foreground'>
                           Please upload an image to generate a Ghibli image
                         </p>
