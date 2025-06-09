@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { SiBluesky, SiGithub, SiX } from 'react-icons/si'
 import { cn } from 'twl'
 import { MoonIcon, SettingsGearIcon, SunIcon } from '~/components/icons'
-import { Separator } from '../../components/ui/separator'
+import { Separator } from '../../../../components/ui/separator'
 
 function ThemeSwitcher() {
   const { theme, setTheme } = useTheme()

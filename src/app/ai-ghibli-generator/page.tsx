@@ -135,7 +135,7 @@ export default function Page() {
     <main className='relative flex flex-1 flex-col items-center justify-center gap-y-6'>
       <ResizablePanelGroup
         direction={isMobile ? 'vertical' : 'horizontal'}
-        className='size-full flex-1'
+        className='size-full flex-1 border-b'
       >
         <ResizablePanel
           defaultSize={30}

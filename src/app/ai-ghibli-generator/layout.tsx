@@ -1,4 +1,5 @@
-import { DefaultLayout } from '../_components/default-layout'
+import { DefaultLayout } from '../_components/default-layout/index'
+import { SEO } from './seo'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -19,5 +20,16 @@ export const metadata: Metadata = {
 }
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-  return <DefaultLayout>{children}</DefaultLayout>
+  return (
+    <DefaultLayout.Root>
+      <DefaultLayout.Container>
+        <DefaultLayout.Header />
+        {children}
+      </DefaultLayout.Container>
+
+      <SEO />
+
+      <DefaultLayout.Footer />
+    </DefaultLayout.Root>
+  )
 }

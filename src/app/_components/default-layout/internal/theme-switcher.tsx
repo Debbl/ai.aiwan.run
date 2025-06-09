@@ -13,7 +13,7 @@ const ThemeIcon = ({ className }: { className?: string }) => {
   )
 }
 
-export default function ThemeSwitcher() {
+export function ThemeSwitcher() {
   const { setTheme } = useTheme()
 
   const toggleTheme: MouseEventHandler<HTMLButtonElement> = (e) => {
