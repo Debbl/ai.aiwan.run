@@ -67,14 +67,6 @@ const nextConfig: NextConfig = {
             from: '~/shared/contract',
             imports: ['contract'],
           },
-          {
-            from: 'swr',
-            imports: [['default', 'useSWR']],
-          },
-          {
-            from: 'swr/mutation',
-            imports: [['default', 'useSWRMutation']],
-          },
         ],
         dts: true,
       }),

@@ -5,8 +5,10 @@ import { DefaultLayout } from './_components/default-layout'
 const DEV = false
 
 export default function Home() {
+  const { trigger } = api.test.useSWRMutation()
+
   const handleTest = async () => {
-    await api.test({
+    await trigger({
       body: {
         name: 'test',
       },

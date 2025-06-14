@@ -1,8 +1,8 @@
-import { initClient } from '@ts-rest/core'
+import { createApi } from './lib/create-api'
 import { contract } from './shared/contract'
 import type { ValueOf } from 'type-fest'
 
-export const api = initClient(contract, {
+export const api = createApi(contract, {
   baseUrl: '.',
   baseHeaders: {},
   throwOnUnknownStatus: true,

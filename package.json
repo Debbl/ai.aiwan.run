@@ -48,6 +48,7 @@
     "date-fns": "^4.1.0",
     "drizzle-kit": "^0.31.1",
     "drizzle-orm": "^0.44.2",
+    "es-toolkit": "^1.39.3",
     "jotai": "^2.12.5",
     "lucide-react": "^0.513.0",
     "motion": "^12.16.0",

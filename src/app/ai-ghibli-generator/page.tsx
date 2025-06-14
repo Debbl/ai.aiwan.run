@@ -2,8 +2,6 @@
 import { LucideDatabase } from 'lucide-react'
 import Image from 'next/image'
 import { parseAsString, useQueryState } from 'nuqs'
-import useSWR from 'swr'
-import useSWRMutation from 'swr/mutation'
 import { match, P } from 'ts-pattern'
 import { useIsMatchMedia } from 'use-is-match-media'
 import { LoaderPinwheel } from '~/components/animate-ui/icons/loader-pinwheel'
@@ -25,7 +23,6 @@ import {
 import { Textarea } from '~/components/ui/textarea'
 import { useAuthGuard } from '~/hooks/useAuth'
 import { useRefreshCredits } from '~/hooks/useRefreshCredits'
-import { contract } from '~/shared/contract'
 import { getImageSize } from '~/utils'
 
 export default function Page() {
@@ -43,23 +40,14 @@ export default function Page() {
   )
   const isMobile = useIsMatchMedia('(max-width: 768px)')
 
-  const { data: imageList } = useSWR(
-    recordId ? [contract.getImageById.path, recordId] : null,
-    async ([_, id]) => {
-      const res = await api.getImageById({
-        query: {
-          id,
-        },
-      })
-
-      if (res.status !== 200) {
-        const msg = (res?.body as { message: string })?.message
-        throw new Error(msg || 'Unknown error')
-      }
-
-      return res.body
+  const { data: imageList } = api.getImageById.useSWR(
+    {
+      query: {
+        id: recordId || '',
+      },
     },
     {
+      enabled: !!recordId,
       refreshInterval: (latestData) => {
         if (latestData?.status === 'completed') return 0
 
@@ -74,35 +62,25 @@ export default function Page() {
   }, [image])
 
   const { refreshCredits } = useRefreshCredits()
-  const { trigger, isMutating } = useSWRMutation(
-    contract.aiGhibliGenerator.path,
-    (
-      _,
-      { arg }: { arg: Parameters<typeof api.aiGhibliGenerator>[0]['body'] },
-    ) => {
-      return api.aiGhibliGenerator({
-        body: arg,
-      })
+  const { trigger, isMutating } = api.aiGhibliGenerator.useSWRMutation({
+    onSuccess: () => {
+      refreshCredits()
     },
-    {
-      onSuccess: () => {
-        refreshCredits()
-      },
-    },
-  )
+  })
 
   const handleClick = async () => {
     if (!handleAuthGuard()) return
     if (!image) return
 
     const res = await trigger({
-      image,
-      ratio: `${imageSize.width}:${imageSize.height}`,
-      model: 'gpt-image-1-vip',
+      body: {
+        image,
+        ratio: `${imageSize.width}:${imageSize.height}`,
+        model: 'gpt-image-1-vip',
+      },
     })
-    if (res.status === 200) {
-      setRecordId(res.body.recordId)
-    }
+
+    setRecordId(res.recordId)
   }
 
   const handleFileChange = async (file: File) => {
