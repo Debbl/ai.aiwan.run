@@ -1,6 +1,7 @@
 'use client'
 import { redirect } from 'next/navigation'
 import { parseAsString, useQueryState } from 'nuqs'
+import { SiGithub, SiGoogle } from 'react-icons/si'
 import { toast } from 'sonner'
 import { Button } from '~/components/ui/button'
 import {
@@ -48,6 +49,20 @@ export default function Page() {
     )
   }
 
+  const handleGoogleLogin = async () => {
+    await authClient.signIn.social({
+      provider: 'google',
+      callbackURL,
+    })
+  }
+
+  const handleGitHubLogin = async () => {
+    await authClient.signIn.social({
+      provider: 'github',
+      callbackURL,
+    })
+  }
+
   return (
     <div className='flex h-screen w-full items-center justify-center'>
       <div className='mx-2 flex w-[500px] max-w-full flex-col gap-6'>
@@ -86,6 +101,27 @@ export default function Page() {
                 <div className='flex flex-col gap-3'>
                   <Button type='submit' className='w-full'>
                     Login
+                  </Button>
+                  <div className='after:border-border relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t'>
+                    <span className='bg-background text-muted-foreground relative z-10 px-2'>
+                      Or continue with
+                    </span>
+                  </div>
+                  <Button
+                    variant='outline'
+                    className='w-full'
+                    onClick={handleGoogleLogin}
+                  >
+                    <SiGoogle />
+                    Login with Google
+                  </Button>
+                  <Button
+                    variant='outline'
+                    className='w-full'
+                    onClick={handleGitHubLogin}
+                  >
+                    <SiGithub />
+                    Login with GitHub
                   </Button>
                 </div>
               </div>
