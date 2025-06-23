@@ -1,15 +1,13 @@
 import { toNextJsHandler } from 'better-auth/next-js'
+import { cache } from 'react'
 import { createAuth } from '~/lib/auth'
 import { getDB } from '~/server/db'
 
-export function GET(request: Request) {
-  const auth = createAuth(getDB())
+const getHandler = cache(() => {
+  const db = getDB()
+  const auth = createAuth(db)
 
-  return toNextJsHandler(auth.handler).GET(request)
-}
+  return toNextJsHandler(auth.handler)
+})
 
-export function POST(request: Request) {
-  const auth = createAuth(getDB())
-
-  return toNextJsHandler(auth.handler).POST(request)
-}
+export const { GET, POST } = getHandler()
