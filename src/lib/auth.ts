@@ -13,15 +13,13 @@ export const createAuth = (db: DB) =>
       google: {
         clientId: env.GOOGLE_CLIENT_ID,
         clientSecret: env.GOOGLE_CLIENT_SECRET,
-        redirectURI: 'http://ai.aiwan.run/api/auth/callback/google',
       },
       github: {
         clientId: env.GITHUB_CLIENT_ID,
         clientSecret: env.GITHUB_CLIENT_SECRET,
-        redirectURI: 'http://ai.aiwan.run/api/auth/callback/github',
       },
     },
-    trustedOrigins: ['http://localhost:8787'],
+    trustedOrigins: ['http://localhost:8787', 'http://ai.aiwan.run'],
     user: {
       additionalFields: {
         credits: {
