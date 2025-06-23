@@ -1,14 +1,14 @@
 import { createOpenAI } from '@ai-sdk/openai'
 import { logger, task } from '@trigger.dev/sdk/v3'
 import { experimental_generateImage as generateImage } from 'ai'
-import { OPENAI_API_KEY, OPENAI_BASE_URL } from '~/env'
+import { env } from '~/env'
 import { api } from './internal/api'
 import { base64ToFile } from './internal/utils'
 import type { Model } from '~/shared/schema'
 
 const openai = createOpenAI({
-  apiKey: OPENAI_API_KEY,
-  baseURL: OPENAI_BASE_URL,
+  apiKey: env.OPENAI_API_KEY,
+  baseURL: env.OPENAI_BASE_URL,
 })
 
 export const imageGeneratorTask = task({

@@ -3,7 +3,7 @@ import {
   tsr,
   TsRestResponse,
 } from '@ts-rest/serverless/next'
-import { TRIGGER_AUTH_KEY } from '~/env'
+import { env } from '~/env'
 import { createAuth } from '~/lib/auth'
 import { getDB } from '~/server/db'
 import { router } from '~/server/routes'
@@ -21,7 +21,7 @@ const handler = createNextHandler(contract, router, {
       })
 
       const triggerSecret = headers.get('x-trigger-auth-key')
-      const isFromTrigger = triggerSecret === TRIGGER_AUTH_KEY
+      const isFromTrigger = triggerSecret === env.TRIGGER_AUTH_KEY
 
       if (!session && !isFromTrigger) {
         return TsRestResponse.fromJson(

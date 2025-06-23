@@ -4,7 +4,7 @@ import bundleAnalyzer from '@next/bundle-analyzer'
 import { initOpenNextCloudflareForDev } from '@opennextjs/cloudflare'
 import withSerwistInit from '@serwist/next'
 import AutoImport from 'unplugin-auto-import/webpack'
-import { ANALYZE } from './src/env'
+import { env } from './src/env'
 import type { NextConfig } from 'next'
 
 initOpenNextCloudflareForDev()
@@ -13,7 +13,7 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
 const withBundleAnalyzer = bundleAnalyzer({
-  enabled: ANALYZE === 'true',
+  enabled: env.ANALYZE,
 })
 
 const withSerwist = withSerwistInit({

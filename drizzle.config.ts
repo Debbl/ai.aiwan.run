@@ -1,12 +1,7 @@
 import { defineConfig } from 'drizzle-kit'
-import {
-  CLOUDFLARE_ACCOUNT_ID,
-  CLOUDFLARE_D1_TOKEN,
-  CLOUDFLARE_DATABASE_ID,
-  NODE_ENV,
-} from '~/env'
+import { env } from '~/env'
 
-const isDev = NODE_ENV === 'development'
+const isDev = env.NODE_ENV === 'development'
 
 export default defineConfig(
   isDev
@@ -24,9 +19,9 @@ export default defineConfig(
         dialect: 'sqlite',
         driver: 'd1-http',
         dbCredentials: {
-          accountId: CLOUDFLARE_ACCOUNT_ID,
-          databaseId: CLOUDFLARE_DATABASE_ID,
-          token: CLOUDFLARE_D1_TOKEN,
+          accountId: env.CLOUDFLARE_ACCOUNT_ID,
+          databaseId: env.CLOUDFLARE_DATABASE_ID,
+          token: env.CLOUDFLARE_D1_TOKEN,
         },
       },
 )

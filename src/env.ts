@@ -1,20 +1,26 @@
 /* eslint-disable n/prefer-global/process */
 import { loadEnvConfig } from '@next/env'
+import z from 'zod'
 
 loadEnvConfig(process.cwd())
 
-export const NODE_ENV = process.env.NODE_ENV
-export const PORT = process.env.PORT
-export const VERCEL_URL = process.env.VERCEL_URL
-export const OPENAI_API_KEY = process.env.OPENAI_API_KEY
-export const OPENAI_BASE_URL = process.env.OPENAI_BASE_URL
+const envSchema = z.object({
+  NODE_ENV: z.enum(['development', 'production']).default('development'),
+  PORT: z.coerce.number().default(3000),
+  VERCEL_URL: z.string().optional(),
+  OPENAI_API_KEY: z.string().min(1),
+  OPENAI_BASE_URL: z.string().min(1),
+  ANALYZE: z.boolean().default(false),
 
-export const R2_BASE_URL = process.env.R2_BASE_URL || ''
+  R2_BASE_URL: z.string().min(1),
+  CLOUDFLARE_ACCOUNT_ID: z.string().min(1),
+  CLOUDFLARE_D1_TOKEN: z.string().min(1),
+  CLOUDFLARE_DATABASE_ID: z.string().min(1),
 
-export const ANALYZE = process.env.ANALYZE
+  TRIGGER_AUTH_KEY: z.string().min(1),
 
-export const CLOUDFLARE_ACCOUNT_ID = process.env.CLOUDFLARE_ACCOUNT_ID || ''
-export const CLOUDFLARE_D1_TOKEN = process.env.CLOUDFLARE_D1_TOKEN || ''
-export const CLOUDFLARE_DATABASE_ID = process.env.CLOUDFLARE_DATABASE_ID || ''
+  GOOGLE_CLIENT_ID: z.string().min(1),
+  GOOGLE_CLIENT_SECRET: z.string().min(1),
+})
 
-export const TRIGGER_AUTH_KEY = process.env.TRIGGER_AUTH_KEY || ''
+export const env = envSchema.parse(process.env)
