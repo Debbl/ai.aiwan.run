@@ -28,5 +28,5 @@ const envSchema = z.object({
 
 export const env =
   process.env.CI === 'true'
-    ? ({} as z.infer<typeof envSchema>)
+    ? (process.env as unknown as z.infer<typeof envSchema>)
     : envSchema.parse(process.env)
