@@ -1,6 +1,8 @@
 /* eslint-disable react-refresh/only-export-components */
 import { ImageResponse } from 'next/og'
 
+export const revalidate = false
+
 export const alt = 'The client first ai apps'
 export const size = {
   width: 1200,
