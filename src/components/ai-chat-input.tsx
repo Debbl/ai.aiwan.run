@@ -67,7 +67,7 @@ const AIChatInput = () => {
       boxShadow: '0 8px 32px 0 rgba(0,0,0,0.16)',
       transition: { type: 'spring', stiffness: 120, damping: 18 },
     },
-  }
+  } as const
 
   const placeholderContainerVariants = {
     initial: {},
@@ -101,7 +101,7 @@ const AIChatInput = () => {
         y: { type: 'spring', stiffness: 80, damping: 20 },
       },
     },
-  }
+  } as const
 
   return (
     <div className='flex w-full items-center justify-center text-black'>

@@ -60,7 +60,11 @@ type AccordionTriggerProps = React.ComponentProps<
   chevron?: boolean
 }
 
-const defaultTransition = { type: 'spring', stiffness: 150, damping: 22 }
+const defaultTransition = {
+  type: 'spring',
+  stiffness: 150,
+  damping: 22,
+} as const
 
 function AccordionTrigger({
   ref,

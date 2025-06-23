@@ -64,7 +64,7 @@ interface RippleButtonProps
   transition?: Transition
 }
 
-const defaultTransition = { duration: 0.6, ease: 'easeOut' }
+const defaultTransition = { duration: 0.6, ease: 'easeOut' } as const
 
 function RippleButton({
   ref,

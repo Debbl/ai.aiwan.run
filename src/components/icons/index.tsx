@@ -40,8 +40,8 @@ export function CopyIcon({ className }: ClassName) {
         rx='2'
         ry='2'
         variants={{
-          normal: { translateY: 0, translateX: 0 },
-          animate: { translateY: -3, translateX: -3 },
+          normal: { x: 0, y: 0 },
+          animate: { x: -3, y: -3 },
         }}
         animate={controls}
         transition={defaultTransition}

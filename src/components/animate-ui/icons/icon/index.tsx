@@ -3,7 +3,7 @@
 
 import { useAnimation } from 'motion/react'
 import * as React from 'react'
-import type { AnimationControls, Variants } from 'motion/react'
+import type { LegacyAnimationControls, Variants } from 'motion/react'
 
 const staticAnimations = {
   'path': {
@@ -36,7 +36,7 @@ type StaticAnimations = keyof typeof staticAnimations
 type TriggerProp<T = string> = boolean | StaticAnimations | T
 
 interface AnimateIconContextValue {
-  controls: AnimationControls | undefined
+  controls: LegacyAnimationControls | undefined
   animation: StaticAnimations | string
   loop: boolean
   loopDelay: number
