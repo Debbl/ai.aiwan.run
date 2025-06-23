@@ -5,7 +5,7 @@ import {
 } from '@ts-rest/serverless/next'
 import { env } from '~/env'
 import { createAuth } from '~/lib/auth'
-import { getDB } from '~/server/db'
+import { getDBAsync } from '~/server/db'
 import { router } from '~/server/routes'
 import { contract } from '~/shared/contract'
 
@@ -13,7 +13,9 @@ const handler = createNextHandler(contract, router, {
   handlerType: 'app-router',
   requestMiddleware: [
     tsr.middleware<{ userId: string }>(async (request) => {
-      const auth = createAuth(getDB())
+      const db = await getDBAsync()
+      const auth = createAuth(db)
+
       const headers = request.headers
 
       const session = await auth.api.getSession({
