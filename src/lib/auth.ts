@@ -1,10 +1,12 @@
 import { betterAuth } from 'better-auth'
 import { drizzleAdapter } from 'better-auth/adapters/drizzle'
+import { BASE_URL } from '~/constants'
 import { env } from '~/env'
 import type { DB } from '~/server/db'
 
 export const createAuth = (db: DB) =>
   betterAuth({
+    baseURL: BASE_URL,
     database: drizzleAdapter(db, { provider: 'sqlite' }),
     emailAndPassword: {
       enabled: true,
@@ -19,7 +21,7 @@ export const createAuth = (db: DB) =>
         clientSecret: env.GITHUB_CLIENT_SECRET,
       },
     },
-    trustedOrigins: ['http://localhost:8787', 'http://ai.aiwan.run'],
+    trustedOrigins: ['http://localhost:8787', BASE_URL],
     user: {
       additionalFields: {
         credits: {
