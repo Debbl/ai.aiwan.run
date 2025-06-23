@@ -1,8 +1,4 @@
-/* eslint-disable n/prefer-global/process */
-import { loadEnvConfig } from '@next/env'
 import z from 'zod'
-
-loadEnvConfig(process.cwd())
 
 const envSchema = z.object({
   NODE_ENV: z.enum(['development', 'production']).default('development'),
@@ -26,7 +22,5 @@ const envSchema = z.object({
   GITHUB_CLIENT_SECRET: z.string().min(1),
 })
 
-export const env =
-  process.env.CI === 'true'
-    ? (process.env as unknown as z.infer<typeof envSchema>)
-    : envSchema.parse(process.env)
+// eslint-disable-next-line n/prefer-global/process
+export const env = envSchema.parse(process.env)
