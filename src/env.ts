@@ -1,3 +1,4 @@
+/* eslint-disable n/prefer-global/process */
 import z from 'zod'
 
 const envSchema = z.object({
@@ -22,5 +23,7 @@ const envSchema = z.object({
   GITHUB_CLIENT_SECRET: z.string().min(1),
 })
 
-// eslint-disable-next-line n/prefer-global/process
-export const env = envSchema.parse(process.env)
+export const env =
+  process.env.CI === 'true'
+    ? ({} as z.infer<typeof envSchema>)
+    : envSchema.parse(process.env)
