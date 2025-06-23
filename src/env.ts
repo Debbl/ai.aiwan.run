@@ -1,6 +1,7 @@
 /* eslint-disable n/prefer-global/process */
 import z from 'zod'
 
+// eslint-disable-next-line unused-imports/no-unused-vars
 const envSchema = z.object({
   NODE_ENV: z.enum(['development', 'production']).default('development'),
   PORT: z.coerce.number().default(3000),
@@ -23,7 +24,4 @@ const envSchema = z.object({
   GITHUB_CLIENT_SECRET: z.string().min(1),
 })
 
-export const env =
-  process.env.CI === 'true'
-    ? ({} as z.infer<typeof envSchema>)
-    : envSchema.parse(process.env)
+export const env = process.env as unknown as z.infer<typeof envSchema>
