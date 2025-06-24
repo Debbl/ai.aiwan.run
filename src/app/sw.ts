@@ -1,5 +1,4 @@
-import { defaultCache } from '@serwist/next/worker'
-import { Serwist } from 'serwist'
+import { NetworkOnly, Serwist } from 'serwist'
 import type { PrecacheEntry, SerwistGlobalConfig } from 'serwist'
 
 // This declares the value of `injectionPoint` to TypeScript.
@@ -20,7 +19,12 @@ const serwist = new Serwist({
   skipWaiting: true,
   clientsClaim: true,
   navigationPreload: true,
-  runtimeCaching: defaultCache,
+  runtimeCaching: [
+    {
+      matcher: /.*/i,
+      handler: new NetworkOnly(),
+    },
+  ],
 })
 
 serwist.addEventListeners()
