@@ -24,12 +24,12 @@ export const createAuth = cache((db: DB) =>
     },
     socialProviders: {
       google: {
-        clientId: env.GOOGLE_CLIENT_ID,
-        clientSecret: env.GOOGLE_CLIENT_SECRET,
+        clientId: env.GOOGLE_CLIENT_ID! as string,
+        clientSecret: env.GOOGLE_CLIENT_SECRET! as string,
       },
       github: {
-        clientId: env.GITHUB_CLIENT_ID,
-        clientSecret: env.GITHUB_CLIENT_SECRET,
+        clientId: env.GITHUB_CLIENT_ID! as string,
+        clientSecret: env.GITHUB_CLIENT_SECRET! as string,
       },
     },
     trustedOrigins: ['http://localhost:8787', BASE_URL],

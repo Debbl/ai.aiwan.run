@@ -7,6 +7,6 @@ export const baseUrl = 'https://ai.aiwan.run'
 export const api = initClient(contract, {
   baseUrl,
   baseHeaders: {
-    'x-trigger-auth-key': env.TRIGGER_AUTH_KEY,
+    'x-trigger-auth-key': env.TRIGGER_AUTH_KEY! as string,
   },
 })
