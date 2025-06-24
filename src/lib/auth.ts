@@ -3,12 +3,22 @@ import { drizzleAdapter } from 'better-auth/adapters/drizzle'
 import { cache } from 'react'
 import { BASE_URL } from '~/constants'
 import { env } from '~/env'
+import { schema } from '~/server/db'
 import type { DB } from '~/server/db'
 
 export const createAuth = cache((db: DB) =>
   betterAuth({
     baseURL: BASE_URL,
-    database: drizzleAdapter(db, { provider: 'sqlite' }),
+    database: drizzleAdapter(db, {
+      provider: 'sqlite',
+      schema: {
+        account: schema.account,
+        session: schema.session,
+        user: schema.user,
+        verification: schema.verification,
+      },
+      debugLogs: true,
+    }),
     emailAndPassword: {
       enabled: true,
     },

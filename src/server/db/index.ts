@@ -5,13 +5,13 @@ import { schema } from './schema'
 
 export const getDB = cache(() => {
   const { env } = getCloudflareContext()
-  return drizzle(env.NEXT_TAG_CACHE_D1!, { schema })
+  return drizzle(env.NEXT_TAG_CACHE_D1!, { schema, logger: true })
 })
 
 // This is the one to use for static routes (i.e. ISR/SSG)
 export const getDBAsync = cache(async () => {
   const { env } = await getCloudflareContext({ async: true })
-  return drizzle(env.NEXT_TAG_CACHE_D1!, { schema })
+  return drizzle(env.NEXT_TAG_CACHE_D1!, { schema, logger: true })
 })
 
 export { schema }
