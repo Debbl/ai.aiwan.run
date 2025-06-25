@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "main": ".open-next/worker.js",
+  "main": "src/worker.ts",
   "name": "ai-aiwan-run",
   "compatibility_date": "2024-12-30",
   "compatibility_flags": ["nodejs_compat"],
@@ -30,5 +30,18 @@
       "binding": "NEXT_INC_CACHE_R2_BUCKET",
       "bucket_name": "ai-aiwan-run"
     }
-  ]
+  ],
+  "queues": {
+    "consumers": [
+      {
+        "queue": "ai-aiwan-run"
+      }
+    ],
+    "producers": [
+      {
+        "queue": "ai-aiwan-run",
+        "binding": "NEXT_QUEUES"
+      }
+    ]
+  }
 }

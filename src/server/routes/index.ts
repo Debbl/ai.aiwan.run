@@ -1,4 +1,5 @@
 import { deepseek } from '@ai-sdk/deepseek'
+import { getCloudflareContext } from '@opennextjs/cloudflare'
 import { tasks } from '@trigger.dev/sdk/v3'
 import { tsr } from '@ts-rest/serverless/next'
 import { streamText } from 'ai'
@@ -17,6 +18,9 @@ export const router = tsr.routerWithMiddleware(contract)<{ userId: string }>({
       userId,
       amount,
     })
+    const { env } = getCloudflareContext()
+    await env.NEXT_TAG_CACHE_DO_SHARDED_DLQ?.send(userId)
+
     if (userUpdate.error) {
       return {
         status: 500,

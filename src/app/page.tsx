@@ -2,7 +2,7 @@
 import { Button } from '~/components/ui/button'
 import { DefaultLayout } from './_components/default-layout'
 
-const DEV = false
+const DEV = true
 
 export default function Home() {
   const { trigger } = api.test.useSWRMutation()

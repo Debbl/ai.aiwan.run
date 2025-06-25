@@ -14,7 +14,8 @@ export default defineConfig({
             {
               name: 'motion/react',
               importNames: ['motion'],
-              message: "Please use the import from 'motion/react-m' instead and it is auto-imported.",
+              message:
+                "Please use the import from 'motion/react-m' instead and it is auto-imported.",
             },
           ],
         },

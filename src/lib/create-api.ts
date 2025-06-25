@@ -64,14 +64,11 @@ function getSWRRouteMutation(
   const mutationFn = getRouteQuery(route, clientArgs)
 
   return {
-    useSWRMutation: (
-      args: ClientInferRequest<AppRouteMutation, ClientArgs>,
-      options: SWRMutationConfiguration<any, any, any> = {},
-    ) => {
+    useSWRMutation: (options: SWRMutationConfiguration<any, any, any> = {}) => {
       const values = useSWRMutation(
         [route.path],
-        async () => {
-          const res = await mutationFn(args)
+        async (_url: string, { arg }: { arg: any }) => {
+          const res = await mutationFn(arg)
 
           if (res.status !== 200) {
             throw new Error('error')
