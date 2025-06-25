@@ -1,6 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import handler from '../.open-next/worker.js'
+// eslint-disable-next-line import/no-named-default
+import { default as handler } from '../.open-next/worker.js'
 
 export default {
   fetch: handler.fetch,
@@ -14,7 +15,6 @@ export default {
 } satisfies ExportedHandler<CloudflareEnv, string>
 
 export {
-  BucketCachePurge,
   DOQueueHandler,
   DOShardedTagCache,
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
