@@ -15,6 +15,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:cf": "opennextjs-cloudflare build",
     "db:push": "drizzle-kit push",
     "db:push:prod": "NODE_ENV=production drizzle-kit push",
     "db:gen": "NODE_ENV=development drizzle-kit generate",
@@ -22,6 +23,8 @@
     "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
     "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy -- --keep-vars",
     "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts",
+    "db:migrate:dev": "wrangler d1 migrations apply ai-aiwan-run --local",
+    "db:migrate:prod": "wrangler d1 migrations apply ai-aiwan-run --remote",
     "trigger:dev": "trigger dev",
     "trigger:deploy": "trigger deploy",
     "typecheck": "tsc --noEmit",

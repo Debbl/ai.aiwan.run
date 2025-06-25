@@ -13,7 +13,7 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
 const withBundleAnalyzer = bundleAnalyzer({
-  enabled: env.ANALYZE === 'true',
+  enabled: env.ANALYZE,
 })
 
 const withSerwist = withSerwistInit({

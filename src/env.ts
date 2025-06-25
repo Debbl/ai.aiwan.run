@@ -1,27 +1,37 @@
 /* eslint-disable n/prefer-global/process */
-import z from 'zod'
+export const env = {
+  NODE_ENV: process.env.NODE_ENV || 'development',
+  PORT: process.env.PORT || 3000,
+  VERCEL_URL: process.env.VERCEL_URL || '',
+  ANALYZE: process.env.ANALYZE === 'true',
 
-// eslint-disable-next-line unused-imports/no-unused-vars
-const envSchema = z.object({
-  NODE_ENV: z.enum(['development', 'production']).default('development'),
-  PORT: z.coerce.number().default(3000),
-  VERCEL_URL: z.string().optional(),
-  OPENAI_API_KEY: z.string().min(1),
-  OPENAI_BASE_URL: z.string().min(1),
-  ANALYZE: z.boolean().default(false),
+  // basic
+  R2_BASE_URL: process.env.R2_BASE_URL || '',
 
-  R2_BASE_URL: z.string().min(1),
-  CLOUDFLARE_ACCOUNT_ID: z.string().min(1),
-  CLOUDFLARE_D1_TOKEN: z.string().min(1),
-  CLOUDFLARE_DATABASE_ID: z.string().min(1),
+  // openai
+  OPENAI_API_KEY: process.env.OPENAI_API_KEY || '',
+  OPENAI_BASE_URL: process.env.OPENAI_BASE_URL || '',
 
-  TRIGGER_AUTH_KEY: z.string().min(1),
+  // deepseek
+  DEEPSEEK_API_KEY: process.env.DEEPSEEK_API_KEY || '',
 
-  GOOGLE_CLIENT_ID: z.string().min(1),
-  GOOGLE_CLIENT_SECRET: z.string().min(1),
+  // cloudflare
+  CLOUDFLARE_ACCOUNT_ID: process.env.CLOUDFLARE_ACCOUNT_ID || '',
+  CLOUDFLARE_D1_TOKEN: process.env.CLOUDFLARE_D1_TOKEN || '',
+  CLOUDFLARE_DATABASE_ID: process.env.CLOUDFLARE_DATABASE_ID || '',
 
-  GITHUB_CLIENT_ID: z.string().min(1),
-  GITHUB_CLIENT_SECRET: z.string().min(1),
-})
+  // trigger
+  TRIGGER_SECRET_KEY: process.env.TRIGGER_SECRET_KEY || '',
+  TRIGGER_AUTH_KEY: process.env.TRIGGER_AUTH_KEY || '',
 
-export const env = process.env
+  // better-auth
+  BETTER_AUTH_SECRET: process.env.BETTER_AUTH_SECRET || '',
+
+  // google
+  GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID || '',
+  GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET || '',
+
+  // github
+  GITHUB_CLIENT_ID: process.env.GITHUB_CLIENT_ID || '',
+  GITHUB_CLIENT_SECRET: process.env.GITHUB_CLIENT_SECRET || '',
+}
