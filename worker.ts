@@ -1,15 +1,12 @@
-import handler from '../.open-next/worker.js'
-import { dao } from './server/dao/index.js'
+import handler from './.open-next/worker.js'
 
 export default {
   fetch: handler.fetch,
 
   async queue(batch, _env, _ctx) {
     for (const message of batch.messages) {
-      await dao.user.updateCredits({
-        userId: message.body,
-        amount: 50,
-      })
+      // eslint-disable-next-line no-console
+      console.log('🚀 ~ queue ~ message:', message)
     }
   },
 } satisfies ExportedHandler<CloudflareEnv, string>
@@ -18,4 +15,4 @@ export {
   BucketCachePurge,
   DOQueueHandler,
   DOShardedTagCache,
-} from '../.open-next/worker.js'
+} from './.open-next/worker.js'
