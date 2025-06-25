@@ -1,4 +1,6 @@
-import handler from './.open-next/worker.js'
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import handler from '../.open-next/worker.js'
 
 export default {
   fetch: handler.fetch,
@@ -15,4 +17,6 @@ export {
   BucketCachePurge,
   DOQueueHandler,
   DOShardedTagCache,
-} from './.open-next/worker.js'
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+} from '../.open-next/worker.js'
