@@ -19,7 +19,7 @@ export const router = tsr.routerWithMiddleware(contract)<{ userId: string }>({
       amount,
     })
     const { env } = getCloudflareContext()
-    await env.NEXT_TAG_CACHE_DO_SHARDED_DLQ?.send(userId)
+    await env.NEXT_QUEUES?.send(userId)
 
     if (userUpdate.error) {
       return {
