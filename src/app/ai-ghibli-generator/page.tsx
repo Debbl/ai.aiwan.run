@@ -31,7 +31,7 @@ export default function Page() {
   const [recordId, setRecordId] = useQueryState('recordId', parseAsString)
   const inputRef = useRef<HTMLInputElement>(null)
   const [isDragging, setIsDragging] = useState(false)
-  const [imageSize, setImageSize] = useState({
+  const [_imageSize, setImageSize] = useState({
     width: 0,
     height: 0,
   })
@@ -75,8 +75,7 @@ export default function Page() {
     const res = await trigger({
       body: {
         image,
-        ratio: `${imageSize.width}:${imageSize.height}`,
-        model: 'gpt-image-1-vip',
+        prompt,
       },
     })
 

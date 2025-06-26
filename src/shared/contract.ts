@@ -1,7 +1,6 @@
 import { initContract } from '@ts-rest/core'
 import { z } from 'zod/v4'
 import { imageGenerationStatusSchema, modelSchema } from './schema'
-import type { Model } from './schema'
 
 const c = initContract()
 
@@ -91,9 +90,7 @@ export const contract = c.router(
       contentType: 'multipart/form-data',
       body: c.type<{
         image: File
-        ratio: string
         prompt?: string
-        model?: Model
       }>(),
       responses: {
         200: z.object({

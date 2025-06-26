@@ -1,7 +1,7 @@
-import { getCloudflareContext } from '@opennextjs/cloudflare'
+import { getCloudflareContextAsync } from '~/server/get-cloudflare-context'
 
 export async function updateFile(file: File) {
-  const { env } = await getCloudflareContext({ async: true })
+  const { env } = await getCloudflareContextAsync()
 
   const uuid = crypto.randomUUID()
 
