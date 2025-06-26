@@ -140,10 +140,9 @@ export const router = tsr.routerWithMiddleware(contract)<{ userId: string }>({
   },
   aiGhibliGenerator: async (_, { request: { userId }, nextRequest }) => {
     const formData = await nextRequest.formData()
-    const ratio = (formData.get('ratio') as string) || '1:1'
     const prompt =
       (formData.get('prompt') as string) ||
-      `convert this photo to studio ghibli style anime, ratio is ${ratio}`
+      'convert this photo to studio ghibli style anime'
 
     const image = formData.get('image') as File
 
