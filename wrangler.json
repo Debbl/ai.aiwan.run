@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "main": "src/worker.ts",
+  "main": "src/server/worker.ts",
   "name": "ai-aiwan-run",
   "compatibility_date": "2025-06-20",
   "compatibility_flags": ["nodejs_compat"],

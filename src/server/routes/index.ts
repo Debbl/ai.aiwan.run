@@ -1,14 +1,12 @@
 import { deepseek } from '@ai-sdk/deepseek'
-import { getCloudflareContext } from '@opennextjs/cloudflare'
 import { tasks } from '@trigger.dev/sdk/v3'
 import { tsr } from '@ts-rest/serverless/next'
 import { streamText } from 'ai'
 import { dao } from '~/server/dao'
 import { getR2Url } from '~/shared'
 import { contract } from '../../shared/contract'
+import { sendQueue } from '../queues'
 import { services } from '../services'
-import type { Model } from '~/shared/schema'
-import type { generationImageTask } from '~/trigger/image-generation'
 import type { imageGeneratorTask } from '~/trigger/image-generator'
 
 export const router = tsr.routerWithMiddleware(contract)<{ userId: string }>({
@@ -18,8 +16,6 @@ export const router = tsr.routerWithMiddleware(contract)<{ userId: string }>({
       userId,
       amount,
     })
-    const { env } = getCloudflareContext()
-    await env.NEXT_QUEUES?.send(userId)
 
     if (userUpdate.error) {
       return {
@@ -144,7 +140,6 @@ export const router = tsr.routerWithMiddleware(contract)<{ userId: string }>({
   },
   aiGhibliGenerator: async (_, { request: { userId }, nextRequest }) => {
     const formData = await nextRequest.formData()
-    const model = (formData.get('model') as Model) || 'gpt-image-1-vip'
     const ratio = (formData.get('ratio') as string) || '1:1'
     const prompt =
       (formData.get('prompt') as string) ||
@@ -178,25 +173,20 @@ export const router = tsr.routerWithMiddleware(contract)<{ userId: string }>({
       }
     }
 
-    const userUpdate = await dao.user.updateCredits({
+    await dao.user.updateCredits({
       userId,
       amount: -amount,
     })
-    if (userUpdate.error) {
-      return {
-        status: 500,
-        body: 'Failed to update credits',
-      }
-    }
 
-    await tasks.trigger<typeof generationImageTask>('generate-image', {
-      type: 'image2image',
-      userId,
-      id: imageGenerationsInsert.meta.last_row_id,
-      model,
-      prompt,
-      image: getR2Url(originalImageUrlKey),
-      amount,
+    await sendQueue({
+      type: 'image-generator',
+      data: {
+        id: imageGenerationsInsert.meta.last_row_id,
+        userId,
+        prompt,
+        imageUrl: getR2Url(originalImageUrlKey),
+        amount,
+      },
     })
 
     return {
