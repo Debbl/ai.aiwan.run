@@ -40,6 +40,7 @@ export default function Page() {
   )
   const isMobile = useIsMatchMedia('(max-width: 768px)')
 
+  const { refreshCredits } = useRefreshCredits()
   const { data: imageList } = api.getImageById.useSWR(
     {
       query: {
@@ -49,7 +50,13 @@ export default function Page() {
     {
       enabled: !!recordId,
       refreshInterval: (latestData) => {
-        if (latestData?.status === 'completed') return 0
+        if (
+          latestData?.status === 'completed' ||
+          latestData?.status === 'failed'
+        ) {
+          refreshCredits()
+          return 0
+        }
 
         return 5000
       },
@@ -61,7 +68,6 @@ export default function Page() {
     return URL.createObjectURL(image)
   }, [image])
 
-  const { refreshCredits } = useRefreshCredits()
   const { trigger, isMutating } = api.aiGhibliGenerator.useSWRMutation({
     onSuccess: () => {
       refreshCredits()
