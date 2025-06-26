@@ -7,6 +7,9 @@ import type { DB } from '~/server/db'
 
 export const createAuth = cache((db: DB) =>
   betterAuth({
+    onAPIError: {
+      errorURL: '/',
+    },
     database: drizzleAdapter(db, {
       provider: 'sqlite',
     }),
