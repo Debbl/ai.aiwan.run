@@ -86,13 +86,15 @@ export async function runImageGeneratorQueue(data: {
       `${new Date().toISOString()} 🚀 ~ error: ${JSON.stringify(error, null, 2)}`,
     )
 
-    await dao.imageGenerations.update({
+    const result = await dao.imageGenerations.update({
       id,
       status: 'failed',
     })
-    await dao.user.updateCredits({
+    console.log('🚀 ~ result:', result)
+    const result2 = await dao.user.updateCredits({
       userId,
       amount,
     })
+    console.log('🚀 ~ result2:', result2)
   }
 }
