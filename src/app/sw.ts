@@ -22,7 +22,7 @@ const serwist = new Serwist({
   navigationPreload: true,
   runtimeCaching: [
     {
-      matcher: /\/api\/auth\/.*/,
+      matcher: /\/api\/auth\/callback\/.*/,
       handler: new NetworkOnly({
         plugins: [
           new ExpirationPlugin({
