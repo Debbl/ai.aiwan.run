@@ -35,7 +35,7 @@ function getSWRRouteQuery(route: AppRouteQuery, clientArgs: InitClientArgs) {
       args: ClientInferRequest<AppRouteMutation, ClientArgs>,
       options: {
         enabled?: boolean
-      } & SWRConfiguration = {},
+      } & Omit<SWRConfiguration, 'isPaused'> = {},
     ) => {
       const { enabled = true, ...SWROptions } = options
       const enabledRef = useRef(enabled)
