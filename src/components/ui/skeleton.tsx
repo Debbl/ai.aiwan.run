@@ -12,7 +12,7 @@ function Skeleton({
       className={cn(
         'overflow-hidden rounded-md',
         {
-          'animate-pulse': !isLoaded,
+          'bg-accent animate-pulse': !isLoaded,
         },
         className,
       )}

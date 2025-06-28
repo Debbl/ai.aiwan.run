@@ -1,5 +1,6 @@
 'use client'
 import { LucideDatabase } from 'lucide-react'
+import { cls } from 'twl'
 import { Avatar } from '~/components/avatar'
 import { Favicon } from '~/components/icons'
 import { Button } from '~/components/ui/button'
@@ -12,6 +13,7 @@ import {
   NavigationMenuTrigger,
   NavigationMenuTriggerWithoutChevron,
 } from '~/components/ui/navigation-menu'
+import { Skeleton } from '~/components/ui/skeleton'
 import { useUser } from '~/hooks/useUser'
 import { signOut } from '~/lib/auth-client'
 
@@ -109,10 +111,6 @@ export function Header() {
         <Favicon />
       </Link>
       <div className='flex items-center gap-2'>
-        <div className='flex items-center gap-1'>
-          <span className='text-sm'>{credits}</span>
-          <LucideDatabase className='size-3' />
-        </div>
         <NavigationMenu>
           <NavigationMenuList>
             <NavigationMenuItem>
@@ -160,9 +158,17 @@ export function Header() {
                   {data?.name ? (
                     <Avatar size={30} rounded={15} username={data.name} />
                   ) : (
-                    <Link href='/sign-in'>
-                      <Button variant='link'>Sign In</Button>
-                    </Link>
+                    <Skeleton
+                      className='flex min-h-8 min-w-8 items-center justify-center rounded-full'
+                      isLoaded={!!data}
+                    >
+                      <Link
+                        href='/sign-in'
+                        className={cls`flex items-center gap-1 ${!data && 'hidden'}`}
+                      >
+                        <Button variant='link'>Sign In</Button>
+                      </Link>
+                    </Skeleton>
                   )}
                 </div>
               </NavigationMenuTriggerWithoutChevron>
@@ -189,6 +195,15 @@ export function Header() {
             </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
+        <Skeleton
+          className='flex min-h-8 min-w-8 items-center justify-center'
+          isLoaded={!!data}
+        >
+          <div className={cls`flex items-center gap-1 ${!data && 'hidden'}`}>
+            <span className='text-sm'>{credits}</span>
+            <LucideDatabase className='size-3' />
+          </div>
+        </Skeleton>
       </div>
     </div>
   )
