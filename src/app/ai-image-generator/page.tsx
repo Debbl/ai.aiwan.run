@@ -22,7 +22,10 @@ export default function Page() {
     {
       enabled: !!recordId,
       refreshInterval(latestData) {
-        if (latestData?.status === 'pending') {
+        if (
+          latestData?.status === 'completed' ||
+          latestData?.status === 'failed'
+        ) {
           return 0
         }
 

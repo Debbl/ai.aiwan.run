@@ -1,11 +1,13 @@
 import { ViewTransitions } from 'next-view-transitions'
 import { Suspense } from 'react'
 import { Toaster } from 'sonner'
+import { BASE_URL } from '~/constants'
 import { Providers } from '../providers'
 import './styles/index.css'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
+  metadataBase: new URL(BASE_URL),
   title: 'The client first ai apps',
   description: 'A collection of client first ai apps',
   appleWebApp: {
