@@ -53,7 +53,7 @@ function ListItem({
 }
 
 export function Header() {
-  const { data, isLoaded, mutate } = useUser()
+  const { data, isLoaded } = useUser()
 
   const credits = data?.credits ?? 100
 
@@ -103,7 +103,6 @@ export function Header() {
 
   const handleSignOut = async () => {
     await signOut()
-    await mutate()
   }
 
   return (

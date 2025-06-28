@@ -38,18 +38,25 @@ function getSWRRouteQuery(route: AppRouteQuery, clientArgs: InitClientArgs) {
       } & SWRConfiguration = {},
     ) => {
       const { enabled = true, ...SWROptions } = options
+      const enabledRef = useRef(enabled)
+      enabledRef.current = enabled
 
       const values = useSWR(
-        enabled ? [route.path, args] : null,
+        [route.path, args],
         async () => {
           const res = await queryFn(args)
           if (res.status !== 200) {
-            throw new Error('error')
+            throw new Error((res.body as any)?.message || 'unknown error')
           }
 
           return res.body
         },
-        SWROptions,
+        {
+          ...SWROptions,
+          isPaused() {
+            return !enabledRef.current
+          },
+        },
       )
 
       return values
