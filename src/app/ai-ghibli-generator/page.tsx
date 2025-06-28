@@ -60,6 +60,7 @@ export default function Page() {
 
         return 5000
       },
+      errorRetryCount: 1,
     },
   )
 

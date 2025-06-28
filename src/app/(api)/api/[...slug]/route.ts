@@ -11,6 +11,12 @@ import { contract } from '~/shared/contract'
 
 const handler = createNextHandler(contract, router, {
   handlerType: 'app-router',
+  errorHandler: (error) => {
+    return TsRestResponse.fromJson(
+      { message: (error as any)?.message || 'Internal Server Error' },
+      { status: 500 },
+    )
+  },
   requestMiddleware: [
     tsr.middleware<{ userId: string }>(async (request) => {
       const db = await getDBAsync()

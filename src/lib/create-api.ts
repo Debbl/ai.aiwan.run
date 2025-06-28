@@ -4,6 +4,7 @@ import {
   isAppRoute,
   isAppRouteQuery,
 } from '@ts-rest/core'
+import { toast } from 'sonner'
 import useSWR from 'swr'
 import useSWRMutation from 'swr/mutation'
 import type {
@@ -46,7 +47,10 @@ function getSWRRouteQuery(route: AppRouteQuery, clientArgs: InitClientArgs) {
         async () => {
           const res = await queryFn(args)
           if (res.status !== 200) {
-            throw new Error((res.body as any)?.message || 'unknown error')
+            const message = (res.body as any)?.message || 'unknown error'
+            toast.error(message)
+
+            throw new Error(message)
           }
 
           return res.body
