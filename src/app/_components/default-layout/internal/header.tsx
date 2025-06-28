@@ -53,7 +53,7 @@ function ListItem({
 }
 
 export function Header() {
-  const { data } = useUser()
+  const { data, isLoading } = useUser()
 
   const credits = data?.credits ?? 100
 
@@ -160,7 +160,7 @@ export function Header() {
                   ) : (
                     <Skeleton
                       className='flex min-h-8 min-w-8 items-center justify-center rounded-full'
-                      isLoaded={!!data}
+                      isLoaded={!isLoading}
                     >
                       <Link
                         href='/sign-in'
@@ -197,7 +197,7 @@ export function Header() {
         </NavigationMenu>
         <Skeleton
           className='flex min-h-8 min-w-8 items-center justify-center'
-          isLoaded={!!data}
+          isLoaded={!isLoading}
         >
           <div className={cls`flex items-center gap-1 ${!data && 'hidden'}`}>
             <span className='text-sm'>{credits}</span>
