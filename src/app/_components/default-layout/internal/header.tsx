@@ -53,7 +53,7 @@ function ListItem({
 }
 
 export function Header() {
-  const { data, isLoading } = useUser()
+  const { data, isLoaded, mutate } = useUser()
 
   const credits = data?.credits ?? 100
 
@@ -103,6 +103,7 @@ export function Header() {
 
   const handleSignOut = async () => {
     await signOut()
+    await mutate()
   }
 
   return (
@@ -160,11 +161,11 @@ export function Header() {
                   ) : (
                     <Skeleton
                       className='flex min-h-8 min-w-8 items-center justify-center rounded-full'
-                      isLoaded={!isLoading}
+                      isLoaded={isLoaded}
                     >
                       <Link
                         href='/sign-in'
-                        className={cls`flex items-center gap-1 ${isLoading && 'hidden'}`}
+                        className={cls`flex items-center gap-1 ${!isLoaded && 'hidden'}`}
                       >
                         <Button variant='link'>Sign In</Button>
                       </Link>
@@ -197,10 +198,10 @@ export function Header() {
         </NavigationMenu>
         <Skeleton
           className='flex min-h-8 min-w-8 items-center justify-center'
-          isLoaded={!isLoading}
+          isLoaded={isLoaded}
         >
           <div
-            className={cls`flex items-center gap-1 ${isLoading && 'hidden'}`}
+            className={cls`flex items-center gap-1 ${!isLoaded && 'hidden'}`}
           >
             <span className='text-sm'>{credits}</span>
             <LucideDatabase className='size-3' />
