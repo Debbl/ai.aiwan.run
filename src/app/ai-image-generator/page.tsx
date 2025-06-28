@@ -51,7 +51,10 @@ export default function Page() {
   const handleDownload = async () => {
     if (!data?.generatedImageUrl) return
 
-    const res = await fetch(data.generatedImageUrl, { mode: 'cors' })
+    const res = await fetch(data.generatedImageUrl, {
+      mode: 'cors',
+      referrerPolicy: 'no-referrer',
+    })
     const blob = await res.blob()
     const url = URL.createObjectURL(blob)
     window.open(url, '_blank')
