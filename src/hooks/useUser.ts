@@ -11,6 +11,7 @@ export function useUser() {
     },
     {
       enabled: !!data?.user.id,
+      revalidateIfStale: false,
     },
   )
 
