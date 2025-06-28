@@ -164,7 +164,7 @@ export function Header() {
                     >
                       <Link
                         href='/sign-in'
-                        className={cls`flex items-center gap-1 ${!data && 'hidden'}`}
+                        className={cls`flex items-center gap-1 ${isLoading && 'hidden'}`}
                       >
                         <Button variant='link'>Sign In</Button>
                       </Link>
@@ -199,7 +199,9 @@ export function Header() {
           className='flex min-h-8 min-w-8 items-center justify-center'
           isLoaded={!isLoading}
         >
-          <div className={cls`flex items-center gap-1 ${!data && 'hidden'}`}>
+          <div
+            className={cls`flex items-center gap-1 ${isLoading && 'hidden'}`}
+          >
             <span className='text-sm'>{credits}</span>
             <LucideDatabase className='size-3' />
           </div>

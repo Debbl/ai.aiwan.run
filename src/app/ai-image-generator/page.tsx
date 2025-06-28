@@ -57,7 +57,11 @@ export default function Page() {
     })
     const blob = await res.blob()
     const url = URL.createObjectURL(blob)
-    window.open(url, '_blank')
+    const a = document.createElement('a')
+    a.href = url
+    a.download = 'ai-image-generator-image.png'
+    a.click()
+    URL.revokeObjectURL(url)
   }
 
   return (
