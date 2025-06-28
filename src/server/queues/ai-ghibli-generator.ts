@@ -1,9 +1,8 @@
-/* eslint-disable no-console */
-import { createOpenAI } from '@ai-sdk/openai'
 import { generateText } from 'ai'
-import { env } from '~/env'
+import { logger } from '~/shared/logger'
 import { dao } from '../dao'
 import { srcToBase64String } from '../utils'
+import { openai } from './internal/models'
 
 function parseText(str: string) {
   if (str.includes('Generation failed')) {
@@ -21,26 +20,16 @@ function parseText(str: string) {
   }
 }
 
-export async function runImageGeneratorQueue(data: {
+export async function runAiGhibliGeneratorQueue(payload: {
   id: number
   userId: string
   imageUrl: string
   prompt: string
   amount: number
 }) {
-  const { id, userId, imageUrl, prompt, amount } = data
-
-  console.info(
-    `${new Date().toISOString()} 🚀 ~ runImageGeneratorQueue ~ data:`,
-    data,
-  )
+  const { id, userId, imageUrl, prompt, amount } = payload
 
   try {
-    const openai = createOpenAI({
-      apiKey: env.OPENAI_API_KEY,
-      baseURL: env.OPENAI_BASE_URL,
-    })
-
     await dao.imageGenerations.update({
       id,
       status: 'processing',
@@ -68,7 +57,7 @@ export async function runImageGeneratorQueue(data: {
     })
 
     const generationText = result.text
-    console.info(
+    logger.info(
       `${new Date().toISOString()} 🚀 ~ generationText:`,
       generationText,
     )
@@ -86,15 +75,19 @@ export async function runImageGeneratorQueue(data: {
       `${new Date().toISOString()} 🚀 ~ error: ${JSON.stringify(error, null, 2)}`,
     )
 
-    const result = await dao.imageGenerations.update({
+    await dao.imageGenerations.update({
       id,
       status: 'failed',
     })
-    console.log('🚀 ~ result:', result)
-    const result2 = await dao.user.updateCredits({
+    await dao.user.updateCredits({
       userId,
       amount,
     })
-    console.log('🚀 ~ result2:', result2)
+
+    logger.info(
+      `${new Date().toISOString()} 🚀 ~ return credits`,
+      userId,
+      amount,
+    )
   }
 }

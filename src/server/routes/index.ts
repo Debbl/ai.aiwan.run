@@ -1,5 +1,4 @@
 import { deepseek } from '@ai-sdk/deepseek'
-import { tasks } from '@trigger.dev/sdk/v3'
 import { tsr } from '@ts-rest/serverless/next'
 import { streamText } from 'ai'
 import { dao } from '~/server/dao'
@@ -7,7 +6,6 @@ import { getR2Url } from '~/shared'
 import { contract } from '../../shared/contract'
 import { sendQueue } from '../queues'
 import { services } from '../services'
-import type { imageGeneratorTask } from '~/trigger/image-generator'
 
 export const router = tsr.routerWithMiddleware(contract)<{ userId: string }>({
   test: async (_, { request: { userId } }) => {
@@ -178,7 +176,7 @@ export const router = tsr.routerWithMiddleware(contract)<{ userId: string }>({
     })
 
     await sendQueue({
-      type: 'image-generator',
+      type: 'ai-ghibli-generator',
       data: {
         id: imageGenerationsInsert.meta.last_row_id,
         userId,
@@ -196,7 +194,7 @@ export const router = tsr.routerWithMiddleware(contract)<{ userId: string }>({
     }
   },
   aiImageGenerator: async ({ body }, { request: { userId } }) => {
-    const { model = 'gpt-image-1-vip', prompt } = body
+    const { prompt } = body
 
     const amount = 2
     const userUpdate = await dao.user.updateCredits({
@@ -226,11 +224,14 @@ export const router = tsr.routerWithMiddleware(contract)<{ userId: string }>({
       }
     }
 
-    await tasks.trigger<typeof imageGeneratorTask>('image-generator', {
-      userId,
-      id: imageGenerationsInsert.meta.last_row_id,
-      model,
-      prompt,
+    await sendQueue({
+      type: 'ai-image-generator',
+      data: {
+        id: imageGenerationsInsert.meta.last_row_id,
+        userId,
+        prompt,
+        amount,
+      },
     })
 
     return {
