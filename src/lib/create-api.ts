@@ -4,7 +4,6 @@ import {
   isAppRoute,
   isAppRouteQuery,
 } from '@ts-rest/core'
-import { toast } from 'sonner'
 import useSWR from 'swr'
 import useSWRMutation from 'swr/mutation'
 import type {
@@ -29,7 +28,7 @@ import type {
 } from 'swr/mutation'
 
 function getSWRRouteQuery(route: AppRouteQuery, clientArgs: InitClientArgs) {
-  const queryFn = getRouteQuery(route, clientArgs)
+  const fetcher = getRouteQuery(route, clientArgs)
 
   return {
     useSWR: (
@@ -45,11 +44,9 @@ function getSWRRouteQuery(route: AppRouteQuery, clientArgs: InitClientArgs) {
       const values = useSWR(
         [route.path, args],
         async () => {
-          const res = await queryFn(args)
+          const res = await fetcher(args)
           if (res.status !== 200) {
             const message = (res.body as any)?.message || 'unknown error'
-            toast.error(message)
-
             throw new Error(message)
           }
 
@@ -65,6 +62,8 @@ function getSWRRouteQuery(route: AppRouteQuery, clientArgs: InitClientArgs) {
 
       return values
     },
+    route,
+    fetcher,
   }
 }
 
@@ -72,14 +71,14 @@ function getSWRRouteMutation(
   route: AppRouteMutation | AppRouteDeleteNoBody,
   clientArgs: InitClientArgs,
 ) {
-  const mutationFn = getRouteQuery(route, clientArgs)
+  const fetcher = getRouteQuery(route, clientArgs)
 
   return {
     useSWRMutation: (options: SWRMutationConfiguration<any, any, any> = {}) => {
       const values = useSWRMutation(
         [route.path],
         async (_url: string, { arg }: { arg: any }) => {
-          const res = await mutationFn(arg)
+          const res = await fetcher(arg)
 
           if (res.status !== 200) {
             throw new Error('error')
@@ -92,6 +91,8 @@ function getSWRRouteMutation(
 
       return values
     },
+    route,
+    fetcher,
   }
 }
 
@@ -112,6 +113,10 @@ type AppSWRRouteFunction<
               enabled?: boolean
             } & SWRConfiguration<Data>,
           ) => SWRResponse<Data>
+          route: AppRouteQuery
+          fetcher: (
+            args: Prettify<TArgs>,
+          ) => Promise<Prettify<ClientInferResponseBody<TRoute, 200>>>
         }
       : TRoute extends AppRouteMutation | AppRouteDeleteNoBody
         ? {
@@ -121,6 +126,10 @@ type AppSWRRouteFunction<
             >(
               options?: SWRMutationConfiguration<Data, any, any, ExtraArg>,
             ) => SWRMutationResponse<Data, any, any, ExtraArg>
+            route: AppRouteMutation | AppRouteDeleteNoBody
+            fetcher: (
+              args: Prettify<TArgs>,
+            ) => Promise<Prettify<ClientInferResponseBody<TRoute, 200>>>
           }
         : (
             args: Prettify<TArgs>,
