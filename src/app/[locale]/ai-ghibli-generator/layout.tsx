@@ -3,12 +3,12 @@ import { generateMetadataWithI18n } from '~/i18n'
 import { DefaultLayout } from '../../_components/default-layout/index'
 import { SEO } from './seo'
 import type { Metadata } from 'next'
-import type { SupportedLocales } from '~/i18n/config'
+import type { Locale } from '~/i18n/config'
 
 export const generateMetadata = async ({
   params,
 }: {
-  params: Promise<{ locale: SupportedLocales }>
+  params: Promise<{ locale: Locale }>
 }): Promise<Metadata> => {
   const i18n = await generateMetadataWithI18n(params)
 

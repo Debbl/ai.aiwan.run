@@ -28,6 +28,7 @@ const nextConfig: NextConfig = {
   experimental: {
     swcPlugins: [['@lingui/swc-plugin', {}]],
   },
+  poweredByHeader: false,
   webpack: (config) => {
     // https://github.com/huggingface/transformers.js/issues/1026#issuecomment-2490410996
     config.resolve.alias = {

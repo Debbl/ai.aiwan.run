@@ -2,13 +2,11 @@ import { msg } from '@lingui/core/macro'
 import { generateMetadataWithI18n } from '~/i18n'
 import { DefaultLayout } from '../../_components/default-layout'
 import type { Metadata } from 'next'
-import type { SupportedLocales } from '~/i18n/config'
+import type { PageLocaleParam } from '~/i18n'
 
 export const generateMetadata = async ({
   params,
-}: {
-  params: Promise<{ locale: SupportedLocales }>
-}): Promise<Metadata> => {
+}: PageLocaleParam): Promise<Metadata> => {
   const i18n = await generateMetadataWithI18n(params)
 
   return {

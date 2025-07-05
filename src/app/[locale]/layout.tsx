@@ -2,23 +2,23 @@ import { msg } from '@lingui/core/macro'
 import { ViewTransitions } from 'next-view-transitions'
 import { Suspense } from 'react'
 import { Toaster } from 'sonner'
-import { BASE_URL } from '~/constants'
 import { generateMetadataWithI18n } from '~/i18n'
 import { linguiConfig } from '~/i18n/config'
 import { Providers } from '~/providers'
 import '../styles/index.css'
 import type { Metadata } from 'next'
-import type { SupportedLocales } from '~/i18n/config'
+import type { PropsWithChildren } from 'react'
+import type { PageLocaleParam } from '~/i18n'
+import type { Locale } from '~/i18n/config'
 
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ locale: SupportedLocales }>
+  params: Promise<{ locale: Locale }>
 }): Promise<Metadata> {
   const i18n = await generateMetadataWithI18n(params)
 
   return {
-    metadataBase: new URL(BASE_URL),
     title: i18n._(msg`The client first ai apps`),
     description: i18n._(msg`A collection of client first ai apps`),
     appleWebApp: {
@@ -62,10 +62,7 @@ export async function generateStaticParams() {
 export default async function RootLayout({
   children,
   params,
-}: {
-  children: React.ReactNode
-  params: Promise<{ locale: SupportedLocales }>
-}) {
+}: PropsWithChildren<PageLocaleParam>) {
   const { locale } = await params
 
   return (

@@ -1,3 +1,4 @@
+'use client'
 import { useLingui } from '@lingui/react/macro'
 import {
   Accordion,

@@ -3,4 +3,4 @@ export const linguiConfig = {
   locales: ['en', 'zh'],
 } as const
 
-export type SupportedLocales = (typeof linguiConfig.locales)[number]
+export type Locale = (typeof linguiConfig.locales)[number]
