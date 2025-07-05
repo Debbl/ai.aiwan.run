@@ -3,7 +3,7 @@ import { defineConfig } from '@debbl/eslint-config'
 
 export default defineConfig({
   ignores: {
-    files: ['**/drizzle/*'],
+    files: ['**/drizzle/*', 'src/locales/*'],
   },
   typescript: {
     overrides: {

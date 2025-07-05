@@ -22,12 +22,11 @@ const withSerwist = withSerwistInit({
 })
 
 const nextConfig: NextConfig = {
-  output: 'standalone',
   images: {
     unoptimized: true,
   },
-  eslint: {
-    ignoreDuringBuilds: true,
+  experimental: {
+    swcPlugins: [['@lingui/swc-plugin', {}]],
   },
   webpack: (config) => {
     // https://github.com/huggingface/transformers.js/issues/1026#issuecomment-2490410996
@@ -40,6 +39,13 @@ const nextConfig: NextConfig = {
         'node_modules/@huggingface/transformers',
       ),
     }
+
+    config.module.rules.push({
+      test: /\.po$/,
+      use: {
+        loader: '@lingui/loader',
+      },
+    })
 
     config.plugins.push(
       AutoImport({

@@ -1,0 +1,368 @@
+msgid ""
+msgstr ""
+"POT-Creation-Date: 2025-07-05 23:53+0800\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: @lingui/cli\n"
+"Language: zh\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Plural-Forms: \n"
+
+#: src/app/[locale]/layout.tsx:23
+msgid "A collection of client first ai apps"
+msgstr "一个客户端优先的 ai 应用集合"
+
+#: src/app/[locale]/ai-ghibli-generator/seo.tsx:31
+msgid "Absolutely! Every generated image is yours to keep. Download high-resolution (1024x1024) files instantly for personal or commercial use."
+msgstr "绝对可以！生成的每张图片都是你的，可以随时下载。下载高分辨率（1024x1024）的文件，用于个人或商业用途。"
+
+#: src/app/[locale]/layout.tsx:28
+msgid "ai"
+msgstr "ai"
+
+#: src/app/[locale]/page.tsx:23
+msgid "AI Apps"
+msgstr "AI 应用"
+
+#: src/app/[locale]/layout.tsx:29
+msgid "ai apps collection"
+msgstr "ai 应用集合"
+
+#: src/app/_components/default-layout/internal/header.tsx:64
+msgid "AI Fortune teller"
+msgstr "AI 算命"
+
+#: src/app/[locale]/page.tsx:28
+#: src/app/[locale]/ai-fortune-teller/layout.tsx:15
+msgid "AI Fortune Teller"
+msgstr "AI 算命"
+
+#: src/app/_components/default-layout/internal/header.tsx:69
+msgid "AI Ghibli generator"
+msgstr "AI 吉卜力风格动漫生成器"
+
+#: src/app/[locale]/page.tsx:31
+#: src/app/[locale]/ai-ghibli-generator/page.tsx:134
+#: src/app/[locale]/ai-ghibli-generator/layout.tsx:21
+msgid "AI Ghibli Generator"
+msgstr "AI 吉卜力风格动漫生成器"
+
+#: src/app/_components/default-layout/internal/header.tsx:74
+#: src/app/[locale]/page.tsx:34
+#: src/app/[locale]/ai-image-generator/layout.tsx:15
+msgid "AI Image Generator"
+msgstr "AI 图片生成器"
+
+#: src/app/[locale]/sign-up/page.tsx:120
+msgid "Already have an account?"
+msgstr "已经注册账号？"
+
+#: src/app/[locale]/browser/object-detector/page.tsx:139
+msgid "Analyze"
+msgstr "分析"
+
+#: src/app/_components/default-layout/internal/header.tsx:121
+msgid "Apps"
+msgstr "应用"
+
+#: src/app/_components/default-layout/internal/header.tsx:141
+msgid "Browser"
+msgstr "浏览器"
+
+#: src/app/[locale]/layout.tsx:31
+msgid "browser ai apps"
+msgstr "浏览器 ai 应用"
+
+#: src/app/[locale]/ai-ghibli-generator/seo.tsx:30
+msgid "Can I download my artwork?"
+msgstr "我可以下载我的作品吗？"
+
+#: src/app/[locale]/sign-up/page.tsx:102
+msgid "Confirm Password"
+msgstr "确认密码"
+
+#: src/app/[locale]/sign-up/page.tsx:64
+msgid "Create to your account"
+msgstr "创建账号"
+
+#: src/app/[locale]/ai-ghibli-generator/layout.tsx:18
+msgid "Create Your Own Ghibli-Style Art: Free AI Ghibli Generator, Transform your ideas into magical Ghibli-style artwork with our free AI generator. No artistic skills needed! Create stunning characters, scenes, and landscapes inspired by Studio Ghibli. Try it now!"
+msgstr "创建你自己的吉卜力风格艺术：免费 AI 吉卜力风格艺术生成器，将你的想法转化为神奇的吉卜力风格艺术作品。无需艺术技能！创建令人惊叹的角色、场景和受 Studio Ghibli 启发的风景。现在试试吧！"
+
+#: src/app/[locale]/browser/segment-anything/page.tsx:197
+msgid "Cut mask"
+msgstr "剪切蒙版"
+
+#: src/app/[locale]/ai-fortune-teller/page.tsx:107
+msgid "DeepSeek AI Fortune Teller"
+msgstr "DeepSeek AI 算命"
+
+#: src/app/_components/default-layout/internal/header.tsx:84
+msgid "Detect objects in images, running on your browser"
+msgstr "在浏览器中检测图像中的对象"
+
+#: src/app/[locale]/ai-ghibli-generator/seo.tsx:34
+msgid "Do unused credits expire?"
+msgstr "未使用的积分会过期吗？"
+
+#: src/app/[locale]/ai-image-generator/page.tsx:89
+#: src/app/[locale]/ai-ghibli-generator/page.tsx:284
+msgid "Download"
+msgstr "下载"
+
+#: src/app/[locale]/sign-up/page.tsx:75
+#: src/app/[locale]/sign-in/page.tsx:84
+msgid "Email"
+msgstr "邮箱"
+
+#: src/app/[locale]/sign-up/page.tsx:67
+msgid "Enter your email below to create your account"
+msgstr "在下面输入你的邮箱来创建你的账号"
+
+#: src/app/[locale]/sign-in/page.tsx:76
+msgid "Enter your email below to login to your account"
+msgstr "在下面输入你的邮箱来登录你的账号"
+
+#: src/app/[locale]/ai-ghibli-generator/page.tsx:207
+msgid "Enter your prompt"
+msgstr "输入你的提示词"
+
+#: src/app/[locale]/ai-ghibli-generator/page.tsx:259
+msgid "failed"
+msgstr "失败"
+
+#: src/app/[locale]/ai-fortune-teller/page.tsx:157
+msgid "female"
+msgstr "女"
+
+#: src/app/[locale]/ai-fortune-teller/page.tsx:162
+msgid "Female"
+msgstr "女"
+
+#: src/app/[locale]/ai-ghibli-generator/layout.tsx:23
+msgid "Free Ghibli Art Generator"
+msgstr "免费吉卜力风格艺术生成器"
+
+#: src/app/[locale]/ai-ghibli-generator/page.tsx:215
+msgid "Generate"
+msgstr "生成"
+
+#: src/app/_components/default-layout/internal/header.tsx:71
+msgid "Generate Ghibli-style images"
+msgstr "生成吉卜力风格艺术"
+
+#: src/app/_components/default-layout/internal/header.tsx:76
+msgid "Generate images with AI"
+msgstr "使用 AI 生成图片"
+
+#: src/app/[locale]/ai-ghibli-generator/page.tsx:268
+msgid "Generate Your Ghibli Art Now!"
+msgstr "现在生成你的吉卜力风格艺术！"
+
+#: src/app/[locale]/ai-ghibli-generator/page.tsx:250
+msgid "generated-image"
+msgstr "生成的图片"
+
+#: src/app/[locale]/ai-ghibli-generator/layout.tsx:27
+msgid "Ghibli AI - Free Magical Ghibli Image Generator"
+msgstr "Ghibli AI - 免费神奇吉卜力风格图片生成器"
+
+#: src/app/[locale]/ai-ghibli-generator/layout.tsx:16
+msgid "Ghibli AI | Free Magical Ghibli Image Generator"
+msgstr "Ghibli AI | 免费神奇吉卜力风格图片生成器"
+
+#: src/app/[locale]/ai-ghibli-generator/layout.tsx:22
+msgid "Ghibli-Style Art"
+msgstr "吉卜力风格艺术"
+
+#: src/app/[locale]/ai-ghibli-generator/seo.tsx:38
+msgid "How long does image generation take?"
+msgstr "图片生成需要多长时间？"
+
+#: src/app/[locale]/ai-ghibli-generator/seo.tsx:18
+msgid "How long does it take to generate an image?"
+msgstr "生成图片需要多长时间？"
+
+#: src/app/[locale]/ai-ghibli-generator/layout.tsx:24
+msgid "how to make ghibli art with ai"
+msgstr "如何用 AI 制作吉卜力风格艺术"
+
+#: src/app/[locale]/ai-ghibli-generator/seo.tsx:27
+msgid "Images generate at 1024x1024 pixels by default—perfect for social media, prints, or digital wallpapers. Higher resolutions may be added in the future!"
+msgstr "图片默认生成 1024x1024 像素，适合社交媒体、打印或数字壁纸。未来可能会添加更高的分辨率！"
+
+#: src/app/[locale]/ai-ghibli-generator/seo.tsx:14
+msgid "Is the AI Ghibli Generator free?"
+msgstr "AI 吉卜力风格生成器是免费的吗？"
+
+#: src/app/[locale]/browser/segment-anything/page.tsx:209
+msgid "Left click = positive points, right click = negative points."
+msgstr "左键 = 正点，右键 = 负点。"
+
+#: src/app/[locale]/browser/segment-anything/page.tsx:203
+msgid "Load model"
+msgstr "加载模型"
+
+#: src/app/[locale]/sign-up/page.tsx:122
+#: src/app/[locale]/sign-in/page.tsx:110
+msgid "Login"
+msgstr "登录"
+
+#: src/app/[locale]/sign-in/page.tsx:73
+msgid "Login to your account"
+msgstr "登录你的账号"
+
+#: src/app/[locale]/sign-in/page.tsx:141
+msgid "Login with GitHub"
+msgstr "使用 GitHub 登录"
+
+#: src/app/[locale]/sign-in/page.tsx:133
+msgid "Login with Google"
+msgstr "使用 Google 登录"
+
+#: src/app/[locale]/ai-fortune-teller/page.tsx:157
+msgid "male"
+msgstr "男"
+
+#: src/app/[locale]/ai-fortune-teller/page.tsx:165
+msgid "Male"
+msgstr "男"
+
+#: src/app/[locale]/ai-ghibli-generator/seo.tsx:35
+msgid "No. Your credits remain in your account until used. Unused credits? No stress!"
+msgstr "不会。你的积分会保留在你的账户中，直到使用。未使用的积分？不用担心！"
+
+#: src/app/_components/default-layout/internal/header.tsx:82
+#: src/app/[locale]/browser/page.tsx:12
+#: src/app/[locale]/browser/object-detector/page.tsx:121
+#: src/app/[locale]/browser/object-detector/layout.tsx:13
+msgid "Object Detector"
+msgstr "对象检测器"
+
+#: src/app/[locale]/sign-in/page.tsx:124
+msgid "Or continue with"
+msgstr "或者继续使用"
+
+#: src/app/[locale]/ai-ghibli-generator/page.tsx:172
+msgid "origin image"
+msgstr "原始图片"
+
+#: src/app/[locale]/ai-ghibli-generator/page.tsx:245
+msgid "original-image"
+msgstr "原始图片"
+
+#: src/app/[locale]/ai-ghibli-generator/seo.tsx:23
+msgid "Our AI is trained to replicate the iconic aesthetic of Studio Ghibli films like My Neighbor Totoro, Spirited Away, Princess Mononoke, and Howl's Moving Castle. Expect soft watercolor textures, whimsical characters, and dreamy landscapes!"
+msgstr "我们的 AI 被训练来复制 Studio Ghibli 电影的标志性美学，如《龙猫》、《千与千寻》、《幽灵公主》和《哈尔的移动城堡》。期待柔和的水彩纹理、奇幻的角色和梦幻的风景！"
+
+#: src/app/[locale]/sign-up/page.tsx:88
+#: src/app/[locale]/sign-in/page.tsx:97
+msgid "Password"
+msgstr "密码"
+
+#: src/app/[locale]/ai-ghibli-generator/page.tsx:271
+msgid "Please upload an image to generate a Ghibli image"
+msgstr "请上传一张图片来生成吉卜力风格艺术"
+
+#: src/app/[locale]/browser/segment-anything/page.tsx:189
+msgid "Segment anything"
+msgstr "分割任何东西"
+
+#: src/app/_components/default-layout/internal/header.tsx:87
+#: src/app/[locale]/browser/page.tsx:15
+#: src/app/[locale]/browser/segment-anything/layout.tsx:14
+msgid "Segment Anything"
+msgstr "分割任何东西"
+
+#: src/app/_components/default-layout/internal/header.tsx:89
+msgid "Segment anything in images, running on your browser"
+msgstr "在浏览器中分割任何东西"
+
+#: src/app/[locale]/browser/segment-anything/page.tsx:255
+msgid "Segment score : {score}"
+msgstr "分割得分：{score}"
+
+#: src/app/_components/default-layout/internal/header.tsx:95
+#: src/app/_components/default-layout/internal/header.tsx:176
+msgid "Sign In"
+msgstr "登录"
+
+#: src/app/_components/default-layout/internal/header.tsx:97
+msgid "Sign in to your account"
+msgstr "登录你的账号"
+
+#: src/app/_components/default-layout/internal/header.tsx:196
+msgid "Sign Out"
+msgstr "退出"
+
+#: src/app/_components/default-layout/internal/header.tsx:198
+msgid "Sign out of your account"
+msgstr "退出你的账号"
+
+#: src/app/[locale]/sign-up/page.tsx:115
+#: src/app/[locale]/sign-in/page.tsx:117
+msgid "Sign up"
+msgstr "注册"
+
+#: src/app/_components/default-layout/internal/header.tsx:100
+msgid "Sign Up"
+msgstr "注册"
+
+#: src/app/_components/default-layout/internal/header.tsx:102
+msgid "Sign up for an account"
+msgstr "注册一个账号"
+
+#: src/app/[locale]/layout.tsx:30
+msgid "studio ghibli style anime generator"
+msgstr "吉卜力风格动漫生成器"
+
+#: src/app/[locale]/ai-fortune-teller/page.tsx:189
+msgid "Submit"
+msgstr "提交"
+
+#: src/app/_components/default-layout/internal/header.tsx:66
+msgid "Tell your future"
+msgstr "算命"
+
+#: src/app/[locale]/page.tsx:39
+msgid "Test"
+msgstr "测试"
+
+#: src/app/[locale]/browser/page.tsx:7
+msgid "The AI application running in your browser"
+msgstr "浏览器中的 AI 应用"
+
+#: src/app/[locale]/layout.tsx:22
+#: src/app/[locale]/layout.tsx:25
+msgid "The client first ai apps"
+msgstr "客户端优先的 ai 应用"
+
+#: src/app/[locale]/ai-fortune-teller/page.tsx:84
+msgid "This site does not collect any data from you, all content is directly obtained from the DeepSeek API interface."
+msgstr "本站不会收集您的任何数据，所有内容直接调用 DeepSeek 的 API 接口获取。"
+
+#: src/app/[locale]/ai-ghibli-generator/layout.tsx:29
+msgid "Transform photos to authentic Studio Ghibli art with our AI-powered ghibli image generator. Create stunning Miyazaki-style characters and scenes instantly."
+msgstr "使用我们的 AI 吉卜力风格图片生成器，将照片转换为真实的吉卜力风格艺术。立即创建令人惊叹的宫崎骏风格角色和场景。"
+
+#: src/app/[locale]/ai-ghibli-generator/seo.tsx:39
+msgid "Typically 10-30 seconds. Complex prompts or high traffic may cause slight delays. Pro tip: Bookmark your gallery to check completed artworks later!"
+msgstr "通常需要 10-30 秒。复杂的提示词或高流量可能会导致轻微的延迟。小贴士：将你的画廊加入书签，稍后检查已完成的艺术品！"
+
+#: src/app/[locale]/ai-ghibli-generator/seo.tsx:26
+msgid "What image resolution do you support?"
+msgstr "你支持什么图片分辨率？"
+
+#: src/app/[locale]/ai-ghibli-generator/seo.tsx:22
+msgid "What styles or Studio Ghibli movies does the AI mimic?"
+msgstr "AI 模仿什么风格或 Studio Ghibli 电影？"
+
+#: src/app/[locale]/ai-ghibli-generator/seo.tsx:15
+#: src/app/[locale]/ai-ghibli-generator/seo.tsx:19
+msgid "Yes, it's 100% free to start! Simply register an account and you'll instantly receive 100 free credits to create Ghibli-style magic. No payment required!"
+msgstr "是的，完全免费！只需注册一个账号，你将立即获得 100 个免费积分来创造吉卜力风格的魔法。无需支付任何费用！"
