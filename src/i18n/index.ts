@@ -25,6 +25,7 @@ export const getAllI18nInstances = cache(
       const messages = allMessages[locale] ?? {}
       const i18n = setupI18n({
         locale,
+        locales: [...locales],
         messages: { [locale]: messages },
       })
 

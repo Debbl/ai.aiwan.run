@@ -22,6 +22,7 @@ export async function Providers({
         <NuqsAdapter>
           <ProvidersClient
             initialLocale={i18n.locale}
+            initialLocales={i18n.locales}
             initialMessages={i18n.messages}
           >
             {children}

@@ -1,5 +1,5 @@
 'use client'
-import { Trans } from '@lingui/react/macro'
+import { Trans, useLingui } from '@lingui/react/macro'
 import { redirect } from 'next/navigation'
 import { parseAsString, useQueryState } from 'nuqs'
 import { SiGithub, SiGoogle } from 'react-icons/si'
@@ -17,6 +17,7 @@ import { Label } from '~/components/ui/label'
 import { authClient, useSession } from '~/lib/auth-client'
 
 export default function Page() {
+  const { t } = useLingui()
   const [callbackURL] = useQueryState(
     'redirect',
     parseAsString.withDefault('/'),
@@ -87,7 +88,7 @@ export default function Page() {
                     name='email'
                     id='email'
                     type='email'
-                    placeholder='Enter your email'
+                    placeholder={t`Enter your email`}
                     required
                   />
                 </div>
@@ -101,7 +102,7 @@ export default function Page() {
                     name='password'
                     id='password'
                     type='password'
-                    placeholder='Enter your password'
+                    placeholder={t`Enter your password`}
                     required
                   />
                 </div>
@@ -112,7 +113,7 @@ export default function Page() {
                 </div>
               </div>
               <div className='mt-4 text-center text-sm'>
-                Don&apos;t have an account?{' '}
+                {t`Don't have an account?`}{' '}
                 <Link href='/sign-up' className='underline underline-offset-4'>
                   <Trans>Sign up</Trans>
                 </Link>

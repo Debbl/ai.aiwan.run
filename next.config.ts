@@ -28,6 +28,14 @@ const nextConfig: NextConfig = {
   experimental: {
     swcPlugins: [['@lingui/swc-plugin', {}]],
   },
+  rewrites: async () => {
+    return [
+      {
+        source: '/',
+        destination: '/en',
+      },
+    ]
+  },
   poweredByHeader: false,
   webpack: (config) => {
     // https://github.com/huggingface/transformers.js/issues/1026#issuecomment-2490410996
@@ -67,7 +75,7 @@ const nextConfig: NextConfig = {
             imports: ['api'],
           },
           {
-            from: 'next-view-transitions',
+            from: '~/components/link',
             imports: ['Link'],
           },
           {

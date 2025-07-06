@@ -17,7 +17,7 @@ msgstr ""
 msgid "A collection of client first ai apps"
 msgstr "A collection of client first ai apps"
 
-#: src/app/[locale]/ai-ghibli-generator/seo.tsx:31
+#: src/app/[locale]/ai-ghibli-generator/seo.tsx:32
 msgid "Absolutely! Every generated image is yours to keep. Download high-resolution (1024x1024) files instantly for personal or commercial use."
 msgstr "Absolutely! Every generated image is yours to keep. Download high-resolution (1024x1024) files instantly for personal or commercial use."
 
@@ -38,7 +38,7 @@ msgid "AI Fortune teller"
 msgstr "AI Fortune teller"
 
 #: src/app/[locale]/page.tsx:28
-#: src/app/[locale]/ai-fortune-teller/layout.tsx:15
+#: src/app/[locale]/ai-fortune-teller/layout.tsx:13
 msgid "AI Fortune Teller"
 msgstr "AI Fortune Teller"
 
@@ -54,7 +54,7 @@ msgstr "AI Ghibli Generator"
 
 #: src/app/_components/default-layout/internal/header.tsx:74
 #: src/app/[locale]/page.tsx:34
-#: src/app/[locale]/ai-image-generator/layout.tsx:15
+#: src/app/[locale]/ai-image-generator/layout.tsx:13
 msgid "AI Image Generator"
 msgstr "AI Image Generator"
 
@@ -78,13 +78,17 @@ msgstr "Browser"
 msgid "browser ai apps"
 msgstr "browser ai apps"
 
-#: src/app/[locale]/ai-ghibli-generator/seo.tsx:30
+#: src/app/[locale]/ai-ghibli-generator/seo.tsx:31
 msgid "Can I download my artwork?"
 msgstr "Can I download my artwork?"
 
 #: src/app/[locale]/sign-up/page.tsx:102
 msgid "Confirm Password"
 msgstr "Confirm Password"
+
+#: src/app/[locale]/ai-ghibli-generator/page.tsx:41
+msgid "convert this photo to studio ghibli style anime"
+msgstr "convert this photo to studio ghibli style anime"
 
 #: src/app/[locale]/sign-up/page.tsx:64
 msgid "Create to your account"
@@ -106,9 +110,13 @@ msgstr "DeepSeek AI Fortune Teller"
 msgid "Detect objects in images, running on your browser"
 msgstr "Detect objects in images, running on your browser"
 
-#: src/app/[locale]/ai-ghibli-generator/seo.tsx:34
+#: src/app/[locale]/ai-ghibli-generator/seo.tsx:35
 msgid "Do unused credits expire?"
 msgstr "Do unused credits expire?"
+
+#: src/app/[locale]/sign-in/page.tsx:116
+msgid "Don't have an account?"
+msgstr "Don't have an account?"
 
 #: src/app/[locale]/ai-image-generator/page.tsx:89
 #: src/app/[locale]/ai-ghibli-generator/page.tsx:284
@@ -116,17 +124,25 @@ msgid "Download"
 msgstr "Download"
 
 #: src/app/[locale]/sign-up/page.tsx:75
-#: src/app/[locale]/sign-in/page.tsx:84
+#: src/app/[locale]/sign-in/page.tsx:85
 msgid "Email"
 msgstr "Email"
+
+#: src/app/[locale]/sign-in/page.tsx:91
+msgid "Enter your email"
+msgstr "Enter your email"
 
 #: src/app/[locale]/sign-up/page.tsx:67
 msgid "Enter your email below to create your account"
 msgstr "Enter your email below to create your account"
 
-#: src/app/[locale]/sign-in/page.tsx:76
+#: src/app/[locale]/sign-in/page.tsx:77
 msgid "Enter your email below to login to your account"
 msgstr "Enter your email below to login to your account"
+
+#: src/app/[locale]/sign-in/page.tsx:105
+msgid "Enter your password"
+msgstr "Enter your password"
 
 #: src/app/[locale]/ai-ghibli-generator/page.tsx:207
 msgid "Enter your prompt"
@@ -180,11 +196,11 @@ msgstr "Ghibli AI | Free Magical Ghibli Image Generator"
 msgid "Ghibli-Style Art"
 msgstr "Ghibli-Style Art"
 
-#: src/app/[locale]/ai-ghibli-generator/seo.tsx:38
+#: src/app/[locale]/ai-ghibli-generator/seo.tsx:39
 msgid "How long does image generation take?"
 msgstr "How long does image generation take?"
 
-#: src/app/[locale]/ai-ghibli-generator/seo.tsx:18
+#: src/app/[locale]/ai-ghibli-generator/seo.tsx:19
 msgid "How long does it take to generate an image?"
 msgstr "How long does it take to generate an image?"
 
@@ -192,11 +208,11 @@ msgstr "How long does it take to generate an image?"
 msgid "how to make ghibli art with ai"
 msgstr "how to make ghibli art with ai"
 
-#: src/app/[locale]/ai-ghibli-generator/seo.tsx:27
+#: src/app/[locale]/ai-ghibli-generator/seo.tsx:28
 msgid "Images generate at 1024x1024 pixels by default—perfect for social media, prints, or digital wallpapers. Higher resolutions may be added in the future!"
 msgstr "Images generate at 1024x1024 pixels by default—perfect for social media, prints, or digital wallpapers. Higher resolutions may be added in the future!"
 
-#: src/app/[locale]/ai-ghibli-generator/seo.tsx:14
+#: src/app/[locale]/ai-ghibli-generator/seo.tsx:15
 msgid "Is the AI Ghibli Generator free?"
 msgstr "Is the AI Ghibli Generator free?"
 
@@ -209,19 +225,19 @@ msgid "Load model"
 msgstr "Load model"
 
 #: src/app/[locale]/sign-up/page.tsx:122
-#: src/app/[locale]/sign-in/page.tsx:110
+#: src/app/[locale]/sign-in/page.tsx:111
 msgid "Login"
 msgstr "Login"
 
-#: src/app/[locale]/sign-in/page.tsx:73
+#: src/app/[locale]/sign-in/page.tsx:74
 msgid "Login to your account"
 msgstr "Login to your account"
 
-#: src/app/[locale]/sign-in/page.tsx:141
+#: src/app/[locale]/sign-in/page.tsx:142
 msgid "Login with GitHub"
 msgstr "Login with GitHub"
 
-#: src/app/[locale]/sign-in/page.tsx:133
+#: src/app/[locale]/sign-in/page.tsx:134
 msgid "Login with Google"
 msgstr "Login with Google"
 
@@ -233,18 +249,18 @@ msgstr "male"
 msgid "Male"
 msgstr "Male"
 
-#: src/app/[locale]/ai-ghibli-generator/seo.tsx:35
+#: src/app/[locale]/ai-ghibli-generator/seo.tsx:36
 msgid "No. Your credits remain in your account until used. Unused credits? No stress!"
 msgstr "No. Your credits remain in your account until used. Unused credits? No stress!"
 
 #: src/app/_components/default-layout/internal/header.tsx:82
-#: src/app/[locale]/browser/page.tsx:12
+#: src/app/[locale]/browser/page.tsx:13
 #: src/app/[locale]/browser/object-detector/page.tsx:121
-#: src/app/[locale]/browser/object-detector/layout.tsx:13
+#: src/app/[locale]/browser/object-detector/layout.tsx:12
 msgid "Object Detector"
 msgstr "Object Detector"
 
-#: src/app/[locale]/sign-in/page.tsx:124
+#: src/app/[locale]/sign-in/page.tsx:125
 msgid "Or continue with"
 msgstr "Or continue with"
 
@@ -256,12 +272,12 @@ msgstr "origin image"
 msgid "original-image"
 msgstr "original-image"
 
-#: src/app/[locale]/ai-ghibli-generator/seo.tsx:23
+#: src/app/[locale]/ai-ghibli-generator/seo.tsx:24
 msgid "Our AI is trained to replicate the iconic aesthetic of Studio Ghibli films like My Neighbor Totoro, Spirited Away, Princess Mononoke, and Howl's Moving Castle. Expect soft watercolor textures, whimsical characters, and dreamy landscapes!"
 msgstr "Our AI is trained to replicate the iconic aesthetic of Studio Ghibli films like My Neighbor Totoro, Spirited Away, Princess Mononoke, and Howl's Moving Castle. Expect soft watercolor textures, whimsical characters, and dreamy landscapes!"
 
 #: src/app/[locale]/sign-up/page.tsx:88
-#: src/app/[locale]/sign-in/page.tsx:97
+#: src/app/[locale]/sign-in/page.tsx:98
 msgid "Password"
 msgstr "Password"
 
@@ -274,8 +290,8 @@ msgid "Segment anything"
 msgstr "Segment anything"
 
 #: src/app/_components/default-layout/internal/header.tsx:87
-#: src/app/[locale]/browser/page.tsx:15
-#: src/app/[locale]/browser/segment-anything/layout.tsx:14
+#: src/app/[locale]/browser/page.tsx:16
+#: src/app/[locale]/browser/segment-anything/layout.tsx:12
 msgid "Segment Anything"
 msgstr "Segment Anything"
 
@@ -305,7 +321,7 @@ msgid "Sign out of your account"
 msgstr "Sign out of your account"
 
 #: src/app/[locale]/sign-up/page.tsx:115
-#: src/app/[locale]/sign-in/page.tsx:117
+#: src/app/[locale]/sign-in/page.tsx:118
 msgid "Sign up"
 msgstr "Sign up"
 
@@ -333,7 +349,7 @@ msgstr "Tell your future"
 msgid "Test"
 msgstr "Test"
 
-#: src/app/[locale]/browser/page.tsx:7
+#: src/app/[locale]/browser/page.tsx:8
 msgid "The AI application running in your browser"
 msgstr "The AI application running in your browser"
 
@@ -350,19 +366,19 @@ msgstr "This site does not collect any data from you, all content is directly ob
 msgid "Transform photos to authentic Studio Ghibli art with our AI-powered ghibli image generator. Create stunning Miyazaki-style characters and scenes instantly."
 msgstr "Transform photos to authentic Studio Ghibli art with our AI-powered ghibli image generator. Create stunning Miyazaki-style characters and scenes instantly."
 
-#: src/app/[locale]/ai-ghibli-generator/seo.tsx:39
+#: src/app/[locale]/ai-ghibli-generator/seo.tsx:40
 msgid "Typically 10-30 seconds. Complex prompts or high traffic may cause slight delays. Pro tip: Bookmark your gallery to check completed artworks later!"
 msgstr "Typically 10-30 seconds. Complex prompts or high traffic may cause slight delays. Pro tip: Bookmark your gallery to check completed artworks later!"
 
-#: src/app/[locale]/ai-ghibli-generator/seo.tsx:26
+#: src/app/[locale]/ai-ghibli-generator/seo.tsx:27
 msgid "What image resolution do you support?"
 msgstr "What image resolution do you support?"
 
-#: src/app/[locale]/ai-ghibli-generator/seo.tsx:22
+#: src/app/[locale]/ai-ghibli-generator/seo.tsx:23
 msgid "What styles or Studio Ghibli movies does the AI mimic?"
 msgstr "What styles or Studio Ghibli movies does the AI mimic?"
 
-#: src/app/[locale]/ai-ghibli-generator/seo.tsx:15
-#: src/app/[locale]/ai-ghibli-generator/seo.tsx:19
+#: src/app/[locale]/ai-ghibli-generator/seo.tsx:16
+#: src/app/[locale]/ai-ghibli-generator/seo.tsx:20
 msgid "Yes, it's 100% free to start! Simply register an account and you'll instantly receive 100 free credits to create Ghibli-style magic. No payment required!"
 msgstr "Yes, it's 100% free to start! Simply register an account and you'll instantly receive 100 free credits to create Ghibli-style magic. No payment required!"

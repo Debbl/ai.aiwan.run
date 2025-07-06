@@ -38,7 +38,7 @@ export default function Page() {
   })
   const { t } = useLingui()
   const [prompt, setPrompt] = useState(
-    'convert this photo to studio ghibli style anime',
+    t`convert this photo to studio ghibli style anime`,
   )
   const isMobile = useIsMatchMedia('(max-width: 768px)')
 
