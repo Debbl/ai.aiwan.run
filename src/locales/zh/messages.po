@@ -82,6 +82,10 @@ msgstr "浏览器 ai 应用"
 msgid "Can I download my artwork?"
 msgstr "我可以下载我的作品吗？"
 
+#: src/app/_components/default-layout/internal/footer.tsx:97
+msgid "Chinese"
+msgstr "中文"
+
 #: src/app/[locale]/sign-up/page.tsx:102
 msgid "Confirm Password"
 msgstr "确认密码"
@@ -127,6 +131,10 @@ msgstr "下载"
 #: src/app/[locale]/sign-in/page.tsx:85
 msgid "Email"
 msgstr "邮箱"
+
+#: src/app/_components/default-layout/internal/footer.tsx:92
+msgid "English"
+msgstr "英语"
 
 #: src/app/[locale]/sign-in/page.tsx:91
 msgid "Enter your email"

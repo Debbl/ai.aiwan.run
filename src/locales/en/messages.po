@@ -82,6 +82,10 @@ msgstr "browser ai apps"
 msgid "Can I download my artwork?"
 msgstr "Can I download my artwork?"
 
+#: src/app/_components/default-layout/internal/footer.tsx:97
+msgid "Chinese"
+msgstr "Chinese"
+
 #: src/app/[locale]/sign-up/page.tsx:102
 msgid "Confirm Password"
 msgstr "Confirm Password"
@@ -127,6 +131,10 @@ msgstr "Download"
 #: src/app/[locale]/sign-in/page.tsx:85
 msgid "Email"
 msgstr "Email"
+
+#: src/app/_components/default-layout/internal/footer.tsx:92
+msgid "English"
+msgstr "English"
 
 #: src/app/[locale]/sign-in/page.tsx:91
 msgid "Enter your email"

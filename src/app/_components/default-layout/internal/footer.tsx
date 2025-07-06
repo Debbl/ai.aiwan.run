@@ -1,11 +1,23 @@
 'use client'
 import { useHydrated } from '@debbl/ahooks'
+import { useLingui } from '@lingui/react'
+import { Trans } from '@lingui/react/macro'
 import { useTheme } from 'next-themes'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { SiBluesky, SiGithub, SiX } from 'react-icons/si'
 import { cn } from 'twl'
 import { MoonIcon, SettingsGearIcon, SunIcon } from '~/components/icons'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '~/components/ui/select'
+import { usePathname } from '~/hooks/usePathname'
 import { Separator } from '../../../../components/ui/separator'
+import type { Locale } from '~/i18n/config'
 
 function ThemeSwitcher() {
   const { theme, setTheme } = useTheme()
@@ -56,6 +68,40 @@ function ThemeSwitcher() {
   )
 }
 
+function LocaleSwitcher() {
+  const { i18n } = useLingui()
+  const pathname = usePathname()
+  const router = useRouter()
+
+  const handleChange = (locale: Locale) => {
+    if (locale === 'en') {
+      router.replace(pathname)
+    } else {
+      router.replace(`/${locale}${pathname}`)
+    }
+  }
+
+  return (
+    <Select value={i18n.locale} onValueChange={handleChange}>
+      <SelectTrigger>
+        <SelectValue placeholder='Select a locale' />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectItem value='en'>
+          <Link href='/'>
+            <Trans>English</Trans>
+          </Link>
+        </SelectItem>
+        <SelectItem value='zh'>
+          <Link href='/zh'>
+            <Trans>Chinese</Trans>
+          </Link>
+        </SelectItem>
+      </SelectContent>
+    </Select>
+  )
+}
+
 export function Footer() {
   return (
     <footer className='border-border flex items-center justify-between border-t px-8 py-16 text-center text-sm'>
@@ -96,7 +142,10 @@ export function Footer() {
           aiwan.run
         </Link>
       </p>
-      <ThemeSwitcher />
+      <div className='flex items-center space-x-4'>
+        <LocaleSwitcher />
+        <ThemeSwitcher />
+      </div>
     </footer>
   )
 }
