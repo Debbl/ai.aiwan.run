@@ -35,9 +35,21 @@ importers:
       '@lingui/react':
         specifier: ^5.3.2
         version: 5.3.2(@lingui/babel-plugin-lingui-macro@5.3.2(babel-plugin-macros@3.1.0)(typescript@5.8.3))(babel-plugin-macros@3.1.0)(react@19.1.0)
+      '@orpc/client':
+        specifier: ^1.6.6
+        version: 1.6.6
+      '@orpc/server':
+        specifier: ^1.6.6
+        version: 1.6.6
+      '@orpc/tanstack-query':
+        specifier: ^1.6.6
+        version: 1.6.6(@orpc/client@1.6.6)(@tanstack/query-core@5.82.0)
       '@tailwindcss/postcss':
         specifier: ^4.1.11
         version: 4.1.11
+      '@tanstack/react-query':
+        specifier: ^5.82.0
+        version: 5.82.0(react@19.1.0)
       '@trigger.dev/sdk':
         specifier: ^3.3.17
         version: 3.3.17(zod@3.25.67)
@@ -2152,6 +2164,47 @@ packages:
     resolution: {integrity: sha512-ZDjMJJQRlyk8A1KZFCc+bCbsyrn1wTwdNt56F7twdfUfnHUZUq77/WfONCj8p72NZOyP7pNTdUWSTYC3GTbuuQ==}
     engines: {node: '>=14'}
 
+  '@orpc/client@1.6.6':
+    resolution: {integrity: sha512-hTp6vm1Jtveyzm5g6lu1bkv8iQ/CZS2HELSzFAEnisIlkf/NI3ucVXKUZDobW0SCoYIBUv9rJuT4tVocPvnNrw==}
+
+  '@orpc/contract@1.6.6':
+    resolution: {integrity: sha512-juWkNqC+yEDROkWff5Lz5vyFhnkxvSPi01oVNl88YtblrtUoC1uM4R/8OFTQGSfa1auGH3odcH0AW0ofi5SpMA==}
+
+  '@orpc/server@1.6.6':
+    resolution: {integrity: sha512-Zo4rCU/PkIfEzMsumm3oLAT0azyqt39Y2+Mat+pzPViGpbrUTGfelkRXhG/B141vvbvIXWOApq9WZThS4EHyCQ==}
+    peerDependencies:
+      crossws: '>=0.3.4'
+      ws: '>=8.18.1'
+    peerDependenciesMeta:
+      crossws:
+        optional: true
+      ws:
+        optional: true
+
+  '@orpc/shared@1.6.6':
+    resolution: {integrity: sha512-ibgUCqPxa4MZqnSDDxrcUU+9w7e63m8nff5aLDpnEh4KfbzH2ZyoQ0YUQvN0OHYBxOPnMKlpo0zkewOzI5P9lw==}
+
+  '@orpc/standard-server-aws-lambda@1.6.6':
+    resolution: {integrity: sha512-qDBWRk99zeCx4TTOR632k0RNxhVy3So2C4fEwh94+chGOcBSGyleCHH9b9I/aa94wprHzYvafIVxddNE8H8JjQ==}
+
+  '@orpc/standard-server-fetch@1.6.6':
+    resolution: {integrity: sha512-RPDZk1jH/0CXLab4rD+60kwWUscaQQn8CzberYJ6Wc32kH1hD8y5vo8m29bQKb9DgcqjTBkfWCNhbdmNZ1jMTw==}
+
+  '@orpc/standard-server-node@1.6.6':
+    resolution: {integrity: sha512-jZPceKiP+70nK2YMP4Qmmyg12e9wS6LrpnVCoIOEPr+PgUk/8W6MilXw0TBp72iXq2Hh4V0/E4JPXnknFJ0XtQ==}
+
+  '@orpc/standard-server-peer@1.6.6':
+    resolution: {integrity: sha512-T4M0dyuGBZrTX7AE7iwytLw5VZprqgLEmmAFRcvSchpVYUCT0AXr4PcITVINMy650Gh4WpkD6V3Ss6dfT6RrwQ==}
+
+  '@orpc/standard-server@1.6.6':
+    resolution: {integrity: sha512-M7PwXftrilnwmhWJ1i1jqxzFIS86szP+clZjGO5P35dlSHfmUkAohFhJ+4i26+QfT/g9ncVdQ2Vp/ZFqCh/JnQ==}
+
+  '@orpc/tanstack-query@1.6.6':
+    resolution: {integrity: sha512-vJvVoUZ4tmj7c5bt9hyQkzjPnbGAVvBwAMzWj943hxj3UAv0WhAzrXNtCBu1ddISszEbDG/5hz8W07k2C+gD3Q==}
+    peerDependencies:
+      '@orpc/client': 1.6.6
+      '@tanstack/query-core': '>=5.80.2'
+
   '@peculiar/asn1-android@2.3.16':
     resolution: {integrity: sha512-a1viIv3bIahXNssrOIkXZIlI2ePpZaNmR30d4aBL99mu2rO+mT9D6zBsp7H6eROWGtmwv0Ionp5olJurIo09dw==}
 
@@ -3307,6 +3360,9 @@ packages:
   '@socket.io/component-emitter@3.1.2':
     resolution: {integrity: sha512-9BCxFwvbGg/RsZK9tjXd8s4UcwR0MWeFQ1XEKIQVVvAGJyINdrqKMcTRyLoK8Rse1GjzLV9cwjWV1olXRWEXVA==}
 
+  '@standard-schema/spec@1.0.0':
+    resolution: {integrity: sha512-m2bOd0f2RT9k8QJx1JN85cZYyH1RqFBdlwtkSlf4tBDYLCiiZnv1fIIwacK6cqwXavOydf0NPToMQgpKq+dVlA==}
+
   '@swc/counter@0.1.3':
     resolution: {integrity: sha512-e2BR4lsJkkRlKZ/qCHPw9ZaSxc0MVUd7gtbtaB7aMvHeJVYe8sOB8DBZkP2DtISHGSku9sCK6T6cnY0CtXrOCQ==}
 
@@ -3405,6 +3461,14 @@ packages:
     resolution: {integrity: sha512-0wDLwCVF5V3x3b1SGXPCDcdsbDHMBe+lkFzBRaHeLvNi+nrrnZ1lA18u+OTWO8iSWU2GxUOCvlXtDuqftc1oiA==}
     peerDependencies:
       tailwindcss: '>=3.0.0 || insiders || >=4.0.0-alpha.20 || >=4.0.0-beta.1'
+
+  '@tanstack/query-core@5.82.0':
+    resolution: {integrity: sha512-JrjoVuaajBQtnoWSg8iaPHaT4mW73lK2t+exxHNOSMqy0+13eKLqJgTKXKImLejQIfdAHQ6Un0njEhOvUtOd5w==}
+
+  '@tanstack/react-query@5.82.0':
+    resolution: {integrity: sha512-mnk8/ofKEthFeMdhV1dV8YXRf+9HqvXAcciXkoo755d/ocfWq7N/Y9jGOzS3h7ZW9dDGwSIhs3/HANWUBsyqYg==}
+    peerDependencies:
+      react: ^18 || ^19
 
   '@trigger.dev/build@3.3.17':
     resolution: {integrity: sha512-dfreMuVeLAcZypS3kkUA9nWNviiuOPIQ3ldy2ywPCmwmbHyd0BE8tI5D3A4kmVq/f53TdRMls4c+cYafxlwubQ==}
@@ -6285,6 +6349,9 @@ packages:
     resolution: {integrity: sha512-cxN6aIDPz6rm8hbebcP7vrQNhvRcveZoJU72Y7vskh4oIm+BZwBECnx5nTmrlres1Qapvx27Qo1Auukpf8PKXw==}
     engines: {node: '>=18'}
 
+  openapi-types@12.1.3:
+    resolution: {integrity: sha512-N4YtSYJqghVu4iek2ZUvcN/0aqH1kRDuNqzcycDxhOUpg7GdvLa2F3DgS6yBNhInhv2r/6I0Flkn7CqL8+nIcw==}
+
   opener@1.5.2:
     resolution: {integrity: sha512-ur5UIdyw5Y7yEj9wLzhqXiy6GZ3Mwx0yGI+5sMn2r0N0v3cKJvUmFH5yPP+WXh9e0xfyzyJX95D8l088DNFj7A==}
     hasBin: true
@@ -6585,6 +6652,10 @@ packages:
 
   queue-microtask@1.2.3:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
+
+  radash@12.1.1:
+    resolution: {integrity: sha512-h36JMxKRqrAxVD8201FrCpyeNuUY9Y5zZwujr20fFO77tpUtGa6EZzfKw/3WaiBX95fq7+MpsuMLNdSnORAwSA==}
+    engines: {node: '>=14.18.0'}
 
   radix-ui@1.4.2:
     resolution: {integrity: sha512-fT/3YFPJzf2WUpqDoQi005GS8EpCi+53VhcLaHUj5fwkPYiZAjk1mSxFvbMA8Uq71L03n+WysuYC+mlKkXxt/Q==}
@@ -10264,6 +10335,69 @@ snapshots:
 
   '@opentelemetry/semantic-conventions@1.25.1': {}
 
+  '@orpc/client@1.6.6':
+    dependencies:
+      '@orpc/shared': 1.6.6
+      '@orpc/standard-server': 1.6.6
+      '@orpc/standard-server-fetch': 1.6.6
+      '@orpc/standard-server-peer': 1.6.6
+
+  '@orpc/contract@1.6.6':
+    dependencies:
+      '@orpc/client': 1.6.6
+      '@orpc/shared': 1.6.6
+      '@standard-schema/spec': 1.0.0
+      openapi-types: 12.1.3
+
+  '@orpc/server@1.6.6':
+    dependencies:
+      '@orpc/client': 1.6.6
+      '@orpc/contract': 1.6.6
+      '@orpc/shared': 1.6.6
+      '@orpc/standard-server': 1.6.6
+      '@orpc/standard-server-aws-lambda': 1.6.6
+      '@orpc/standard-server-fetch': 1.6.6
+      '@orpc/standard-server-node': 1.6.6
+      '@orpc/standard-server-peer': 1.6.6
+
+  '@orpc/shared@1.6.6':
+    dependencies:
+      radash: 12.1.1
+      type-fest: 4.41.0
+
+  '@orpc/standard-server-aws-lambda@1.6.6':
+    dependencies:
+      '@orpc/shared': 1.6.6
+      '@orpc/standard-server': 1.6.6
+      '@orpc/standard-server-fetch': 1.6.6
+      '@orpc/standard-server-node': 1.6.6
+
+  '@orpc/standard-server-fetch@1.6.6':
+    dependencies:
+      '@orpc/shared': 1.6.6
+      '@orpc/standard-server': 1.6.6
+
+  '@orpc/standard-server-node@1.6.6':
+    dependencies:
+      '@orpc/shared': 1.6.6
+      '@orpc/standard-server': 1.6.6
+      '@orpc/standard-server-fetch': 1.6.6
+
+  '@orpc/standard-server-peer@1.6.6':
+    dependencies:
+      '@orpc/shared': 1.6.6
+      '@orpc/standard-server': 1.6.6
+
+  '@orpc/standard-server@1.6.6':
+    dependencies:
+      '@orpc/shared': 1.6.6
+
+  '@orpc/tanstack-query@1.6.6(@orpc/client@1.6.6)(@tanstack/query-core@5.82.0)':
+    dependencies:
+      '@orpc/client': 1.6.6
+      '@orpc/shared': 1.6.6
+      '@tanstack/query-core': 5.82.0
+
   '@peculiar/asn1-android@2.3.16':
     dependencies:
       '@peculiar/asn1-schema': 2.3.15
@@ -11695,6 +11829,8 @@ snapshots:
 
   '@socket.io/component-emitter@3.1.2': {}
 
+  '@standard-schema/spec@1.0.0': {}
+
   '@swc/counter@0.1.3': {}
 
   '@swc/helpers@0.5.15':
@@ -11780,6 +11916,13 @@ snapshots:
       lodash.merge: 4.6.2
       postcss-selector-parser: 6.0.10
       tailwindcss: 4.1.11
+
+  '@tanstack/query-core@5.82.0': {}
+
+  '@tanstack/react-query@5.82.0(react@19.1.0)':
+    dependencies:
+      '@tanstack/query-core': 5.82.0
+      react: 19.1.0
 
   '@trigger.dev/build@3.3.17(typescript@5.8.3)':
     dependencies:
@@ -14960,6 +15103,8 @@ snapshots:
       is-inside-container: 1.0.0
       is-wsl: 3.1.0
 
+  openapi-types@12.1.3: {}
+
   opener@1.5.2: {}
 
   optionator@0.9.4:
@@ -15221,6 +15366,8 @@ snapshots:
   quansync@0.2.10: {}
 
   queue-microtask@1.2.3: {}
+
+  radash@12.1.1: {}
 
   radix-ui@1.4.2(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:

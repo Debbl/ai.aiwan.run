@@ -13,26 +13,26 @@ import { AIChatInput } from './components/ai-chat-input'
 export default function Page() {
   const [recordId, setRecordId] = useQueryState('recordId', parseAsString)
 
-  const { trigger } = api.aiImageGenerator.useSWRMutation()
-  const { data } = api.getImageById.useSWR(
-    {
-      query: {
+  const { mutateAsync } = useMutation(
+    orpc.images.aiImageGenerator.mutationOptions(),
+  )
+
+  const { data } = useQuery(
+    orpc.images.getImageById.queryOptions({
+      input: {
         id: recordId || '',
       },
-    },
-    {
       enabled: !!recordId,
-      refreshInterval(latestData) {
-        if (
-          latestData?.status === 'completed' ||
-          latestData?.status === 'failed'
-        ) {
+      refetchInterval(latestData) {
+        const status = latestData.state.data?.status
+
+        if (status === 'completed' || status === 'failed') {
           return 0
         }
 
         return 5000
       },
-    },
+    }),
   )
 
   const { handleAuthGuard } = useAuthGuard()
@@ -40,10 +40,8 @@ export default function Page() {
   const handleClick = async (prompt: string) => {
     if (!handleAuthGuard()) return
 
-    const res = await trigger({
-      body: {
-        prompt,
-      },
+    const res = await mutateAsync({
+      prompt,
     })
     refreshCredits()
     setRecordId(res.recordId)

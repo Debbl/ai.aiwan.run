@@ -1,52 +1,29 @@
-import {
-  createNextHandler,
-  tsr,
-  TsRestResponse,
-} from '@ts-rest/serverless/next'
-import { env } from '~/env'
-import { createAuth } from '~/lib/auth'
-import { getDBAsync } from '~/server/db'
-import { router } from '~/server/routes'
-import { contract } from '~/shared/contract'
+import { onError } from '@orpc/server'
+import { RPCHandler } from '@orpc/server/fetch'
+import { BatchHandlerPlugin } from '@orpc/server/plugins'
+import { router } from '~/server/router'
 
-const handler = createNextHandler(contract, router, {
-  handlerType: 'app-router',
-  errorHandler: (error) => {
-    return TsRestResponse.fromJson(
-      { message: (error as any)?.message || 'Internal Server Error' },
-      { status: 500 },
-    )
-  },
-  requestMiddleware: [
-    tsr.middleware<{ userId: string }>(async (request) => {
-      const db = await getDBAsync()
-      const auth = createAuth(db)
-
-      const headers = request.headers
-
-      const session = await auth.api.getSession({
-        headers,
-      })
-
-      const triggerSecret = headers.get('x-trigger-auth-key')
-      const isFromTrigger = triggerSecret === env.TRIGGER_AUTH_KEY
-
-      if (!session && !isFromTrigger) {
-        return TsRestResponse.fromJson(
-          { message: 'Unauthorized' },
-          { status: 401 },
-        )
-      }
-      request.userId = session?.user.id || ''
+const rpcHandler = new RPCHandler(router, {
+  interceptors: [
+    onError((error) => {
+      console.error(error)
     }),
   ],
+  plugins: [new BatchHandlerPlugin()],
 })
 
-export {
-  handler as DELETE,
-  handler as GET,
-  handler as OPTIONS,
-  handler as PATCH,
-  handler as POST,
-  handler as PUT,
+async function handleRequest(request: Request) {
+  const { response } = await rpcHandler.handle(request, {
+    prefix: '/api',
+    context: {},
+  })
+
+  return response ?? new Response('Not found', { status: 404 })
 }
+
+export const HEAD = handleRequest
+export const GET = handleRequest
+export const POST = handleRequest
+export const PUT = handleRequest
+export const PATCH = handleRequest
+export const DELETE = handleRequest

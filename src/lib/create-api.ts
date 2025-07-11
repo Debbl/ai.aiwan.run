@@ -1,3 +1,4 @@
+import { useLingui } from '@lingui/react'
 import {
   getRouteQuery,
   initClient,
@@ -6,6 +7,7 @@ import {
 } from '@ts-rest/core'
 import useSWR from 'swr'
 import useSWRMutation from 'swr/mutation'
+import { HEADER_LOCALE_NAME } from '~/shared/constants'
 import type {
   AppRoute,
   AppRouteDeleteNoBody,
@@ -28,8 +30,6 @@ import type {
 } from 'swr/mutation'
 
 function getSWRRouteQuery(route: AppRouteQuery, clientArgs: InitClientArgs) {
-  const fetcher = getRouteQuery(route, clientArgs)
-
   return {
     useSWR: (
       args: ClientInferRequest<AppRouteMutation, ClientArgs>,
@@ -37,6 +37,15 @@ function getSWRRouteQuery(route: AppRouteQuery, clientArgs: InitClientArgs) {
         enabled?: boolean
       } & Omit<SWRConfiguration, 'isPaused'> = {},
     ) => {
+      const { i18n } = useLingui()
+      const fetcher = getRouteQuery(route, {
+        ...clientArgs,
+        baseHeaders: {
+          ...clientArgs.baseHeaders,
+          [HEADER_LOCALE_NAME]: i18n.locale,
+        },
+      })
+
       const { enabled = true, ...SWROptions } = options
       const enabledRef = useRef(enabled)
       enabledRef.current = enabled
@@ -63,7 +72,6 @@ function getSWRRouteQuery(route: AppRouteQuery, clientArgs: InitClientArgs) {
       return values
     },
     route,
-    fetcher,
   }
 }
 
@@ -71,10 +79,17 @@ function getSWRRouteMutation(
   route: AppRouteMutation | AppRouteDeleteNoBody,
   clientArgs: InitClientArgs,
 ) {
-  const fetcher = getRouteQuery(route, clientArgs)
-
   return {
     useSWRMutation: (options: SWRMutationConfiguration<any, any, any> = {}) => {
+      const { i18n } = useLingui()
+      const fetcher = getRouteQuery(route, {
+        ...clientArgs,
+        baseHeaders: {
+          ...clientArgs.baseHeaders,
+          [HEADER_LOCALE_NAME]: i18n.locale,
+        },
+      })
+
       const values = useSWRMutation(
         [route.path],
         async (_url: string, { arg }: { arg: any }) => {
@@ -92,7 +107,6 @@ function getSWRRouteMutation(
       return values
     },
     route,
-    fetcher,
   }
 }
 
