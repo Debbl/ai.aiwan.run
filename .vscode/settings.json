@@ -25,13 +25,16 @@
     "Ghibli",
     "heroui",
     "huggingface",
+    "lingui",
     "nextui",
     "Nuqs",
+    "onnxruntime",
     "opennextjs",
     "pretrained",
     "Serwist",
     "shadcn",
-    "sonner"
+    "sonner",
+    "turbopack"
   ],
   "typescript.tsdk": "node_modules/typescript/lib"
 }

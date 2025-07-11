@@ -6,7 +6,7 @@
 // biome-ignore lint: disable
 export {}
 declare global {
-  const Link: typeof import('next-view-transitions')['Link']
+  const Link: typeof import('~/components/link')['Link']
   const api: typeof import('~/api')['api']
   const cn: typeof import('twl')['cn']
   const contract: typeof import('~/shared/contract')['contract']

@@ -1,4 +1,5 @@
 'use client'
+import { Trans, useLingui } from '@lingui/react/macro'
 import { LucideDatabase } from 'lucide-react'
 import { cls } from 'twl'
 import { Avatar } from '~/components/avatar'
@@ -53,51 +54,52 @@ function ListItem({
 }
 
 export function Header() {
+  const { t } = useLingui()
   const { data, isLoaded } = useUser()
 
   const credits = data?.credits ?? 100
 
   const apps = [
     {
-      label: 'AI Fortune teller',
+      label: t`AI Fortune teller`,
       href: '/ai-fortune-teller',
-      description: 'Tell your future',
+      description: t`Tell your future`,
     },
     {
-      label: 'AI Ghibli generator',
+      label: t`AI Ghibli generator`,
       href: '/ai-ghibli-generator',
-      description: 'Generate Ghibli-style images',
+      description: t`Generate Ghibli-style images`,
     },
     {
-      label: 'AI Image Generator',
+      label: t`AI Image Generator`,
       href: '/ai-image-generator',
-      description: 'Generate images with AI',
+      description: t`Generate images with AI`,
     },
   ]
 
   const browserList = [
     {
-      label: 'Object Detector',
+      label: t`Object Detector`,
       href: '/browser/object-detector',
-      description: 'Detect objects in images, running on your browser',
+      description: t`Detect objects in images, running on your browser`,
     },
     {
-      label: 'Segment Anything',
+      label: t`Segment Anything`,
       href: '/browser/segment-anything',
-      description: 'Segment anything in images, running on your browser',
+      description: t`Segment anything in images, running on your browser`,
     },
   ]
 
   const userList = [
     {
-      label: 'Sign In',
+      label: t`Sign In`,
       href: '/sign-in',
-      description: 'Sign in to your account',
+      description: t`Sign in to your account`,
     },
     {
-      label: 'Sign Up',
+      label: t`Sign Up`,
       href: '/sign-up',
-      description: 'Sign up for an account',
+      description: t`Sign up for an account`,
     },
   ]
 
@@ -115,7 +117,9 @@ export function Header() {
           <NavigationMenuList>
             <NavigationMenuItem>
               <NavigationMenuTrigger>
-                <Link href='/'>Apps</Link>
+                <Link href='/'>
+                  <Trans>Apps</Trans>
+                </Link>
               </NavigationMenuTrigger>
               <NavigationMenuContent>
                 <ul className='grid w-fit gap-1'>
@@ -133,7 +137,9 @@ export function Header() {
 
             <NavigationMenuItem>
               <NavigationMenuTrigger>
-                <Link href='/browser'>Browser</Link>
+                <Link href='/browser'>
+                  <Trans>Browser</Trans>
+                </Link>
               </NavigationMenuTrigger>
               <NavigationMenuContent>
                 <ul className='grid w-fit gap-1'>
@@ -166,7 +172,9 @@ export function Header() {
                         href='/sign-in'
                         className={cls`flex items-center gap-1 ${!isLoaded && 'hidden'}`}
                       >
-                        <Button variant='link'>Sign In</Button>
+                        <Button variant='link'>
+                          <Trans>Sign In</Trans>
+                        </Button>
                       </Link>
                     </Skeleton>
                   )}
@@ -185,9 +193,9 @@ export function Header() {
                     ))
                   ) : (
                     <ListItem
-                      title='Sign Out'
+                      title={t`Sign Out`}
                       onClick={handleSignOut}
-                      description='Sign out of your account'
+                      description={t`Sign out of your account`}
                     />
                   )}
                 </ul>
