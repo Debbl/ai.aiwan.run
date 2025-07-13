@@ -7,7 +7,6 @@
 export {}
 declare global {
   const Link: typeof import('~/components/link')['Link']
-  const api: typeof import('~/api')['api']
   const cn: typeof import('twl')['cn']
   const contract: typeof import('~/shared/contract')['contract']
   const createRef: typeof import('react')['createRef']

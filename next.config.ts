@@ -71,10 +71,6 @@ const nextConfig: NextConfig = {
             imports: [['*', 'motion']],
           },
           {
-            from: '~/api',
-            imports: ['api'],
-          },
-          {
             from: '~/lib/orpc',
             imports: ['orpc'],
           },
