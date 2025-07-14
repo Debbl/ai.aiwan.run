@@ -3,9 +3,12 @@ import { generateMetadataWithI18n } from '~/i18n'
 import { DefaultLayout } from '../../_components/default-layout/index'
 import { SEO } from './seo'
 import type { Metadata } from 'next'
+import type { PageLocaleParam } from '~/i18n'
 
-export const generateMetadata = async (): Promise<Metadata> => {
-  const i18n = generateMetadataWithI18n()
+export const generateMetadata = async ({
+  params,
+}: PageLocaleParam): Promise<Metadata> => {
+  const i18n = await generateMetadataWithI18n(params)
 
   return {
     title: i18n._(msg`Ghibli AI | Free Magical Ghibli Image Generator`),

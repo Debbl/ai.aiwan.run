@@ -7,7 +7,6 @@ import { useAtom } from 'jotai/react'
 import { Loader2Icon, LoaderCircleIcon } from 'lucide-react'
 import { useEffect, useMemo, useState } from 'react'
 import Markdown from 'react-markdown'
-import { getApiUrl } from '~/api'
 import { CopyButton } from '~/components/animate-ui/buttons/copy'
 import { RippleButton } from '~/components/animate-ui/buttons/ripple'
 import { DateTimePicker } from '~/components/datetime-picker'
@@ -53,7 +52,7 @@ export default function Page() {
     setInput,
     handleSubmit: _handleSubmit,
   } = useChat({
-    api: getApiUrl(contract.aiFortuneTeller),
+    api: '/api/ai-fortune-teller',
     onResponse: () => {
       refreshCredits()
     },
