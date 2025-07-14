@@ -1,4 +1,5 @@
 import { setupI18n } from '@lingui/core'
+import { getI18n } from '@lingui/react/server'
 import { cache } from 'react'
 import { linguiConfig } from './config'
 import { loadCatalog } from './load'
@@ -45,12 +46,12 @@ export const getI18nInstance = cache(async (locale?: Locale): Promise<I18n> => {
   return allI18nInstances[realLocale]!
 })
 
-export const generateMetadataWithI18n = cache(
-  async (params: Promise<{ locale: Locale }>) => {
-    const { locale } = await params
+export const generateMetadataWithI18n = cache(() => {
+  const i18n = getI18n()
 
-    const i18n = await getI18nInstance(locale)
+  if (!i18n) {
+    throw new Error('no set i18n')
+  }
 
-    return i18n
-  },
-)
+  return i18n
+})

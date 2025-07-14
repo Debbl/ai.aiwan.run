@@ -3,6 +3,8 @@ import { createORPCClient } from '@orpc/client'
 import { RPCLink } from '@orpc/client/fetch'
 import { BatchLinkPlugin } from '@orpc/client/plugins'
 import { createTanstackQueryUtils } from '@orpc/tanstack-query'
+import { X_NEXT_LOCALE } from '~/constants'
+import { isBrowser } from '~/shared/is-browser'
 import type { RouterClient } from '@orpc/server'
 import type { Router } from '~/server/router'
 
@@ -27,6 +29,11 @@ const link = new RPCLink({
       ],
     }),
   ],
+  headers: {
+    [X_NEXT_LOCALE]: isBrowser
+      ? (window.document.children[0].getAttribute('lang') ?? 'en')
+      : 'en',
+  },
 })
 
 export const client: RouterClient<Router> = createORPCClient(link)
