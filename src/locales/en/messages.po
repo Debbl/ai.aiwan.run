@@ -25,7 +25,7 @@ msgstr "Absolutely! Every generated image is yours to keep. Download high-resolu
 msgid "ai"
 msgstr "ai"
 
-#: src/app/[locale]/page.tsx:23
+#: src/app/[locale]/page.tsx:22
 msgid "AI Apps"
 msgstr "AI Apps"
 
@@ -37,7 +37,7 @@ msgstr "ai apps collection"
 msgid "AI Fortune teller"
 msgstr "AI Fortune teller"
 
-#: src/app/[locale]/page.tsx:28
+#: src/app/[locale]/page.tsx:27
 #: src/app/[locale]/ai-fortune-teller/layout.tsx:13
 msgid "AI Fortune Teller"
 msgstr "AI Fortune Teller"
@@ -46,14 +46,14 @@ msgstr "AI Fortune Teller"
 msgid "AI Ghibli generator"
 msgstr "AI Ghibli generator"
 
-#: src/app/[locale]/page.tsx:31
-#: src/app/[locale]/ai-ghibli-generator/page.tsx:134
-#: src/app/[locale]/ai-ghibli-generator/layout.tsx:21
+#: src/app/[locale]/page.tsx:30
+#: src/app/[locale]/ai-ghibli-generator/page.tsx:132
+#: src/app/[locale]/ai-ghibli-generator/layout.tsx:19
 msgid "AI Ghibli Generator"
 msgstr "AI Ghibli Generator"
 
 #: src/app/_components/default-layout/internal/header.tsx:74
-#: src/app/[locale]/page.tsx:34
+#: src/app/[locale]/page.tsx:33
 #: src/app/[locale]/ai-image-generator/layout.tsx:13
 msgid "AI Image Generator"
 msgstr "AI Image Generator"
@@ -98,7 +98,7 @@ msgstr "convert this photo to studio ghibli style anime"
 msgid "Create to your account"
 msgstr "Create to your account"
 
-#: src/app/[locale]/ai-ghibli-generator/layout.tsx:18
+#: src/app/[locale]/ai-ghibli-generator/layout.tsx:16
 msgid "Create Your Own Ghibli-Style Art: Free AI Ghibli Generator, Transform your ideas into magical Ghibli-style artwork with our free AI generator. No artistic skills needed! Create stunning characters, scenes, and landscapes inspired by Studio Ghibli. Try it now!"
 msgstr "Create Your Own Ghibli-Style Art: Free AI Ghibli Generator, Transform your ideas into magical Ghibli-style artwork with our free AI generator. No artistic skills needed! Create stunning characters, scenes, and landscapes inspired by Studio Ghibli. Try it now!"
 
@@ -106,7 +106,7 @@ msgstr "Create Your Own Ghibli-Style Art: Free AI Ghibli Generator, Transform yo
 msgid "Cut mask"
 msgstr "Cut mask"
 
-#: src/app/[locale]/ai-fortune-teller/page.tsx:107
+#: src/app/[locale]/ai-fortune-teller/page.tsx:106
 msgid "DeepSeek AI Fortune Teller"
 msgstr "DeepSeek AI Fortune Teller"
 
@@ -122,8 +122,8 @@ msgstr "Do unused credits expire?"
 msgid "Don't have an account?"
 msgstr "Don't have an account?"
 
-#: src/app/[locale]/ai-image-generator/page.tsx:89
-#: src/app/[locale]/ai-ghibli-generator/page.tsx:284
+#: src/app/[locale]/ai-image-generator/page.tsx:87
+#: src/app/[locale]/ai-ghibli-generator/page.tsx:282
 msgid "Download"
 msgstr "Download"
 
@@ -152,27 +152,28 @@ msgstr "Enter your email below to login to your account"
 msgid "Enter your password"
 msgstr "Enter your password"
 
-#: src/app/[locale]/ai-ghibli-generator/page.tsx:207
+#: src/app/[locale]/ai-ghibli-generator/page.tsx:205
 msgid "Enter your prompt"
 msgstr "Enter your prompt"
 
-#: src/app/[locale]/ai-ghibli-generator/page.tsx:259
+#: src/app/[locale]/ai-ghibli-generator/page.tsx:257
 msgid "failed"
 msgstr "failed"
 
-#: src/app/[locale]/ai-fortune-teller/page.tsx:157
+#: src/app/api/ai-fortune-teller/route.ts:32
+#: src/app/[locale]/ai-fortune-teller/page.tsx:156
 msgid "female"
 msgstr "female"
 
-#: src/app/[locale]/ai-fortune-teller/page.tsx:162
+#: src/app/[locale]/ai-fortune-teller/page.tsx:161
 msgid "Female"
 msgstr "Female"
 
-#: src/app/[locale]/ai-ghibli-generator/layout.tsx:23
+#: src/app/[locale]/ai-ghibli-generator/layout.tsx:21
 msgid "Free Ghibli Art Generator"
 msgstr "Free Ghibli Art Generator"
 
-#: src/app/[locale]/ai-ghibli-generator/page.tsx:215
+#: src/app/[locale]/ai-ghibli-generator/page.tsx:213
 msgid "Generate"
 msgstr "Generate"
 
@@ -184,25 +185,30 @@ msgstr "Generate Ghibli-style images"
 msgid "Generate images with AI"
 msgstr "Generate images with AI"
 
-#: src/app/[locale]/ai-ghibli-generator/page.tsx:268
+#: src/app/[locale]/ai-ghibli-generator/page.tsx:266
 msgid "Generate Your Ghibli Art Now!"
 msgstr "Generate Your Ghibli Art Now!"
 
-#: src/app/[locale]/ai-ghibli-generator/page.tsx:250
+#: src/app/[locale]/ai-ghibli-generator/page.tsx:248
 msgid "generated-image"
 msgstr "generated-image"
 
-#: src/app/[locale]/ai-ghibli-generator/layout.tsx:27
+#: src/app/[locale]/ai-ghibli-generator/layout.tsx:25
 msgid "Ghibli AI - Free Magical Ghibli Image Generator"
 msgstr "Ghibli AI - Free Magical Ghibli Image Generator"
 
-#: src/app/[locale]/ai-ghibli-generator/layout.tsx:16
+#: src/app/[locale]/ai-ghibli-generator/layout.tsx:14
 msgid "Ghibli AI | Free Magical Ghibli Image Generator"
 msgstr "Ghibli AI | Free Magical Ghibli Image Generator"
 
-#: src/app/[locale]/ai-ghibli-generator/layout.tsx:22
+#: src/app/[locale]/ai-ghibli-generator/layout.tsx:20
 msgid "Ghibli-Style Art"
 msgstr "Ghibli-Style Art"
+
+#. placeholder {0}: input.name
+#: src/server/router/common.ts:17
+msgid "Hello {0}"
+msgstr "Hello {0}"
 
 #: src/app/[locale]/ai-ghibli-generator/seo.tsx:39
 msgid "How long does image generation take?"
@@ -212,9 +218,13 @@ msgstr "How long does image generation take?"
 msgid "How long does it take to generate an image?"
 msgstr "How long does it take to generate an image?"
 
-#: src/app/[locale]/ai-ghibli-generator/layout.tsx:24
+#: src/app/[locale]/ai-ghibli-generator/layout.tsx:22
 msgid "how to make ghibli art with ai"
 msgstr "how to make ghibli art with ai"
+
+#: src/app/api/ai-fortune-teller/route.ts:44
+msgid "I am {genderText}, my birthday is {birthday}. Please use the blind-style technique to analyze the eight characters step by step. Please analyze my life fortune, physical appearance, time nodes, events, and cover all aspects as detailed as possible. Focus on analyzing how much money I can make during my大运, including my education and marriage. After determining the accurate relationship model, output the final result, and be honest in your evaluation, using language that is not too gentle."
+msgstr "I am {genderText}, my birthday is {birthday}. Please use the blind-style technique to analyze the eight characters step by step. Please analyze my life fortune, physical appearance, time nodes, events, and cover all aspects as detailed as possible. Focus on analyzing how much money I can make during my大运, including my education and marriage. After determining the accurate relationship model, output the final result, and be honest in your evaluation, using language that is not too gentle."
 
 #: src/app/[locale]/ai-ghibli-generator/seo.tsx:28
 msgid "Images generate at 1024x1024 pixels by default—perfect for social media, prints, or digital wallpapers. Higher resolutions may be added in the future!"
@@ -249,11 +259,12 @@ msgstr "Login with GitHub"
 msgid "Login with Google"
 msgstr "Login with Google"
 
-#: src/app/[locale]/ai-fortune-teller/page.tsx:157
+#: src/app/api/ai-fortune-teller/route.ts:32
+#: src/app/[locale]/ai-fortune-teller/page.tsx:156
 msgid "male"
 msgstr "male"
 
-#: src/app/[locale]/ai-fortune-teller/page.tsx:165
+#: src/app/[locale]/ai-fortune-teller/page.tsx:164
 msgid "Male"
 msgstr "Male"
 
@@ -272,11 +283,11 @@ msgstr "Object Detector"
 msgid "Or continue with"
 msgstr "Or continue with"
 
-#: src/app/[locale]/ai-ghibli-generator/page.tsx:172
+#: src/app/[locale]/ai-ghibli-generator/page.tsx:170
 msgid "origin image"
 msgstr "origin image"
 
-#: src/app/[locale]/ai-ghibli-generator/page.tsx:245
+#: src/app/[locale]/ai-ghibli-generator/page.tsx:243
 msgid "original-image"
 msgstr "original-image"
 
@@ -289,7 +300,7 @@ msgstr "Our AI is trained to replicate the iconic aesthetic of Studio Ghibli fil
 msgid "Password"
 msgstr "Password"
 
-#: src/app/[locale]/ai-ghibli-generator/page.tsx:271
+#: src/app/[locale]/ai-ghibli-generator/page.tsx:269
 msgid "Please upload an image to generate a Ghibli image"
 msgstr "Please upload an image to generate a Ghibli image"
 
@@ -345,7 +356,7 @@ msgstr "Sign up for an account"
 msgid "studio ghibli style anime generator"
 msgstr "studio ghibli style anime generator"
 
-#: src/app/[locale]/ai-fortune-teller/page.tsx:189
+#: src/app/[locale]/ai-fortune-teller/page.tsx:188
 msgid "Submit"
 msgstr "Submit"
 
@@ -353,7 +364,7 @@ msgstr "Submit"
 msgid "Tell your future"
 msgstr "Tell your future"
 
-#: src/app/[locale]/page.tsx:39
+#: src/app/[locale]/page.tsx:38
 msgid "Test"
 msgstr "Test"
 
@@ -366,11 +377,11 @@ msgstr "The AI application running in your browser"
 msgid "The client first ai apps"
 msgstr "The client first ai apps"
 
-#: src/app/[locale]/ai-fortune-teller/page.tsx:84
+#: src/app/[locale]/ai-fortune-teller/page.tsx:83
 msgid "This site does not collect any data from you, all content is directly obtained from the DeepSeek API interface."
 msgstr "This site does not collect any data from you, all content is directly obtained from the DeepSeek API interface."
 
-#: src/app/[locale]/ai-ghibli-generator/layout.tsx:29
+#: src/app/[locale]/ai-ghibli-generator/layout.tsx:27
 msgid "Transform photos to authentic Studio Ghibli art with our AI-powered ghibli image generator. Create stunning Miyazaki-style characters and scenes instantly."
 msgstr "Transform photos to authentic Studio Ghibli art with our AI-powered ghibli image generator. Create stunning Miyazaki-style characters and scenes instantly."
 

@@ -31,7 +31,7 @@ const link = new RPCLink({
   ],
   headers: {
     [X_NEXT_LOCALE]: isBrowser
-      ? (window.document.children[0].getAttribute('lang') ?? 'en')
+      ? (window.document.documentElement.lang ?? 'en')
       : 'en',
   },
 })

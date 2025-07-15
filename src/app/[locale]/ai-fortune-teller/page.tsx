@@ -22,6 +22,7 @@ import {
   SelectValue,
 } from '~/components/ui/select'
 import { Skeleton } from '~/components/ui/skeleton'
+import { X_NEXT_LOCALE } from '~/constants'
 import { useAuthGuard } from '~/hooks/useAuth'
 import { useRefreshCredits } from '~/hooks/useRefreshCredits'
 import { infoAtom } from './atoms/info'
@@ -45,6 +46,7 @@ export default function Page() {
 
   const [isShowThinking, setIsShowThinking] = useState(false)
 
+  const { t, i18n } = useLingui()
   const { refreshCredits } = useRefreshCredits()
   const {
     status,
@@ -59,9 +61,11 @@ export default function Page() {
     onError: () => {
       refreshCredits()
     },
+    headers: {
+      [X_NEXT_LOCALE]: i18n.locale,
+    },
   })
 
-  const { t } = useLingui()
   const { handleAuthGuard } = useAuthGuard()
   const handleSubmit = () => {
     if (!handleAuthGuard()) return
