@@ -1,6 +1,6 @@
 import { onError } from '@orpc/server'
 import { RPCHandler } from '@orpc/server/fetch'
-import { BatchHandlerPlugin } from '@orpc/server/plugins'
+import { BatchHandlerPlugin, StrictGetMethodPlugin } from '@orpc/server/plugins'
 import { router } from '~/server/router'
 
 const rpcHandler = new RPCHandler(router, {
@@ -9,7 +9,7 @@ const rpcHandler = new RPCHandler(router, {
       console.error(error)
     }),
   ],
-  plugins: [new BatchHandlerPlugin()],
+  plugins: [new BatchHandlerPlugin(), new StrictGetMethodPlugin()],
 })
 
 async function handleRequest(request: Request) {

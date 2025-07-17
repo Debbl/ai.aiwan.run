@@ -14,11 +14,11 @@ export default function Page() {
   const [recordId, setRecordId] = useQueryState('recordId', parseAsString)
 
   const { mutateAsync } = useMutation(
-    orpc.images.aiImageGenerator.mutationOptions(),
+    orpc.ai.image.aiImageGenerator.mutationOptions(),
   )
 
   const { data } = useQuery(
-    orpc.images.getImageById.queryOptions({
+    orpc.image.getImageById.queryOptions({
       input: {
         id: recordId || '',
       },

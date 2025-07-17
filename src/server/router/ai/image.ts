@@ -1,10 +1,10 @@
 import { ORPCError } from '@orpc/server'
 import z from 'zod'
+import { dao } from '~/server/dao'
+import { auth } from '~/server/orpc'
+import { sendQueue } from '~/server/queues'
+import { services } from '~/server/services'
 import { getR2Url } from '~/shared'
-import { dao } from '../dao'
-import { auth } from '../orpc'
-import { sendQueue } from '../queues'
-import { services } from '../services'
 
 export const aiGhibliGenerator = auth
   .input(
@@ -115,54 +115,5 @@ export const aiImageGenerator = auth
 
     return {
       recordId: imageGenerationsInsert.meta.last_row_id.toString(),
-    }
-  })
-
-export const getImageList = auth
-  .input(
-    z.object({
-      page: z.number().default(1),
-      limit: z.number().default(10),
-    }),
-  )
-  .route({
-    method: 'GET',
-  })
-  .handler(async ({ context }) => {
-    const { userId } = context
-
-    const res = await dao.imageGenerations.getList({
-      userId,
-    })
-
-    const imageList = res.map((item) => ({
-      id: item.id,
-      originalImageUrl: getR2Url(item.originalImageUrl),
-      generatedImageUrl: getR2Url(item.generatedImageUrl),
-      status: item.status,
-    }))
-
-    return { list: imageList }
-  })
-
-export const getImageById = auth
-  .input(
-    z.object({
-      id: z.string(),
-    }),
-  )
-  .route({
-    method: 'GET',
-  })
-  .handler(async ({ input }) => {
-    const { id } = input
-
-    const res = await dao.imageGenerations.getById({ id: Number(id) })
-
-    return {
-      id: res.id,
-      originalImageUrl: getR2Url(res.originalImageUrl),
-      generatedImageUrl: getR2Url(res.generatedImageUrl),
-      status: res.status,
     }
   })

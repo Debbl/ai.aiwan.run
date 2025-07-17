@@ -6,6 +6,9 @@ import { services } from '../services'
 
 export const test = auth
   .use(requiredLocaleMiddleware)
+  .route({
+    method: 'GET',
+  })
   .input(
     z.object({
       name: z.string(),

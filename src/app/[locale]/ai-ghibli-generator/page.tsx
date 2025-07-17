@@ -45,7 +45,7 @@ export default function Page() {
   const { refreshCredits } = useRefreshCredits()
 
   const { data: imageList } = useQuery(
-    orpc.images.getImageById.queryOptions({
+    orpc.image.getImageById.queryOptions({
       input: {
         id: recordId || '',
       },
@@ -70,7 +70,7 @@ export default function Page() {
   }, [image])
 
   const { mutateAsync: aiImageGenerator, isPending } = useMutation(
-    orpc.images.aiGhibliGenerator.mutationOptions({
+    orpc.ai.image.aiGhibliGenerator.mutationOptions({
       onSuccess: () => {
         refreshCredits()
       },
