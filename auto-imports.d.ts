@@ -7,7 +7,6 @@
 export {}
 declare global {
   const Link: typeof import('~/components/link')['Link']
-  const api: typeof import('~/api')['api']
   const cn: typeof import('twl')['cn']
   const contract: typeof import('~/shared/contract')['contract']
   const createRef: typeof import('react')['createRef']
@@ -15,6 +14,7 @@ declare global {
   const lazy: typeof import('react')['lazy']
   const memo: typeof import('react')['memo']
   const motion: typeof import('motion/react-m')
+  const orpc: typeof import('~/lib/orpc')['orpc']
   const startTransition: typeof import('react')['startTransition']
   const useCallback: typeof import('react')['useCallback']
   const useContext: typeof import('react')['useContext']
@@ -26,6 +26,8 @@ declare global {
   const useInsertionEffect: typeof import('react')['useInsertionEffect']
   const useLayoutEffect: typeof import('react')['useLayoutEffect']
   const useMemo: typeof import('react')['useMemo']
+  const useMutation: typeof import('@tanstack/react-query')['useMutation']
+  const useQuery: typeof import('@tanstack/react-query')['useQuery']
   const useReducer: typeof import('react')['useReducer']
   const useRef: typeof import('react')['useRef']
   const useState: typeof import('react')['useState']

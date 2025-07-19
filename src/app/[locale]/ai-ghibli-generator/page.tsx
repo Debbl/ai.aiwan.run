@@ -43,27 +43,25 @@ export default function Page() {
   const isMobile = useIsMatchMedia('(max-width: 768px)')
 
   const { refreshCredits } = useRefreshCredits()
-  const { data: imageList } = api.getImageById.useSWR(
-    {
-      query: {
+
+  const { data: imageList } = useQuery(
+    orpc.image.getImageById.queryOptions({
+      input: {
         id: recordId || '',
       },
-    },
-    {
       enabled: !!recordId,
-      refreshInterval: (latestData) => {
-        if (
-          latestData?.status === 'completed' ||
-          latestData?.status === 'failed'
-        ) {
+      refetchInterval: (latestData) => {
+        const status = latestData.state.data?.status
+
+        if (status === 'completed' || status === 'failed') {
           refreshCredits()
           return 0
         }
 
         return 5000
       },
-      errorRetryCount: 1,
-    },
+      retry: 1,
+    }),
   )
 
   const uploadImageUrl = useMemo(() => {
@@ -71,21 +69,21 @@ export default function Page() {
     return URL.createObjectURL(image)
   }, [image])
 
-  const { trigger, isMutating } = api.aiGhibliGenerator.useSWRMutation({
-    onSuccess: () => {
-      refreshCredits()
-    },
-  })
+  const { mutateAsync: aiImageGenerator, isPending } = useMutation(
+    orpc.ai.image.aiGhibliGenerator.mutationOptions({
+      onSuccess: () => {
+        refreshCredits()
+      },
+    }),
+  )
 
   const handleClick = async () => {
     if (!handleAuthGuard()) return
     if (!image) return
 
-    const res = await trigger({
-      body: {
-        image,
-        prompt,
-      },
+    const res = await aiImageGenerator({
+      image,
+      prompt,
     })
 
     setRecordId(res.recordId)
@@ -210,7 +208,7 @@ export default function Page() {
             />
 
             <div className='my-4'>
-              <Button onClick={handleClick} disabled={isMutating}>
+              <Button onClick={handleClick} disabled={isPending}>
                 <span>
                   <Trans>Generate</Trans>
                 </span>

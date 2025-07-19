@@ -51,6 +51,10 @@ export const generateMetadataWithI18n = cache(
 
     const i18n = await getI18nInstance(locale)
 
+    if (!i18n) {
+      throw new Error('no set i18n')
+    }
+
     return i18n
   },
 )

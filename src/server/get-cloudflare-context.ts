@@ -11,6 +11,7 @@ export function getCloudflareContext() {
   if (cloudflareContext) {
     return cloudflareContext
   }
+
   cloudflareContext = getCloudflareContextFn()
   return cloudflareContext
 }
@@ -19,6 +20,7 @@ export async function getCloudflareContextAsync() {
   if (cloudflareContext) {
     return cloudflareContext
   }
+
   cloudflareContext = await getCloudflareContextFn({ async: true })
   return cloudflareContext
 }

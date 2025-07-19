@@ -1,11 +1,11 @@
 import { useUser } from './useUser'
 
 export function useRefreshCredits() {
-  const { mutate } = useUser()
+  const { refetch } = useUser()
 
   return {
     refreshCredits: useCallback(() => {
-      mutate()
-    }, [mutate]),
+      refetch()
+    }, [refetch]),
   }
 }

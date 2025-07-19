@@ -2,12 +2,12 @@
 import { useChat } from '@ai-sdk/react'
 import { useEffectEvent, useHydrated } from '@debbl/ahooks'
 import { Trans, useLingui } from '@lingui/react/macro'
+import { eventIteratorToStream } from '@orpc/client'
 import { format } from 'date-fns'
 import { useAtom } from 'jotai/react'
 import { Loader2Icon, LoaderCircleIcon } from 'lucide-react'
-import { useEffect, useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 import Markdown from 'react-markdown'
-import { getApiUrl } from '~/api'
 import { CopyButton } from '~/components/animate-ui/buttons/copy'
 import { RippleButton } from '~/components/animate-ui/buttons/ripple'
 import { DateTimePicker } from '~/components/datetime-picker'
@@ -25,6 +25,7 @@ import {
 import { Skeleton } from '~/components/ui/skeleton'
 import { useAuthGuard } from '~/hooks/useAuth'
 import { useRefreshCredits } from '~/hooks/useRefreshCredits'
+import { client } from '~/lib/orpc'
 import { infoAtom } from './atoms/info'
 
 export default function Page() {
@@ -46,15 +47,27 @@ export default function Page() {
 
   const [isShowThinking, setIsShowThinking] = useState(false)
 
+  const { t } = useLingui()
   const { refreshCredits } = useRefreshCredits()
-  const {
-    status,
-    messages,
-    setInput,
-    handleSubmit: _handleSubmit,
-  } = useChat({
-    api: getApiUrl(contract.aiFortuneTeller),
-    onResponse: () => {
+
+  const { status, messages, sendMessage } = useChat({
+    transport: {
+      async sendMessages(options) {
+        return eventIteratorToStream(
+          await client.ai.text.aiFortuneTeller(
+            {
+              chatId: options.chatId,
+              messages: options.messages,
+            },
+            { signal: options.abortSignal },
+          ),
+        )
+      },
+      reconnectToStream() {
+        throw new Error('Unsupported')
+      },
+    },
+    onData: () => {
       refreshCredits()
     },
     onError: () => {
@@ -62,12 +75,15 @@ export default function Page() {
     },
   })
 
-  const { t } = useLingui()
   const { handleAuthGuard } = useAuthGuard()
   const handleSubmit = () => {
     if (!handleAuthGuard()) return
-
-    _handleSubmit()
+    sendMessage({
+      text: JSON.stringify({
+        gender,
+        birthday: format(birthday, 'yyyy-MM-dd HH:mm'),
+      }),
+    })
   }
 
   const { isHydrated } = useHydrated()
@@ -78,27 +94,13 @@ export default function Page() {
 
   const message = useMemo(() => {
     const lastMessage = messages.at(-1)
-    return lastMessage?.role === 'assistant'
-      ? lastMessage
-      : {
-          content: `> ${t`This site does not collect any data from you, all content is directly obtained from the DeepSeek API interface.`}`,
-        }
-  }, [messages, t])
+
+    return lastMessage
+  }, [messages])
 
   const reasoning = useMemo(() => {
-    return 'parts' in message
-      ? message.parts.find((i) => i.type === 'reasoning')?.reasoning
-      : null
+    return message?.parts.find((i) => i.type === 'reasoning')?.text
   }, [message])
-
-  useEffect(() => {
-    setInput(
-      JSON.stringify({
-        gender,
-        birthday: format(birthday, 'yyyy-MM-dd HH:mm'),
-      }),
-    )
-  }, [birthday, gender, setInput])
 
   return (
     <main className='relative flex flex-1 flex-col'>
@@ -113,7 +115,7 @@ export default function Page() {
               size='sm'
               onClick={() => setIsShowThinking(!isShowThinking)}
             >
-              {!message.content && (
+              {!message?.parts.find((i) => i.type === 'reasoning')?.text && (
                 <LoaderCircleIcon className='animate-spin' />
               )}
               Thinking
@@ -132,7 +134,9 @@ export default function Page() {
 
         <div className='mx-auto w-[600px] max-w-full px-3 pt-4 pb-8'>
           <article className='prose dark:prose-invert'>
-            <Markdown>{message.content}</Markdown>
+            <Markdown>
+              {message?.parts.find((i) => i.type === 'text')?.text}
+            </Markdown>
           </article>
         </div>
       </div>
@@ -193,7 +197,7 @@ export default function Page() {
             <CopyButton
               className='size-9'
               disabled={!message || status !== 'ready'}
-              content={message.content}
+              content={message?.parts.find((i) => i.type === 'text')?.text}
             />
           </div>
           {!isHydrated && <div className='absolute inset-0 bg-gray-200' />}

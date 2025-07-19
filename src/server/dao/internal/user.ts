@@ -1,3 +1,4 @@
+import { ORPCError } from '@orpc/server'
 import { eq } from 'drizzle-orm'
 import { getDBAsync } from '~/server/db'
 import { schema } from '~/server/db/schema'
@@ -24,10 +25,9 @@ export async function updateCredits(values: {
   const newCredits = credits[0].credits + values.amount
 
   if (newCredits < 0) {
-    return {
-      error: true,
-      message: 'Insufficient credits',
-    }
+    throw new ORPCError('CREDITS_NOT_ENOUGH', {
+      message: 'Credits not enough',
+    })
   }
 
   return await db

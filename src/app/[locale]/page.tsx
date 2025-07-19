@@ -1,18 +1,17 @@
 'use client'
 import { Trans } from '@lingui/react/macro'
+import { useMutation } from '@tanstack/react-query'
 import { Button } from '~/components/ui/button'
 import { DefaultLayout } from '../_components/default-layout'
 
 const DEV = false
 
 export default function Home() {
-  const { trigger } = api.test.useSWRMutation()
+  const { mutateAsync } = useMutation(orpc.test.mutationOptions())
 
   const handleTest = async () => {
-    await trigger({
-      body: {
-        name: 'test',
-      },
+    await mutateAsync({
+      name: 'test',
     })
   }
 
