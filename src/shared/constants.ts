@@ -1,1 +1,1 @@
-export const HEADER_LOCALE_NAME = 'X-NEXT-INTL-LOCALE'
+export const X_NEXT_LOCALE = 'X-NEXT-LOCALE'

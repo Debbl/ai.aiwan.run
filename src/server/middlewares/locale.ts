@@ -1,7 +1,7 @@
 import { setI18n } from '@lingui/react/server'
 import { os } from '@orpc/server'
-import { X_NEXT_LOCALE } from '~/constants'
 import { getI18nInstance } from '~/i18n'
+import { X_NEXT_LOCALE } from '~/shared/constants'
 
 export const requiredLocaleMiddleware = os
   .$context<{ headers: Headers }>()

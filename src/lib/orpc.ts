@@ -6,7 +6,7 @@ import {
   createTanstackQueryUtils,
   TANSTACK_QUERY_OPERATION_CONTEXT_SYMBOL,
 } from '@orpc/tanstack-query'
-import { X_NEXT_LOCALE } from '~/constants'
+import { X_NEXT_LOCALE } from '~/shared/constants'
 import { isBrowser } from '~/shared/is-browser'
 import type { RouterClient } from '@orpc/server'
 import type { Router } from '~/server/router'
