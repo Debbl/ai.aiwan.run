@@ -82,10 +82,6 @@ const nextConfig: NextConfig = {
             from: '~/components/link',
             imports: ['Link'],
           },
-          {
-            from: '~/shared/contract',
-            imports: ['contract'],
-          },
         ],
         dts: true,
       }),

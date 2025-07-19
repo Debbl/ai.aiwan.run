@@ -8,7 +8,6 @@ export {}
 declare global {
   const Link: typeof import('~/components/link')['Link']
   const cn: typeof import('twl')['cn']
-  const contract: typeof import('~/shared/contract')['contract']
   const createRef: typeof import('react')['createRef']
   const forwardRef: typeof import('react')['forwardRef']
   const lazy: typeof import('react')['lazy']
