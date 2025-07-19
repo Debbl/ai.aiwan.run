@@ -106,7 +106,7 @@ msgstr "Create Your Own Ghibli-Style Art: Free AI Ghibli Generator, Transform yo
 msgid "Cut mask"
 msgstr "Cut mask"
 
-#: src/app/[locale]/ai-fortune-teller/page.tsx:106
+#: src/app/[locale]/ai-fortune-teller/page.tsx:109
 msgid "DeepSeek AI Fortune Teller"
 msgstr "DeepSeek AI Fortune Teller"
 
@@ -160,12 +160,12 @@ msgstr "Enter your prompt"
 msgid "failed"
 msgstr "failed"
 
-#: src/app/api/ai-fortune-teller/route.ts:32
-#: src/app/[locale]/ai-fortune-teller/page.tsx:156
+#: src/server/router/ai/text.ts:21
+#: src/app/[locale]/ai-fortune-teller/page.tsx:161
 msgid "female"
 msgstr "female"
 
-#: src/app/[locale]/ai-fortune-teller/page.tsx:161
+#: src/app/[locale]/ai-fortune-teller/page.tsx:166
 msgid "Female"
 msgstr "Female"
 
@@ -206,7 +206,7 @@ msgid "Ghibli-Style Art"
 msgstr "Ghibli-Style Art"
 
 #. placeholder {0}: input.name
-#: src/server/router/common.ts:17
+#: src/server/router/common.ts:20
 msgid "Hello {0}"
 msgstr "Hello {0}"
 
@@ -222,9 +222,13 @@ msgstr "How long does it take to generate an image?"
 msgid "how to make ghibli art with ai"
 msgstr "how to make ghibli art with ai"
 
+#: src/server/router/ai/text.ts:23
+msgid "I am {genderText}, my birthday is {birthday}. Please use the blind-style technique to analyze the eight characters step by step. Please analyze my life fortune, physical appearance, time nodes, events, and cover all aspects as detailed as possible. Focus on analyzing how much money I can make during my life, including my education and marriage. After determining the accurate relationship model, output the final result, and be honest in your evaluation, using language that is not too gentle."
+msgstr "I am {genderText}, my birthday is {birthday}. Please use the blind-style technique to analyze the eight characters step by step. Please analyze my life fortune, physical appearance, time nodes, events, and cover all aspects as detailed as possible. Focus on analyzing how much money I can make during my life, including my education and marriage. After determining the accurate relationship model, output the final result, and be honest in your evaluation, using language that is not too gentle."
+
 #: src/app/api/ai-fortune-teller/route.ts:44
-msgid "I am {genderText}, my birthday is {birthday}. Please use the blind-style technique to analyze the eight characters step by step. Please analyze my life fortune, physical appearance, time nodes, events, and cover all aspects as detailed as possible. Focus on analyzing how much money I can make during my大运, including my education and marriage. After determining the accurate relationship model, output the final result, and be honest in your evaluation, using language that is not too gentle."
-msgstr "I am {genderText}, my birthday is {birthday}. Please use the blind-style technique to analyze the eight characters step by step. Please analyze my life fortune, physical appearance, time nodes, events, and cover all aspects as detailed as possible. Focus on analyzing how much money I can make during my大运, including my education and marriage. After determining the accurate relationship model, output the final result, and be honest in your evaluation, using language that is not too gentle."
+#~ msgid "I am {genderText}, my birthday is {birthday}. Please use the blind-style technique to analyze the eight characters step by step. Please analyze my life fortune, physical appearance, time nodes, events, and cover all aspects as detailed as possible. Focus on analyzing how much money I can make during my大运, including my education and marriage. After determining the accurate relationship model, output the final result, and be honest in your evaluation, using language that is not too gentle."
+#~ msgstr "I am {genderText}, my birthday is {birthday}. Please use the blind-style technique to analyze the eight characters step by step. Please analyze my life fortune, physical appearance, time nodes, events, and cover all aspects as detailed as possible. Focus on analyzing how much money I can make during my大运, including my education and marriage. After determining the accurate relationship model, output the final result, and be honest in your evaluation, using language that is not too gentle."
 
 #: src/app/[locale]/ai-ghibli-generator/seo.tsx:28
 msgid "Images generate at 1024x1024 pixels by default—perfect for social media, prints, or digital wallpapers. Higher resolutions may be added in the future!"
@@ -259,12 +263,12 @@ msgstr "Login with GitHub"
 msgid "Login with Google"
 msgstr "Login with Google"
 
-#: src/app/api/ai-fortune-teller/route.ts:32
-#: src/app/[locale]/ai-fortune-teller/page.tsx:156
+#: src/server/router/ai/text.ts:21
+#: src/app/[locale]/ai-fortune-teller/page.tsx:161
 msgid "male"
 msgstr "male"
 
-#: src/app/[locale]/ai-fortune-teller/page.tsx:164
+#: src/app/[locale]/ai-fortune-teller/page.tsx:169
 msgid "Male"
 msgstr "Male"
 
@@ -356,7 +360,7 @@ msgstr "Sign up for an account"
 msgid "studio ghibli style anime generator"
 msgstr "studio ghibli style anime generator"
 
-#: src/app/[locale]/ai-fortune-teller/page.tsx:188
+#: src/app/[locale]/ai-fortune-teller/page.tsx:193
 msgid "Submit"
 msgstr "Submit"
 
@@ -378,8 +382,8 @@ msgid "The client first ai apps"
 msgstr "The client first ai apps"
 
 #: src/app/[locale]/ai-fortune-teller/page.tsx:83
-msgid "This site does not collect any data from you, all content is directly obtained from the DeepSeek API interface."
-msgstr "This site does not collect any data from you, all content is directly obtained from the DeepSeek API interface."
+#~ msgid "This site does not collect any data from you, all content is directly obtained from the DeepSeek API interface."
+#~ msgstr "This site does not collect any data from you, all content is directly obtained from the DeepSeek API interface."
 
 #: src/app/[locale]/ai-ghibli-generator/layout.tsx:27
 msgid "Transform photos to authentic Studio Ghibli art with our AI-powered ghibli image generator. Create stunning Miyazaki-style characters and scenes instantly."

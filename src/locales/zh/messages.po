@@ -106,7 +106,7 @@ msgstr "创建你自己的吉卜力风格艺术：免费 AI 吉卜力风格艺�
 msgid "Cut mask"
 msgstr "剪切蒙版"
 
-#: src/app/[locale]/ai-fortune-teller/page.tsx:106
+#: src/app/[locale]/ai-fortune-teller/page.tsx:109
 msgid "DeepSeek AI Fortune Teller"
 msgstr "DeepSeek AI 算命"
 
@@ -160,12 +160,12 @@ msgstr "输入你的提示词"
 msgid "failed"
 msgstr "失败"
 
-#: src/app/api/ai-fortune-teller/route.ts:32
-#: src/app/[locale]/ai-fortune-teller/page.tsx:156
+#: src/server/router/ai/text.ts:21
+#: src/app/[locale]/ai-fortune-teller/page.tsx:161
 msgid "female"
 msgstr "女"
 
-#: src/app/[locale]/ai-fortune-teller/page.tsx:161
+#: src/app/[locale]/ai-fortune-teller/page.tsx:166
 msgid "Female"
 msgstr "女"
 
@@ -206,7 +206,7 @@ msgid "Ghibli-Style Art"
 msgstr "吉卜力风格艺术"
 
 #. placeholder {0}: input.name
-#: src/server/router/common.ts:17
+#: src/server/router/common.ts:20
 msgid "Hello {0}"
 msgstr "你好 {0}"
 
@@ -222,9 +222,9 @@ msgstr "生成图片需要多长时间？"
 msgid "how to make ghibli art with ai"
 msgstr "如何用 AI 制作吉卜力风格艺术"
 
-#: src/app/api/ai-fortune-teller/route.ts:44
-msgid "I am {genderText}, my birthday is {birthday}. Please use the blind-style technique to analyze the eight characters step by step. Please analyze my life fortune, physical appearance, time nodes, events, and cover all aspects as detailed as possible. Focus on analyzing how much money I can make during my大运, including my education and marriage. After determining the accurate relationship model, output the final result, and be honest in your evaluation, using language that is not too gentle."
-msgstr "我是${genderText}，我的公历出生日期是${birthday}。请用盲派技巧逐步分析八字，请分析我的一生运势，以及体貌特征，时间节点，事件，涵盖各方面，尽可能详细具体。着重分析大运能赚多少钱，包括学业和婚姻，判断出准确的关系模型后输出最终结果，诚实一点评价，用语不用太温和。"
+#: src/server/router/ai/text.ts:23
+msgid "I am {genderText}, my birthday is {birthday}. Please use the blind-style technique to analyze the eight characters step by step. Please analyze my life fortune, physical appearance, time nodes, events, and cover all aspects as detailed as possible. Focus on analyzing how much money I can make during my life, including my education and marriage. After determining the accurate relationship model, output the final result, and be honest in your evaluation, using language that is not too gentle."
+msgstr "我是{genderText}，我的公历出生日期是{birthday}。请用盲派技巧逐步分析八字，请分析我的一生运势，以及体貌特征，时间节点，事件，涵盖各方面，尽可能详细具体。着重分析大运能赚多少钱，包括学业和婚姻，判断出准确的关系模型后输出最终结果，诚实一点评价，用语不用太温和。"
 
 #: src/app/[locale]/ai-ghibli-generator/seo.tsx:28
 msgid "Images generate at 1024x1024 pixels by default—perfect for social media, prints, or digital wallpapers. Higher resolutions may be added in the future!"
@@ -259,12 +259,12 @@ msgstr "使用 GitHub 登录"
 msgid "Login with Google"
 msgstr "使用 Google 登录"
 
-#: src/app/api/ai-fortune-teller/route.ts:32
-#: src/app/[locale]/ai-fortune-teller/page.tsx:156
+#: src/server/router/ai/text.ts:21
+#: src/app/[locale]/ai-fortune-teller/page.tsx:161
 msgid "male"
 msgstr "男"
 
-#: src/app/[locale]/ai-fortune-teller/page.tsx:164
+#: src/app/[locale]/ai-fortune-teller/page.tsx:169
 msgid "Male"
 msgstr "男"
 
@@ -356,7 +356,7 @@ msgstr "注册一个账号"
 msgid "studio ghibli style anime generator"
 msgstr "吉卜力风格动漫生成器"
 
-#: src/app/[locale]/ai-fortune-teller/page.tsx:188
+#: src/app/[locale]/ai-fortune-teller/page.tsx:193
 msgid "Submit"
 msgstr "提交"
 
@@ -378,8 +378,8 @@ msgid "The client first ai apps"
 msgstr "客户端优先的 ai 应用"
 
 #: src/app/[locale]/ai-fortune-teller/page.tsx:83
-msgid "This site does not collect any data from you, all content is directly obtained from the DeepSeek API interface."
-msgstr "本站不会收集您的任何数据，所有内容直接调用 DeepSeek 的 API 接口获取。"
+#~ msgid "This site does not collect any data from you, all content is directly obtained from the DeepSeek API interface."
+#~ msgstr "本站不会收集您的任何数据，所有内容直接调用 DeepSeek 的 API 接口获取。"
 
 #: src/app/[locale]/ai-ghibli-generator/layout.tsx:27
 msgid "Transform photos to authentic Studio Ghibli art with our AI-powered ghibli image generator. Create stunning Miyazaki-style characters and scenes instantly."
