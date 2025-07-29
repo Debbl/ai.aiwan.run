@@ -1,5 +1,5 @@
 import { defaultCache } from '@serwist/next/worker'
-import { ExpirationPlugin, NetworkOnly, Serwist } from 'serwist'
+import { Serwist } from 'serwist'
 import type { PrecacheEntry, SerwistGlobalConfig } from 'serwist'
 
 // This declares the value of `injectionPoint` to TypeScript.
@@ -20,21 +20,7 @@ const serwist = new Serwist({
   skipWaiting: true,
   clientsClaim: true,
   navigationPreload: true,
-  runtimeCaching: [
-    {
-      matcher: /\/api\/auth\/callback\/.*/,
-      handler: new NetworkOnly({
-        plugins: [
-          new ExpirationPlugin({
-            maxEntries: 16,
-            maxAgeSeconds: 24 * 60 * 60, // 24 hours
-          }),
-        ],
-        networkTimeoutSeconds: 10, // fallback to cache if API does not response within 10 seconds
-      }),
-    },
-    ...defaultCache,
-  ],
+  runtimeCaching: defaultCache,
 })
 
 serwist.addEventListeners()
