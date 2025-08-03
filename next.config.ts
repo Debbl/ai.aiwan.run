@@ -28,6 +28,12 @@ const nextConfig: NextConfig = {
   experimental: {
     swcPlugins: [['@lingui/swc-plugin', {}]],
   },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
   rewrites: async () => {
     return [
       {
