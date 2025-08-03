@@ -1,6 +1,6 @@
 import { toNextJsHandler } from 'better-auth/next-js'
 import { cache } from 'react'
-import { createAuth } from '~/lib/auth'
+import { createAuth } from '~/lib/auth-server'
 import { getDBAsync } from '~/server/db'
 
 const getHandler = cache(async () => {

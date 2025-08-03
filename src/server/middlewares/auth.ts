@@ -1,5 +1,5 @@
 import { ORPCError, os } from '@orpc/server'
-import { createAuth } from '~/lib/auth'
+import { createAuth } from '~/lib/auth-server'
 import { getDBAsync } from '../db'
 
 export const requiredAuthMiddleware = os

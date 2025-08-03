@@ -8,13 +8,14 @@ export const user = sqliteTable('user', {
     .$defaultFn(() => false)
     .notNull(),
   image: text('image'),
-  credits: integer('credits').notNull().default(100),
   createdAt: integer('created_at', { mode: 'timestamp' })
     .$defaultFn(() => /* @__PURE__ */ new Date())
     .notNull(),
   updatedAt: integer('updated_at', { mode: 'timestamp' })
     .$defaultFn(() => /* @__PURE__ */ new Date())
     .notNull(),
+  isAnonymous: integer('is_anonymous', { mode: 'boolean' }),
+  credits: integer('credits').default(100).notNull(),
 })
 
 export const session = sqliteTable('session', {
