@@ -1,5 +1,6 @@
 'use client'
 import { Trans, useLingui } from '@lingui/react/macro'
+import { HatGlasses } from 'lucide-react'
 import { redirect } from 'next/navigation'
 import { parseAsString, useQueryState } from 'nuqs'
 import { SiGithub, SiGoogle } from 'react-icons/si'
@@ -26,7 +27,7 @@ export default function Page() {
   const session = useSession()
 
   useEffect(() => {
-    if (session.data) {
+    if (session.data && !session.data.user.isAnonymous) {
       redirect('/')
     }
   }, [session.data])
@@ -62,6 +63,19 @@ export default function Page() {
     await authClient.signIn.social({
       provider: 'github',
       callbackURL,
+    })
+  }
+
+  const handleAnonymousLogin = async () => {
+    toast('Anonymous will not save your data', {
+      position: 'top-center',
+      description: 'You can login with your email and password later',
+      action: {
+        label: 'Continue',
+        onClick: () => {
+          authClient.signIn.anonymous()
+        },
+      },
     })
   }
 
@@ -141,6 +155,16 @@ export default function Page() {
                 <SiGithub />
                 <Trans>Login with GitHub</Trans>
               </Button>
+              {!session.data?.user.isAnonymous && (
+                <Button
+                  variant='outline'
+                  className='w-full'
+                  onClick={handleAnonymousLogin}
+                >
+                  <HatGlasses />
+                  <Trans>Login with Anonymous</Trans>
+                </Button>
+              )}
             </div>
           </CardContent>
         </Card>

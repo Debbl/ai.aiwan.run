@@ -12,3 +12,5 @@ export const createAuth = cache((db: DB) =>
     }),
   }),
 )
+
+export type Auth = Parameters<typeof createAuth>[0]

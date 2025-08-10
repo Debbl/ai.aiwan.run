@@ -182,7 +182,7 @@ export function Header() {
               </NavigationMenuTriggerWithoutChevron>
               <NavigationMenuContent>
                 <ul className='grid w-fit gap-1'>
-                  {!data?.name ? (
+                  {!data?.name || data?.isAnonymous ? (
                     userList.map((item) => (
                       <ListItem
                         key={item.href}
