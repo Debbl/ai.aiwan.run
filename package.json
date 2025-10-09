@@ -47,7 +47,7 @@
     "@tailwindcss/postcss": "^4.1.11",
     "@tanstack/react-query": "^5.84.1",
     "ai": "beta",
-    "better-auth": "^1.3.4",
+    "better-auth": "^1.3.26",
     "birpc": "^2.5.0",
     "class-variance-authority": "^0.7.1",
     "date-fns": "^4.1.0",
