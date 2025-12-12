@@ -24,8 +24,8 @@ importers:
         specifier: ^0.2.2
         version: 0.2.2
       '@huggingface/transformers':
-        specifier: 3.5.2
-        version: 3.5.2
+        specifier: 3.8.1
+        version: 3.8.1
       '@lingui/core':
         specifier: ^5.4.0
         version: 5.4.0(@lingui/babel-plugin-lingui-macro@5.4.1(babel-plugin-macros@3.1.0)(typescript@5.9.2))(babel-plugin-macros@3.1.0)
@@ -136,7 +136,7 @@ importers:
         version: 0.0.2(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
       use-transformers:
         specifier: ^0.0.10
-        version: 0.0.10(@huggingface/transformers@3.5.2)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
+        version: 0.0.10(@huggingface/transformers@3.8.1)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
       zod:
         specifier: ^4.0.14
         version: 4.0.14
@@ -1518,12 +1518,12 @@ packages:
   '@hexagon/base64@1.1.28':
     resolution: {integrity: sha512-lhqDEAvWixy3bZ+UOYbPwUbBkwBq5C1LAJ/xPC8Oi+lL54oyakv/npbA0aU2hgCsx/1NUd4IBvV03+aUBWxerw==}
 
-  '@huggingface/jinja@0.4.1':
-    resolution: {integrity: sha512-3WXbMFaPkk03LRCM0z0sylmn8ddDm4ubjU7X+Hg4M2GOuMklwoGAFXp9V2keq7vltoB/c7McE5aHUVVddAewsw==}
+  '@huggingface/jinja@0.5.3':
+    resolution: {integrity: sha512-asqfZ4GQS0hD876Uw4qiUb7Tr/V5Q+JZuo2L+BtdrD4U40QU58nIRq3ZSgAzJgT874VLjhGVacaYfrdpXtEvtA==}
     engines: {node: '>=18'}
 
-  '@huggingface/transformers@3.5.2':
-    resolution: {integrity: sha512-mfRXkmcL99+ibpjM++pvZmc2h3po8i1ZgSRI5Rtgh++P15GU0lY8UQteYt/w5V+GQw+Jpao93MoipcePzh3mKg==}
+  '@huggingface/transformers@3.8.1':
+    resolution: {integrity: sha512-tsTk4zVjImqdqjS8/AOZg2yNLd1z9S5v+7oUPpXaasDRwEDhB+xnglK1k5cad26lL5/ZIaeREgWWy0bs9y9pPA==}
 
   '@humanfs/core@0.19.1':
     resolution: {integrity: sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA==}
@@ -9613,11 +9613,11 @@ snapshots:
 
   '@hexagon/base64@1.1.28': {}
 
-  '@huggingface/jinja@0.4.1': {}
+  '@huggingface/jinja@0.5.3': {}
 
-  '@huggingface/transformers@3.5.2':
+  '@huggingface/transformers@3.8.1':
     dependencies:
-      '@huggingface/jinja': 0.4.1
+      '@huggingface/jinja': 0.5.3
       onnxruntime-node: 1.21.0
       onnxruntime-web: 1.22.0-dev.20250409-89f8206ba4
       sharp: 0.34.3
@@ -15093,7 +15093,7 @@ snapshots:
       '@protobufjs/path': 1.1.2
       '@protobufjs/pool': 1.1.0
       '@protobufjs/utf8': 1.1.0
-      '@types/node': 24.3.0
+      '@types/node': 24.10.3
       long: 5.2.3
 
   proxy-addr@2.0.7:
@@ -16017,9 +16017,9 @@ snapshots:
     dependencies:
       react: 19.1.1
 
-  use-transformers@0.0.10(@huggingface/transformers@3.5.2)(react-dom@19.1.1(react@19.1.1))(react@19.1.1):
+  use-transformers@0.0.10(@huggingface/transformers@3.8.1)(react-dom@19.1.1(react@19.1.1))(react@19.1.1):
     dependencies:
-      '@huggingface/transformers': 3.5.2
+      '@huggingface/transformers': 3.8.1
       birpc: 0.2.19
       react: 19.1.1
       react-dom: 19.1.1(react@19.1.1)
