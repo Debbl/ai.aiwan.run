@@ -41,7 +41,7 @@
     "@huggingface/transformers": "3.5.2",
     "@lingui/core": "^5.4.0",
     "@lingui/react": "^5.4.0",
-    "@orpc/client": "^1.7.9",
+    "@orpc/client": "^1.13.6",
     "@orpc/server": "^1.7.9",
     "@orpc/tanstack-query": "^1.7.9",
     "@tailwindcss/postcss": "^4.1.11",
