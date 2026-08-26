@@ -38,7 +38,7 @@
     "@ai-sdk/react": "beta",
     "@debbl/ahooks": "^0.4.1",
     "@debbl/utils": "^0.2.2",
-    "@huggingface/transformers": "3.5.2",
+    "@huggingface/transformers": "3.8.1",
     "@lingui/core": "^5.4.0",
     "@lingui/react": "^5.4.0",
     "@orpc/client": "^1.7.9",
