@@ -52,7 +52,7 @@
     "class-variance-authority": "^0.7.1",
     "date-fns": "^4.1.0",
     "drizzle-kit": "^0.31.4",
-    "drizzle-orm": "^0.44.4",
+    "drizzle-orm": "^0.45.0",
     "es-toolkit": "^1.39.8",
     "jotai": "^2.12.5",
     "lucide-react": "^0.533.0",
